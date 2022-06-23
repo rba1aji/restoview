@@ -6,7 +6,7 @@ import TopRatedComponent from '../containers/TopRated'
 import NearbyComponent from '../containers/Nearby'
 import PutRatingComponent from '../containers/PutRating'
 
-export default const routes=[
+const routes=[
   {
     "path":"/auth/login",
     "component":LoginComponent,
@@ -43,3 +43,5 @@ export default const routes=[
     "title":"Put Rating",
   }
 ]
+
+export default routes;
