@@ -27,7 +27,7 @@ export default function App() {
             <Route
               path={route.path}
               exact
-              // render={(props)=><route.component{...props}/>}
+              render={(props)=><route.component{...props}/>}
             />
           )
         )}
