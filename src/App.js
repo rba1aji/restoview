@@ -2,14 +2,13 @@ import React from 'react';
 import './style.css';
 
 import routes from './routes';
-
-import { BrowserRouter, Route, Link , Routes ,Outlet } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Routes, Outlet } from 'react-router-dom';
 
 export default function App() {
   return (
     <div>
       <BrowserRouter>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -22,18 +21,16 @@ export default function App() {
             </li>
           </ul>
         </nav>
-        <Outlet/>
+        <Outlet/> */}
         <Routes>
-        {routes.map(
-          (route, index) => (
+          {routes.map((route, index) => (
             <Route
               key={index}
               path={route.path}
               exact
-              render={(props)=>< route.component {...props}/>}
-            />
-          )
-        )}
+              render={(props) => <route.component {...props} />}
+            ></Route>
+          ))}
         </Routes>
       </BrowserRouter>
     </div>
