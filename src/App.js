@@ -4,9 +4,12 @@ import './style.css';
 import routes from './routes';
 import { BrowserRouter, Route, Link, Routes, Outlet } from 'react-router-dom';
 
+import HomeComponent from './containers/Home';
+
 export default function App() {
   return (
     <div>
+      {/* <HomeComponent/> */}
       <BrowserRouter>
         {/* <nav>
           <ul>
@@ -23,12 +26,14 @@ export default function App() {
         </nav>
         <Outlet/> */}
         <Routes>
+          {/* <Route path="/" exact element={<HomeComponent/>}></Route> */}
           {routes.map((route, index) => (
             <Route
               key={index}
               path={route.path}
               exact
-              render={(props) => <route.component {...props} />}
+              element={<route.component />}
+              // render={(props) => <route.component {...props} />}
             ></Route>
           ))}
         </Routes>
