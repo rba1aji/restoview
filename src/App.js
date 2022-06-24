@@ -9,13 +9,13 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 function NavBar() {
   return (
     <>
-      <Navbar collapseOnSelect bg="light" expand="lg">
+      <Navbar collapseOnSelect={true} bg="light" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/">Restaurant Rating App</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">
+              <Nav.Link href="#home">
                 Home
               </Nav.Link>
               <Nav.Link as={Link} to="/filter">
