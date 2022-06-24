@@ -3,7 +3,7 @@ import './style.css';
 
 import routes from './routes';
 
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link , Routes } from 'react-router-dom';
 
 export default function App() {
   return (
@@ -15,13 +15,14 @@ export default function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/auth/login">Login</Link>
+              <Link to="/login">Login</Link>
             </li>
             <li>
               <Link to="/auth/register">Register</Link>
             </li>
           </ul>
         </nav>
+        <Routes>
         {routes.map(
           (route, index) => (
             <Route
@@ -31,6 +32,7 @@ export default function App() {
             />
           )
         )}
+        </Routes>
       </BrowserRouter>
     </div>
   );
