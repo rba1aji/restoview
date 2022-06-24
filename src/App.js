@@ -4,28 +4,36 @@ import './style.css';
 import routes from './routes';
 import { BrowserRouter, Route, Link, Routes, Outlet } from 'react-router-dom';
 
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+
 function NavBar() {
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/filter">Filter</Link>
-          </li>
-          <li>
-            <Link to="/near-by-restaurants">Nearby Restaurants</Link>
-          </li>
-          <li>
-            <Link to="/top-rated-restaurants">Top Rated Restaurants</Link>
-          </li>
-          <li>
-            <Link to="/auth/login">Login</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navbar collapseOnSelect bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand as={Link} to="/">Restaurant Rating App</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/">
+                Home
+              </Nav.Link>
+              <Nav.Link as={Link} to="/filter">
+                Filter
+              </Nav.Link>
+              <Nav.Link as={Link} to="/near-by-restaurants">
+                Nearby Restaurants
+              </Nav.Link>
+              <Nav.Link as={Link} to="/top-rated-restaurants">
+                Top Rated Restaurants
+              </Nav.Link>
+              <Nav.Link as={Link} to="/auth/login">
+                Login
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       {/* <Outlet/> */}
     </>
   );
