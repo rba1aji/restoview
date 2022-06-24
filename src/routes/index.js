@@ -28,12 +28,12 @@ const routes = [
     title: 'Filter',
   },
   {
-    path: '/near-by',
+    path: '/near-by-restaurants',
     component: NearbyComponent,
     title: 'Near By Restaurants',
   },
   {
-    path: '/auth/top-rated',
+    path: '/top-rated-restaurants',
     component: TopRatedComponent,
     title: 'Top Rated Restaurents',
   },
