@@ -1,3 +1,4 @@
+import React from 'react';
 export default function TopRated() {
-  return <h1>TopRated</h1>;
+  return <h1>TOP RATED RESTAURANTS</h1>;
 }
