@@ -10,7 +10,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 function NavBar() {
   return (
     <>
-      <Navbar collapseOnSelect bg="light" expand="sm">
+      <Navbar collapseOnSelect bg="light" expand="md">
         <Container>
           <Navbar.Brand as={Link} to="/">
             Restaurant Rating App
