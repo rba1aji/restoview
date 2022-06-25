@@ -25,10 +25,10 @@ function NavBar() {
                 <Nav.Link>Filter</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/near-by-restaurants">
-                <Nav.Link>Nearby Restaurants</Nav.Link>
+                <Nav.Link>Nearby</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/top-rated-restaurants">
-                <Nav.Link>Top Rated Restaurants</Nav.Link>
+                <Nav.Link>Top Rated</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/auth/login">
                 <Nav.Link>Login</Nav.Link>
