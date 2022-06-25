@@ -13,7 +13,7 @@ function Header() {
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Container>
           <Nav.Item >
-          <img src="https://raw.githubusercontent.com/rba1aji/restaurant-rating-app/main/public/logo.jpg" style={{width:50}} alt="Logo"/>
+          <img src="https://raw.githubusercontent.com/rba1aji/restaurant-rating-app/main/public/logo.jpg" style={{width:40}} alt="Logo"/>
             </Nav.Item>
           <Navbar.Brand as={Link} to="/" style={{fontWeight:"bold"}}
           //  className="ms-auto me-auto"
