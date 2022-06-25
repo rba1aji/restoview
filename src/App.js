@@ -17,7 +17,7 @@ function NavBar() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto justify-content-end" >
+            <Nav className="ms-auto" >
               <Nav.Item as={LinkContainer} to="/">
                 <Nav.Link>Home</Nav.Link>   
               </Nav.Item>
