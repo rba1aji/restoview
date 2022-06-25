@@ -10,17 +10,17 @@ import { LinkContainer } from 'react-router-bootstrap';
 function NavBar() {
   return (
     <>
-      <Navbar collapseOnSelect bg="light" expand="lg">
+      <Navbar collapseOnSelect bg="light" expand="sm">
         <Container>
           <Navbar.Brand as={Link} to="/">
             Restaurant Rating App
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <LinkContainer to="/">
-                <Nav.Link>Home</Nav.Link>
-              </LinkContainer>
+            <Nav className="justify-content-end" className="me-auto" >
+              <Nav.Item as={LinkContainer} to="/">
+                <Nav.Link>Home</Nav.Link>   
+              </Nav.Item>
               <LinkContainer to="/filter">
                 <Nav.Link>Filter</Nav.Link>
               </LinkContainer>
