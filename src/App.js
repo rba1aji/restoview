@@ -5,31 +5,34 @@ import routes from './routes';
 import { BrowserRouter, Route, Link, Routes, Outlet } from 'react-router-dom';
 
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function NavBar() {
   return (
     <>
       <Navbar collapseOnSelect={true} bg="light" expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to="/">Restaurant Rating App</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">
+            Restaurant Rating App
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">
-                Home
-              </Nav.Link>
-              <Nav.Link as={Link} to="/filter">
-                Filter
-              </Nav.Link>
-              <Nav.Link as={Link} to="/near-by-restaurants">
-                Nearby Restaurants
-              </Nav.Link>
-              <Nav.Link as={Link} to="/top-rated-restaurants">
-                Top Rated Restaurants
-              </Nav.Link>
-              <Nav.Link as={Link} to="/auth/login">
-                Login
-              </Nav.Link>
+              <LinkContainer to="/">
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/filter">
+                <Nav.Link>Filter</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/near-by-restaurants">
+                <Nav.Link>Nearby Restaurants</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/top-rated-restaurants">
+                <Nav.Link>Top Rated Restaurants</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/auth/login">
+                <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
