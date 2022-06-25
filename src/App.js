@@ -12,10 +12,14 @@ function Header() {
     <>
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Container>
+          <Nav.Item >
+          <img src="https://raw.githubusercontent.com/rba1aji/restaurant-rating-app/9c8afdb2986e93c185b4f3217a94e5ff9f8636c7/public/Picsart_22-06-25_17-37-56-444.png" style={{width:50}} alt="Logo"/>
+            </Nav.Item>
           <Navbar.Brand as={Link} to="/" style={{fontWeight:"bold"}}
           //  className="ms-auto me-auto"
            >
-            RESRAT - Restaurant Rating App
+            {/* RESRAT -  */}
+            Restaurant Rating App
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
