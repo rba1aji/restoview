@@ -17,22 +17,22 @@ function NavBar() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="justify-content-end" className="me-auto" >
+            <Nav className="me-auto justify-content-end" >
               <Nav.Item as={LinkContainer} to="/">
                 <Nav.Link>Home</Nav.Link>   
               </Nav.Item>
-              <LinkContainer to="/filter">
+              <Nav.Item as={LinkContainer} to="/filter">
                 <Nav.Link>Filter</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/near-by-restaurants">
+              </Nav.Item>
+              <Nav.Item as={LinkContainer} to="/near-by-restaurants">
                 <Nav.Link>Nearby</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/top-rated-restaurants">
+              </Nav.Item>
+              <Nav.Item as={LinkContainer} to="/top-rated-restaurants">
                 <Nav.Link>Top Rated</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/auth/login">
+              </Nav.Item>
+              <Nav.Item as={LinkContainer} to="/auth/login">
                 <Nav.Link>Login</Nav.Link>
-              </LinkContainer>
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Container>
