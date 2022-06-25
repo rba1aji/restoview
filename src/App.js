@@ -7,13 +7,15 @@ import { BrowserRouter, Route, Link, Routes, Outlet } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-function NavBar() {
+function Header() {
   return (
     <>
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to="/">
-            Restaurant Rating App
+          <Navbar.Brand as={Link} to="/" style={{fontWeight:"bold"}}
+          //  className="ms-auto me-auto"
+           >
+            RESRAT - Restaurant Rating App
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -46,7 +48,7 @@ export default function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar />
+        <Header />
         <Routes>
           {routes.map((route, index) => (
             <Route
