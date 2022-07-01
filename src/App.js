@@ -7,11 +7,13 @@ import axios from 'axios';
 
 import Header from './components/Header';
 
+const API_KEY='AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU'
+
 const axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'http://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&key=AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU',
+  url: `http://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&key=${API_KEY}`,
   headers: { }
 };
 
@@ -21,7 +23,7 @@ axios(config)
   console.log(JSON.stringify(response.data));
 })
 .catch(function (error) {
-  console.log(error);
+  console.log(error);Ç
 });
 
 
