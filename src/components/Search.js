@@ -17,6 +17,7 @@ export default function Search() {
   })
   .then(function () {
     // always executed
+    console.log("always")
   });
   return (
     <>
