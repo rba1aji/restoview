@@ -6,7 +6,7 @@ export default function Search() {
   const searchUrl = ``;
   return (
     <>
-      <input />
+      <input/>
     </>
   );
 }
