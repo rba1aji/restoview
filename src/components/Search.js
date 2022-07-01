@@ -17,9 +17,8 @@ export default function Search() {
   useEffect(() => {
     axios(config)
       .then((res) => {
-        const s=JSON.stringify(res.data);
-        // JSON.stringify(res.data);
-        console.log(res);
+        // const s=JSON.stringify(res.data);
+        console.log(res); 
         // setOptions(JSON)
       })
       .catch(function (error) {
