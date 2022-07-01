@@ -30,7 +30,7 @@ export default function Search() {
       .catch(function (error) {
         console.log(error);
       });
-  }, [input]);
+  });
 
   return (
     <>
