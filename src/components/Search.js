@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Search() {
-  const [input, setInput] = useState('amman');
+  const [input, setInput] = useState('');
   const [options, setOptions] = useState([]);
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   // const searchUrl = `https://{baseURL}/search/{versionNumber}/search/{query}.json?key={Your_API_Key}&limit={limit}&categorySet={categorySet}`;
@@ -24,7 +24,7 @@ export default function Search() {
       .catch(function (error) {
         console.log(error);
       });
-  });
+  },[input]);
 
   return (
     <>
