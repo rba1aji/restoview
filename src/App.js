@@ -11,10 +11,11 @@ const axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'http://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&types=establishment&location=37.76999%2C-122.44696&radius=500&key=AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU',
+  url: 'http://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&key=AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU',
   headers: { }
 };
 
+ 
 axios(config)
 .then(function (response) {
   console.log(JSON.stringify(response.data));
