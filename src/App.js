@@ -18,12 +18,12 @@ var config = {
 };
 
  
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);Ç
+fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&location=37.76999%2C-122.44696&radius=500&types=establishment&key=${API_KEY}`)
+.then(
+  res=>res.json();
+)
+.then(function (js) {
+  console.log(res);
 });
 
 
