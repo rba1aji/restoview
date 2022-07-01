@@ -7,9 +7,6 @@ import axios from 'axios';
 
 import Header from './components/Header';
 
-const GOOGLE_API_KEY = 'AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU';
-const TOMTOM_API_KEY = 'O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P';
-
 export default function App() {
   return (
     <div>
