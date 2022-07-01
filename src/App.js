@@ -11,7 +11,7 @@ const axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&types=establishment&location=37.76999%2C-122.44696&radius=500&key=AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU',
+  url: 'http://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&types=establishment&location=37.76999%2C-122.44696&radius=500&key=AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU',
   headers: { }
 };
 
@@ -20,7 +20,6 @@ axios(config)
   console.log(JSON.stringify(response.data));
 })
 .catch(function (error) {
-  // console.log(JSON.stringify(response.data));
   console.log(error);
 });
 
