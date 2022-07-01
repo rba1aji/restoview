@@ -3,25 +3,27 @@ import './style.css';
 
 import routes from './routes';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 
-import Header from './components/Header'
+import Header from './components/Header';
 
 const axios = require('axios');
 
-// Make a request for a user with a given ID
-axios.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&location=37.76999%2C-122.44696&radius=500&types=establishment&key=AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU')
-  .then(function (response) {
-    // handle success
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
+var config = {
+  method: 'get',
+  url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=amoeba&types=establishment&location=37.76999%2C-122.44696&radius=500&key=AIzaSyDZyID2twnuKnR5OPRs5OdDugVnTJoqPCU',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  // console.log(JSON.stringify(response.data));
+  console.log(error);
+});
+
 
 export default function App() {
   return (
