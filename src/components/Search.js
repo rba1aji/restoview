@@ -6,14 +6,14 @@ export default function Search() {
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
-  function HandleOnPressItem(){
-    
-  }
+  function HandleOnPressItem() {}
 
   function HandleInputChange(e) {
     e.preventDefault();
     console.log(searchInputRef.current.value);
-    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(searchInputRef.current.value)}.json?categorySet=7315&key=${KEY}`;
+    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+      searchInputRef.current.value
+    )}.json?categorySet=7315&key=${KEY}`;
     axios
       .get(URL)
       .then((res) => {
@@ -31,6 +31,9 @@ export default function Search() {
         ref={searchInputRef}
         onChange={HandleInputChange}
       />
+      <ul>
+        <li onClick={() => {}}></li>
+      </ul>
     </>
   );
 }
