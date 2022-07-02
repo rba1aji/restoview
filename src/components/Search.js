@@ -3,10 +3,11 @@ import axios from 'axios';
 
 export default function Search() {
   const searchInputRef = useRef();
+  const [options,setOptions]=useState();
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
-  function HandleOnPressItem() {
+  function HandleOnClickItem() {
     ref.current.value="selected"
   }
 
@@ -20,11 +21,11 @@ export default function Search() {
     axios
       .get(URL)
       .then((res) => {
-        // console.log(JSON.stringify(res));
         console.log(
           res.data.results[0].poi.name,
           res.data.results[0].address.freeformAddress
         )
+        setOptions(res.data)
       })
       .catch(function (error) {
         console.log(error);
@@ -39,7 +40,9 @@ export default function Search() {
         onChange={HandleInputChange}
       />
       <ul>
-        <li onClick={HandleOnPressItem}></li>
+        <li onClick={HandleOnClickItem}>
+
+        </li>
       </ul>
     </>
   );
