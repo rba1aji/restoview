@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default function Search() {
   const searchInputRef = useRef();
-  const [options, setOptions] = useState();
+  const [options, setOptions] = useState([]);
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
@@ -41,9 +41,12 @@ export default function Search() {
         onChange={HandleInputChange}
       />
       <ul>
-        options.map((option)=>{
-          {<li onClick={HandleOnClickItem}></li>}
+        {options.map((option) => {
+          return( 
+            <li onClick={HandleOnClickItem}>{option.poi.name}</li>
+          );
         })
+        }
       </ul>
     </>
   );
