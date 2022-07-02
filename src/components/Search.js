@@ -54,14 +54,18 @@ export default function Search() {
 
   return (
     <>
+      <div className="ms-3 me-3">
       <FormControl
         // autoFocus
+        size="lg"
         className=""
         placeholder="Search..."
         ref={searchInputRef}
         onChange={HandleInputChange}
       />
+      <br/>
       <ShowSuggestions />
+      </div>
     </>
   );
 }
