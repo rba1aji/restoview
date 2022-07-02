@@ -10,19 +10,11 @@ export default function Search() {
   //curl 'https://{baseURL}/search/{versionNumber}/categorySearch/{query}.{ext}?key={Your_API_Key}&typeahead={typeahead}&limit={limit}&ofs={ofs}&lat={lat}&lon={lon}&countrySet={countrySet}&radius={radius}&topLeft={topLeft}&btmRight={btmRight}&language={language}&extendedPostalCodesFor={extendedPostalCodesFor}&categorySet={categorySet}&brandSet={brandSet}&connectorSet={connectorSet}&fuelSet={fuelSet}&view={view}&openingHours={openingHours}&timeZone={timeZone}&mapcodes={mapcodes}&relatedPois={relatedPois}&minPowerKW={minPowerKW}&maxPowerKW={maxPowerKW}'
   const URL = `https://api.tomtom.com/search/2/search/${input}.json?categorySet=7315&key=${KEY}`;
 
-  var config = {
-    method: 'get',
-    url: URL,
-    headers: {},
-  };
-
   function HandleChange(e) {
     setInput(e.target.value);
     console.log(input);
-  }
-
-  useEffect(() => {
-    axios(config)
+  
+    axios.get(URL)
       .then((res) => {
         // const s=JSON.stringify(res.data);
         console.log(res);
@@ -30,7 +22,7 @@ export default function Search() {
       .catch(function (error) {
         console.log(error);
       });
-  });
+    }
 
   return (
     <>
