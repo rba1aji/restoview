@@ -41,7 +41,10 @@ export default function Search() {
         {options.map((option, index) => {
           return (
             <>
-              <h3 className="mb-0" onClick={HandleOnClickItem}>
+              <h3 
+                className="mb-0" 
+                onClick={HandleOnClickItem}
+              >
                 {option.poi.name}
               </h3>
               <p>{option.address.freeformAddress}</p>
