@@ -2,15 +2,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
 export default function Search() {
-  const inputRef = useRef();
-  const [options, setOptions] = useState([]);
+  const searchInputRef = useRef();
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
+  function HandleOnPressItem(){
+    
+  }
+
   function HandleInputChange(e) {
     e.preventDefault();
-    console.log(inputRef.current.value);
-    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(inputRef.current.value)}.json?categorySet=7315&key=${KEY}`;
+    console.log(searchInputRef.current.value);
+    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(searchInputRef.current.value)}.json?categorySet=7315&key=${KEY}`;
     axios
       .get(URL)
       .then((res) => {
@@ -25,7 +28,7 @@ export default function Search() {
     <>
       <input
         placeholder="Search..."
-        ref={inputRef}
+        ref={searchInputRef}
         onChange={HandleInputChange}
       />
     </>
