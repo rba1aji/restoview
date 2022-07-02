@@ -32,7 +32,7 @@ export default function Search() {
         onChange={HandleInputChange}
       />
       <ul>
-        <li onClick={() => {}}></li>
+        <li onClick={() => {ref.current.value="selected"}}></li>
       </ul>
     </>
   );
