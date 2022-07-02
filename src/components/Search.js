@@ -54,7 +54,7 @@ export default function Search() {
 
   return (
     <>
-      <div className="ms-3 me-3">
+      <div className="ms-4 me-4">
       <FormControl
         // autoFocus
         size="lg"
