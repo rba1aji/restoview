@@ -6,7 +6,9 @@ export default function Search() {
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
-  function HandleOnPressItem() {}
+  function HandleOnPressItem() {
+    ref.current.value="selected"
+  }
 
   function HandleInputChange(e) {
     e.preventDefault();
@@ -32,7 +34,7 @@ export default function Search() {
         onChange={HandleInputChange}
       />
       <ul>
-        <li onClick={() => {ref.current.value="selected"}}></li>
+        <li onClick={HandleOnPressItem}></li>
       </ul>
     </>
   );
