@@ -23,10 +23,9 @@ export default function Search() {
       .get(URL)
       .then((res) => {
         // console.log(query);
-        // console.log(
-        //   res.data.results[0].poi.name,
-        //   res.data.results[0].address.freeformAddress
-        // );
+        // console.log(res)
+        // console.log(res.data.results[0].id)
+        // console.log(res.data.results[0].address.freeformAddress)
         setOptions(res.data.results);
         // console.log(options);
       })
