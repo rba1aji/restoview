@@ -12,19 +12,19 @@ export default function Search() {
   }
 
   function HandleInputChange(e) {
-    e.preventDefault();ddhthythsg
+    e.preventDefault();
     const query = searchInputRef.current.value;
     URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(query)}.json?categorySet=7315&countrySet=IN&key=${KEY}`;
     axios
       .get(URL)
       .then((res) => {
-        console.log(query);
-        console.log(
-          res.data.results[0].poi.name,
-          res.data.results[0].address.freeformAddress
-        );
+        // console.log(query);
+        // console.log(
+        //   res.data.results[0].poi.name,
+        //   res.data.results[0].address.freeformAddress
+        // );
         setOptions(res.data.results);
-        console.log(options);
+        // console.log(options);
       })
       .catch(function (error) {
         console.log(error);
@@ -39,7 +39,7 @@ export default function Search() {
         onChange={HandleInputChange}
       />
       <ul>
-        {options.map((option) => {
+        {options.map((option,index) => {
           return (
             <li onClick={HandleOnClickItem}>
               {option.poi.name}
