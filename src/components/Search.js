@@ -38,7 +38,7 @@ export default function Search() {
   function ShowSuggestions() {
     return (
       <ul>
-        {options.map((option) => {
+        {options.map((option,) => {
           return (
             <div onClick={HandleOnClickItem}>
               <h3 className="mb-0">{option.poi.name}</h3>
