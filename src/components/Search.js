@@ -10,7 +10,7 @@ export default function Search() {
   function HandleInputChange(e) {
     e.preventDefault();
     console.log(inputRef.current.value);
-    URL = `https://api.tomtom.com/search/2/search/${inputRef.current.value}.json?categorySet=7315&key=${KEY}`;
+    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(inputRef.current.value)}.json?categorySet=7315&key=${KEY}`;
     axios
       .get(URL)
       .then((res) => {
