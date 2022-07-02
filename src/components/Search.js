@@ -10,8 +10,8 @@ export default function Search() {
   let URL = undefined;
 
   function HandleOnClickItem(e) {
-    searchInputRef.current.value=""
-    HandleInputChange(e)
+    searchInputRef.current.value = '';
+    HandleInputChange(e);
   }
 
   function HandleInputChange(e) {
@@ -38,14 +38,10 @@ export default function Search() {
   function ShowSuggestions() {
     return (
       <ul>
-        {options.map((option, index) => {
+        {options.map((option) => {
           return (
             <div onClick={HandleOnClickItem}>
-              <h3 
-                className="mb-0" 
-              >
-                {option.poi.name}
-              </h3>
+              <h3 className="mb-0">{option.poi.name}</h3>
               <p>{option.address.freeformAddress}</p>
             </div>
           );
@@ -57,16 +53,16 @@ export default function Search() {
   return (
     <>
       <div className="ms-4 me-4">
-      <FormControl
-        // autoFocus
-        size="lg"
-        className=""
-        placeholder="Search..."
-        ref={searchInputRef}
-        onChange={HandleInputChange}
-      />
-      <br/>
-      <ShowSuggestions />
+        <FormControl
+          // autoFocus
+          size="lg"
+          className=""
+          placeholder="Search..."
+          ref={searchInputRef}
+          onChange={HandleInputChange}
+        />
+        <br />
+        <ShowSuggestions />
       </div>
     </>
   );
