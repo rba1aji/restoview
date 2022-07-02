@@ -12,11 +12,9 @@ export default function Search() {
   }
 
   function HandleInputChange(e) {
-    e.preventDefault();
+    e.preventDefault();ddhthythsg
     const query = searchInputRef.current.value;
-    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
-      query
-    )}.json?categorySet=7315&key=${KEY}`;
+    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(query)}.json?categorySet=7315&countrySet=IN&key=${KEY}`;
     axios
       .get(URL)
       .then((res) => {
