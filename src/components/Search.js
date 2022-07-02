@@ -14,7 +14,9 @@ export default function Search() {
   function HandleInputChange(e) {
     e.preventDefault();
     const query = searchInputRef.current.value;
-    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(query)}.json?categorySet=7315&countrySet=IN&key=${KEY}`;
+    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+      query
+    )}.json?categorySet=7315&countrySet=IN&key=${KEY}`;
     axios
       .get(URL)
       .then((res) => {
@@ -39,11 +41,13 @@ export default function Search() {
         onChange={HandleInputChange}
       />
       <ul>
-        {options.map((option,index) => {
+        {options.map((option, index) => {
           return (
             <li onClick={HandleOnClickItem}>
               {option.poi.name}
-              <ul><li>{option.address.freeformAddress}</li></ul>
+              <ul>
+                <li>{option.address.freeformAddress}</li>
+              </ul>
             </li>
           );
         })}
