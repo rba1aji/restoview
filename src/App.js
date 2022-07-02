@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.css';
 
 import routes from './routes';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 
-import Header from './components/Header'
+import Header from './components/Header';
 
 export default function App() {
   return (
