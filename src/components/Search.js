@@ -12,14 +12,19 @@ export default function Search() {
 
   function HandleInputChange(e) {
     e.preventDefault();
-    console.log(searchInputRef.current.value);
+    const query=searchInputRef.current.value
+    console.log(query);
     URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
-      searchInputRef.current.value
+      query
     )}.json?categorySet=7315&key=${KEY}`;
     axios
       .get(URL)
       .then((res) => {
-        console.log(res);
+        // console.log(JSON.stringify(res));
+        console.log(
+          res.data.results[0].poi.name,
+          res.data.results[0].address.freeformAddress
+        )
       })
       .catch(function (error) {
         console.log(error);
