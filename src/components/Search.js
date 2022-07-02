@@ -9,8 +9,9 @@ export default function Search() {
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
-  function HandleOnClickItem() {
-    ref.current.value = 'selected';
+  function HandleOnClickItem(e) {
+    searchInputRef.current.value=""
+    HandleInputChange(e)
   }
 
   function HandleInputChange(e) {
@@ -39,15 +40,14 @@ export default function Search() {
       <ul>
         {options.map((option, index) => {
           return (
-            <>
+            <div onClick={HandleOnClickItem}>
               <h3 
                 className="mb-0" 
-                onClick={HandleOnClickItem}
               >
                 {option.poi.name}
               </h3>
               <p>{option.address.freeformAddress}</p>
-            </>
+            </div>
           );
         })}
       </ul>
