@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
+import { Dropdown, FormControl } from 'react-bootstrap';
+
 export default function Search() {
   const searchInputRef = useRef();
   const [options, setOptions] = useState([]);
@@ -14,7 +16,9 @@ export default function Search() {
   function HandleInputChange(e) {
     e.preventDefault();
     const query = searchInputRef.current.value;
-    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(query)}.json?categorySet=7315&countrySet=IN&key=${KEY}`;
+    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+      query
+    )}.json?categorySet=7315&countrySet=IN&key=${KEY}`;
     axios
       .get(URL)
       .then((res) => {
@@ -31,23 +35,33 @@ export default function Search() {
       });
   }
 
-  return (
-    <>
-      <input
-        placeholder="Search..."
-        ref={searchInputRef}
-        onChange={HandleInputChange}
-      />
+  function ShowSuggestions() {
+    return (
       <ul>
-        {options.map((option,index) => {
+        {options.map((option, index) => {
           return (
             <li onClick={HandleOnClickItem}>
               {option.poi.name}
-              <ul><li>{option.address.freeformAddress}</li></ul>
+              <ul>
+                <li>{option.address.freeformAddress}</li>
+              </ul>
             </li>
           );
         })}
       </ul>
+    );
+  }
+
+  return (
+    <>
+      <FormControl
+        // autoFocus
+        className=""
+        placeholder="Search..."
+        ref={searchInputRef}
+        onChange={HandleInputChange}
+      />
+      <ShowSuggestions />
     </>
   );
 }
