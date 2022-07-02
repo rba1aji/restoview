@@ -42,11 +42,13 @@ export default function Search() {
       />
       <ul>
         {options.map((option) => {
-          return( 
-            <li onClick={HandleOnClickItem}>{option.poi.name}</li>
+          return (
+            <li onClick={HandleOnClickItem}>
+              {option.poi.name}
+              <ul><li>{option.address.freeformAddress}</li></ul>
+            </li>
           );
-        })
-        }
+        })}
       </ul>
     </>
   );
