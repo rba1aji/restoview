@@ -38,7 +38,7 @@ export default function Search() {
   function ShowSuggestions() {
     return (
       <ul>
-        {options.map((option,index) => {
+        {options.map((option, index) => {
           return (
             <div as="inputarea" onClick={HandleOnClickItem} key={index}>
               <h3 className="mb-0">{option.poi.name}</h3>
