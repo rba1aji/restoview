@@ -10,7 +10,7 @@ export default function Search() {
   let URL = undefined;
 
   function HandleOnClickItem(e) {
-    searchInputRef.current.value = '';
+    searchInputRef.current.value = e.target.value;
     HandleInputChange(e);
   }
 
