@@ -40,7 +40,7 @@ export default function Search() {
       <ul>
         {options.map((option,index) => {
           return (
-            <div onClick={HandleOnClickItem} key={index}>
+            <div as="inputarea" onClick={HandleOnClickItem} key={index}>
               <h3 className="mb-0">{option.poi.name}</h3>
               <p>{option.address.freeformAddress}</p>
             </div>
