@@ -1,14 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
+import { Dropdown, FormControl } from 'react-bootstrap';
+
 export default function Search() {
   const searchInputRef = useRef();
   const [options, setOptions] = useState([]);
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
-  function HandleOnClickItem() {
-    ref.current.value = 'selected';
+  function HandleOnClickItem(e) {
+    searchInputRef.current.value = e.target.value;
+    HandleInputChange(e);
   }
 
   function HandleInputChange(e) {
@@ -21,10 +24,9 @@ export default function Search() {
       .get(URL)
       .then((res) => {
         // console.log(query);
-        // console.log(
-        //   res.data.results[0].poi.name,
-        //   res.data.results[0].address.freeformAddress
-        // );
+        // console.log(res)
+        // console.log(res.data.results[0].id)
+        // console.log(res.data.results[0].address.freeformAddress)
         setOptions(res.data.results);
         // console.log(options);
       })
@@ -33,25 +35,35 @@ export default function Search() {
       });
   }
 
-  return (
-    <>
-      <input
-        placeholder="Search..."
-        ref={searchInputRef}
-        onChange={HandleInputChange}
-      />
+  function ShowSuggestions() {
+    return (
       <ul>
         {options.map((option, index) => {
           return (
-            <li onClick={HandleOnClickItem}>
-              {option.poi.name}
-              <ul>
-                <li>{option.address.freeformAddress}</li>
-              </ul>
-            </li>
+            <div as="inputarea" onClick={HandleOnClickItem} key={index}>
+              <h3 className="mb-0">{option.poi.name}</h3>
+              <p>{option.address.freeformAddress}</p>
+            </div>
           );
         })}
       </ul>
+    );
+  }
+
+  return (
+    <>
+      <div className="ms-4 me-4">
+        <FormControl
+          // autoFocus
+          size="lg"
+          className=""
+          placeholder="Search..."
+          ref={searchInputRef}
+          onChange={HandleInputChange}
+        />
+        <br />
+        <ShowSuggestions />
+      </div>
     </>
   );
 }
