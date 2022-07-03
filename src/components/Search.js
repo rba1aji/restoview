@@ -38,9 +38,9 @@ export default function Search() {
   function ShowSuggestions() {
     return (
       <ul>
-        {options.map((option,) => {
+        {options.map((option,index) => {
           return (
-            <div onClick={HandleOnClickItem}>
+            <div onClick={HandleOnClickItem} key={index}>
               <h3 className="mb-0">{option.poi.name}</h3>
               <p>{option.address.freeformAddress}</p>
             </div>
