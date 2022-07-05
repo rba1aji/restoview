@@ -18,7 +18,7 @@ export default function Header() {
             as={Link}
             to="/"
             style={{ fontWeight: 'bold' }}
-            //  className="ms-auto me-auto"
+            className="ms-auto me-auto"
           >
             {/* RESRAT -  */}
             Restaurant Rating App
