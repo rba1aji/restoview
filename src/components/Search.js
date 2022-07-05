@@ -75,7 +75,7 @@ export default function Search() {
           ref={searchInputRef}
           onChange={HandleInputChange}
         />
-        <br />
+        {/* <br /> */}
         <ShowSuggestions />
       </div>
     </>

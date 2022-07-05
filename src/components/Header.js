@@ -9,18 +9,16 @@ export default function Header() {
     <>
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Container>
-          <Nav.Item>
-            <h1 className="mb-1 ms-auto me-auto">
-              <MdFoodBank />
-            </h1>
-          </Nav.Item>
+          <span className="mb-1.5">
+            <MdFoodBank size="33"/>
+          </span>
           <Navbar.Brand
             as={Link}
             to="/"
             style={{ fontWeight: 'bold' }}
-            className="ms-auto me-auto"
+            className="ps-3 me-auto"
           >
-            {/* RESRAT -  */}
+            {/* ResRat */}
             Restaurant Rating App
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
