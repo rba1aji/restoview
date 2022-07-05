@@ -10,7 +10,7 @@ export default function Header() {
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Container>
           <Nav.Item>
-            <h1 className="mb-1">
+            <h1 className="mb-1 me-auto">
               <MdFoodBank />
             </h1>
           </Nav.Item>
