@@ -2,12 +2,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
 import { Dropdown, FormControl } from 'react-bootstrap';
+import { BsShop } from 'react-icons/bs';
 
 export default function Search() {
-  console.log(process.env);
-  useEffect(() => {
-    alert(process.env.REACT_APP_TOMTOM_API_KEY);
-  }, []);
+  // console.log(process.env);
+  // useEffect(() => {
+  //   alert(process.env.REACT_APP_TOMTOM_API_KEY);
+  // }, []);
 
   const searchInputRef = useRef();
   const [options, setOptions] = useState([]);
@@ -45,13 +46,18 @@ export default function Search() {
 
   function ShowSuggestions() {
     return (
-      <ul>
+      <ul className="list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <li as="inputarea" onClick={HandleOnClickItem} key={index}>
-              <h3 className="mb-0">{option.poi.name}</h3>
-              <p>{option.address.freeformAddress}</p>
-            </li>
+            <>
+              <li as="inputarea" onClick={HandleOnClickItem} key={index}>
+                <h3 className="mb-0">
+                  {/* <BsShop/>{' '} */}
+                  {option.poi.name}
+                </h3>
+                <p> {option.address.freeformAddress}</p>
+              </li>
+            </>
           );
         })}
       </ul>

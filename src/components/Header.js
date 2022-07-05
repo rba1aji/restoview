@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
 
 export default function Header() {
   return (
@@ -9,7 +10,9 @@ export default function Header() {
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Container>
           <Nav.Item>
-            <img src="../../public/logo.png" style={{ width: 40 }} alt="Logo" />
+            <h1 className="mb-1">
+              <MdFoodBank />
+            </h1>
           </Nav.Item>
           <Navbar.Brand
             as={Link}
