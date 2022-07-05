@@ -1,6 +1,0 @@
-{
-  "startCommand": "npm start",
-  "env": {
-    "REACT_APP_TOMTOM_API_KEY": "O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P"
-  }
-}
