@@ -14,8 +14,7 @@ export default function Header() {
               <MdFoodBank />
             </h1>
           </Nav.Item>
-          <Nav.Item>
-            <h1
+          <Navbar.Brand
             // as={Link}
             // to="/"
             style={{ fontWeight: 'bold' }}
@@ -23,8 +22,7 @@ export default function Header() {
           >
             {/* RESRAT -  */}
             Restaurant Rating App
-            </h1>
-          </Nav.Item>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
