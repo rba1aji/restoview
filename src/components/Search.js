@@ -12,13 +12,13 @@ export default function Search() {
   //   alert(process.env.REACT_APP_TOMTOM_API_KEY);
   // }, []);
 
-  const searchInputRef = useRef();
+  const searchInputRef = useRef("");
   const [options, setOptions] = useState([]);
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
   function HandleOnClickItem(e) {
-    searchInputRef.current.value = e.target.value;
+    searchInputRef.current.value = "";
     HandleInputChange(e);
   }
 
@@ -88,7 +88,7 @@ export default function Search() {
           />
         </InputGroup>
         {/* <br /> */}
-        <ShowSuggestions />
+        {searchInputRef.current.value && <ShowSuggestions />}
       </div>
     </>
   );
