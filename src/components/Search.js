@@ -5,7 +5,9 @@ import { Dropdown, FormControl } from 'react-bootstrap';
 
 export default function Search() {
   console.log(process.env);
-  alert(process.env.REACT_APP_TOMTOM_API_KEY);
+  useEffect(() => {
+    alert(process.env.REACT_APP_TOMTOM_API_KEY);
+  }, []);
 
   const searchInputRef = useRef();
   const [options, setOptions] = useState([]);
