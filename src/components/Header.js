@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link , Outlet } from 'react-router-dom'
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -8,20 +8,23 @@ export default function Header() {
     <>
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Container>
-          <Nav.Item >
-          <img src="https://raw.githubusercontent.com/rba1aji/restaurant-rating-app/main/public/logo.jpg" style={{width:40}} alt="Logo"/>
-            </Nav.Item>
-          <Navbar.Brand as={Link} to="/" style={{fontWeight:"bold"}}
-          //  className="ms-auto me-auto"
-           >
+          <Nav.Item>
+            <img src="../../public/logo.png" style={{ width: 40 }} alt="Logo" />
+          </Nav.Item>
+          <Navbar.Brand
+            as={Link}
+            to="/"
+            style={{ fontWeight: 'bold' }}
+            //  className="ms-auto me-auto"
+          >
             {/* RESRAT -  */}
             Restaurant Rating App
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto" >
+            <Nav className="ms-auto">
               <Nav.Item as={LinkContainer} to="/">
-                <Nav.Link>Home</Nav.Link>   
+                <Nav.Link>Home</Nav.Link>
               </Nav.Item>
               <Nav.Item as={LinkContainer} to="/filter">
                 <Nav.Link>Filter</Nav.Link>

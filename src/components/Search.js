@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Dropdown, FormControl } from 'react-bootstrap';
 
 export default function Search() {
+  console.log(process.env);
+
   const searchInputRef = useRef();
   const [options, setOptions] = useState([]);
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
@@ -19,7 +21,10 @@ export default function Search() {
     const query = searchInputRef.current.value;
     URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
       query
-    )}.json?categorySet=7315&countrySet=IN&key=${KEY}`;
+    )}.json?categorySet=7315&countrySet=IN&key=${
+      // process.env.REACT_APP_TOMTOM_API_KEY
+      KEY
+    }`;
     axios
       .get(URL)
       .then((res) => {
@@ -40,10 +45,10 @@ export default function Search() {
       <ul>
         {options.map((option, index) => {
           return (
-            <div as="inputarea" onClick={HandleOnClickItem} key={index}>
+            <li as="inputarea" onClick={HandleOnClickItem} key={index}>
               <h3 className="mb-0">{option.poi.name}</h3>
               <p>{option.address.freeformAddress}</p>
-            </div>
+            </li>
           );
         })}
       </ul>
