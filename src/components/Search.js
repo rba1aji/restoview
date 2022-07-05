@@ -66,7 +66,7 @@ export default function Search() {
 
   return (
     <>
-      <div className="ms-4 me-4">
+      <div style={{margin:"6vw"}} className="">
         <FormControl
           // autoFocus
           size="lg"
