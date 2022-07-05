@@ -1,4 +1,4 @@
 
 # Restaurant Rating App
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-cjwswr)
+[Edit on StackBlitz ](https://stackblitz.com/edit/react-cjwswr)

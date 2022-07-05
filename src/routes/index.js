@@ -1,10 +1,10 @@
-import LoginComponent from '../containers/Login';
-import RegisterComponent from '../containers/Register';
-import FilterComponent from '../containers/Filter';
-import HomeComponent from '../containers/Home';
-import TopRatedComponent from '../containers/TopRated';
-import NearbyComponent from '../containers/Nearby';
-import PutRatingComponent from '../containers/PutRating';
+import LoginComponent from '../pages/Login';
+import RegisterComponent from '../pages/Register';
+import FilterComponent from '../pages/Filter';
+import HomeComponent from '../pages/Home';
+import TopRatedComponent from '../pages/TopRated';
+import NearbyComponent from '../pages/Nearby';
+import PutRatingComponent from '../pages/PutRating';
 
 const routes = [
   {
