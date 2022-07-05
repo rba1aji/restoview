@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
-import { Dropdown, FormControl } from 'react-bootstrap';
+import { Dropdown, FormControl, InputGroup } from 'react-bootstrap';
 import { BsShop } from 'react-icons/bs';
 
 export default function Search() {
@@ -66,15 +66,20 @@ export default function Search() {
 
   return (
     <>
-      <div style={{margin:"6vw"}} className="">
-        <FormControl
-          // autoFocus
-          size="lg"
-          className=""
-          placeholder="Search..."
-          ref={searchInputRef}
-          onChange={HandleInputChange}
-        />
+      <div style={{ margin: '6vw' }} className="">
+        <InputGroup className="">
+          <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+          <FormControl
+            // autoFocus
+            size="lg"
+            className=""
+            placeholder="Search..."
+            ref={searchInputRef}
+            onChange={HandleInputChange}
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </InputGroup>
         {/* <br /> */}
         <ShowSuggestions />
       </div>
