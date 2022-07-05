@@ -70,8 +70,8 @@ export default function Search() {
     <>
       <div style={{ margin: '6vw' }} className="">
         <InputGroup className="">
-          <InputGroup.Text id="basic-addon1">
-            <MdSavedSearch size="30"/>
+          <InputGroup.Text id="basic-addon1" className="bg-light" >
+            <MdSavedSearch size="25" />
           </InputGroup.Text>
           <FormControl
             // autoFocus
