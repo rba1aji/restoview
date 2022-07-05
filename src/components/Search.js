@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
 import { Dropdown, FormControl, InputGroup } from 'react-bootstrap';
-import { BsShop } from 'react-icons/bs';
+import { BsShop , BsSearch } from 'react-icons/bs';
 import {FaSearchLocation } from 'react-icons/fa'
 import {MdSavedSearch} from 'react-icons/md'
 
@@ -70,8 +70,11 @@ export default function Search() {
     <>
       <div style={{ margin: '6vw' }} className="">
         <InputGroup className="">
-          <InputGroup.Text id="basic-addon1" className="bg-light" >
-            <MdSavedSearch size="25" />
+          <InputGroup.Text 
+            id="basic-addon1"
+            className="bg-light" 
+          >
+            <BsSearch size="20" />
           </InputGroup.Text>
           <FormControl
             // autoFocus
