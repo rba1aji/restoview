@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
+import ShowNearbyRestaurants from './ShowNearbyRestaurants';
 import API_KEY from '../../components/GetAPIKey';
 
 function AutoLocationDetect() {
@@ -12,16 +13,16 @@ function ManualLocationDetect(place) {
   const URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
     place
   )}.json?categorySet=7315&countrySet=IN&key=${API_KEY}`;
-  // useEffect(()=>{
+
   axios
     .get(URL)
     .then((res) => {
-      console.log(res);
+      // console.log(res.data.results);
+      showNearByRestaurants(res.data.results);
     })
     .catch((err) => {
       console.log(err);
     });
-  // },[place]);
 }
 
 export default function Nearby() {
@@ -48,6 +49,7 @@ export default function Nearby() {
             placeholder="your location..?"
             ref={currLocationRef}
             onChange={(e) => {
+              e.preventDefault();
               const place = currLocationRef.current.value;
               ManualLocationDetect(place);
             }}
