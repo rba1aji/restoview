@@ -15,7 +15,7 @@ export default function Nearby() {
   }
 
   function ManualLocationDetect(place) {
-    const CityListUrl = `https://api.teleport.org/api/cities/?search=${place}&limit=10`;
+    const CityListUrl = `https://api.teleport.org/api/cities/?search=${place}&limit=25`;
 
     axios
       .get(CityListUrl)
@@ -55,11 +55,12 @@ export default function Nearby() {
               ManualLocationDetect(place);
             }}
           />
-          <ul>
+          <ul className="list-unstyled p-4 pt-2 border border-prime">
             {cityList.map((item) => {
               const name = item.matching_full_name;
-              const geoNameId=item["_links"]["city:item"]["href"];
+              const geoNameId=item["_links"]["city:item"]["href"].split("/");
               if (name.includes('India')) {
+                console.log(geoNameId[geoNameId.length()-2]);
                 return <li>{name.split(',')[0]}</li>;
               }
             })}
