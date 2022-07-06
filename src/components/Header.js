@@ -10,13 +10,13 @@ export default function Header() {
       <Navbar collapseOnSelect bg="light" expand="lg">
         <Container>
           <span className="mb-1.5">
-            <MdFoodBank size="33"/>
+            <MdFoodBank size="33" />
           </span>
           <Navbar.Brand
             as={Link}
             to="/"
             style={{ fontWeight: 'bold' }}
-            className="ps-3 me-auto"
+            className="h1 mb-0 ps-3 me-auto"
           >
             {/* ResRat */}
             Restaurant Rating App
