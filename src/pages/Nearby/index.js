@@ -8,7 +8,7 @@ import API_KEY from '../../components/GetAPIKey';
 export default function Nearby() {
   const currLocationRef = useRef('');
   const [cityList, setCityList] = useState([]);
-  const [nearbyList, setNearbyList] = useState([]);
+  // const [nearbyList, setNearbyList] = useState([]);
   const [latLon, setLatLon] = useState('');
 
   function HandleSelected(geoNameId) {
