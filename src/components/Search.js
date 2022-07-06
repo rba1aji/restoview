@@ -19,10 +19,7 @@ export default function Search() {
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
-  function HandleOnClickItem(value, event) {
-    searchInputRef.current.value = '';
-    // HandleInputChange(event);
-  }
+
 
   function HandleInputChange(e) {
     e.preventDefault();
@@ -54,7 +51,6 @@ export default function Search() {
         {options.map((option, index) => {
           return (
             <SuggestionListItem
-              value={option.poi.name}
               restaurantName={option.poi.name}
               restaurantAddress={option.address.freeformAddress}
             />
