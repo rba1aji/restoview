@@ -18,8 +18,8 @@ export default function Header() {
             style={{ fontWeight: 'bold' }}
             className="h1 mb-0 ps-3 me-auto"
           >
-            {/* ResRat */}
-            Restaurant Rating App
+            RESRAT
+            {/* Restaurant Rating App */}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

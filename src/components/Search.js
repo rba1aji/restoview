@@ -7,53 +7,61 @@ import { FaSearchLocation } from 'react-icons/fa';
 import { MdSavedSearch } from 'react-icons/md';
 
 import SuggestionListItem from './SuggestionListItem';
+import SelectedRestaurant from './SelectedRestaurant';
+
+const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
 
 export default function Search() {
   // console.log(process.env);
-  // useEffect(() => {
-  //   alert(process.env.REACT_APP_TOMTOM_API_KEY);
-  // }, []);
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
-  const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
-  let URL = undefined;
-
-
+  const [selectedRestaurantId, setSelectedRestauarantId] = useState();
 
   function HandleInputChange(e) {
     e.preventDefault();
+
     const query = searchInputRef.current.value;
-    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+
+    const URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
       query
     )}.json?categorySet=7315&countrySet=IN&key=${
       // process.env.REACT_APP_TOMTOM_API_KEY
       KEY
     }`;
+
     axios
       .get(URL)
       .then((res) => {
-        // console.log(query);
         // console.log(res)
-        // console.log(res.data.results[0].id)
-        // console.log(res.data.results[0].address.freeformAddress)
         setOptions(res.data.results);
-        // console.log(options);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }
 
+  
   function ShowSuggestions() {
+    function clearSearchBar() {
+      searchInputRef.current.value = '';
+      setOptions();
+    }
     return (
       <ul className="list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <SuggestionListItem
-              restaurantName={option.poi.name}
-              restaurantAddress={option.address.freeformAddress}
-            />
+            <span
+              onClick={(e) => {
+                clearSearchBar();
+                setSelectedRestauarantId(option.id);
+              }}
+            >
+              <SuggestionListItem
+                restaurantName={option.poi.name}
+                restaurantAddress={option.address.freeformAddress}
+              />
+            </span>
           );
         })}
       </ul>
@@ -79,10 +87,9 @@ export default function Search() {
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-        {/* <br /> */}
         {searchInputRef.current.value && <ShowSuggestions />}
-
       </div>
+      {selectedRestaurantId && <SelectedRestaurant id={selectedRestaurantId} />}
     </>
   );
 }
