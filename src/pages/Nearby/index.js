@@ -9,17 +9,22 @@ export default function Nearby() {
   const currLocationRef = useRef('');
   const [cityList, setCityList] = useState([]);
   const [nearbyList, setNearbyList] = useState([]);
-  const [latlon] = useState('');
+  const [latLon, setLatLon] = useState('');
 
   function HandleSelected(geoNameId) {
-    const latLonUrl=`https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
-    axios.get(latLonUrl)
-    .then((res)=>{
-      console.log(res);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+    currLocationRef.current.value = '';
+    setCityList();
+    const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
+    axios
+      .get(latLonUrl)
+      .then((res) => {
+        setLatLon(
+          `lat=${res.data.location.latlon.latitude}&lon=${res.data.location.latlon.longitude}`
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function Suggestion() {
@@ -30,7 +35,7 @@ export default function Nearby() {
           if (name.includes('India')) {
             let geoNameId = item['_links']['city:item']['href'].split('/');
             geoNameId = geoNameId[geoNameId.length - 2];
-            geoNameId=geoNameId.split(":")[1];
+            geoNameId = geoNameId.split(':')[1];
             return (
               <li onClick={() => HandleSelected(geoNameId)}>
                 {name.split(',')[0]}
@@ -90,7 +95,8 @@ export default function Nearby() {
           {currLocationRef.current.value && <Suggestion />}
         </Form.Group>
       </div>
-      <h1>Nearby Restaurants</h1>
+      <h1 id="near-by">Nearby Restaurants</h1>
+      {latLon && <ShowNearbyRestaurants latlon={latLon} />}
     </>
   );
 }
