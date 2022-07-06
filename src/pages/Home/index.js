@@ -4,6 +4,7 @@ const HomeContainer = () => {
   return (
     <>
       {/* <h1 className="text-center">Home</h1> */}
+
       <Search />
     </>
   );
