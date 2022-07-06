@@ -2,9 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 
 import { Dropdown, FormControl, InputGroup } from 'react-bootstrap';
-import { BsShop , BsSearch } from 'react-icons/bs';
-import {FaSearchLocation } from 'react-icons/fa'
-import {MdSavedSearch} from 'react-icons/md'
+import { BsShop, BsSearch } from 'react-icons/bs';
+import { FaSearchLocation } from 'react-icons/fa';
+import { MdSavedSearch } from 'react-icons/md';
+
+import SuggestionListItem from './SuggestionListItem';
 
 export default function Search() {
   // console.log(process.env);
@@ -12,14 +14,14 @@ export default function Search() {
   //   alert(process.env.REACT_APP_TOMTOM_API_KEY);
   // }, []);
 
-  const searchInputRef = useRef("");
+  const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
-  function HandleOnClickItem(e) {
-    searchInputRef.current.value = "";
-    HandleInputChange(e);
+  function HandleOnClickItem(value, event) {
+    searchInputRef.current.value = '';
+    // HandleInputChange(event);
   }
 
   function HandleInputChange(e) {
@@ -51,15 +53,11 @@ export default function Search() {
       <ul className="list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <>
-              <li as="inputarea" onClick={HandleOnClickItem} key={index}>
-                <h3 className="mb-0">
-                  {/* <BsShop/>{' '} */}
-                  {option.poi.name}
-                </h3>
-                <p> {option.address.freeformAddress}</p>
-              </li>
-            </>
+            <SuggestionListItem
+              value={option.poi.name}
+              restaurantName={option.poi.name}
+              restaurantAddress={option.address.freeformAddress}
+            />
           );
         })}
       </ul>
@@ -69,12 +67,9 @@ export default function Search() {
   return (
     <>
       <div style={{ margin: '6vw' }} className="">
-      <p> Search for a Restaurant</p>
+        <p> Search for a Restaurant</p>
         <InputGroup className="">
-          <InputGroup.Text 
-            id="basic-addon1"
-            className="bg-light" 
-          >
+          <InputGroup.Text id="basic-addon1" className="bg-light">
             <BsSearch size="20" />
           </InputGroup.Text>
           <FormControl
