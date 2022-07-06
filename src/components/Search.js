@@ -81,6 +81,7 @@ export default function Search() {
         </InputGroup>
         {/* <br /> */}
         {searchInputRef.current.value && <ShowSuggestions />}
+
       </div>
     </>
   );
