@@ -57,9 +57,10 @@ export default function Nearby() {
           />
           <ul>
             {cityList.map((item) => {
-              const name = ""+item.matching_full_name;
-              if (name) {
-                return <li>{name}</li>;
+              const name = item.matching_full_name;
+              const geoNameId=item["_links"]["city:item"]["href"];
+              if (name.includes('India')) {
+                return <li>{name.split(',')[0]}</li>;
               }
             })}
           </ul>
