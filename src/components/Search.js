@@ -16,7 +16,7 @@ export default function Search() {
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState();
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
@@ -49,16 +49,20 @@ export default function Search() {
   }
 
   function ShowSuggestions() {
-    function HandleOnClickSuggestion(val) {
+    function clearSearchBar() {
       searchInputRef.current.value = '';
       setOptions();
-      setSelected(val);
     }
     return (
       <ul className="list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <span onClick={HandleOnClickSuggestion} val={option.poi.name}>
+            <span
+              onClick={(e) => {
+                clearSearchBar();
+                setSelected(option.poi.name);
+              }}
+            >
               <SuggestionListItem
                 restaurantName={option.poi.name}
                 restaurantAddress={option.address.freeformAddress}
