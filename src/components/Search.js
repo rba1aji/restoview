@@ -16,7 +16,7 @@ export default function Search() {
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState('');
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
 
@@ -45,20 +45,20 @@ export default function Search() {
   }
 
   function SelectedRestaurant(props) {
-    return <p>props.val</p>;
+    return <p>{props.val}</p>;
   }
 
   function ShowSuggestions() {
-    function HandleOnClickSuggestion(e) {
+    function HandleOnClickSuggestion(val) {
       searchInputRef.current.value = '';
       setOptions();
-      setSelected(true);
+      setSelected(val);
     }
     return (
       <ul className="list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <span onClick={HandleOnClickSuggestion} value={option.poi.name}>
+            <span onClick={HandleOnClickSuggestion} val={option.poi.name}>
               <SuggestionListItem
                 restaurantName={option.poi.name}
                 restaurantAddress={option.address.freeformAddress}
