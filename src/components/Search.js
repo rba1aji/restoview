@@ -7,6 +7,9 @@ import { FaSearchLocation } from 'react-icons/fa';
 import { MdSavedSearch } from 'react-icons/md';
 
 import SuggestionListItem from './SuggestionListItem';
+import SelectedRestaurant from './SelectedRestaurant';
+
+const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
 
 export default function Search() {
   // console.log(process.env);
@@ -14,7 +17,6 @@ export default function Search() {
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
   const [selectedRestaurantId, setSelectedRestauarantId] = useState();
-  const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
 
   function HandleInputChange(e) {
     e.preventDefault();
@@ -39,21 +41,7 @@ export default function Search() {
       });
   }
 
-  function SelectedRestaurant(props) {
-    const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${encodeURIComponent(
-      props.id
-    )}&key=${KEY}&view=IN`;
-    axios
-      .get(placeByIdUrl)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    return <p>{selectedRestaurantId}</p>;
-  }
-
+  
   function ShowSuggestions() {
     function clearSearchBar() {
       searchInputRef.current.value = '';
