@@ -9,17 +9,26 @@ export default function Nearby() {
   const currLocationRef = useRef('');
   const [cityList, setCityList] = useState([]);
   const [nearbyList, setNearbyList] = useState([]);
+  const [latlon] = useState('');
+
+  function HandleSelected(geoNameId) {
+    console.log();
+  }
 
   function Suggestion() {
     return (
-      <ul className="list-unstyled p-4 pt-2 border border-prime">
+      <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime">
         {cityList.map((item) => {
           const name = item.matching_full_name;
           let geoNameId = item['_links']['city:item']['href'].split('/');
-          geoNameId=geoNameId[geoNameId.length - 2];
+          geoNameId = geoNameId[geoNameId.length - 2];
           if (name.includes('India')) {
             // console.log(geoNameId);
-            return <li>{name.split(',')[0]}</li>;
+            return (
+              <li onClick={() => HandleSelected(geoNameId)}>
+                {name.split(',')[0]}
+              </li>
+            );
           }
         })}
       </ul>
@@ -71,7 +80,7 @@ export default function Nearby() {
               ManualLocationDetect(place);
             }}
           />
-          <Suggestion />
+          {currLocationRef.current.value && <Suggestion />}
         </Form.Group>
       </div>
       <h1>Nearby Restaurants</h1>
