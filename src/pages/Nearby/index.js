@@ -7,7 +7,7 @@ import API_KEY from '../../components/GetAPIKey';
 
 export default function Nearby() {
   const currLocationRef = useRef('');
-  const [cityList,setCityList]=useState([]);
+  const [cityList, setCityList] = useState([]);
   const [nearbyList, setNearbyList] = useState([]);
 
   function AutoLocationDetect() {
@@ -20,8 +20,8 @@ export default function Nearby() {
     axios
       .get(CityListUrl)
       .then((res) => {
-        setCityList(res.data._embedded["city:search-results"]);
-        console.log(res);
+        setCityList(res.data._embedded['city:search-results']);
+        console.log(cityList);
       })
       .catch((err) => {
         console.log(err);
@@ -55,6 +55,14 @@ export default function Nearby() {
               ManualLocationDetect(place);
             }}
           />
+          <ul>
+            {cityList.map((item) => {
+              const name = item.matching_full_name;
+              if (name.contains('India')) {
+                return <li>{name}</li>;
+              }
+            })}
+          </ul>
         </Form.Group>
       </div>
       <h1>Nearby Restaurants</h1>
