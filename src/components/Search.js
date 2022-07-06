@@ -15,13 +15,13 @@ export default function Search() {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState();
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
-  let URL = undefined;
 
   function HandleInputChange(e) {
     e.preventDefault();
 
     const query = searchInputRef.current.value;
-    URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+
+    const URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
       query
     )}.json?categorySet=7315&countrySet=IN&key=${
       // process.env.REACT_APP_TOMTOM_API_KEY
@@ -31,19 +31,26 @@ export default function Search() {
     axios
       .get(URL)
       .then((res) => {
-        // console.log(query);
         // console.log(res)
-        // console.log(res.data.results[0].id)
-        // console.log(res.data.results[0].address.freeformAddress)
         setOptions(res.data.results);
-        // console.log(options);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }
 
   function SelectedRestaurant() {
+    const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${
+      selected
+    }&key=${KEY}`;
+    axios
+      .get(placeByIdUrl)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     return <p>{selected}</p>;
   }
 
