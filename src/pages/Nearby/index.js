@@ -7,6 +7,7 @@ import API_KEY from '../../components/GetAPIKey';
 
 export default function Nearby() {
   const currLocationRef = useRef('');
+  const [cityList,setCityList]=useState([]);
   const [nearbyList, setNearbyList] = useState([]);
 
   function AutoLocationDetect() {
@@ -14,15 +15,13 @@ export default function Nearby() {
   }
 
   function ManualLocationDetect(place) {
-    const URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
-      place
-    )}.json?categorySet=7315&countrySet=IN&key=${API_KEY}`;
+    const CityListUrl = `https://api.teleport.org/api/cities/?search=${place}&limit=10`;
 
     axios
-      .get(URL)
+      .get(CityListUrl)
       .then((res) => {
-        setNearbyList(res.data.results);
-        console.log(nearbyList);
+        setCityList(res.data._embedded["city:search-results"]);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
