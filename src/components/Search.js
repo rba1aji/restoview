@@ -10,9 +10,6 @@ import SuggestionListItem from './SuggestionListItem';
 
 export default function Search() {
   // console.log(process.env);
-  // useEffect(() => {
-  //   alert(process.env.REACT_APP_TOMTOM_API_KEY);
-  // }, []);
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
@@ -22,6 +19,7 @@ export default function Search() {
 
   function HandleInputChange(e) {
     e.preventDefault();
+
     const query = searchInputRef.current.value;
     URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
       query
@@ -29,6 +27,7 @@ export default function Search() {
       // process.env.REACT_APP_TOMTOM_API_KEY
       KEY
     }`;
+
     axios
       .get(URL)
       .then((res) => {
@@ -44,8 +43,8 @@ export default function Search() {
       });
   }
 
-  function SelectedRestaurant(props) {
-    return <p>{props.val}</p>;
+  function SelectedRestaurant() {
+    return <p>{selected}</p>;
   }
 
   function ShowSuggestions() {
@@ -60,7 +59,7 @@ export default function Search() {
             <span
               onClick={(e) => {
                 clearSearchBar();
-                setSelected(option.poi.name);
+                setSelected(option.id);
               }}
             >
               <SuggestionListItem
