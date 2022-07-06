@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import {useNavigate } from 'react-router-dom';
 import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -11,12 +10,10 @@ export default function Nearby() {
   const [cityList, setCityList] = useState([]);
   // const [nearbyList, setNearbyList] = useState([]);
   const [latLon, setLatLon] = useState('');
-  const navigate=useNavigate();
 
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
     setCityList();
-    navigate('#near-by');
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
     axios
       .get(latLonUrl)
@@ -40,7 +37,8 @@ export default function Nearby() {
             geoNameId = geoNameId[geoNameId.length - 2];
             geoNameId = geoNameId.split(':')[1];
             return (
-              <li onClick={() => HandleSelected(geoNameId)}>
+              <li 
+                onClick={() => HandleSelected(geoNameId)}>
                 {name.split(',')[0]}
               </li>
             );
