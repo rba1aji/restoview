@@ -10,6 +10,22 @@ export default function Nearby() {
   const [cityList, setCityList] = useState([]);
   const [nearbyList, setNearbyList] = useState([]);
 
+  function Suggestion() {
+    return (
+      <ul className="list-unstyled p-4 pt-2 border border-prime">
+        {cityList.map((item) => {
+          const name = item.matching_full_name;
+          let geoNameId = item['_links']['city:item']['href'].split('/');
+          geoNameId=geoNameId[geoNameId.length - 2];
+          if (name.includes('India')) {
+            // console.log(geoNameId);
+            return <li>{name.split(',')[0]}</li>;
+          }
+        })}
+      </ul>
+    );
+  }
+
   function AutoLocationDetect() {
     const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
   }
@@ -21,7 +37,7 @@ export default function Nearby() {
       .get(CityListUrl)
       .then((res) => {
         setCityList(res.data._embedded['city:search-results']);
-        console.log(cityList);
+        // console.log(cityList);
       })
       .catch((err) => {
         console.log(err);
@@ -55,16 +71,7 @@ export default function Nearby() {
               ManualLocationDetect(place);
             }}
           />
-          <ul className="list-unstyled p-4 pt-2 border border-prime">
-            {cityList.map((item) => {
-              const name = item.matching_full_name;
-              const geoNameId=item["_links"]["city:item"]["href"].split("/");
-              if (name.includes('India')) {
-                console.log(geoNameId[geoNameId.length()-2]);
-                return <li>{name.split(',')[0]}</li>;
-              }
-            })}
-          </ul>
+          <Suggestion />
         </Form.Group>
       </div>
       <h1>Nearby Restaurants</h1>
