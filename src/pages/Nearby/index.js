@@ -1,17 +1,29 @@
 import React from 'react';
-import { FormControl, InputGroup } from 'react-bootstrap';
+import { FormControl, Button, Form } from 'react-bootstrap';
 export default function Nearby() {
   return (
     <>
       <h1>Nearby Restaurants</h1>
-      <InputGroup>
-        <button variant="primary">Use Current Location</button>
-        <br />
-        or
-        <br />
-        <label>Enter location manually</label>
-        <FormControl placeholder="your location..?" />
-      </InputGroup>
+      <Form
+        className="m-4 "
+        style={{
+          display: 'grid',
+          justifyContent: 'center',
+        }}
+      >
+        <Button variant="outline-dark">Use Current Location</Button>
+        <p className="text-center m-3">or</p>
+        <Form.Group>
+          <p className="m-0 text-center">
+            Enter location manually
+          </p>
+          <Form.Control
+            className="border border-3"
+            type="text"
+            placeholder="your location..?"
+          />
+        </Form.Group>
+      </Form>
     </>
   );
 }

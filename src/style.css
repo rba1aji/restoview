@@ -5,9 +5,10 @@
 h1{
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 0;
+  margin-top: 5vh;
   font-weight: bold;
   text-align: center;
 }
 p{
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
 }
