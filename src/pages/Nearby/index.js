@@ -12,7 +12,14 @@ export default function Nearby() {
   const [latlon] = useState('');
 
   function HandleSelected(geoNameId) {
-    console.log();
+    const latLonUrl=`https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
+    axios.get(latLonUrl)
+    .then((res)=>{
+      console.log(res);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
 
   function Suggestion() {
@@ -20,10 +27,10 @@ export default function Nearby() {
       <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime">
         {cityList.map((item) => {
           const name = item.matching_full_name;
-          let geoNameId = item['_links']['city:item']['href'].split('/');
-          geoNameId = geoNameId[geoNameId.length - 2];
           if (name.includes('India')) {
-            // console.log(geoNameId);
+            let geoNameId = item['_links']['city:item']['href'].split('/');
+            geoNameId = geoNameId[geoNameId.length - 2];
+            geoNameId=geoNameId.split(":")[1];
             return (
               <li onClick={() => HandleSelected(geoNameId)}>
                 {name.split(',')[0]}
