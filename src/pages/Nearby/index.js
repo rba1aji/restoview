@@ -1,32 +1,34 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
 import API_KEY from '../../components/GetAPIKey';
 
-function AutoLocationDetect() {
-  const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
-}
-
-function ManualLocationDetect(place) {
-  const URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
-    place
-  )}.json?categorySet=7315&countrySet=IN&key=${API_KEY}`;
-
-  axios
-    .get(URL)
-    .then((res) => {
-      // console.log(res.data.results);
-      showNearByRestaurants(res.data.results);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
 export default function Nearby() {
   const currLocationRef = useRef('');
+  const [nearbyList, setNearbyList] = useState([]);
+
+  function AutoLocationDetect() {
+    const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
+  }
+
+  function ManualLocationDetect(place) {
+    const URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+      place
+    )}.json?categorySet=7315&countrySet=IN&key=${API_KEY}`;
+
+    axios
+      .get(URL)
+      .then((res) => {
+        setNearbyList(res.data.results);
+        console.log(nearbyList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <>
       <div
