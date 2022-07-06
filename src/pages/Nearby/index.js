@@ -11,7 +11,7 @@ export default function Nearby() {
           marginRight:"15vw"
         }}
       >
-        <Button variant="outline-dark" size="md" className="ms-1 me-1">Use Current Location</Button>
+        <Button variant="outline-dark" size="md" className="ms-1 me-1">Use current location</Button>
         <p className="text-center m-2">or</p>
         <Form.Group>
           <p className="mb-1 text-center">Enter location manually</p>
