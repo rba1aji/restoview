@@ -21,9 +21,9 @@ export default function Search() {
 
     const query = searchInputRef.current.value;
 
-    const URL = `https://api.tomtom.com/search/2/search/${
-      encodeURIComponent(query)
-    }.json?categorySet=7315&countrySet=IN&key=${
+    const URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+      query
+    )}.json?categorySet=7315&countrySet=IN&key=${
       // process.env.REACT_APP_TOMTOM_API_KEY
       KEY
     }`;
@@ -40,7 +40,9 @@ export default function Search() {
   }
 
   function SelectedRestaurant() {
-    const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${encodeURIComponent(selected)}&key=${KEY}&view=IN`;
+    const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${encodeURIComponent(
+      selected
+    )}&key=${KEY}&view=IN`;
     axios
       .get(placeByIdUrl)
       .then((res) => {
@@ -97,7 +99,6 @@ export default function Search() {
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-        {/* <br /> */}
         {searchInputRef.current.value && <ShowSuggestions />}
       </div>
       {selected && <SelectedRestaurant />}
