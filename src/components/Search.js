@@ -13,7 +13,7 @@ export default function Search() {
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
-  const [selected, setSelected] = useState();
+  const [selectedRestaurantId, setSelectedRestauarantId] = useState();
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
 
   function HandleInputChange(e) {
@@ -39,9 +39,9 @@ export default function Search() {
       });
   }
 
-  function SelectedRestaurant() {
+  function SelectedRestaurant(props) {
     const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${encodeURIComponent(
-      selected
+      props.id
     )}&key=${KEY}&view=IN`;
     axios
       .get(placeByIdUrl)
@@ -51,7 +51,7 @@ export default function Search() {
       .catch((err) => {
         console.log(err);
       });
-    return <p>{selected}</p>;
+    return <p>{selectedRestaurantId}</p>;
   }
 
   function ShowSuggestions() {
@@ -66,7 +66,7 @@ export default function Search() {
             <span
               onClick={(e) => {
                 clearSearchBar();
-                setSelected(option.id);
+                setSelectedRestauarantId(option.id);
               }}
             >
               <SuggestionListItem
@@ -101,7 +101,7 @@ export default function Search() {
         </InputGroup>
         {searchInputRef.current.value && <ShowSuggestions />}
       </div>
-      {selected && <SelectedRestaurant />}
+      {selectedRestaurantId && <SelectedRestaurant id={selectedRestaurantId} />}
     </>
   );
 }
