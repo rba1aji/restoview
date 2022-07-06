@@ -16,10 +16,9 @@ export default function Search() {
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
+  const [selected, setSelected] = useState(false);
   const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
   let URL = undefined;
-
-
 
   function HandleInputChange(e) {
     e.preventDefault();
@@ -45,15 +44,26 @@ export default function Search() {
       });
   }
 
+  function SelectedRestaurant(props) {
+    return <p>props.val</p>;
+  }
+
   function ShowSuggestions() {
+    function HandleOnClickSuggestion(e) {
+      searchInputRef.current.value = '';
+      setOptions();
+      setSelected(true);
+    }
     return (
       <ul className="list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <SuggestionListItem
-              restaurantName={option.poi.name}
-              restaurantAddress={option.address.freeformAddress}
-            />
+            <span onClick={HandleOnClickSuggestion} value={option.poi.name}>
+              <SuggestionListItem
+                restaurantName={option.poi.name}
+                restaurantAddress={option.address.freeformAddress}
+              />
+            </span>
           );
         })}
       </ul>
@@ -81,8 +91,8 @@ export default function Search() {
         </InputGroup>
         {/* <br /> */}
         {searchInputRef.current.value && <ShowSuggestions />}
-
       </div>
+      {selected && <SelectedRestaurant />}
     </>
   );
 }
