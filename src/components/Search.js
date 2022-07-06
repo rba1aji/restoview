@@ -8,8 +8,7 @@ import { MdSavedSearch } from 'react-icons/md';
 
 import SuggestionListItem from './SuggestionListItem';
 import SelectedRestaurant from './SelectedRestaurant';
-
-const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
+import API_KEY from './GetAPIKey';
 
 export default function Search() {
   // console.log(process.env);
@@ -27,7 +26,7 @@ export default function Search() {
       query
     )}.json?categorySet=7315&countrySet=IN&key=${
       // process.env.REACT_APP_TOMTOM_API_KEY
-      KEY
+      API_KEY
     }`;
 
     axios
@@ -41,7 +40,6 @@ export default function Search() {
       });
   }
 
-  
   function ShowSuggestions() {
     function clearSearchBar() {
       searchInputRef.current.value = '';

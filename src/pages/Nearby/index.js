@@ -1,16 +1,28 @@
-import React, { useRef } from 'react';
+import React, { useRef , useEffect } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
+import axios from 'axios';
+
+import API_KEY from '../../components/GetAPIKey';
 
 function AutoLocationDetect() {
   const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
 }
 
-function ManualLocationDetect(props) {
-  const URL = ``;
-}
+function ManualLocationDetect(place) {
+  const URL = `https://api.tomtom.com/search/2/categorySearch/${place}.{ext}?key=${API_KEY}&countrySet=IN&categorySet=CITY_CENTER&view=IN`;
+  // useEffect(()=>{
+    axios.get(URL)
+    .then((res)=>{
+      console.log(res);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  },[place]);
+// }
 
 export default function Nearby() {
-  const currLocationRef = useRef();
+  const currLocationRef = useRef('');
   return (
     <>
       <div
@@ -31,9 +43,10 @@ export default function Nearby() {
             className="border-dark"
             type="text"
             placeholder="your location..?"
-            Ref={currLocationRef}
+            ref={currLocationRef}
             onChange={(e) => {
-              <ManualLocationDetect place={currLocation.current.value} />;
+              const place=currLocationRef.current.value;
+              ManualLocationDetect(place)
             }}
           />
         </Form.Group>
