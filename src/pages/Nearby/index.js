@@ -42,7 +42,7 @@ export default function Nearby() {
             geoNameId = geoNameId[geoNameId.length - 2];
             geoNameId = geoNameId.split(':')[1];
             return (
-              <li onClick={() => HandleSelected(geoNameId)}>
+              <li className="mb-2" onClick={() => HandleSelected(geoNameId)}>
                 {name.split(',')[0]}
               </li>
             );
