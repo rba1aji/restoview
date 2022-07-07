@@ -25,12 +25,13 @@ export default function (props) {
       .then((res) => {
         // console.log(res);
         res.data.results.map((item) => {
-          const details = {}
-          details.name=item.poi.name;
-          details.address=item.address.freeformAddress;
           setNearbyList((old) => {
-            return [...old, {details}];
-          },[details]);
+            const details = {
+              name: item.poi.name,
+              address: item.address.freeformAddress,
+            };
+            return [...old, { details }];
+          });
         });
         console.log(nearbyList);
       })
