@@ -4,7 +4,7 @@ import { Row, Col, Card, Button } from 'react-bootstrap';
 export default function ShowNearbyRestaurants(props) {
   // console.log(props.nearbyList);
   return (
-    <div className="mt-3 m-4">
+    <div className="m-5">
       <Row xs={1} md={2} className="g-4">
         {props.nearbyList.map((item) => {
           return (
