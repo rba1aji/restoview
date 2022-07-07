@@ -24,10 +24,15 @@ export default function (props) {
       .get(NearbyUrl)
       .then((res) => {
         // console.log(res);
-        const details={};
-        setNearbyList((old)=>{
-          return[...old, ]
-        })
+        res.data.results.map((item) => {
+          const details = {}
+          details.name=item.poi.name;
+          details.address=item.address.freeformAddress;
+          setNearbyList((old) => {
+            return [...old, {details}];
+          },[details]);
+        });
+        console.log(nearbyList);
       })
       .catch((err) => {
         console.log(err);
