@@ -79,9 +79,7 @@ export default function Nearby() {
           marginTop: '10vh',
           marginLeft: '20vw',
           marginRight: '20vw',
-          marginBottom: '10vh',
-          height: '50vh',
-        }}
+          marginBottom: '10vh'        }}
       >
         <Button
           // variant="outline-dark"
