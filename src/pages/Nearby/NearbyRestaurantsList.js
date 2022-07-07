@@ -44,7 +44,7 @@ export default function NearbyRestaurantsList(props) {
 
   return (
     <div>
-      <div ref={contentRef} style={{height:"10vh"}}></div>
+      <div ref={contentRef} style={{ height: 60 }}></div>
       <h1>{props.place} Nearby Restaurants</h1>
       <ShowNearbyRestaurants nearbyList={nearbyList} />
     </div>

@@ -11,7 +11,7 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Header />
-        <div style={{ height: '15vh' }}></div>
+        <div style={{ height:60 }}></div>
         <Routes>
           {routes.map((route, index) => (
             <Route
