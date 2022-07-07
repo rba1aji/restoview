@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
-import axios from 'axios';
+import axios from 'axios'; 
 
-import ShowNearbyRestaurants from './ShowNearbyRestaurants';
+import NearbyRestaurantsList from './NearbyRestaurantsList';
 import API_KEY from '../../components/GetAPIKey';
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
@@ -101,7 +101,7 @@ export default function Nearby() {
         </Form.Group>
       </div>
       <h1 ref={contentRef}>Nearby Restaurants</h1>
-      {selected && latLon && <ShowNearbyRestaurants latlon={latLon} />}
+      {selected && latLon && <NearbyRestaurantsList latlon={latLon} />}
     </>
   );
 }
