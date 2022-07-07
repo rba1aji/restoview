@@ -71,16 +71,15 @@ export default function Search() {
 
   return (
     <>
-      <div style={{ margin: '6vw' }} className="">
+      <div style={{ margin: '6vw' }}>
         <p> Search for a Restaurant</p>
-        <InputGroup className="">
+        <InputGroup>
           <InputGroup.Text id="basic-addon1" className="bg-light">
             <BsSearch size="20" />
           </InputGroup.Text>
           <FormControl
             // autoFocus
             size="lg"
-            className=""
             placeholder="Search..."
             ref={searchInputRef}
             onChange={HandleInputChange}

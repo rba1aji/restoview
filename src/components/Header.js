@@ -15,13 +15,16 @@ export default function Header() {
           <Navbar.Brand
             as={Link}
             to="/"
-            style={{ fontWeight: 'bold' }}
+            style={{ fontWeight: 'bold', fontSize: 25, letterSpacing: 2 }}
             className="h1 mb-0 ps-3 me-auto"
           >
             RESRAT
             {/* Restaurant Rating App */}
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Toggle
+            aria-controls="responsive-navbar-nav"
+            style={{ border: 'none' }}
+          />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
               <Nav.Item as={LinkContainer} to="/">
