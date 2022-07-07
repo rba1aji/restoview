@@ -8,7 +8,7 @@ import { MdSavedSearch } from 'react-icons/md';
 
 import SuggestionListItem from './SuggestionListItem';
 import SelectedRestaurant from './SelectedRestaurant';
-import API_KEY from './GetAPIKey';
+import API_KEY from '../../components/GetAPIKey';
 
 export default function Search() {
   // console.log(process.env);
@@ -16,7 +16,7 @@ export default function Search() {
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
   const [selectedRestaurantId, setSelectedRestauarantId] = useState();
-  const [selected,setSelected] =useState(false);
+  const [selected, setSelected] = useState(false);
 
   function HandleInputChange(e) {
     e.preventDefault();
@@ -41,7 +41,6 @@ export default function Search() {
       });
   }
 
-  
   function ShowSuggestions() {
     function clearSearchBar() {
       searchInputRef.current.value = '';
