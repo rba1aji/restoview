@@ -5,8 +5,11 @@ import axios from 'axios';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
 import API_KEY from '../../components/GetAPIKey';
 
+const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
+
 export default function Nearby() {
   const currLocationRef = useRef('');
+  const contentRef = useRef();
   const [cityList, setCityList] = useState([]);
   // const [nearbyList, setNearbyList] = useState([]);
   const [latLon, setLatLon] = useState('');
@@ -14,6 +17,7 @@ export default function Nearby() {
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
     setCityList();
+    scrollToRef(contentRef);
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
     axios
       .get(latLonUrl)
@@ -37,8 +41,7 @@ export default function Nearby() {
             geoNameId = geoNameId[geoNameId.length - 2];
             geoNameId = geoNameId.split(':')[1];
             return (
-              <li 
-                onClick={() => HandleSelected(geoNameId)}>
+              <li onClick={() => HandleSelected(geoNameId)}>
                 {name.split(',')[0]}
               </li>
             );
@@ -96,7 +99,7 @@ export default function Nearby() {
           {currLocationRef.current.value && <Suggestion />}
         </Form.Group>
       </div>
-      <h1 id="near-by">Nearby Restaurants</h1>
+      <h1 ref={contentRef}>Nearby Restaurants</h1>
       {latLon && <ShowNearbyRestaurants latlon={latLon} />}
     </>
   );
