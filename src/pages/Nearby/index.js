@@ -5,8 +5,6 @@ import { TbCurrentLocation } from 'react-icons/tb';
 import NearbyRestaurantsList from './NearbyRestaurantsList';
 import API_KEY from '../../components/GetAPIKey';
 
-const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
-
 export default function Nearby() {
   const currLocationRef = useRef('');
   const contentRef = useRef();
@@ -17,7 +15,6 @@ export default function Nearby() {
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
     setCityList();
-    scrollToRef(contentRef);
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
     axios
       .get(latLonUrl)
@@ -108,7 +105,6 @@ export default function Nearby() {
           {currLocationRef.current.value && <Suggestion />}
         </Form.Group>
       </div>
-      <h1 ref={contentRef}>Nearby Restaurants</h1>
       {selected && latLon && <NearbyRestaurantsList latlon={latLon} />}
     </>
   );
