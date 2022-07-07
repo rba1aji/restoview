@@ -73,21 +73,23 @@ export default function Nearby() {
   return (
     <>
       <div
-        className="mt-4 mb-5"
+        className=""
         style={{
           display: 'grid',
-          marginLeft: '15vw',
-          marginRight: '15vw',
+          marginTop:'10vh',
+          marginLeft: '20vw',
+          marginRight: '20vw',
+          marginBottom:'10vh'
         }}
       >
         <Button
           // variant="outline-dark"
           variant="dark"
           size="md"
-          className="ms-1 me-1"
+          className="ms-1 me-1 p-2"
           style={{ wordSpacing: 3 }}
         >
-          Use current L
+          Use Current L
           <span className="pb-5">{<TbCurrentLocation size="15" />}</span>cation
         </Button>
         <p className="text-center m-2">or</p>
