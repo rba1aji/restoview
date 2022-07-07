@@ -7,7 +7,7 @@ import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
 export default function Header() {
   return (
     <>
-      <Navbar collapseOnSelect bg="light" expand="lg">
+      <Navbar collapseOnSelect bg="light" expand="lg" fixed="top">
         <Container>
           <span className="mb-1.5">
             <MdFoodBank size="33" />
