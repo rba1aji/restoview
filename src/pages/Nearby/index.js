@@ -97,6 +97,7 @@ export default function Nearby() {
             className="border-dark"
             type="text"
             placeholder="your location..?"
+
             ref={currLocationRef}
             onChange={(e) => {
               e.preventDefault();

@@ -41,6 +41,7 @@ export default function Search() {
       });
   }
 
+  
   function ShowSuggestions() {
     function clearSearchBar() {
       searchInputRef.current.value = '';
