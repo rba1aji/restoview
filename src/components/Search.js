@@ -27,7 +27,7 @@ export default function Search() {
     )}.json?categorySet=7315&countrySet=IN&key=${
       // process.env.REACT_APP_TOMTOM_API_KEY
       API_KEY
-    }`;
+    }&limit=15`;
 
     axios
       .get(URL)
