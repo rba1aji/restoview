@@ -7,7 +7,7 @@ export default function Login() {
       <h1>Login</h1>
       <Link to="/auth/register">Register here</Link>
 
-      <div className="m-5">
+      <div className="m-4">
         <Card>
           <Card.Img variant="top" src="" />
           <Card.Body>

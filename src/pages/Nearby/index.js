@@ -11,6 +11,7 @@ export default function Nearby() {
   const [cityList, setCityList] = useState([]);
   const [latLon, setLatLon] = useState('');
   const [selected, setSelected] = useState(false);
+  const [selectedPlace, setSelectedPlace]=useState('');
 
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
@@ -19,6 +20,7 @@ export default function Nearby() {
     axios
       .get(latLonUrl)
       .then((res) => {
+        setSelectedPlace(res.data.full_name.split(",")[0]);
         setLatLon(
           `lat=${res.data.location.latlon.latitude}&lon=${res.data.location.latlon.longitude}`
         );
@@ -105,7 +107,7 @@ export default function Nearby() {
           {currLocationRef.current.value && <Suggestion />}
         </Form.Group>
       </div>
-      {selected && latLon && <NearbyRestaurantsList latlon={latLon} />}
+      {selected && latLon && <NearbyRestaurantsList place={selectedPlace} latlon={latLon} />}
     </>
   );
 }
