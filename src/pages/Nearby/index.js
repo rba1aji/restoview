@@ -76,10 +76,11 @@ export default function Nearby() {
         className=""
         style={{
           display: 'grid',
-          marginTop:'10vh',
+          marginTop: '10vh',
           marginLeft: '20vw',
           marginRight: '20vw',
-          marginBottom:'10vh'
+          marginBottom: '10vh',
+          height: '50vh',
         }}
       >
         <Button
@@ -96,10 +97,9 @@ export default function Nearby() {
         <Form.Group>
           <p className="mb-1 text-center">Enter location manually</p>
           <Form.Control
-            className="border-dark"
+            className="border-dark p-2"
             type="text"
             placeholder="your location..?"
-
             ref={currLocationRef}
             onChange={(e) => {
               e.preventDefault();
