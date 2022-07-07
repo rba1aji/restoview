@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
-import axios from 'axios'; 
-
+import axios from 'axios';
+import { TbCurrentLocation } from 'react-icons/tb';
 import NearbyRestaurantsList from './NearbyRestaurantsList';
 import API_KEY from '../../components/GetAPIKey';
 
@@ -80,8 +80,15 @@ export default function Nearby() {
           marginRight: '15vw',
         }}
       >
-        <Button variant="outline-dark" size="md" className="ms-1 me-1">
-          Use current location
+        <Button
+          // variant="outline-dark"
+          variant="dark"
+          size="md"
+          className="ms-1 me-1"
+          style={{ wordSpacing: 3 }}
+        >
+          Use current L
+          <span className="pb-5">{<TbCurrentLocation size="15" />}</span>cation
         </Button>
         <p className="text-center m-2">or</p>
         <Form.Group>
