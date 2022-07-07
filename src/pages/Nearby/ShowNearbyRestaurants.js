@@ -3,8 +3,7 @@ import { Row, Col, Card } from 'react-bootstrap';
 
 export default function ShowNearbyRestaurants(props) {
   return (
-    <>
-      <span></span>
+    <div className="m-5">
       <Row xs={1} md={2} className="g-4">
         {Array.from({ length: props.nearbyList.length }).map((_, idx) => (
           <Col>
@@ -22,6 +21,6 @@ export default function ShowNearbyRestaurants(props) {
           </Col>
         ))}
       </Row>
-    </>
+    </div>
   );
 }
