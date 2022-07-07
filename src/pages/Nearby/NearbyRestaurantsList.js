@@ -46,10 +46,6 @@ export default function NearbyRestaurantsList(props) {
     <div>
       <h1 ref={contentRef}>Nearby Restaurants</h1>
       <ShowNearbyRestaurants nearbyList={nearbyList} />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   );
 }
