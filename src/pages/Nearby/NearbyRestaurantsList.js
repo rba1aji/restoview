@@ -9,7 +9,6 @@ function scrollToRef(ref) {
 
 export default function NearbyRestaurantsList(props) {
   const [nearbyList, setNearbyList] = useState([]);
-
   const contentRef = useRef();
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${props.latlon}&countrySet=IN&categorySet=7315&view=IN&limit=10`;
@@ -29,7 +28,7 @@ export default function NearbyRestaurantsList(props) {
         return [...old, details];
       });
     });
-    // console.log(nearbyList);
+    scrollToRef(contentRef);
   }
 
   useEffect(() => {
@@ -47,6 +46,10 @@ export default function NearbyRestaurantsList(props) {
     <div>
       <h1 ref={contentRef}>Nearby Restaurants</h1>
       <ShowNearbyRestaurants nearbyList={nearbyList} />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
