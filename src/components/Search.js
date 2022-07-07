@@ -16,6 +16,7 @@ export default function Search() {
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
   const [selectedRestaurantId, setSelectedRestauarantId] = useState();
+  const [selected,setSelected] =useState(false);
 
   function HandleInputChange(e) {
     e.preventDefault();
@@ -53,6 +54,7 @@ export default function Search() {
               onClick={(e) => {
                 clearSearchBar();
                 setSelectedRestauarantId(option.id);
+                setSelected(true);
               }}
             >
               <SuggestionListItem

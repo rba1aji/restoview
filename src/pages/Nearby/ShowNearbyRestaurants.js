@@ -17,28 +17,33 @@ phone
 export default function (props) {
   const [nearbyList, setNearbyList] = useState([]);
 
-  const NearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${props.latlon}&countrySet=IN&categorySet=7315&view=IN&limit=10`;
+  const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${props.latlon}&countrySet=IN&categorySet=7315&view=IN&limit=10`;
+
+  function MakeNearbyList(arr) {
+    setNearbyList([]);
+    arr.map((item) => {
+      const details = {
+        name: item.poi.name,
+        address: item.address.freeformAddress,
+      };
+      setNearbyList((old) => {
+        return [...old, details];
+      });
+    });
+    console.log(nearbyList);
+  }
 
   useEffect(() => {
     axios
-      .get(NearbyUrl)
+      .get(nearbyUrl)
       .then((res) => {
         // console.log(res);
-        res.data.results.map((item) => {
-          setNearbyList((old) => {
-            const details = {
-              name: item.poi.name,
-              address: item.address.freeformAddress,
-            };
-            return [...old, { details }];
-          });
-        });
-        console.log(nearbyList);
+        MakeNearbyList(res.data.results);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [props.latlon]);
+  }, [nearbyUrl]);
 
   return;
 }

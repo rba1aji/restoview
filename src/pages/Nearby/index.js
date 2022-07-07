@@ -12,6 +12,7 @@ export default function Nearby() {
   const contentRef = useRef();
   const [cityList, setCityList] = useState([]);
   const [latLon, setLatLon] = useState('');
+  const [selected, setSelected] = useState(false);
 
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
@@ -28,6 +29,7 @@ export default function Nearby() {
       .catch((err) => {
         console.log(err);
       });
+    setSelected(true);
   }
 
   function Suggestion() {
@@ -99,7 +101,7 @@ export default function Nearby() {
         </Form.Group>
       </div>
       <h1 ref={contentRef}>Nearby Restaurants</h1>
-      {latLon && <ShowNearbyRestaurants latlon={latLon} />}
+      {selected && latLon && <ShowNearbyRestaurants latlon={latLon} />}
     </>
   );
 }
