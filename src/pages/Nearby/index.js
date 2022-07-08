@@ -6,16 +6,20 @@ import API_KEY from '../../components/GetAPIKey';
 import Loader from '../../components/Loader';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
 
+function scrollToRef(ref) {
+  window.scrollTo(0, ref.current.offsetTop);
+}
+
 export default function Nearby() {
   const currLocationRef = useRef('');
   const contentRef = useRef();
   const [suggestionCityList, setsuggestionCityList] = useState([]);
   const [latLon, setLatLon] = useState('');
-  // const [selected, setSelected] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState('');
   const [loading, setLoading] = useState(false);
-  const [nearbyListProps, setNearbyListProps] = useState({});
   const [nearbyList, setNearbyList] = useState([]);
+
+  const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=10`;
 
   //////////////////  LATLON 2 RESULT    //////////////////
   function MakeNearbyList(arr) {
@@ -34,12 +38,12 @@ export default function Nearby() {
       });
     });
     // console.log(nearbyList);
+    scrollToRef(contentRef);
   }
 
   //////////// WHEN LAT LON CHANGE ///////////
   useEffect(() => {
     setLoading(true);
-    const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=10`;
     axios
       .get(nearbyUrl)
       .then((res) => {
@@ -49,12 +53,7 @@ export default function Nearby() {
         console.log(err);
       });
     setLoading(false);
-    if (!loading) {
-      // setTimeout(() => {
-      //   scrollToRef(contentRef);
-      // }, 500);
-    }
-  }, [latLon]);
+  }, [nearbyUrl]); 
 
   ////////////// HANDLE SELECTED //////////////
   function HandleSelected(geoNameId) {
@@ -73,12 +72,6 @@ export default function Nearby() {
       .catch((err) => {
         console.log(err);
       });
-    // setSelected(true);
-    setNearbyListProps({
-      latlon: latLon,
-      place: selectedPlace,
-    });
-    // console.log(nearbyList);
     setLoading(false);
   }
 
@@ -103,6 +96,7 @@ export default function Nearby() {
     );
   }
 
+  ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
     const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
   }
@@ -114,7 +108,6 @@ export default function Nearby() {
       .get(suggestionCityListUrl)
       .then((res) => {
         setsuggestionCityList(res.data._embedded['city:search-results']);
-        // console.log(suggestionCityList);
       })
       .catch((err) => {
         console.log(err);
@@ -161,9 +154,6 @@ export default function Nearby() {
           {currLocationRef.current.value && <ShowCitySuggestion />}
         </Form.Group>
       </div>
-      {/* {selected && latLon && (
-        <NearbyRestaurantsList place={selectedPlace} latlon={latLon} />
-      )} */}
 
       <div>
         <div
@@ -177,8 +167,12 @@ export default function Nearby() {
           <Loader />
         </div>
         <div ref={contentRef} style={{ height: 50 }}></div>
-        <h1>{selectedPlace} Nearby Restaurants</h1>
-        {!loading && <ShowNearbyRestaurants nearbyList={nearbyList} />}
+        {!loading && (
+          <ShowNearbyRestaurants
+            place={selectedPlace}
+            nearbyList={nearbyList}
+          />
+        )}
       </div>
     </>
   );
