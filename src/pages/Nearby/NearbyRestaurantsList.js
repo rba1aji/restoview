@@ -1,14 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import API_KEY from '../../components/GetAPIKey';
-import ShowNearbyRestaurants from './ShowNearbyRestaurants';
-import Loader from '../../components/Loader';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
 }
 
-export default function NearbyRestaurantsList(props) {
+export function GetNearbyList(props) {
   const [nearbyList, setNearbyList] = useState([]);
   const contentRef = useRef();
   const [loading, setLoading] = useState(false);

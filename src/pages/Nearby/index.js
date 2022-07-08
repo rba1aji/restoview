@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { TbCurrentLocation } from 'react-icons/tb';
-import NearbyRestaurantsList from './NearbyRestaurantsList';
 import API_KEY from '../../components/GetAPIKey';
 import Loader from '../../components/Loader';
+import ShowNearbyRestaurants from './ShowNearbyRestaurants';
 
 export default function Nearby() {
   const currLocationRef = useRef('');
@@ -14,8 +14,49 @@ export default function Nearby() {
   // const [selected, setSelected] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState('');
   const [loading, setLoading] = useState(false);
+  const [nearbyListProps, setNearbyListProps] = useState({});
   const [nearbyList, setNearbyList] = useState([]);
 
+  //////////////////  LATLON 2 RESULT    //////////////////
+  function MakeNearbyList(arr) {
+    setNearbyList([]);
+    arr.map((item) => {
+      const details = {
+        id: item.id,
+        name: item.poi.name,
+        address: item.address.freeformAddress,
+        phone: item.poi.phone,
+        tags: item.poi.categories,
+        openingHours: item.openingHours,
+      };
+      setNearbyList((old) => {
+        return [...old, details];
+      });
+    });
+    // console.log(nearbyList);
+  }
+
+  //////////// WHEN LAT LON CHANGE ///////////
+  useEffect(() => {
+    setLoading(true);
+    const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=10`;
+    axios
+      .get(nearbyUrl)
+      .then((res) => {
+        MakeNearbyList(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setLoading(false);
+    if (!loading) {
+      // setTimeout(() => {
+      //   scrollToRef(contentRef);
+      // }, 500);
+    }
+  }, [latLon]);
+
+  ////////////// HANDLE SELECTED //////////////
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
     setsuggestionCityList();
@@ -33,15 +74,15 @@ export default function Nearby() {
         console.log(err);
       });
     // setSelected(true);
-    const props = {
+    setNearbyListProps({
       latlon: latLon,
       place: selectedPlace,
-    };
-    setNearbyList(NearbyRestaurantsList(props));
-    console.log(nearbyList);
+    });
+    // console.log(nearbyList);
     setLoading(false);
   }
 
+  ////////// SHOW SUGGESTION ///////////////
   function ShowCitySuggestion() {
     return (
       <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime">
@@ -123,6 +164,22 @@ export default function Nearby() {
       {/* {selected && latLon && (
         <NearbyRestaurantsList place={selectedPlace} latlon={latLon} />
       )} */}
+
+      <div>
+        <div
+          style={{
+            position: 'fixed',
+            display: 'flex',
+            marginLeft: '45vw',
+            marginTop: '45vh',
+          }}
+        >
+          <Loader />
+        </div>
+        <div ref={contentRef} style={{ height: 50 }}></div>
+        <h1>{selectedPlace} Nearby Restaurants</h1>
+        {!loading && <ShowNearbyRestaurants nearbyList={nearbyList} />}
+      </div>
     </>
   );
 }
