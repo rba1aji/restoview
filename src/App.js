@@ -13,18 +13,7 @@ export default function App() {
       <BrowserRouter>
         <Header />
         <div style={{ height: 60 }}></div>
-        <div
-          style={{
-            position: 'fixed',
-            top:'45%',
-            left:'45%',
-            // height:"100vh",
-            // width:"100vw"
-            zIndex:1
-          }}
-        >
-          <Loader />
-        </div>
+        <Loader flag="true" />
         <Routes>
           {routes.map((route, index) => (
             <Route
