@@ -5,7 +5,7 @@ export default function ShowNearbyRestaurants(props) {
   // console.log(props.nearbyList);
   return (
     <>
-      <h1>{props.place} Nearby Restaurants</h1>
+      <h1 style={{opacity:props.place?1:0}}>{props.place} Nearby Restaurants</h1>
       <div className="m-4">
         <Row xs={1} md={2} className="g-4">
           {props.nearbyList.map((item) => {
