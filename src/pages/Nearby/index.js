@@ -103,7 +103,7 @@ export default function Nearby() {
 
   ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
-    const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
+    
   }
 
   function ManualLocationDetect(query) {
@@ -138,6 +138,7 @@ export default function Nearby() {
           size="md"
           className="ms-1 me-1 p-2"
           style={{ wordSpacing: 3 }}
+          onClick={AutoLocationDetect}
         >
           Use Current L
           <span className="pb-5">{<TbCurrentLocation size="15" />}</span>cation
