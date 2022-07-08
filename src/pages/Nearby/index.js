@@ -23,6 +23,7 @@ export default function Nearby() {
 
   //////////////////  LATLON 2 RESULT    //////////////////
   function MakeNearbyList(arr) {
+    setSelectedPlace(arr[0].address.municipality);
     setNearbyList([]);
     arr.map((item) => {
       const details = {
