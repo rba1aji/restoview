@@ -4,7 +4,7 @@ import API_KEY from '../../components/GetAPIKey';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
 import Loader from '../../components/Loader';
 
-function scrollToRef(ref) { 
+function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
 }
 
@@ -50,12 +50,11 @@ export default function NearbyRestaurantsList(props) {
     }
   }, [nearbyUrl]);
 
-  return (
-    <div>
-      <div style={{position:"fixed",display:"flex", marginLeft:"45vw", marginTop:"45vh"}}><Loader /></div>
-      <div ref={contentRef} style={{ height: 50 }}></div>
-      <h1>{props.place} Nearby Restaurants</h1>
-      {!loading && <ShowNearbyRestaurants nearbyList={nearbyList} />}
-    </div>
-  );
+  return nearbyList;
+  // <div>
+  //   <div style={{position:"fixed",display:"flex", marginLeft:"45vw", marginTop:"45vh"}}><Loader /></div>
+  //   <div ref={contentRef} style={{ height: 50 }}></div>
+  //   <h1>{props.place} Nearby Restaurants</h1>
+  //   {!loading && <ShowNearbyRestaurants nearbyList={nearbyList} />}
+  // </div>
 }

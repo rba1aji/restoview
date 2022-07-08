@@ -4,18 +4,22 @@ import axios from 'axios';
 import { TbCurrentLocation } from 'react-icons/tb';
 import NearbyRestaurantsList from './NearbyRestaurantsList';
 import API_KEY from '../../components/GetAPIKey';
+import Loader from '../../components/Loader';
 
 export default function Nearby() {
   const currLocationRef = useRef('');
   const contentRef = useRef();
-  const [cityList, setCityList] = useState([]);
+  const [suggestionCityList, setsuggestionCityList] = useState([]);
   const [latLon, setLatLon] = useState('');
-  const [selected, setSelected] = useState(false);
+  // const [selected, setSelected] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [nearbyList, setNearbyList] = useState([]);
 
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
-    setCityList();
+    setsuggestionCityList();
+    setLoading(true);
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
     axios
       .get(latLonUrl)
@@ -28,13 +32,20 @@ export default function Nearby() {
       .catch((err) => {
         console.log(err);
       });
-    setSelected(true);
+    // setSelected(true);
+    const props = {
+      latlon: latLon,
+      place: selectedPlace,
+    };
+    setNearbyList(NearbyRestaurantsList(props));
+    console.log(nearbyList);
+    setLoading(false);
   }
 
-  function Suggestion() {
+  function ShowCitySuggestion() {
     return (
       <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime">
-        {cityList.map((item) => {
+        {suggestionCityList.map((item) => {
           const name = item.matching_full_name;
           if (name.includes('India')) {
             let geoNameId = item['_links']['city:item']['href'].split('/');
@@ -56,13 +67,13 @@ export default function Nearby() {
   }
 
   function ManualLocationDetect(place) {
-    const CityListUrl = `https://api.teleport.org/api/cities/?search=${place}&limit=25`;
+    const suggestionCityListUrl = `https://api.teleport.org/api/cities/?search=${place}&limit=25`;
 
     axios
-      .get(CityListUrl)
+      .get(suggestionCityListUrl)
       .then((res) => {
-        setCityList(res.data._embedded['city:search-results']);
-        // console.log(cityList);
+        setsuggestionCityList(res.data._embedded['city:search-results']);
+        // console.log(suggestionCityList);
       })
       .catch((err) => {
         console.log(err);
@@ -71,6 +82,7 @@ export default function Nearby() {
 
   return (
     <>
+      <Loader flag={loading} />
       <div
         className=""
         style={{
@@ -105,12 +117,12 @@ export default function Nearby() {
               ManualLocationDetect(place);
             }}
           />
-          {currLocationRef.current.value && <Suggestion />}
+          {currLocationRef.current.value && <ShowCitySuggestion />}
         </Form.Group>
       </div>
-      {selected && latLon && (
+      {/* {selected && latLon && (
         <NearbyRestaurantsList place={selectedPlace} latlon={latLon} />
-      )}
+      )} */}
     </>
   );
 }
