@@ -32,13 +32,16 @@ export default function Nearby() {
         phone: item.poi.phone,
         tags: item.poi.categories,
         openingHours: item.openingHours,
+        score: item.score,
       };
-      // console.log(details.phone)
       setNearbyList((old) => {
         return [...old, details];
       });
+      // nearbyList.sort((a, b) => {
+      //   console.log(a.score - b.score)
+      //   return a.score - b.score;}
+      //   );
     });
-    // console.log(nearbyList);
     scrollToRef(contentRef);
     setLoading(false);
   }
@@ -167,7 +170,7 @@ export default function Nearby() {
         >
           <Loader />
         </div>
-        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop:45 }}>
+        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop: 45 }}>
           {!loading && (
             <ShowNearbyRestaurants
               place={selectedPlace}

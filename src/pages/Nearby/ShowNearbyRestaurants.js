@@ -53,8 +53,11 @@ export default function ShowNearbyRestaurants(props) {
                           variant="secondary"
                           className="pt-0 pb-0 ps-3 pe-3"
                           as="a"
-                          href={`https://www.swiggy.com/search?query=${item.name.replaceAll(' ','+')}`}
-                          target='_blank'
+                          href={`https://www.swiggy.com/search?query=${item.name.replaceAll(
+                            ' ',
+                            '+'
+                          )}`}
+                          target="_blank"
                         >
                           Order online
                         </Button>
