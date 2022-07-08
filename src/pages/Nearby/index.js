@@ -60,6 +60,7 @@ export default function Nearby() {
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
     setsuggestionCityList();
+    setNearbyList([]);
     setLoading(true);
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
     axios
@@ -165,7 +166,7 @@ export default function Nearby() {
         >
           <Loader />
         </div>
-        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop: 50 }}>
+        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop:45 }}>
           {!loading && (
             <ShowNearbyRestaurants
               place={selectedPlace}
