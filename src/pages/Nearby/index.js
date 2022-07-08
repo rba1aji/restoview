@@ -23,7 +23,7 @@ export default function Nearby() {
 
   //////////////////  LATLON 2 RESULT    //////////////////
   function MakeNearbyList(arr) {
-    setSelectedPlace(arr[0].address.municipality);
+    setSelectedPlace(arr[0].address.localName);
     setNearbyList([]);
     arr.map((item) => {
       const details = {
@@ -105,6 +105,7 @@ export default function Nearby() {
   ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
     if (navigator.geolocation) {
+      setLoading(true);
       navigator.geolocation.watchPosition((position) => {
         setLatLon(
           `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
