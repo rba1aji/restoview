@@ -19,7 +19,7 @@ export default function Nearby() {
   const [loading, setLoading] = useState(false);
   const [nearbyList, setNearbyList] = useState([]);
 
-  const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=10`;
+  const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
 
   //////////////////  LATLON 2 RESULT    //////////////////
   function MakeNearbyList(arr) {
@@ -39,11 +39,11 @@ export default function Nearby() {
     });
     // console.log(nearbyList);
     scrollToRef(contentRef);
+    setLoading(false);
   }
 
   //////////// WHEN LAT LON CHANGE ///////////
   useEffect(() => {
-    setLoading(true);
     axios
       .get(nearbyUrl)
       .then((res) => {
@@ -52,8 +52,7 @@ export default function Nearby() {
       .catch((err) => {
         console.log(err);
       });
-    setLoading(false);
-  }, [nearbyUrl]); 
+  }, [nearbyUrl]);
 
   ////////////// HANDLE SELECTED //////////////
   function HandleSelected(geoNameId) {
@@ -72,7 +71,6 @@ export default function Nearby() {
       .catch((err) => {
         console.log(err);
       });
-    setLoading(false);
   }
 
   ////////// SHOW SUGGESTION ///////////////
@@ -101,8 +99,8 @@ export default function Nearby() {
     const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
   }
 
-  function ManualLocationDetect(place) {
-    const suggestionCityListUrl = `https://api.teleport.org/api/cities/?search=${place}&limit=25`;
+  function ManualLocationDetect(query) {
+    const suggestionCityListUrl = `https://api.teleport.org/api/cities/?search=${query}&limit=25`;
 
     axios
       .get(suggestionCityListUrl)
@@ -147,8 +145,7 @@ export default function Nearby() {
             ref={currLocationRef}
             onChange={(e) => {
               e.preventDefault();
-              const place = currLocationRef.current.value;
-              ManualLocationDetect(place);
+              ManualLocationDetect(currLocationRef.current.value);
             }}
           />
           {currLocationRef.current.value && <ShowCitySuggestion />}
