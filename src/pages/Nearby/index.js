@@ -43,6 +43,7 @@ export default function Nearby() {
   }
 
   //////////// WHEN LAT LON CHANGE ///////////
+  // if(selectedPlace) {
   useEffect(() => {
     axios
       .get(nearbyUrl)
@@ -53,6 +54,7 @@ export default function Nearby() {
         console.log(err);
       });
   }, [nearbyUrl]);
+  // }
 
   ////////////// HANDLE SELECTED //////////////
   function HandleSelected(geoNameId) {
@@ -163,13 +165,14 @@ export default function Nearby() {
         >
           <Loader />
         </div>
-        <div ref={contentRef} style={{ height: 50 }}></div>
-        {!loading && (
-          <ShowNearbyRestaurants
-            place={selectedPlace}
-            nearbyList={nearbyList}
-          />
-        )}
+        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop: 50 }}>
+          {!loading && (
+            <ShowNearbyRestaurants
+              place={selectedPlace}
+              nearbyList={nearbyList}
+            />
+          )}
+        </div>
       </div>
     </>
   );
