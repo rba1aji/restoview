@@ -10,6 +10,7 @@ function scrollToRef(ref) {
 export default function NearbyRestaurantsList(props) {
   const [nearbyList, setNearbyList] = useState([]);
   const contentRef = useRef();
+  const [loading, setLoading] = useState(false);
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${props.latlon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
 
@@ -28,10 +29,10 @@ export default function NearbyRestaurantsList(props) {
         return [...old, details];
       });
     });
-    scrollToRef(contentRef);
   }
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(nearbyUrl)
       .then((res) => {
@@ -40,13 +41,20 @@ export default function NearbyRestaurantsList(props) {
       .catch((err) => {
         console.log(err);
       });
+    setLoading(false);
+    if (!loading) {
+      setTimeout(() => {
+        scrollToRef(contentRef);
+      }, 500);
+    }
   }, [nearbyUrl]);
 
   return (
     <div>
-      <div ref={contentRef} style={{ height: 60 }}></div>
+      <div ref={contentRef} style={{ height: 50 }}></div>
       <h1>{props.place} Nearby Restaurants</h1>
-      <ShowNearbyRestaurants nearbyList={nearbyList} />
+      {loading && <Loader />}
+      {!loading && <ShowNearbyRestaurants nearbyList={nearbyList} />}
     </div>
   );
 }
