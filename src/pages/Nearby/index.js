@@ -107,6 +107,7 @@ export default function Nearby() {
     if (navigator.geolocation) {
       setLoading(true);
       navigator.geolocation.watchPosition((position) => {
+        console.log(1)
         setLatLon(
           `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
         );
