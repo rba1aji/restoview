@@ -24,7 +24,6 @@ export default function Nearby() {
   //////////////////  LATLON 2 RESULT    //////////////////
   function MakeNearbyList(arr) {
     setSelectedPlace(arr[0].address.localName);
-    setNearbyList([]);
     arr.map((item) => {
       const details = {
         id: item.id,
@@ -50,6 +49,7 @@ export default function Nearby() {
   //////////// WHEN LAT LON CHANGE ///////////
   // if(selectedPlace) {
   useEffect(() => {
+    setNearbyList([]);
     axios
       .get(nearbyUrl)
       .then((res) => {
@@ -162,7 +162,7 @@ export default function Nearby() {
             placeholder="your location..?"
             ref={currLocationRef}
             onChange={(e) => {
-              e.preventDefault();
+              // e.preventDefault();
               ManualLocationDetect(currLocationRef.current.value);
             }}
           />
