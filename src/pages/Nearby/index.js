@@ -103,7 +103,15 @@ export default function Nearby() {
 
   ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
-    
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition((position) => {
+        setLatLon(
+          `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
+        );
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
   }
 
   function ManualLocationDetect(query) {
