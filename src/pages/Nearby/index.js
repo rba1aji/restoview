@@ -1,26 +1,72 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { TbCurrentLocation } from 'react-icons/tb';
-import NearbyRestaurantsList from './NearbyRestaurantsList';
 import API_KEY from '../../components/GetAPIKey';
+import Loader from '../../components/Loader';
+import ShowNearbyRestaurants from './ShowNearbyRestaurants';
+
+function scrollToRef(ref) {
+  window.scrollTo(0, ref.current.offsetTop);
+}
 
 export default function Nearby() {
   const currLocationRef = useRef('');
   const contentRef = useRef();
-  const [cityList, setCityList] = useState([]);
+  const [suggestionCityList, setsuggestionCityList] = useState([]);
   const [latLon, setLatLon] = useState('');
-  const [selected, setSelected] = useState(false);
-  const [selectedPlace, setSelectedPlace]=useState('');
+  const [selectedPlace, setSelectedPlace] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [nearbyList, setNearbyList] = useState([]);
 
+  const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
+
+  //////////////////  LATLON 2 RESULT    //////////////////
+  function MakeNearbyList(arr) {
+    setNearbyList([]);
+    arr.map((item) => {
+      const details = {
+        id: item.id,
+        name: item.poi.name,
+        address: item.address.freeformAddress,
+        phone: item.poi.phone,
+        tags: item.poi.categories,
+        openingHours: item.openingHours,
+      };
+      setNearbyList((old) => {
+        return [...old, details];
+      });
+    });
+    // console.log(nearbyList);
+    scrollToRef(contentRef);
+    setLoading(false);
+  }
+
+  //////////// WHEN LAT LON CHANGE ///////////
+  // if(selectedPlace) {
+  useEffect(() => {
+    axios
+      .get(nearbyUrl)
+      .then((res) => {
+        MakeNearbyList(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [nearbyUrl]);
+  // }
+
+  ////////////// HANDLE SELECTED //////////////
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
-    setCityList();
+    setsuggestionCityList();
+    setNearbyList([]);
+    setLoading(true);
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
     axios
       .get(latLonUrl)
       .then((res) => {
-        setSelectedPlace(res.data.full_name.split(",")[0]);
+        setSelectedPlace(res.data.full_name.split(',')[0]);
         setLatLon(
           `lat=${res.data.location.latlon.latitude}&lon=${res.data.location.latlon.longitude}`
         );
@@ -28,13 +74,13 @@ export default function Nearby() {
       .catch((err) => {
         console.log(err);
       });
-    setSelected(true);
   }
 
-  function Suggestion() {
+  ////////// SHOW SUGGESTION ///////////////
+  function ShowCitySuggestion() {
     return (
       <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime">
-        {cityList.map((item) => {
+        {suggestionCityList.map((item) => {
           const name = item.matching_full_name;
           if (name.includes('India')) {
             let geoNameId = item['_links']['city:item']['href'].split('/');
@@ -51,18 +97,18 @@ export default function Nearby() {
     );
   }
 
+  ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
     const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
   }
 
-  function ManualLocationDetect(place) {
-    const CityListUrl = `https://api.teleport.org/api/cities/?search=${place}&limit=25`;
+  function ManualLocationDetect(query) {
+    const suggestionCityListUrl = `https://api.teleport.org/api/cities/?search=${query}&limit=25`;
 
     axios
-      .get(CityListUrl)
+      .get(suggestionCityListUrl)
       .then((res) => {
-        setCityList(res.data._embedded['city:search-results']);
-        // console.log(cityList);
+        setsuggestionCityList(res.data._embedded['city:search-results']);
       })
       .catch((err) => {
         console.log(err);
@@ -71,6 +117,7 @@ export default function Nearby() {
 
   return (
     <>
+      <Loader flag={loading} />
       <div
         className=""
         style={{
@@ -78,7 +125,8 @@ export default function Nearby() {
           marginTop: '10vh',
           marginLeft: '20vw',
           marginRight: '20vw',
-          marginBottom: '20vh'        }}
+          // marginBottom: '10vh',
+        }}
       >
         <Button
           // variant="outline-dark"
@@ -100,14 +148,33 @@ export default function Nearby() {
             ref={currLocationRef}
             onChange={(e) => {
               e.preventDefault();
-              const place = currLocationRef.current.value;
-              ManualLocationDetect(place);
+              ManualLocationDetect(currLocationRef.current.value);
             }}
           />
-          {currLocationRef.current.value && <Suggestion />}
+          {currLocationRef.current.value && <ShowCitySuggestion />}
         </Form.Group>
       </div>
-      {selected && latLon && <NearbyRestaurantsList place={selectedPlace} latlon={latLon} />}
+
+      <div>
+        <div
+          style={{
+            position: 'fixed',
+            display: 'flex',
+            marginLeft: '45vw',
+            marginTop: '45vh',
+          }}
+        >
+          <Loader />
+        </div>
+        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop:45 }}>
+          {!loading && (
+            <ShowNearbyRestaurants
+              place={selectedPlace}
+              nearbyList={nearbyList}
+            />
+          )}
+        </div>
+      </div>
     </>
   );
 }
