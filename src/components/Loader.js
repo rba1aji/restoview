@@ -7,7 +7,7 @@ export default function Loader(props) {
           style={{
             position: 'fixed',
             top: '45vh',
-            paddingLeft: '45vw',
+            paddingLeft: '47vw',
             zIndex: 1,
             // height: '100%',
             width: '100%',
@@ -18,7 +18,6 @@ export default function Loader(props) {
     <Spinner
       animation="border"
       role="status"
-      // style={{height:'10vw',width:"10vw"}}
     >
       <span className="visually-hidden">Loading...</span>
     </Spinner>
