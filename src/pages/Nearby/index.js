@@ -33,6 +33,7 @@ export default function Nearby() {
         tags: item.poi.categories,
         openingHours: item.openingHours,
       };
+      // console.log(details.phone)
       setNearbyList((old) => {
         return [...old, details];
       });
