@@ -22,10 +22,10 @@ export default function ShowNearbyRestaurants(props) {
           key={pgno}
           active={pgno === currpage}
           onClick={() => setCurrpage(pgno)}
-          
+          className=''
     variant="outline-secondary"
     size="sm"
-          // style={{ borderRadius: 30 }}
+          style={{ margin:0.5}}
         >
           {pgno}
         </Button>
