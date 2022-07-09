@@ -18,7 +18,7 @@ export default function Nearby() {
   const [selectedPlace, setSelectedPlace] = useState('');
   const [loading, setLoading] = useState(false);
   const [nearbyList, setNearbyList] = useState([]);
-  const [autoButtonClicked, setAutoButtonClicked] = useState(false);
+  const [locationErr, setLocationErr] = useState('');
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
 
@@ -106,20 +106,33 @@ export default function Nearby() {
 
   ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
-    // if (autoButtonClicked) {
-      if (navigator.geolocation) {
-        setLoading(true);
-        navigator.geolocation.watchPosition((position) => {
-          
-            setLatLon(
-              `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
-            );
-            // setAutoButtonClicked(false);
-        });
-      } else {
-        alert('Geolocation is not supported by this browser.');
+    function getPosition(position) {
+      setLatLon(
+        `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
+      );
+    }
+    function showError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          setLocationErr('Request denied for Geolocation.');
+          break;
+        case error.POSITION_UNAVAILABLE:
+          setLocationErr('Location information is unavailable.');
+          break;
+        case error.TIMEOUT:
+          setLocationErr('The request timed out.');
+          break;
+        case error.UNKNOWN_ERROR:
+          setLocationErr('An unknown error occurred.');
+          break;
       }
-    // }
+    }
+    if (navigator.geolocation) {
+      setLoading(true);
+      navigator.geolocation.getCurrentPosition(getPosition, showError);
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
   }
 
   function ManualLocationDetect(query) {
@@ -138,6 +151,7 @@ export default function Nearby() {
   return (
     <>
       <Loader flag={loading} />
+      {/* <DownALert msg={locationErr} /> */}
       <div
         className=""
         style={{
@@ -155,7 +169,6 @@ export default function Nearby() {
           className="ms-1 me-1 p-2"
           style={{ wordSpacing: 3 }}
           onClick={() => {
-            // setAutoButtonClicked(true);
             AutoLocationDetect();
           }}
         >
