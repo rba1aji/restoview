@@ -7,9 +7,9 @@ export default function ShowNearbyRestaurants(props) {
   let PaginationItems = [];
   PaginationItems.push(
     <Button
-    variant="outline-secondary"
-    size="sm"
-    // style={{ borderRadius: 10}}
+      variant="outline-secondary"
+      size="md"
+      style={{margin:0.5}}
       onClick={() => setCurrpage(currpage === 1 ? currpage : currpage - 1)}
     >
       {'<'}
@@ -22,10 +22,10 @@ export default function ShowNearbyRestaurants(props) {
           key={pgno}
           active={pgno === currpage}
           onClick={() => setCurrpage(pgno)}
-          className=''
-    variant="outline-secondary"
-    size="sm"
-          style={{ margin:0.5}}
+          className=""
+          variant="outline-secondary"
+          size="sm"
+          style={{ margin: 0.5 }}
         >
           {pgno}
         </Button>
@@ -34,10 +34,9 @@ export default function ShowNearbyRestaurants(props) {
   }
   PaginationItems.push(
     <Button
-    
-    variant="outline-secondary"
-    size="sm"
-    // style={{ borderRadius: 30}}
+      variant="outline-secondary"
+      size="md"
+      style={{margin:0.5}}
       onClick={() =>
         setCurrpage(
           currpage === (props.nearbyList.length / 10).toFixed
@@ -120,7 +119,15 @@ export default function ShowNearbyRestaurants(props) {
       </div>
       <div>
         {
-          <Pagination className="justify-content-center" style={{marginTop:'10vh',marginBottom:'10vh', paddingLeft:'5vw',paddingRight:'5vw'}}>
+          <Pagination
+            className="justify-content-center"
+            style={{
+              marginTop: '10vh',
+              marginBottom: '10vh',
+              // paddingLeft: '5vw',
+              // paddingRight: '5vw',
+            }}
+          >
             {PaginationItems}
           </Pagination>
         }
