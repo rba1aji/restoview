@@ -112,6 +112,7 @@ export default function Nearby() {
       );
     }
     function showError(error) {
+      setLoading(false);
       switch (error.code) {
         case error.PERMISSION_DENIED:
           setLocationErr('Request denied for Geolocation.');
@@ -126,6 +127,7 @@ export default function Nearby() {
           setLocationErr('An unknown error occurred.');
           break;
       }
+      alert(locationErr);
     }
     if (navigator.geolocation) {
       setLoading(true);
