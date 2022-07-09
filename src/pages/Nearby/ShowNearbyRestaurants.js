@@ -7,12 +7,7 @@ export default function ShowNearbyRestaurants(props) {
   let PaginationItems = [];
   PaginationItems.push(
     <Pagination.Prev
-      onClick={() => 
-        setCurrpage(currpage === 1
-          ? currpage 
-          : currpage - 1
-        )
-      }
+      onClick={() => setCurrpage(currpage === 1 ? currpage : currpage - 1)}
     />
   );
   for (let pgno = 1; pgno <= props.nearbyList.length / 10; pgno++) {
@@ -108,9 +103,7 @@ export default function ShowNearbyRestaurants(props) {
             })}
         </Row>
       </div>
-      <div>
-        <Pagination>{PaginationItems}</Pagination>
-      </div>
+      <div>{props.place && <Pagination>{PaginationItems}</Pagination>}</div>
     </>
   );
 }
