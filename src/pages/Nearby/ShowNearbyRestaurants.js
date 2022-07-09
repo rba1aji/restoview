@@ -103,7 +103,10 @@ export default function ShowNearbyRestaurants(props) {
             })}
         </Row>
       </div>
-      <div>{props.place && <Pagination>{PaginationItems}</Pagination>}</div>
+      <div>{<Pagination
+
+          className="align-items-center"
+      >{PaginationItems}</Pagination>}</div>
     </>
   );
 }
