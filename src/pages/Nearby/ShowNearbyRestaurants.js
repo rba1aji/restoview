@@ -32,7 +32,7 @@ export default function ShowNearbyRestaurants(props) {
     <Pagination.Next
       onClick={() =>
         setCurrpage(
-          currpage === (nearbyList.length / 10).toFixed
+          currpage === (props.nearbyList.length / 10).toFixed
             ? currpage
             : currpage + 1
         )
