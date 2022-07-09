@@ -130,8 +130,8 @@ export default function Nearby() {
       // locationErr && alert(locationErr);
     }
     if (navigator.geolocation) {
-      setLoading(true);
       navigator.geolocation.getCurrentPosition(getPosition, showError);
+      setLoading(true);
     } else {
       alert('Geolocation is not supported by this browser.');
     }
