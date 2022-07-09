@@ -6,9 +6,13 @@ export default function ShowNearbyRestaurants(props) {
   const [currpage, setCurrpage] = useState(1);
   let PaginationItems = [];
   PaginationItems.push(
-    <Pagination.Prev
+    <Button
+    variant="outline-dark"
+    style={{ borderRadius: 30, margin:0.5 }}
       onClick={() => setCurrpage(currpage === 1 ? currpage : currpage - 1)}
-    />
+    >
+      {'<'}
+    </Button>
   );
   for (let pgno = 1; pgno <= props.nearbyList.length / 10; pgno++) {
     PaginationItems.push(
@@ -17,8 +21,8 @@ export default function ShowNearbyRestaurants(props) {
           key={pgno}
           active={pgno === currpage}
           onClick={() => setCurrpage(pgno)}
-          className="ms-1 ps-2 pe-2 pt-1 pb-1"
-          variant="light"
+          variant="outline-dark"
+          style={{ borderRadius: 30, margin:0.5 }}
         >
           {pgno}
         </Button>
@@ -26,7 +30,9 @@ export default function ShowNearbyRestaurants(props) {
     );
   }
   PaginationItems.push(
-    <Pagination.Next
+    <Button
+    variant="outline-dark"
+    style={{ borderRadius: 30, margin:0.5 }}
       onClick={() =>
         setCurrpage(
           currpage === (props.nearbyList.length / 10).toFixed
@@ -34,7 +40,9 @@ export default function ShowNearbyRestaurants(props) {
             : currpage + 1
         )
       }
-    />
+    >
+      {'>'}
+    </Button>
   );
   return (
     <>
@@ -107,7 +115,7 @@ export default function ShowNearbyRestaurants(props) {
       </div>
       <div>
         {
-          <Pagination className="justify-content-center">
+          <Pagination className="justify-content-center" style={{marginTop:'15vh'}}>
             {PaginationItems}
           </Pagination>
         }
