@@ -8,7 +8,7 @@ export default function ShowNearbyRestaurants(props) {
   PaginationItems.push(
     <Button
     variant="outline-dark"
-    style={{ borderRadius: 30, margin:0.5 }}
+    style={{ borderRadius: 30}}
       onClick={() => setCurrpage(currpage === 1 ? currpage : currpage - 1)}
     >
       {'<'}
@@ -22,7 +22,7 @@ export default function ShowNearbyRestaurants(props) {
           active={pgno === currpage}
           onClick={() => setCurrpage(pgno)}
           variant="outline-dark"
-          style={{ borderRadius: 30, margin:0.5 }}
+          style={{ borderRadius: 30 }}
         >
           {pgno}
         </Button>
@@ -32,7 +32,7 @@ export default function ShowNearbyRestaurants(props) {
   PaginationItems.push(
     <Button
     variant="outline-dark"
-    style={{ borderRadius: 30, margin:0.5 }}
+    style={{ borderRadius: 30}}
       onClick={() =>
         setCurrpage(
           currpage === (props.nearbyList.length / 10).toFixed
@@ -115,7 +115,7 @@ export default function ShowNearbyRestaurants(props) {
       </div>
       <div>
         {
-          <Pagination className="justify-content-center" style={{marginTop:'15vh'}}>
+          <Pagination className="justify-content-center" style={{marginTop:'10vh',marginBottom:'10vh', paddingLeft:'5vw',paddingRight:'5vw'}}>
             {PaginationItems}
           </Pagination>
         }
