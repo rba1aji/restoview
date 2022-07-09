@@ -18,12 +18,13 @@ export default function Nearby() {
   const [selectedPlace, setSelectedPlace] = useState('');
   const [loading, setLoading] = useState(false);
   const [nearbyList, setNearbyList] = useState([]);
+  // const [locationErr, setLocationErr] = useState('');
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
 
   //////////////////  LATLON 2 RESULT    //////////////////
   function MakeNearbyList(arr) {
-    setNearbyList([]);
+    setSelectedPlace(arr[0].address.localName);
     arr.map((item) => {
       const details = {
         id: item.id,
@@ -32,12 +33,16 @@ export default function Nearby() {
         phone: item.poi.phone,
         tags: item.poi.categories,
         openingHours: item.openingHours,
+        score: item.score,
       };
       setNearbyList((old) => {
         return [...old, details];
       });
+      // nearbyList.sort((a, b) => {
+      //   console.log(a.score - b.score)
+      //   return a.score - b.score;}
+      //   );
     });
-    // console.log(nearbyList);
     scrollToRef(contentRef);
     setLoading(false);
   }
@@ -45,6 +50,7 @@ export default function Nearby() {
   //////////// WHEN LAT LON CHANGE ///////////
   // if(selectedPlace) {
   useEffect(() => {
+    setNearbyList([]);
     axios
       .get(nearbyUrl)
       .then((res) => {
@@ -60,6 +66,7 @@ export default function Nearby() {
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
     setsuggestionCityList();
+    setSelectedPlace();
     setNearbyList([]);
     setLoading(true);
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
@@ -99,7 +106,35 @@ export default function Nearby() {
 
   ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
-    const URL = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&lat=${lat}&lon=${lon}&countrySet=IN&categoryset=7315&view=IN`;
+    function getPosition(position) {
+      setLatLon(
+        `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
+      );
+    }
+    function showError(error) {
+      setLoading(false);
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          alert('Request denied for Geolocation.');
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert('Location information is unavailable.');
+          break;
+        case error.TIMEOUT:
+          alert('The request timed out.');
+          break;
+        case error.UNKNOWN_ERROR:
+          alert('An unknown error occurred.');
+          break;
+      }
+      // locationErr && alert(locationErr);
+    }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getPosition, showError);
+      setLoading(true);
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
   }
 
   function ManualLocationDetect(query) {
@@ -118,6 +153,7 @@ export default function Nearby() {
   return (
     <>
       <Loader flag={loading} />
+      {/* <DownALert msg={locationErr} /> */}
       <div
         className=""
         style={{
@@ -134,6 +170,9 @@ export default function Nearby() {
           size="md"
           className="ms-1 me-1 p-2"
           style={{ wordSpacing: 3 }}
+          onClick={() => {
+            AutoLocationDetect();
+          }}
         >
           Use Current L
           <span className="pb-5">{<TbCurrentLocation size="15" />}</span>cation
@@ -147,7 +186,7 @@ export default function Nearby() {
             placeholder="your location..?"
             ref={currLocationRef}
             onChange={(e) => {
-              e.preventDefault();
+              // e.preventDefault();
               ManualLocationDetect(currLocationRef.current.value);
             }}
           />
@@ -166,7 +205,7 @@ export default function Nearby() {
         >
           <Loader />
         </div>
-        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop:45 }}>
+        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop: 45 }}>
           {!loading && (
             <ShowNearbyRestaurants
               place={selectedPlace}

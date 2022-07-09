@@ -5,7 +5,9 @@ export default function ShowNearbyRestaurants(props) {
   // console.log(props.nearbyList);
   return (
     <>
-      <h1 style={{opacity:props.place?1:0}}>{props.place} Nearby Restaurants</h1>
+      <h1 style={{ opacity: props.place ? 1 : 0 }}>
+        {props.place} Nearby Restaurants
+      </h1>
       <div className="m-4">
         <Row xs={1} md={2} className="g-4">
           {props.nearbyList.map((item) => {
@@ -34,10 +36,12 @@ export default function ShowNearbyRestaurants(props) {
                     <Card.Text className="">Rating: ⭐⭐⭐⭐</Card.Text>
                     <Row>
                       <Col>
-                        {true && (
+                        {item.phone && (
                           <Button
                             variant="secondary"
                             className="pt-0 pb-0 ps-4 pe-4"
+                            as="a"
+                            href={`tel:${item.phone}`}
                           >
                             Call
                           </Button>
@@ -48,6 +52,12 @@ export default function ShowNearbyRestaurants(props) {
                           style={{ float: 'right' }}
                           variant="secondary"
                           className="pt-0 pb-0 ps-3 pe-3"
+                          as="a"
+                          href={`https://www.swiggy.com/search?query=${item.name.replaceAll(
+                            ' ',
+                            '+'
+                          )}`}
+                          target="_blank"
                         >
                           Order online
                         </Button>
