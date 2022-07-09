@@ -13,13 +13,15 @@ export default function ShowNearbyRestaurants(props) {
   for (let pgno = 1; pgno <= props.nearbyList.length / 10; pgno++) {
     PaginationItems.push(
       <>
-        <Pagination.Item
+        <Button
           key={pgno}
-          active={pgno===currpage}
+          active={pgno === currpage}
           onClick={() => setCurrpage(pgno)}
+          className="ms-1 ps-2 pe-2 pt-1 pb-1"
+          variant="light"
         >
           {pgno}
-        </Pagination.Item>
+        </Button>
       </>
     );
   }
@@ -103,10 +105,13 @@ export default function ShowNearbyRestaurants(props) {
             })}
         </Row>
       </div>
-      <div>{<Pagination
-
-          className="justify-content-center"
-      >{PaginationItems}</Pagination>}</div>
+      <div>
+        {
+          <Pagination className="justify-content-center">
+            {PaginationItems}
+          </Pagination>
+        }
+      </div>
     </>
   );
 }
