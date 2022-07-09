@@ -127,7 +127,7 @@ export default function Nearby() {
           setLocationErr('An unknown error occurred.');
           break;
       }
-      alert(locationErr);
+      locationErr && alert(locationErr);
     }
     if (navigator.geolocation) {
       setLoading(true);
