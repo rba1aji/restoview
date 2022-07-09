@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
+
+function scrollToRef(ref) {
+  window.scrollTo(0, ref.current.offsetTop);
+}
 
 export default function ShowNearbyRestaurants(props) {
   const [currpage, setCurrpage] = useState(1);
   let PaginationItems = [];
+  const paginationScrollRef=useRef();
+
   PaginationItems.push(
     <Button
       variant="outline-secondary"
@@ -48,9 +54,11 @@ export default function ShowNearbyRestaurants(props) {
       {'>'}
     </Button>
   );
+
+
   return (
     <>
-      <h1 style={{ opacity: props.place ? 1 : 0 }}>
+      <h1 ref={paginationScrollRef} style={{ opacity: props.place ? 1 : 0 }}>
         {props.place} Nearby Restaurants
       </h1>
       <div className="m-4">
@@ -126,6 +134,7 @@ export default function ShowNearbyRestaurants(props) {
               marginBottom: '10vh',
               opacity: props.nearbyList.length > 0 ? 1 : 0,
             }}
+            onClick={()=>scrollToRef(paginationScrollRef)}
           >
             {PaginationItems}
           </Pagination>
