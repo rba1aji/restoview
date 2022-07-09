@@ -170,9 +170,7 @@ export default function Nearby() {
           size="md"
           className="ms-1 me-1 p-2"
           style={{ wordSpacing: 3 }}
-          onClick={() => {
-            AutoLocationDetect();
-          }}
+          onClick={() => AutoLocationDetect()}
         >
           Use Current L
           <span className="pb-5">{<TbCurrentLocation size="15" />}</span>cation
