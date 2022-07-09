@@ -16,6 +16,7 @@ export default function ShowNearbyRestaurants(props) {
       variant="outline-secondary"
       size="md"
       style={{ margin: 0.5 }}
+
       onClick={() => setCurrpage(currpage === 1 ? currpage : currpage - 1)}
     >
       {'<'}
@@ -135,6 +136,7 @@ export default function ShowNearbyRestaurants(props) {
               opacity: props.nearbyList.length > 0 ? 1 : 0,
             }}
             onClick={()=>scrollToRef(paginationScrollRef)}
+
           >
             {PaginationItems}
           </Pagination>
