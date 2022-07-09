@@ -9,7 +9,7 @@ export default function ShowNearbyRestaurants(props) {
     <Button
       variant="outline-secondary"
       size="md"
-      style={{margin:0.5}}
+      style={{ margin: 0.5 }}
       onClick={() => setCurrpage(currpage === 1 ? currpage : currpage - 1)}
     >
       {'<'}
@@ -36,7 +36,7 @@ export default function ShowNearbyRestaurants(props) {
     <Button
       variant="outline-secondary"
       size="md"
-      style={{margin:0.5}}
+      style={{ margin: 0.5 }}
       onClick={() =>
         setCurrpage(
           currpage === (props.nearbyList.length / 10).toFixed
@@ -124,8 +124,7 @@ export default function ShowNearbyRestaurants(props) {
             style={{
               marginTop: '10vh',
               marginBottom: '10vh',
-              // paddingLeft: '5vw',
-              // paddingRight: '5vw',
+              opacity: props.nearbyList.length > 0 ? 1 : 0,
             }}
           >
             {PaginationItems}
