@@ -1,9 +1,23 @@
 import React, { useState } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
-import { Pagination } from '@material-ui/lab';
+import { Pagination } from 'react-bootstrap';
 
 export default function ShowNearbyRestaurants(props) {
   const [currpage, setCurrpage] = useState(1);
+  let PaginationItems = [];
+  for (let pgno = 1; pgno <= props.nearbyList.length / 10; pgno++) {
+    PaginationItems.push(
+      <>
+        <Pagination.Item
+          key={pgno}
+          active={currpage}
+          onClick={() => setCurrpage(pgno)}
+        >
+          {pgno}
+        </Pagination.Item>
+      </>
+    );
+  }
   return (
     <>
       <h1 style={{ opacity: props.place ? 1 : 0 }}>
@@ -73,7 +87,9 @@ export default function ShowNearbyRestaurants(props) {
             })}
         </Row>
       </div>
-      <Pagination count={(props.nearbyList.length / 10).toFixed} />
+      <div>
+        <Pagination>{PaginationItems}</Pagination>
+      </div>
     </>
   );
 }
