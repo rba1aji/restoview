@@ -5,6 +5,16 @@ import { Pagination } from 'react-bootstrap';
 export default function ShowNearbyRestaurants(props) {
   const [currpage, setCurrpage] = useState(1);
   let PaginationItems = [];
+  PaginationItems.push(
+    <Pagination.Prev
+      onClick={() => 
+        setCurrpage(currpage === 1
+          ? currpage 
+          : currpage - 1
+        )
+      }
+    />
+  );
   for (let pgno = 1; pgno <= props.nearbyList.length / 10; pgno++) {
     PaginationItems.push(
       <>
@@ -18,6 +28,17 @@ export default function ShowNearbyRestaurants(props) {
       </>
     );
   }
+  PaginationItems.push(
+    <Pagination.Next
+      onClick={() =>
+        setCurrpage(
+          currpage === (nearbyList.length / 10).toFixed
+            ? currpage
+            : currpage + 1
+        )
+      }
+    />
+  );
   return (
     <>
       <h1 style={{ opacity: props.place ? 1 : 0 }}>
