@@ -9,14 +9,14 @@ function scrollToRef(ref) {
 export default function ShowNearbyRestaurants(props) {
   const [currpage, setCurrpage] = useState(1);
   let PaginationItems = [];
-  const paginationScrollRef=useRef();
+  const paginationScrollRef = useRef();
 
   PaginationItems.push(
     <Button
       variant="outline-secondary"
       size="md"
       style={{ margin: 0.5 }}
-
+      type="submit"
       onClick={() => setCurrpage(currpage === 1 ? currpage : currpage - 1)}
     >
       {'<'}
@@ -41,6 +41,7 @@ export default function ShowNearbyRestaurants(props) {
   }
   PaginationItems.push(
     <Button
+      type="submit"
       variant="outline-secondary"
       size="md"
       style={{ margin: 0.5 }}
@@ -55,7 +56,6 @@ export default function ShowNearbyRestaurants(props) {
       {'>'}
     </Button>
   );
-
 
   return (
     <>
@@ -135,8 +135,7 @@ export default function ShowNearbyRestaurants(props) {
               marginBottom: '10vh',
               opacity: props.nearbyList.length > 0 ? 1 : 0,
             }}
-            onClick={()=>scrollToRef(paginationScrollRef)}
-
+            onClick={() => scrollToRef(paginationScrollRef)}
           >
             {PaginationItems}
           </Pagination>
