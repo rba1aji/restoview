@@ -18,6 +18,7 @@ export default function Nearby() {
   const [selectedPlace, setSelectedPlace] = useState('');
   const [loading, setLoading] = useState(false);
   const [nearbyList, setNearbyList] = useState([]);
+  const [autoButtonClicked, setAutoButtonClicked] = useState(false);
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
 
@@ -65,6 +66,7 @@ export default function Nearby() {
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
     setsuggestionCityList();
+    setSelectedPlace();
     setNearbyList([]);
     setLoading(true);
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
@@ -104,17 +106,20 @@ export default function Nearby() {
 
   ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
-    if (navigator.geolocation) {
-      setLoading(true);
-      navigator.geolocation.watchPosition((position) => {
-        console.log(1)
-        setLatLon(
-          `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
-        );
-      });
-    } else {
-      alert('Geolocation is not supported by this browser.');
-    }
+    // if (autoButtonClicked) {
+      if (navigator.geolocation) {
+        setLoading(true);
+        navigator.geolocation.watchPosition((position) => {
+          
+            setLatLon(
+              `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
+            );
+            // setAutoButtonClicked(false);
+        });
+      } else {
+        alert('Geolocation is not supported by this browser.');
+      }
+    // }
   }
 
   function ManualLocationDetect(query) {
@@ -149,7 +154,10 @@ export default function Nearby() {
           size="md"
           className="ms-1 me-1 p-2"
           style={{ wordSpacing: 3 }}
-          onClick={AutoLocationDetect}
+          onClick={() => {
+            // setAutoButtonClicked(true);
+            AutoLocationDetect();
+          }}
         >
           Use Current L
           <span className="pb-5">{<TbCurrentLocation size="15" />}</span>cation
