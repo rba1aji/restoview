@@ -15,7 +15,7 @@ export default function ShowNearbyRestaurants(props) {
       <>
         <Pagination.Item
           key={pgno}
-          active={currpage}
+          active={pgno===currpage}
           onClick={() => setCurrpage(pgno)}
         >
           {pgno}
@@ -105,7 +105,7 @@ export default function ShowNearbyRestaurants(props) {
       </div>
       <div>{<Pagination
 
-          className="align-items-center"
+          className="justify-content-center"
       >{PaginationItems}</Pagination>}</div>
     </>
   );
