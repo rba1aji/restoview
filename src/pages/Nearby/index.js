@@ -18,7 +18,7 @@ export default function Nearby() {
   const [selectedPlace, setSelectedPlace] = useState('');
   const [loading, setLoading] = useState(false);
   const [nearbyList, setNearbyList] = useState([]);
-  const [locationErr, setLocationErr] = useState('');
+  // const [locationErr, setLocationErr] = useState('');
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
 
@@ -115,19 +115,19 @@ export default function Nearby() {
       setLoading(false);
       switch (error.code) {
         case error.PERMISSION_DENIED:
-          setLocationErr('Request denied for Geolocation.');
+          alert('Request denied for Geolocation.');
           break;
         case error.POSITION_UNAVAILABLE:
-          setLocationErr('Location information is unavailable.');
+          alert('Location information is unavailable.');
           break;
         case error.TIMEOUT:
-          setLocationErr('The request timed out.');
+          alert('The request timed out.');
           break;
         case error.UNKNOWN_ERROR:
-          setLocationErr('An unknown error occurred.');
+          alert('An unknown error occurred.');
           break;
       }
-      locationErr && alert(locationErr);
+      // locationErr && alert(locationErr);
     }
     if (navigator.geolocation) {
       setLoading(true);
