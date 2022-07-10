@@ -1,12 +1,31 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
+import { auth } from '../../configs/firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { AppState } from '../../AppContext';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function HandleLogin(e) {
-    // e.preventDefault();
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setAlert({
+          show: true,
+          variant: 'success',
+          msg: `Welcome back ${user.email}`,
+        });
+      })
+      .catch((error) => {
+        setAlert({
+          show: true,
+          variant: 'success',
+          msg: error.message,
+        });
+      });
   }
 
   return (
