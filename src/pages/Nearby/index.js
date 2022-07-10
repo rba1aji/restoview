@@ -17,8 +17,8 @@ export default function Nearby() {
   const [suggestionCityList, setsuggestionCityList] = useState([]);
   const [latLon, setLatLon] = useState('');
   const [selectedPlace, setSelectedPlace] = useState('');
-  const {loading, setLoading} = AppState();
   const [nearbyList, setNearbyList] = useState([]);
+  const {loading, setLoading} = AppState();
   // const [locationErr, setLocationErr] = useState('');
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
@@ -153,7 +153,6 @@ export default function Nearby() {
 
   return (
     <>
-      <Loader flag={loading} />
       {/* <DownALert msg={locationErr} /> */}
       <div
         className=""

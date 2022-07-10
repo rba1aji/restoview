@@ -1,7 +1,9 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
-export default function Loader(props) {
-  if (!props.flag) return;
+import { AppState } from '../AppContext';
+export default function Loader() {
+  const { loading } = AppState();
+  if (!loading) return;
   return (
     <div
       style={{

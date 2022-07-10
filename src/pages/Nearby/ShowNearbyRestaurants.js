@@ -1,12 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
+import {AppState}  from '../../AppContext'
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
 }
 
 export default function ShowNearbyRestaurants(props) {
+  const {setLoading}=AppState();
   const [currpage, setCurrpage] = useState(1);
   let PaginationItems = [];
   const paginationScrollRef = useRef();
@@ -135,7 +137,11 @@ export default function ShowNearbyRestaurants(props) {
               marginBottom: '10vh',
               opacity: props.nearbyList.length > 0 ? 1 : 0,
             }}
-            onClick={() => scrollToRef(paginationScrollRef)}
+            onClick={() =>{
+              setLoading(true);
+              scrollToRef(paginationScrollRef);
+              setLoading(false);
+            }}
           >
             {PaginationItems}
           </Pagination>
