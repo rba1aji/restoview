@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 const AppContext = createContext();
 
-const MakeAppContext = ({ children }) => {
+const AppContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   return (
     <AppContext.Provider
@@ -16,7 +16,7 @@ const MakeAppContext = ({ children }) => {
   );
 };
 
-export default MakeAppContext;
+export default AppContextProvider;
 
 export const AppState = () => {
   return useContext(AppContext);
