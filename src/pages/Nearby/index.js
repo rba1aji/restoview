@@ -5,7 +5,7 @@ import { TbCurrentLocation } from 'react-icons/tb';
 import API_KEY from '../../components/GetAPIKey';
 import Loader from '../../components/Loader';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
-import {AppState} from '../../AppContext';
+import { AppState } from '../../AppContext';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
@@ -18,8 +18,7 @@ export default function Nearby() {
   const [latLon, setLatLon] = useState('');
   const [selectedPlace, setSelectedPlace] = useState('');
   const [nearbyList, setNearbyList] = useState([]);
-  const {loading, setLoading} = AppState();
-  // const [locationErr, setLocationErr] = useState('');
+  const { loading, setLoading, setAlert } = AppState();
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
 
@@ -113,23 +112,29 @@ export default function Nearby() {
       );
     }
     function showError(error) {
+      let err = '';
       setLoading(false);
       switch (error.code) {
         case error.PERMISSION_DENIED:
-          alert('Request denied for Geolocation.');
+          err = 'Request denied for Geolocation.';
           break;
         case error.POSITION_UNAVAILABLE:
-          alert('Location information is unavailable.');
+          err = 'Location information is unavailable.';
           break;
         case error.TIMEOUT:
-          alert('The request timed out.');
+          err = 'The request timed out.';
           break;
         case error.UNKNOWN_ERROR:
-          alert('An unknown error occurred.');
+          err = 'An unknown error occurred.';
           break;
       }
-      // locationErr && alert(locationErr);
+      setAlert({
+        show: true,
+        variant: 'danger',
+        msg: err,
+      });
     }
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getPosition, showError);
       setLoading(true);

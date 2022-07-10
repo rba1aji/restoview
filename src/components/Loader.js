@@ -12,7 +12,7 @@ export default function Loader() {
         left: '45vw',
         zIndex: 1,
         width: '100%',
-        zIndex: '9999',
+        // zIndex: '9999',
       }}
     >
       <div
