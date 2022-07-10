@@ -7,7 +7,7 @@ const AppContextProvider = ({ children }) => {
   const [alert, setAlert] = useState({
     show:true,
     variant: 'danger',
-    msg: 'hey',
+    msg: 'Password Not Strong',
   });
   return (
     <AppContext.Provider
