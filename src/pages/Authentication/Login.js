@@ -13,7 +13,7 @@ export default function Login() {
   }
 
   return (
-    <div style={{ minHeight: '80vh' }} className="modal-dialog-centered">
+    <div style={{ minHeight: '60vh' }} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto justify-content-center"
         style={{ width: '18rem' }}
