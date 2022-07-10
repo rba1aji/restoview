@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
 const AppContext = createContext();
-
+ 
 export default function MakeAppContext({children}) {
   const [loading, setLoading] = useState(false);
   return (
