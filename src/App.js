@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header';
 import Loader from './components/Loader';
+import Alert from './components/Alert';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           ))}
         </Routes>
       </BrowserRouter>
+      <Alert/>
     </div>
   );
 }

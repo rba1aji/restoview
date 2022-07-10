@@ -4,11 +4,18 @@ const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({
+    show:'true'
+    variant: 'danger',
+    msg: 'hi',
+  });
   return (
     <AppContext.Provider
       value={{
         loading,
         setLoading,
+        alert,
+        setAlert
       }}
     >
       {children}
