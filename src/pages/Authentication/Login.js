@@ -4,9 +4,11 @@ import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 import { auth } from '../../configs/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { AppState } from '../../AppContext';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setAlert } = AppState();
 
   function HandleLogin(e) {
     e.preventDefault();
@@ -22,7 +24,7 @@ export default function Login() {
       .catch((error) => {
         setAlert({
           show: true,
-          variant: 'success',
+          variant: 'danger',
           msg: error.message,
         });
       });
@@ -47,7 +49,7 @@ export default function Login() {
             type="email"
             placeholder="Email address"
             onChange={(e) => setEmail(e.target.value)}
-            required
+            // required
           />
         </Form.Group>
 
@@ -58,7 +60,7 @@ export default function Login() {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            required
+            // required
           />
         </Form.Group>
         <div className="text-center">
