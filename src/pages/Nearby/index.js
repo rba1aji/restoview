@@ -59,7 +59,7 @@ export default function Nearby() {
       .catch((err) => {
         console.log(err);
       });
-  }, [nearbyUrl,latLon]);
+  }, [nearbyUrl]);
   // }
 
   ////////////// HANDLE SELECTED //////////////
