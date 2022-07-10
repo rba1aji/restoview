@@ -24,7 +24,7 @@ export default function Register() {
       </Link>
       <Form
         className="d-flex-inline mx-auto"
-        style={{ width: '21rem' }}
+        style={{ width: '18rem' }}
         onSubmit={HandleLogin}
       >
         <Form.Group className="mb-3" controlId="formBasicEmail">
