@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
-export default function Login() {
+
+export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   const regEx = '^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})';
 
   function HandleLogin(e) {
     // e.preventDefault();
     if (!password.match(regEx)) {
     }
+    if (password !== confirmPassword) {
+    }
   }
 
   return (
     <div>
-      <h1>Login</h1>
-      <Link to="/auth/register">
-        <p className="text-center">Register here</p>
+      <h1>Sign Up</h1>
+      <Link to="/auth/login">
+        <p className="text-center">Login here</p>
       </Link>
       <Form
         className="d-flex-inline mx-auto"
@@ -47,6 +51,19 @@ export default function Login() {
             required
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Confirm password</Form.Label>
+          <Form.Control
+            className="border-dark"
+            type="password"
+            placeholder="Confirm password"
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
+            required
+          />
+        </Form.Group>
+
         <div className="text-center">
           <Button className="px-4 my-3" variant="dark" type="submit">
             Login
