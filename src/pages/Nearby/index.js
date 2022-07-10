@@ -3,7 +3,7 @@ import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { TbCurrentLocation } from 'react-icons/tb';
 import API_KEY from '../../components/GetAPIKey';
-// import Loader from '../../components/Loader';
+import Loader from '../../components/Loader';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
 import {AppState} from '../../AppContext';
 
@@ -153,7 +153,7 @@ export default function Nearby() {
 
   return (
     <>
-      {/* <Loader flag={loading} />  */}
+      <Loader flag={loading} />
       {/* <DownALert msg={locationErr} /> */}
       <div
         className=""
