@@ -27,7 +27,7 @@ export default function App() {
           ))}
         </Routes>
       </BrowserRouter>
-      <Alert/>
+      <Alert />
     </div>
   );
 }
