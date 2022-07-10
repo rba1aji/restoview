@@ -112,7 +112,7 @@ export default function Nearby() {
       );
     }
     function showError(error) {
-      var err = '';
+      let err = '';
       setLoading(false);
       switch (error.code) {
         case error.PERMISSION_DENIED:
