@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
-import routes  from '../routes';
+import routes from '../routes';
 
 export default function Header() {
   return (
@@ -28,11 +28,11 @@ export default function Header() {
           />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
-              {routes?.map((item) => {
-                if(!item.nav)return;
+              {routes?.map((item, index) => {
+                if (!item.nav) return;
                 return (
-                  <Nav.Item as={LinkContainer} to={item.path}>
-                    <Nav.Link>{item.title}</Nav.Link>
+                  <Nav.Item key={index} as={LinkContainer} to={item.path}>
+                    <Nav.Link key={index}>{item.title}</Nav.Link>
                   </Nav.Item>
                 );
               })}
