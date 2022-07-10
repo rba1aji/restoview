@@ -4,9 +4,14 @@ import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const regEx = '^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})';
+
   function HandleLogin(e) {
     // e.preventDefault();
+    if (!password.match(regEx)) {
+    }
   }
+
   return (
     <div>
       <h1>Login</h1>
@@ -23,7 +28,7 @@ export default function Login() {
           <Form.Control
             className="border-dark"
             type="email"
-            placeholder="Enter email"
+            placeholder="name@example.com"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -35,7 +40,7 @@ export default function Login() {
           <Form.Control
             className="border-dark"
             type="password"
-            placeholder="Password"
+            placeholder='regEx="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})"'
             onChange={(e) => {
               setPassword(e.target.value);
             }}
