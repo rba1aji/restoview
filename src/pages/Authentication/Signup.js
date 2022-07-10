@@ -17,16 +17,16 @@ export default function Register() {
   }
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <Link to="/auth/login">
-        <p className="text-center">Login here</p>
-      </Link>
+    <div style={{minHeight:'80vh'}} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto"
         style={{ width: '18rem' }}
         onSubmit={HandleLogin}
       >
+        <h1>Sign Up</h1>
+        <Link to="/auth/login">
+          <p className="text-center">Login here</p>
+        </Link>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -44,7 +44,7 @@ export default function Register() {
           <Form.Control
             className="border-dark"
             type="password"
-            placeholder='regEx="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})"'
+            placeholder="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})"
             onChange={(e) => {
               setPassword(e.target.value);
             }}

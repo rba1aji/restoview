@@ -13,7 +13,7 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div style={{ minHeight: '80vh' }} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto justify-content-center"
         style={{ width: '18rem' }}
@@ -40,7 +40,7 @@ export default function Login() {
           <Form.Control
             className="border-dark"
             type="password"
-            placeholder='regEx="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})"'
+            placeholder="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
