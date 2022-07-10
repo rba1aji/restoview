@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
+import { AppState } from '../../AppContext';
 
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmpassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const regEx = '/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/';
+  const { setAlert } = AppState();
 
   function HandleLogin(e) {
-    // e.preventDefault();
+    e.preventDefault();
     if (!password.match(regEx)) {
+      setAlert({
+        show: true,
+        variant: 'danger',
+        msg: 'Enter a strong password...',
+      });
     }
     if (password !== confirmPassword) {
     }
