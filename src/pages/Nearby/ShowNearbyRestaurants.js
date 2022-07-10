@@ -7,6 +7,10 @@ function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
 }
 
+function scrollToRef(ref) {
+  window.scrollTo(0, ref.current.offsetTop);
+}
+
 export default function ShowNearbyRestaurants(props) {
   const {setLoading}=AppState();
   const [currpage, setCurrpage] = useState(1);
@@ -142,6 +146,8 @@ export default function ShowNearbyRestaurants(props) {
               scrollToRef(paginationScrollRef);
               setLoading(false);
             }}
+            onClick={()=>scrollToRef(paginationScrollRef)}
+
           >
             {PaginationItems}
           </Pagination>
