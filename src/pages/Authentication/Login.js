@@ -19,7 +19,6 @@ export default function Login() {
         style={{ width: '18rem' }}
         onSubmit={HandleLogin}
       >
-
         <h1>Login</h1>
         <Link to="/auth/register">
           <p className="text-center">Sign Up here</p>
@@ -31,32 +30,26 @@ export default function Login() {
             className="border-dark"
             type="email"
             placeholder="name@example.com"
-            onChange={(e) => 
-              setEmail(e.target.value)
-            }
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </Form.Group>
-        
+
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             className="border-dark"
             type="password"
             placeholder="/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/"
-            onChange={(e) => 
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
-
         </Form.Group>
         <div className="text-center">
-          <Button className="px-4 my-3" variant="dark" type="submit">
+          <Button className="px-5 my-4" variant="dark" type="submit">
             Login
           </Button>
         </div>
-
       </Form>
     </div>
   );

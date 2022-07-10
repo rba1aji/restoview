@@ -62,8 +62,8 @@ export default function Register() {
         </Form.Group>
 
         <div className="text-center">
-          <Button className="px-4 my-3" variant="dark" type="submit">
-            Login
+          <Button className="px-5 my-4" variant="dark" type="submit">
+            Sign Up
           </Button>
         </div>
       </Form>
