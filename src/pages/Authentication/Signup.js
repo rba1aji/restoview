@@ -6,7 +6,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
-  const regEx = '^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})';
+  const regEx = '/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/';
 
   function HandleLogin(e) {
     // e.preventDefault();
@@ -44,7 +44,7 @@ export default function Register() {
           <Form.Control
             className="border-dark"
             type="password"
-            placeholder="^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,})"
+            placeholder="/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
