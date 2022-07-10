@@ -2,12 +2,13 @@ import React, { createContext, useContext, useState } from 'react';
 
 const AppContext = createContext();
 
-function MakeAppContext() {
+export default function MakeAppContext({children}) {
   const [loading, setLoading] = useState(false);
   return (
     <AppContext.provider
       value={{
         loading,
+        setLoading,
       }}
     >
       {children}
@@ -15,6 +16,6 @@ function MakeAppContext() {
   );
 }
 
-export default function AppState() {
+export const AppState =()=> {
   return useContext(AppContext);
 }

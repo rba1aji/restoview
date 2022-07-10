@@ -1,10 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { TbCurrentLocation } from 'react-icons/tb';
 import API_KEY from '../../components/GetAPIKey';
 import Loader from '../../components/Loader';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
+import {AppState} from '../../AppContext';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
@@ -16,7 +17,7 @@ export default function Nearby() {
   const [suggestionCityList, setsuggestionCityList] = useState([]);
   const [latLon, setLatLon] = useState('');
   const [selectedPlace, setSelectedPlace] = useState('');
-  const [loading, setLoading] = useState(false);
+  const {loading, setLoading} = AppState();
   const [nearbyList, setNearbyList] = useState([]);
   // const [locationErr, setLocationErr] = useState('');
 
