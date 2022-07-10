@@ -17,7 +17,7 @@ export default function Register() {
   }
 
   return (
-    <div style={{minHeight:'60vh'}} className="modal-dialog-centered">
+    <div style={{ minHeight: '60vh' }} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto"
         style={{ width: '18rem' }}
@@ -27,39 +27,36 @@ export default function Register() {
         <Link to="/auth/login">
           <p className="text-center">Login here</p>
         </Link>
+
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             className="border-dark"
             type="email"
             placeholder="name@example.com"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             className="border-dark"
             type="password"
             placeholder="/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </Form.Group>
+
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Confirm password</Form.Label>
           <Form.Control
             className="border-dark"
             type="password"
             placeholder="Confirm password"
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-            }}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </Form.Group>
