@@ -7,7 +7,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const regEx = '/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/';
+  const regEx = '^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$';
   const { setAlert } = AppState();
 
   function HandleLogin(e) {
@@ -16,10 +16,14 @@ export default function Register() {
       setAlert({
         show: true,
         variant: 'danger',
-        msg: 'Enter a strong password...',
+        msg: 'Enter a strong password',
       });
-    }
-    if (password !== confirmPassword) {
+    } else if (password !== confirmPassword) {
+      setAlert({
+        show: true,
+        variant: 'danger',
+        msg: 'Password !== Confirm password',
+      });
     }
   }
 
@@ -51,7 +55,7 @@ export default function Register() {
           <Form.Control
             className="border-dark"
             type="password"
-            placeholder="/^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/"
+            placeholder="^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$"
             onChange={(e) => setPassword(e.target.value)}
             required
           />

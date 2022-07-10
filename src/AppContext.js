@@ -5,7 +5,7 @@ const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({
-    show: true,
+    show: false,
     variant: 'danger',
     msg: 'Enter a strong password',
   });

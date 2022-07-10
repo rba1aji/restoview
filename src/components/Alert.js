@@ -12,17 +12,16 @@ export default function Alert() {
 
   return (
     <div
-
-    style={{
-      margin: '20vw',
-      position: 'fixed',
-      bottom: '',
-      zIndex: 1,
-      // width: '100%',
-    }}
+      style={{
+        left: 20,
+        bottom: 10,
+        position: 'fixed',
+        zIndex: 1,
+        width: '60%',
+      }}
     >
       <Alert
-        className="p-3 d-flex-inline"
+        className="mx-auto"
         show={alert.show}
         variant={alert.variant}
         onClose={HandleClose}
