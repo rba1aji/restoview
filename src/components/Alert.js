@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Alert from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import AppState from '../components/AppContext';
 export default function Alert() {
   const [show, setShow] = useState(true);
