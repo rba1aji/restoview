@@ -3,9 +3,6 @@ import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
 import {AppState}  from '../../AppContext'
 
-function scrollToRef(ref) {
-  window.scrollTo(0, ref.current.offsetTop);
-}
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
