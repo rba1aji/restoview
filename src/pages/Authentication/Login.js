@@ -10,8 +10,15 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const { setAlert } = AppState();
 
+  setAlert({
+    show: true,
+    variant: 'success',
+    msg: `Welcome back `,
+  })
+
   function HandleLogin(e) {
     e.preventDefault();
+    
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -31,7 +38,7 @@ export default function Login() {
   }
 
   return (
-    <div style={{ minHeight: '60vh' }} className="modal-dialog-centered">
+    <div style={{ minHeight: '60vh', zIndex:0 }} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto justify-content-center"
         style={{ width: '18rem' }}
