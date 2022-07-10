@@ -10,7 +10,9 @@ export default function Register() {
 
   function HandleLogin(e) {
     // e.preventDefault();
-    if (!password.match(regEx) || password !== confirmPassword) {
+    if (!password.match(regEx)) {
+    }
+    if (password !== confirmPassword) {
     }
   }
 
