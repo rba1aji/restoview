@@ -1,10 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { TbCurrentLocation } from 'react-icons/tb';
 import API_KEY from '../../components/GetAPIKey';
 import Loader from '../../components/Loader';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
+import {AppState} from '../../AppContext';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
@@ -16,8 +17,8 @@ export default function Nearby() {
   const [suggestionCityList, setsuggestionCityList] = useState([]);
   const [latLon, setLatLon] = useState('');
   const [selectedPlace, setSelectedPlace] = useState('');
-  const [loading, setLoading] = useState(false);
   const [nearbyList, setNearbyList] = useState([]);
+  const {loading, setLoading} = AppState();
   // const [locationErr, setLocationErr] = useState('');
 
   const nearbyUrl = `https://api.tomtom.com/search/2/nearbySearch/.json?key=${API_KEY}&${latLon}&countrySet=IN&categorySet=7315&view=IN&limit=100`;
@@ -152,7 +153,6 @@ export default function Nearby() {
 
   return (
     <>
-      <Loader flag={loading} />
       {/* <DownALert msg={locationErr} /> */}
       <div
         className=""
@@ -201,7 +201,7 @@ export default function Nearby() {
             marginTop: '45vh',
           }}
         >
-          <Loader />
+          {/* <Loader /> */}
         </div>
         <div ref={contentRef} style={{ minHeight: '100vh', paddingTop: 45 }}>
           {!loading && (

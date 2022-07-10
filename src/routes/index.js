@@ -1,5 +1,5 @@
-import LoginComponent from '../pages/Login';
-import RegisterComponent from '../pages/Register';
+import LoginComponent from '../pages/Authentication/Login';
+import RegisterComponent from '../pages/Authentication/Signup';
 import FilterComponent from '../pages/Filter';
 import HomeComponent from '../pages/Home';
 import TopRatedComponent from '../pages/TopRated';
