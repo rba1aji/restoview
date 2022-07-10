@@ -8,16 +8,6 @@ import PutRatingComponent from '../pages/PutRating';
 
 const routes = [
   {
-    path: '/auth/login',
-    component: LoginComponent,
-    title: 'Login',
-  },
-  {
-    path: '/auth/register',
-    component: RegisterComponent,
-    title: 'Register',
-  },
-  {
     path: '/',
     component: HomeComponent,
     title: 'Home',
@@ -30,12 +20,22 @@ const routes = [
   {
     path: '/near-by-restaurants',
     component: NearbyComponent,
-    title: 'Near By Restaurants',
+    title: 'Nearby',
   },
   {
     path: '/top-rated-restaurants',
     component: TopRatedComponent,
-    title: 'Top Rated Restaurents',
+    title: 'Top Rated',
+  },
+  {
+    path: '/auth/login',
+    component: LoginComponent,
+    title: 'Login',
+  },
+  {
+    path: '/auth/register',
+    component: RegisterComponent,
+    title: 'Register',
   },
   {
     path: '/auth/put-rating',

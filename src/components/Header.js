@@ -43,7 +43,7 @@ export default function Header() {
                 <Nav.Link>Login</Nav.Link>
               </Nav.Item>
             </Nav>
-          </Navbar.Collapse>
+          </Navbar.Collapse> 
         </Container>
       </Navbar>
       {/* <Outlet/> */}
