@@ -13,22 +13,22 @@ export default function Login() {
   function HandleLogin(e) {
     e.preventDefault();
     
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     const user = userCredential.user;
-    //     ()=>setAlert({
-    //       show: true,
-    //       variant: 'success',
-    //       msg: `Welcome back ${user.email}`,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     ()=>setAlert({
-    //       show: true,
-    //       variant: 'danger',
-    //       msg: error.message,
-    //     });
-    //   });
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        ()=>setAlert({
+          show: true,
+          variant: 'success',
+          msg: `Welcome back ${user.email}`,
+        });
+      })
+      .catch((error) => {
+        ()=>setAlert({
+          show: true,
+          variant: 'danger',
+          msg: error.message,
+        });
+      });
   }
 
   return (
