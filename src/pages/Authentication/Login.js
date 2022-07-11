@@ -1,16 +1,38 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
+import { auth } from '../../configs/firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { AppState } from '../../AppContext';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setAlert } = AppState();
 
   function HandleLogin(e) {
-    // e.preventDefault();
+    e.preventDefault();
+    
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        ()=>setAlert({
+          show: true,
+          variant: 'success',
+          msg: `Welcome back ${user.email}`,
+        });
+      })
+      .catch((error) => {
+        ()=>setAlert({
+          show: true,
+          variant: 'danger',
+          msg: error.message,
+        });
+      });
   }
 
   return (
-    <div style={{ minHeight: '60vh' }} className="modal-dialog-centered">
+    <div style={{ minHeight: '60vh', zIndex:0 }} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto justify-content-center"
         style={{ width: '18rem' }}
@@ -28,7 +50,7 @@ export default function Login() {
             type="email"
             placeholder="Email address"
             onChange={(e) => setEmail(e.target.value)}
-            required
+            // required
           />
         </Form.Group>
 
@@ -39,7 +61,7 @@ export default function Login() {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            required
+            // required
           />
         </Form.Group>
         <div className="text-center">
