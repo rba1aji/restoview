@@ -107,6 +107,7 @@ export default function Nearby() {
   ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
     function getPosition(position) {
+      setSelectedPlace('');
       setLatLon(
         `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
       );
