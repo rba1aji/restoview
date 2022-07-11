@@ -10,31 +10,25 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const { setAlert } = AppState();
 
-  setAlert({
-    show: true,
-    variant: 'success',
-    msg: `Welcome back `,
-  })
-
   function HandleLogin(e) {
     e.preventDefault();
     
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        setAlert({
-          show: true,
-          variant: 'success',
-          msg: `Welcome back ${user.email}`,
-        });
-      })
-      .catch((error) => {
-        setAlert({
-          show: true,
-          variant: 'danger',
-          msg: error.message,
-        });
-      });
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     const user = userCredential.user;
+    //     ()=>setAlert({
+    //       show: true,
+    //       variant: 'success',
+    //       msg: `Welcome back ${user.email}`,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     ()=>setAlert({
+    //       show: true,
+    //       variant: 'danger',
+    //       msg: error.message,
+    //     });
+    //   });
   }
 
   return (
