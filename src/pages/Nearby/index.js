@@ -24,8 +24,8 @@ export default function Nearby() {
 
   //////////////////  LATLON 2 RESULT    //////////////////
   function MakeNearbyList(arr) {
-    setSelectedPlace(arr[0].address.localName);
-    arr.map((item) => {
+    !selectedPlace&&setSelectedPlace(arr[0].address.localName);
+    arr?.map((item) => {
       const details = {
         id: item.id,
         name: item.poi.name,
@@ -66,7 +66,7 @@ export default function Nearby() {
   function HandleSelected(geoNameId) {
     currLocationRef.current.value = '';
     setsuggestionCityList();
-    setSelectedPlace();
+    setSelectedPlace('');
     setNearbyList([]);
     setLoading(true);
     const latLonUrl = `https://api.teleport.org/api/cities/geonameid%3A${geoNameId}`;
@@ -87,7 +87,7 @@ export default function Nearby() {
   function ShowCitySuggestion() {
     return (
       <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime">
-        {suggestionCityList.map((item) => {
+        {suggestionCityList?.map((item) => {
           const name = item.matching_full_name;
           if (name.includes('India')) {
             let geoNameId = item['_links']['city:item']['href'].split('/');
@@ -136,6 +136,7 @@ export default function Nearby() {
     }
 
     if (navigator.geolocation) {
+      setLatLon('');
       navigator.geolocation.getCurrentPosition(getPosition, showError);
       setLoading(true);
     } else {
@@ -158,7 +159,6 @@ export default function Nearby() {
 
   return (
     <>
-      {/* <DownALert msg={locationErr} /> */}
       <div
         className=""
         style={{
