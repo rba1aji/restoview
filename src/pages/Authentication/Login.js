@@ -16,14 +16,14 @@ export default function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        ()=>setAlert({
+        setAlert({
           show: true,
           variant: 'success',
           msg: `Welcome back ${user.email}`,
         });
       })
       .catch((error) => {
-        ()=>setAlert({
+        setAlert({
           show: true,
           variant: 'danger',
           msg: error.message,
@@ -50,7 +50,7 @@ export default function Login() {
             type="email"
             placeholder="Email address"
             onChange={(e) => setEmail(e.target.value)}
-            // required
+            required
           />
         </Form.Group>
 
@@ -61,7 +61,7 @@ export default function Login() {
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            // required
+            required
           />
         </Form.Group>
         <div className="text-center">

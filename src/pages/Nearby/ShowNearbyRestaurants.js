@@ -1,15 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
-import {AppState}  from '../../AppContext'
-
+import { AppState } from '../../AppContext';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
 }
 
 export default function ShowNearbyRestaurants(props) {
-  const {setLoading}=AppState();
+  const { setLoading } = AppState();
   const [currpage, setCurrpage] = useState(1);
   let PaginationItems = [];
   const paginationScrollRef = useRef();
@@ -27,19 +26,17 @@ export default function ShowNearbyRestaurants(props) {
   );
   for (let pgno = 1; pgno <= props.nearbyList.length / 10; pgno++) {
     PaginationItems.push(
-      <>
-        <Button
-          key={pgno}
-          active={pgno === currpage}
-          onClick={() => setCurrpage(pgno)}
-          className=""
-          variant="outline-secondary"
-          size="sm"
-          style={{ margin: 0.5 }}
-        >
-          {pgno}
-        </Button>
-      </>
+      <Button
+        key={pgno}
+        active={pgno === currpage}
+        onClick={() => setCurrpage(pgno)}
+        className=""
+        variant="outline-secondary"
+        size="sm"
+        style={{ margin: 0.5 }}
+      >
+        {pgno}
+      </Button>
     );
   }
   PaginationItems.push(
@@ -69,7 +66,7 @@ export default function ShowNearbyRestaurants(props) {
         <Row xs={1} md={2} className="g-4">
           {props.nearbyList
             .slice((currpage - 1) * 10, (currpage - 1) * 10 + 10)
-            .map((item) => {
+            .map((item, index) => {
               return (
                 <Col>
                   <Card>
@@ -138,13 +135,12 @@ export default function ShowNearbyRestaurants(props) {
               marginBottom: '10vh',
               opacity: props.nearbyList.length > 0 ? 1 : 0,
             }}
-            onClick={() =>{
+            onClick={() => {
               setLoading(true);
               scrollToRef(paginationScrollRef);
               setLoading(false);
             }}
-            onClick={()=>scrollToRef(paginationScrollRef)}
-
+            onClick={() => scrollToRef(paginationScrollRef)}
           >
             {PaginationItems}
           </Pagination>

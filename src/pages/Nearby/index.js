@@ -87,14 +87,14 @@ export default function Nearby() {
   function ShowCitySuggestion() {
     return (
       <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime">
-        {suggestionCityList?.map((item) => {
+        {suggestionCityList?.map((item,index) => {
           const name = item.matching_full_name;
           if (name.includes('India')) {
             let geoNameId = item['_links']['city:item']['href'].split('/');
             geoNameId = geoNameId[geoNameId.length - 2];
             geoNameId = geoNameId.split(':')[1];
             return (
-              <li className="mb-2" onClick={() => HandleSelected(geoNameId)}>
+              <li className="mb-2" onClick={() => HandleSelected(geoNameId)} key={index}>
                 {name.split(',')[0]}
               </li>
             );
@@ -107,6 +107,7 @@ export default function Nearby() {
   ///////////// DETECT LOCATION ////////////
   function AutoLocationDetect() {
     function getPosition(position) {
+      setSelectedPlace('');
       setLatLon(
         `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
       );
