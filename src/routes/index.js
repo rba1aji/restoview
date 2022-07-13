@@ -6,14 +6,22 @@ import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
 import { AppState } from '../AppContext';
+import { signOut } from 'firebase/auth';
+import {auth} from '../configs/firebaseConfig';
 function isLoggedIn() {
   const { user } = AppState();
-  return user != null;
+  return user == null;
 }
 function Logout(){
-  const {setUser} = AppState();
-  setUser(null);
-  
+  useEffect(()=>{
+    signOut(auth);
+  const {setAlert} =AppState();
+  setAlert({
+    show:true,
+    variant:'success',
+    msg:'Logout successful',
+  });
+  },[])
 }
 const routes = [
   {
@@ -61,7 +69,7 @@ const routes = [
   {
     show:{isLoggedIn()},
     path:'auth/logout',
-    component:Logout,
+    // component:Logout,
     title:'Logout',
   }
 ];
