@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 import { AppState } from '../../AppContext';
+import {auth} from '../../configs/firebaseConfig'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -24,6 +26,24 @@ export default function Register() {
         variant: 'danger',
         msg: 'Password !== Confirm password',
       });
+    } else {
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          setAlert({
+            show:true,
+            variant:'success',
+            msg:'SignUp success! Welcome ${user.email}',
+          })
+        })
+        .catch((error) => {
+          setAlert({
+            show:true,
+            variant:'danger',
+            msg:error.message,
+          });
+        });
     }
   }
 
