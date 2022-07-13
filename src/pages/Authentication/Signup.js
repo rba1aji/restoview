@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 import { AppState } from '../../AppContext';
-import {auth} from '../../configs/firebaseConfig'
+import { auth } from '../../configs/firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Register() {
@@ -10,9 +10,10 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const regEx = '^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$';
-  const { setAlert } = AppState();
+  const { setAlert, setLoading } = AppState();
 
   function HandleLogin(e) {
+    setLoading(true);
     e.preventDefault();
     if (!password.match(regEx)) {
       setAlert({
@@ -20,29 +21,32 @@ export default function Register() {
         variant: 'danger',
         msg: 'Enter a strong password',
       });
+      setLoading(false);
     } else if (password !== confirmPassword) {
       setAlert({
         show: true,
         variant: 'danger',
         msg: 'Password !== Confirm password',
       });
+      setLoading(false);
     } else {
-
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
           setAlert({
-            show:true,
-            variant:'success',
-            msg:'SignUp success! Welcome ${user.email}',
-          })
+            show: true,
+            variant: 'success',
+            msg: 'SignUp success! Welcome ${user.email}',
+          });
+          setLoading(false);
         })
         .catch((error) => {
           setAlert({
-            show:true,
-            variant:'danger',
-            msg:error.message,
+            show: true,
+            variant: 'danger',
+            msg: error.message,
           });
+          setLoading(false);
         });
     }
   }
@@ -93,7 +97,12 @@ export default function Register() {
         </Form.Group>
 
         <div className="text-center">
-          <Button className="px-5 my-4" variant="dark" type="submit">
+          <Button
+            style={{ width: '100%' }}
+            className="px-5 my-4"
+            variant="dark"
+            type="submit"
+          >
             Sign Up
           </Button>
         </div>
