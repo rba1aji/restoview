@@ -22,6 +22,7 @@ const AppContextProvider = ({ children }) => {
         setUser(null);
       }
     });
+    console.log(user);
   }, []);
 
   return (
