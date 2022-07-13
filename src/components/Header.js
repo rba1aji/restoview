@@ -3,9 +3,12 @@ import { Link, Outlet } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
-import routes from '../routes';
+import routes from '../configs/Routes';
+import Logout from '../pages/Authentication/Logout';
+import { AppState } from '../AppContext';
 
 export default function Header() {
+  const { user } = AppState();
   return (
     <>
       <Navbar collapseOnSelect bg="light" expand="lg" fixed="top">
@@ -31,17 +34,21 @@ export default function Header() {
               {routes?.map((item, index) => {
                 if (!item.show) return;
                 return (
-                  <Nav.Item
-                    key={index}
-                    as={LinkContainer}
-                    to={item.path}
-                    onClick={item.event}
-                  >
+                  <Nav.Item key={index} as={LinkContainer} to={item.path}>
                     <Nav.Link key={index}>{item.title}</Nav.Link>
                   </Nav.Item>
                 );
               })}
-              </Nav>
+              user?
+              <Nav.Item as={LinkContainer} to="auth/login">
+                <Nav.Link>LogIn</Nav.Link>
+              </Nav.Item>
+              :
+              <Nav.Item as={LinkContainer} to="auth/logout">
+                <Nav.Link>LogOut</Nav.Link>
+              </Nav.Item>
+              ;
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
