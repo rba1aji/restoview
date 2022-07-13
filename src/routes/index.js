@@ -5,7 +5,16 @@ import HomeComponent from '../pages/Home';
 import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
-
+import { AppState } from '../AppContext';
+function isLoggedIn() {
+  const { user } = AppState();
+  return user != null;
+}
+function Logout(){
+  const {setUser} = AppState();
+  setUser(null);
+  
+}
 const routes = [
   {
     show: true,
@@ -32,7 +41,7 @@ const routes = [
     title: 'Top Rated',
   },
   {
-    show: true,
+    show: !{isLoggedIn()},
     path: '/auth/login',
     component: LoginComponent,
     title: 'Login',
@@ -44,11 +53,17 @@ const routes = [
     title: 'Register',
   },
   {
-    show: false,
-    path: '/auth/put-rating',
+    show: {isLoggedIn()},
+    path: '/put-rating',
     component: PutRatingComponent,
     title: 'Put Rating',
   },
+  {
+    show:{isLoggedIn()},
+    path:'auth/logout',
+    component:Logout,
+    title:'Logout',
+  }
 ];
 
 export default routes;
