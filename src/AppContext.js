@@ -1,4 +1,7 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { onAuthChanged } from 'firebase/auth';
+import { auth } from './configs/firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const AppContext = createContext();
 
@@ -9,6 +12,18 @@ const AppContextProvider = ({ children }) => {
     variant: 'danger',
     msg: 'Enter a strong password',
   });
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -16,6 +31,8 @@ const AppContextProvider = ({ children }) => {
         setLoading,
         alert,
         setAlert,
+        user,
+        setUser
       }}
     >
       {children}
