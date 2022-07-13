@@ -8,43 +8,43 @@ import PutRatingComponent from '../pages/PutRating';
 
 const routes = [
   {
-    nav:true,
+    show: true,
     path: '/',
     component: HomeComponent,
     title: 'Home',
   },
   {
-    nav:true,
+    show: true,
     path: '/filter',
     component: FilterComponent,
     title: 'Filter',
   },
   {
-    nav:true,
+    show: true,
     path: '/near-by-restaurants',
     component: NearbyComponent,
     title: 'Nearby',
   },
   {
-    nav:true,
+    show: true,
     path: '/top-rated-restaurants',
     component: TopRatedComponent,
     title: 'Top Rated',
   },
   {
-    nav:true,
+    show: true,
     path: '/auth/login',
     component: LoginComponent,
     title: 'Login',
   },
   {
-    nav:false,
+    show: false,
     path: '/auth/register',
     component: RegisterComponent,
     title: 'Register',
   },
   {
-    nav:false,
+    show: false,
     path: '/auth/put-rating',
     component: PutRatingComponent,
     title: 'Put Rating',
