@@ -5,11 +5,6 @@ import HomeComponent from '../pages/Home';
 import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
-// import { AppState } from '../AppContext';
-// import { signOut } from 'firebase/auth';
-// import { auth } from '../configs/firebaseConfig';
-// import { AppState } from '../AppContext';
-
 
 
 // function isLoggedIn() {

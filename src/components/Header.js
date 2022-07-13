@@ -4,6 +4,7 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
 import routes from '../configs/Routes';
+import Login from '../pages/Authentication/Login';
 import Logout from '../pages/Authentication/Logout';
 import { AppState } from '../AppContext';
 
@@ -44,7 +45,7 @@ export default function Header() {
                 <Nav.Link>LogIn</Nav.Link>
               </Nav.Item>
               :
-              <Nav.Item as={LinkContainer} to="auth/logout">
+              <Nav.Item as={LinkContainer} onClick={Logout}>
                 <Nav.Link>LogOut</Nav.Link>
               </Nav.Item>
               ;
