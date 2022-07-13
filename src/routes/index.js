@@ -6,10 +6,23 @@ import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
 import { AppState } from '../AppContext';
+import { signOut } from 'firebase/auth';
+import { auth } from '../configs/firebaseConfig';
+import { AppState } from '../AppContext';
+
+function Logout() {
+  signOut(auth);
+  const { setAlert } = AppState();
+  setAlert({
+    show: true,
+    variant: 'success',
+    msg: 'Logout successful',
+  });
+}
 
 function isLoggedIn() {
   const { user } = AppState();
-  return ;
+  return user?true:false;
 }
 
 const routes = [
