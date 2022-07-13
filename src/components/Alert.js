@@ -15,10 +15,10 @@ export default function TheAlert() {
     <div
       style={{
         left: 20,
-        bottom: 10,
+        bottom: 20,
         position: 'fixed',
         zIndex: 1,
-        width: '60%',
+        width: 'auto',
       }}
     >
       <Alert

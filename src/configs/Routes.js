@@ -5,25 +5,17 @@ import HomeComponent from '../pages/Home';
 import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
-import { AppState } from '../AppContext';
-import { signOut } from 'firebase/auth';
-import { auth } from '../configs/firebaseConfig';
-import { AppState } from '../AppContext';
+// import { AppState } from '../AppContext';
+// import { signOut } from 'firebase/auth';
+// import { auth } from '../configs/firebaseConfig';
+// import { AppState } from '../AppContext';
 
-function Logout() {
-  signOut(auth);
-  const { setAlert } = AppState();
-  setAlert({
-    show: true,
-    variant: 'success',
-    msg: 'Logout successful',
-  });
-}
 
-function isLoggedIn() {
-  const { user } = AppState();
-  return user?true:false;
-}
+
+// function isLoggedIn() {
+//   const { user } = AppState();
+//   return user?true:false;
+// }
 
 const routes = [
   {
@@ -51,7 +43,7 @@ const routes = [
     title: 'Top Rated',
   },
   {
-    show: !{isLoggedIn()},
+    show:false,
     path: '/auth/login',
     component: LoginComponent,
     title: 'Login',
@@ -63,7 +55,7 @@ const routes = [
     title: 'Register',
   },
   {
-    show: {isLoggedIn()},
+    show: false,
     path: '/put-rating',
     component: PutRatingComponent,
     title: 'Put Rating',
