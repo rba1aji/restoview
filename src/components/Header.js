@@ -4,6 +4,24 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
 import routes from '../routes';
+import { signOut } from 'firebase/auth';
+import { auth } from '../configs/firebaseConfig';
+import { AppState } from '../AppContext';
+
+function isLoggedIn() {
+  const { user } = AppState();
+  return user == null;
+}
+
+function Logout() {
+  signOut(auth);
+  const { setAlert } = AppState();
+  setAlert({
+    show: true,
+    variant: 'success',
+    msg: 'Logout successful',
+  });
+}
 
 export default function Header() {
   return (
@@ -31,11 +49,22 @@ export default function Header() {
               {routes?.map((item, index) => {
                 if (!item.show) return;
                 return (
-                  <Nav.Item key={index} as={LinkContainer} to={item.path}>
+                  <Nav.Item
+                    key={index}
+                    as={LinkContainer}
+                    to={item.path}
+                    onClick={item.event}
+                  >
                     <Nav.Link key={index}>{item.title}</Nav.Link>
                   </Nav.Item>
                 );
               })}
+
+              {/* {isLoggedIn() && (
+                <Nav.Item onClick={Logout}>
+                  <Nav.Link>Logout</Nav.Link>
+                </Nav.Item>
+              )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>

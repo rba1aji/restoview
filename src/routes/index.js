@@ -6,23 +6,12 @@ import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
 import { AppState } from '../AppContext';
-import { signOut } from 'firebase/auth';
-import {auth} from '../configs/firebaseConfig';
+
 function isLoggedIn() {
   const { user } = AppState();
-  return user == null;
+  return ;
 }
-function Logout(){
-  useEffect(()=>{
-    signOut(auth);
-  const {setAlert} =AppState();
-  setAlert({
-    show:true,
-    variant:'success',
-    msg:'Logout successful',
-  });
-  },[])
-}
+
 const routes = [
   {
     show: true,
@@ -66,12 +55,6 @@ const routes = [
     component: PutRatingComponent,
     title: 'Put Rating',
   },
-  {
-    show:{isLoggedIn()},
-    path:'auth/logout',
-    // component:Logout,
-    title:'Logout',
-  }
 ];
 
 export default routes;
