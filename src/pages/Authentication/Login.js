@@ -8,11 +8,11 @@ import { AppState } from '../../AppContext';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setAlert } = AppState();
+  const { setAlert, setLoading } = AppState();
 
   function HandleLogin(e) {
+    setLoading(true);
     e.preventDefault();
-    
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -21,6 +21,7 @@ export default function Login() {
           variant: 'success',
           msg: `Welcome back ${user.email}`,
         });
+        setLoading(false);
       })
       .catch((error) => {
         setAlert({
@@ -28,11 +29,15 @@ export default function Login() {
           variant: 'danger',
           msg: error.message,
         });
+        setLoading(false);
       });
   }
 
   return (
-    <div style={{ minHeight: '60vh', zIndex:0 }} className="modal-dialog-centered">
+    <div
+      style={{ minHeight: '60vh', zIndex: 0 }}
+      className="modal-dialog-centered"
+    >
       <Form
         className="d-flex-inline mx-auto justify-content-center"
         style={{ width: '18rem' }}
@@ -65,7 +70,12 @@ export default function Login() {
           />
         </Form.Group>
         <div className="text-center">
-          <Button className="px-5 my-4" variant="dark" type="submit">
+          <Button
+            style={{ width: '100%' }}
+            className="px-5 my-4"
+            variant="dark"
+            type="submit"
+          >
             Login
           </Button>
         </div>
