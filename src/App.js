@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import './style.css';
-
-import routes from './reducers/routes';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
+import routes from './reducers/routes';
 import Header from './components/Header';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
@@ -24,14 +22,21 @@ export default function App() {
               key={index}
               path={route.path}
               exact
-              element={<PrivateWrapper alter='404 error not accessible'><route.component /></PrivateWrapper>}
+              element={
+                route.private ? (
+                  <PrivateWrapper alter="404 error not accessible">
+                    <route.component />
+                  </PrivateWrapper>
+                ) : (
+                  <route.component />
+                )
+              }
               // render={(props) => <route.component {...props} />}
             ></Route>
           ))}
 
           <Route path="/auth/login" exact element={<Login />}></Route>
           <Route path="/auth/signup" exact element={<Signup />}></Route>
-          
         </Routes>
       </BrowserRouter>
       <Alert />
