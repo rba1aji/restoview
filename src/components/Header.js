@@ -44,11 +44,12 @@ export default function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
               {routes?.map((item, index) => {
-                if (!item.show) return;
-                return (
+                return routes.private===false ? (
                   <Nav.Item key={index} as={LinkContainer} to={item.path}>
                     <Nav.Link key={index}>{item.title}</Nav.Link>
                   </Nav.Item>
+                ) : (
+                  <></>
                 );
               })}
               {user === null ? (
