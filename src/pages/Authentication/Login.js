@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 import { auth } from '../../configs/firebaseConfig';
@@ -11,6 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const { setAlert, setLoading } = AppState();
   const navigate = useNavigate();
+  // const histoy=useHistory();
 
   function HandleLogin(e) {
     setLoading(true);
@@ -24,7 +25,7 @@ export default function Login() {
           msg: `Welcome back ${user.email}`,
         });
         setLoading(false);
-        navigate('/');
+        navigate(-1);
       })
       .catch((error) => {
         setAlert({
