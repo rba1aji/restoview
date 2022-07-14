@@ -7,6 +7,7 @@ import routes from '../reducers/routes';
 import { auth } from '../configs/firebaseConfig';
 import { signOut } from 'firebase/auth';
 import { AppState } from '../reducers/AppContext';
+import Login from '../pages/Authentication/Login'
 
 export default function Header() {
   const { user, setAlert } = AppState();
@@ -44,16 +45,16 @@ export default function Header() {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
               {routes?.map((item, index) => {
-                return routes.private===false ? (
+                return item.private ? (
+                  <></>
+                ) : (
                   <Nav.Item key={index} as={LinkContainer} to={item.path}>
                     <Nav.Link key={index}>{item.title}</Nav.Link>
                   </Nav.Item>
-                ) : (
-                  <></>
                 );
               })}
               {user === null ? (
-                <Nav.Item as={LinkContainer} to="auth/login">
+                <Nav.Item as={LinkContainer} to="/auth/login">
                   <Nav.Link>LogIn</Nav.Link>
                 </Nav.Item>
               ) : (

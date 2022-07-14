@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 import { AppState } from '../../reducers/AppContext';
 import { auth } from '../../configs/firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-export default function Register() {
+export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const regEx = '^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$';
   const { setAlert, setLoading } = AppState();
+  const navigate = useNavigate();
 
-  function HandleLogin(e) {
+  function HandleSignUp(e) {
     setLoading(true);
     e.preventDefault();
+
     if (!password.match(regEx)) {
       setAlert({
         show: true,
@@ -39,6 +41,7 @@ export default function Register() {
             msg: 'SignUp success! Welcome ${user.email}',
           });
           setLoading(false);
+          navigate(-1);
         })
         .catch((error) => {
           setAlert({
@@ -56,7 +59,7 @@ export default function Register() {
       <Form
         className="d-flex-inline mx-auto"
         style={{ width: '18rem' }}
-        onSubmit={HandleLogin}
+        onSubmit={HandleSignUp}
       >
         <h1>Sign Up</h1>
         <Link to="/auth/login">
