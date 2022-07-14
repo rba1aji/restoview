@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 import { auth } from '../../configs/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { AppState } from '../../AppContext';
+import { AppState } from '../../reducers/AppContext';
 
 export default function Login() {
   const [email, setEmail] = useState('');

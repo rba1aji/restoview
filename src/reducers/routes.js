@@ -6,7 +6,6 @@ import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
 
-
 // function isLoggedIn() {
 //   const { user } = AppState();
 //   return user?true:false;
@@ -38,7 +37,7 @@ const routes = [
     title: 'Top Rated',
   },
   {
-    show:false,
+    show: false,
     path: '/auth/login',
     component: LoginComponent,
     title: 'Login',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
-import { AppState } from '../AppContext';
+import { AppState } from '../reducers/AppContext';
 
 export default function TheAlert() {
   const [show, setShow] = useState(true);

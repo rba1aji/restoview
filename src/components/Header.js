@@ -3,11 +3,10 @@ import { Link, Outlet } from 'react-router-dom';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
-import routes from '../configs/Routes';
-import { AppState } from '../AppContext';
+import routes from '../reducers/routes';
 import { auth } from '../configs/firebaseConfig';
 import { signOut } from 'firebase/auth';
-import { AppState } from '../../AppContext';
+import { AppState } from '../reducers/AppContext';
 
 export default function Header() {
   const { user, setAlert } = AppState();

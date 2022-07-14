@@ -5,7 +5,7 @@ import { TbCurrentLocation } from 'react-icons/tb';
 import API_KEY from '../../components/GetAPIKey';
 import Loader from '../../components/Loader';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
-import { AppState } from '../../AppContext';
+import { AppState } from '../../reducers/AppContext';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);

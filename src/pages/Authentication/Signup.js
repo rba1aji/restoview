@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
-import { AppState } from '../../AppContext';
+import { AppState } from '../../reducers/AppContext';
 import { auth } from '../../configs/firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 

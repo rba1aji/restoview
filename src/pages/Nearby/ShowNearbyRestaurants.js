@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
-import { AppState } from '../../AppContext';
+import { AppState } from '../../reducers/AppContext';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);

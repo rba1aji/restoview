@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './style.css';
 
-import routes from './configs/Routes';
+import routes from './reducers/routes';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Header from './components/Header';
