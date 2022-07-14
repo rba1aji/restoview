@@ -1,12 +1,14 @@
 import React from 'react';
 import Search from './Search';
-const HomeContainer = () => {
+// import '../../assets/chicken.jpg'
+function Home() {
   return (
-    <>
-      {/* <h1 className="text-center">Home</h1> */}
-
+    <div>
       <Search />
-    </>
+      <div>
+          <img src='../../assets/chicken.jpg' />
+    </div>
+    </div>
   );
-};
-export default HomeContainer;
+}
+export default Home;
