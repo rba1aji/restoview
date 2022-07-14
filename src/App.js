@@ -9,6 +9,7 @@ import Loader from './components/Loader';
 import Alert from './components/Alert';
 import Login from './pages/Authentication/Login';
 import Signup from './pages/Authentication/Signup';
+import PrivateWrapper from './components/PrivateWrapper';
 
 export default function App() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
               key={index}
               path={route.path}
               exact
-              element={<route.component />}
+              element={<PrivateWrapper alter='404 error not accessible'><route.component /></PrivateWrapper>}
               // render={(props) => <route.component {...props} />}
             ></Route>
           ))}
