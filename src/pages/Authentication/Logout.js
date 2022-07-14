@@ -1,4 +1,4 @@
-import {Auth} from '../configs/firebaseConfig'
+import {auth} from '../../configs/firebaseConfig'
 import {signOut} from 'firebase/auth';
 import {AppState} from '../../AppContext';
 export default function Logout() {
@@ -9,4 +9,5 @@ export default function Logout() {
     variant: 'success',
     msg: 'Logout successful',
   });
+  return;
 }
