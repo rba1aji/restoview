@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-
 import { Dropdown, FormControl, InputGroup } from 'react-bootstrap';
 import { BsShop, BsSearch } from 'react-icons/bs';
 import { FaSearchLocation } from 'react-icons/fa';
 import { MdSavedSearch } from 'react-icons/md';
-
 import SuggestionListItem from './SuggestionListItem';
 import SelectedRestaurant from './SelectedRestaurant';
 import API_KEY from '../../components/GetAPIKey';
@@ -71,15 +69,16 @@ export default function Search() {
   return (
     <>
       <div style={{ margin: '6vw' }}>
-        <p> Search for a Restaurant</p>
+        {/* <p> Search for a Restaurant</p> */}
         <InputGroup>
           <InputGroup.Text id="basic-addon1" className="bg-light">
-            <BsSearch size="20" />
+            {/* <BsSearch size="20" /> */}
+            <span className="h2 m-0">🍳</span>
           </InputGroup.Text>
           <FormControl
             // autoFocus
             size="lg"
-            placeholder="Search..."
+            placeholder="Search for Restaurants "
             ref={searchInputRef}
             onChange={HandleInputChange}
             aria-label="Username"
