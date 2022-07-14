@@ -17,7 +17,7 @@ export default function Header() {
     setAlert({
       show: true,
       variant: 'success',
-      msg: 'Logout successful',
+      msg: `Sad to see you go Bye ${user.email}`,
     });
     return;
   }
