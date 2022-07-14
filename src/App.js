@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
+import Login from './pages/Authentication/Login';
 
 export default function App() {
   return (
@@ -25,6 +26,8 @@ export default function App() {
               // render={(props) => <route.component {...props} />}
             ></Route>
           ))}
+
+          <Route path="/auth/login" exact element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
       <Alert />

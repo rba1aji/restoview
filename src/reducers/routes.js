@@ -38,12 +38,6 @@ const routes = [
     title: 'Top Rated',
   },
   {
-    private:false,
-    path: '/auth/login',
-    component: LoginComponent,
-    title: 'Login',
-  },
-  {
     private:true,
     path: '/auth/register',
     component: RegisterComponent,
