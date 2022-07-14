@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
-import { AppState } from '../AppContext';
+import { AppState } from '../reducers/AppContext';
 export default function Loader() {
   const { loading } = AppState();
   if (!loading) return;
