@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
 import Login from './pages/Authentication/Login';
+import Signup from './pages/Authentication/Signup';
 
 export default function App() {
   return (
@@ -28,6 +29,8 @@ export default function App() {
           ))}
 
           <Route path="/auth/login" exact element={<Login />}></Route>
+          <Route path="/auth/signup" exact element={<Signup />}></Route>
+          
         </Routes>
       </BrowserRouter>
       <Alert />

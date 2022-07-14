@@ -1,5 +1,4 @@
-import LoginComponent from '../pages/Authentication/Login';
-import RegisterComponent from '../pages/Authentication/Signup';
+
 import FilterComponent from '../pages/Filter';
 import HomeComponent from '../pages/Home';
 import TopRatedComponent from '../pages/TopRated';
@@ -36,12 +35,6 @@ const routes = [
     path: '/top-rated-restaurants',
     component: TopRatedComponent,
     title: 'Top Rated',
-  },
-  {
-    private:true,
-    path: '/auth/register',
-    component: RegisterComponent,
-    title: 'Register',
   },
   {
     private:true,

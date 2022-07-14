@@ -7,7 +7,8 @@ import routes from '../reducers/routes';
 import { auth } from '../configs/firebaseConfig';
 import { signOut } from 'firebase/auth';
 import { AppState } from '../reducers/AppContext';
-import Login from '../pages/Authentication/Login'
+import Login from '../pages/Authentication/Login';
+import PrivateWrapper from './PrivateWrapper';
 
 export default function Header() {
   const { user, setAlert } = AppState();
@@ -46,7 +47,11 @@ export default function Header() {
             <Nav className="ms-auto">
               {routes?.map((item, index) => {
                 return item.private ? (
-                  <></>
+                  <PrivateWrapper>
+                    <Nav.Item key={index} as={LinkContainer} to={item.path}>
+                      <Nav.Link key={index}>{item.title}</Nav.Link>
+                    </Nav.Item>
+                  </PrivateWrapper>
                 ) : (
                   <Nav.Item key={index} as={LinkContainer} to={item.path}>
                     <Nav.Link key={index}>{item.title}</Nav.Link>
