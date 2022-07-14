@@ -4,12 +4,24 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
 import routes from '../configs/Routes';
-import Login from '../pages/Authentication/Login';
-import Logout from '../pages/Authentication/Logout';
 import { AppState } from '../AppContext';
+import { auth } from '../configs/firebaseConfig';
+import { signOut } from 'firebase/auth';
+import { AppState } from '../../AppContext';
 
 export default function Header() {
-  const { user } = AppState();
+  const { user, setAlert } = AppState();
+
+  function Logout() {
+    signOut(auth);
+    setAlert({
+      show: true,
+      variant: 'success',
+      msg: 'Logout successful',
+    });
+    return;
+  }
+
   return (
     <>
       <Navbar collapseOnSelect bg="light" expand="lg" fixed="top">
@@ -45,7 +57,7 @@ export default function Header() {
                   <Nav.Link>LogIn</Nav.Link>
                 </Nav.Item>
               ) : (
-                <Nav.Item as={LinkContainer} onClick={Logout} to='/'>
+                <Nav.Item as={LinkContainer} onClick={Logout} to="/">
                   <Nav.Link>LogOut</Nav.Link>
                 </Nav.Item>
               )}
