@@ -48,7 +48,7 @@ export default function Login() {
         onSubmit={HandleLogin}
       >
         <h1>Login</h1>
-        <Link to="/auth/register">
+        <Link to="/auth/signup">
           <p className="text-center">Sign Up here</p>
         </Link>
 
