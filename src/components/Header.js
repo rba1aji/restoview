@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
 import routes from '../reducers/routes';
 import { auth } from '../configs/firebaseConfig';
 import { signOut } from 'firebase/auth';
 import { AppState } from '../reducers/AppContext';
-import Login from '../pages/Authentication/Login';
 import PrivateWrapper from './PrivateWrapper';
 
 export default function Header() {
@@ -58,7 +57,7 @@ export default function Header() {
                   </Nav.Item>
                 );
               })}
-              {user === null ? (
+              {!user ? (
                 <Nav.Item as={LinkContainer} to="/auth/login">
                   <Nav.Link>LogIn</Nav.Link>
                 </Nav.Item>

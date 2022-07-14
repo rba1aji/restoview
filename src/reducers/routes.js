@@ -1,14 +1,8 @@
-
 import FilterComponent from '../pages/Filter';
 import HomeComponent from '../pages/Home';
 import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
-
-// function isLoggedIn() {
-//   const { user } = AppState();
-//   return user?true:false;
-// }
 
 const routes = [
   {
