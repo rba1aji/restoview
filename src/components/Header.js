@@ -40,15 +40,15 @@ export default function Header() {
                   </Nav.Item>
                 );
               })}
-              user?
-              <Nav.Item as={LinkContainer} to="auth/login">
-                <Nav.Link>LogIn</Nav.Link>
-              </Nav.Item>
-              :
-              <Nav.Item as={LinkContainer} onClick={Logout}>
-                <Nav.Link>LogOut</Nav.Link>
-              </Nav.Item>
-              ;
+              {user === null ? (
+                <Nav.Item as={LinkContainer} to="auth/login">
+                  <Nav.Link>LogIn</Nav.Link>
+                </Nav.Item>
+              ) : (
+                <Nav.Item as={LinkContainer} onClick={Logout} to='/'>
+                  <Nav.Link>LogOut</Nav.Link>
+                </Nav.Item>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
