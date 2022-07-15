@@ -21,10 +21,12 @@ function Home() {
         <div
           className="h5 mb-0"
           style={{
+            fontFamily: 'Edu VIC WA NT Beginner',
             position: 'absolute',
             color: 'white',
             right: '5%',
             top: '25%',
+            cursive:true,
           }}
         >
           What you eat there?
