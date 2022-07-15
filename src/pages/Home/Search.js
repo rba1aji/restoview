@@ -68,10 +68,10 @@ export default function Search() {
 
   return (
     <>
-      <div style={{ margin: '6vw' }}>
+      <div style={{ marginLeft: '6vw', marginRight:'6vw', marginTop:'2vh' }}>
         {/* <p> Search for a Restaurant</p> */}
         <InputGroup>
-          <InputGroup.Text id="basic-addon1" className="bg-light">
+          <InputGroup.Text id="basic-addon1" className="bg-light border-dark">
             {/* <BsSearch size="20" /> */}
             <span className="h2 m-0">🍳</span>
           </InputGroup.Text>
@@ -83,6 +83,7 @@ export default function Search() {
             onChange={HandleInputChange}
             aria-label="Username"
             aria-describedby="basic-addon1"
+            className="border-dark"
           />
         </InputGroup>
         {searchInputRef.current.value && <ShowSuggestions />}
