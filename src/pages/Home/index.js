@@ -2,33 +2,18 @@ import React from 'react';
 import Search from './Search';
 // import '../../assets/chicken.jpg'
 
-function Home() {
-  return (
+function MobileComponent(){
+  return(
     <div>
       <Search />
       <div
-        style={{
-          position: 'relative',
-          marginLeft: '6vw',
-          marginRight: '6vw',
-          marginTop: '3vh',
-        }}
+        className="mobBanner1Container"
       >
         <img
           style={{ width: '100%', borderRadius: '5px' }}
           src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
         />
-        <div
-          className="h5 mb-0"
-          style={{
-            fontFamily: 'Edu VIC WA NT Beginner',
-            position: 'absolute',
-            color: 'white',
-            right: '5%',
-            top: '25%',
-            cursive:true,
-          }}
-        >
+        <div className="h2 mb-0 mobBanner1text">
           What you eat there?
           <br /> Rate it here!
         </div>
@@ -36,4 +21,26 @@ function Home() {
     </div>
   );
 }
+
+function DesktopComponent(){
+  return (
+    <div
+    className="mobBanner1Container"
+  >
+    <img
+      style={{ width: '100%', borderRadius: '5px' }}
+      src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
+    />
+    <div className="h2 mb-0 mobBanner1text">
+      What you eat there?
+      <br /> Rate it here!
+    </div>
+  </div>
+  );
+}
+
+function Home() {
+  return window.innerWidth<=300? <MobileComponent/>:<DesktopComponent/>;
+}
 export default Home;
+
