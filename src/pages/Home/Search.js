@@ -68,7 +68,7 @@ export default function Search() {
 
   return (
     <>
-      <div style={{ marginLeft: '6vw', marginRight:'6vw', marginTop:'2vh' }}>
+      <div>
         {/* <p> Search for a Restaurant</p> */}
         <InputGroup>
           <InputGroup.Text id="basic-addon1" className="bg-light border-dark">
