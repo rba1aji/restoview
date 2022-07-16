@@ -30,10 +30,11 @@ function DesktopComponent() {
       <div>
         <div className="h2 mb-0 dskBanner1text">
           What you eat there?
-          <br />Rate it here!
+          <br />
+          Rate it here!
         </div>
         <div className="dskBanner1search">
-        <Search/>
+          <Search />
         </div>
       </div>
     </div>
