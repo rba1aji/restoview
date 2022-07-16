@@ -59,6 +59,6 @@ function DesktopComponent() {
 }
 
 function Home() {
-  return window.innerWidth < 992 ? <MobileComponent /> : <DesktopComponent />;
+  return window.innerWidth < 600 ? <MobileComponent /> : <DesktopComponent />;
 }
 export default Home;
