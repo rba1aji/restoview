@@ -3,6 +3,7 @@ import HomeComponent from '../pages/Home';
 import TopRatedComponent from '../pages/TopRated';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
+import RestaurantPage from '../pages/RestaurantPage';
 
 const routes = [
   {
@@ -35,6 +36,12 @@ const routes = [
     path: '/put-rating',
     component: PutRatingComponent,
     title: 'Put Rating',
+  },
+  {
+    private:false,
+    path:'/restaurant/:id',
+    component:RestaurantPage,
+    title:'Restaurant',
   },
 ];
 

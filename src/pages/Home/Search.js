@@ -29,7 +29,6 @@ export default function Search() {
     axios
       .get(URL)
       .then((res) => {
-        // console.log(res)
         setOptions(res.data.results);
       })
       .catch((error) => {
