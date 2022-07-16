@@ -5,16 +5,14 @@ import { BsShop, BsSearch } from 'react-icons/bs';
 import { FaSearchLocation } from 'react-icons/fa';
 import { MdSavedSearch } from 'react-icons/md';
 import SuggestionListItem from './SuggestionListItem';
-import SelectedRestaurant from './SelectedRestaurant';
 import API_KEY from '../../components/GetAPIKey';
 import { Link } from 'react-router-dom';
-
+import {Card, Container} from 'react-bootstrap';
 export default function Search() {
   // console.log(process.env);
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
-  const [selectedRestaurantId, setSelectedRestauarantId] = useState();
   const [selected, setSelected] = useState(false);
 
   function HandleInputChange(e) {
@@ -50,10 +48,10 @@ export default function Search() {
         {options.map((option, index) => {
           return (
             <Link
+            className="text-reset text-decoration-none"
               key={index}
               onClick={(e) => {
                 clearSearchBar();
-                setSelectedRestauarantId(option.id);
                 setSelected(true);
               }}
               to={`/restaurant/${option.id}`}
@@ -93,7 +91,6 @@ export default function Search() {
         </InputGroup>
         {searchInputRef.current.value && <ShowSuggestions />}
       </div>
-      {/* {selectedRestaurantId && <SelectedRestaurant id={selectedRestaurantId} />} */}
     </>
   );
 }
