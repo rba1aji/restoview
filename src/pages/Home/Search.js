@@ -7,7 +7,7 @@ import { MdSavedSearch } from 'react-icons/md';
 import SuggestionListItem from './SuggestionListItem';
 import API_KEY from '../../components/GetAPIKey';
 import { Link } from 'react-router-dom';
-import {Card, Container} from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 export default function Search() {
   // console.log(process.env);
 
@@ -47,19 +47,18 @@ export default function Search() {
         {options.map((option, index) => {
           return (
             <Link
-            className="text-reset text-decoration-none"
+              className="text-reset text-decoration-none"
               key={index}
               onClick={(e) => {
                 clearSearchBar();
               }}
               to={`/restaurant/${option.id}`}
             >
-              <SuggestionListItem
-                key={option.id}
-                id={option.id}
-                restaurantName={option.poi.name}
-                restaurantAddress={option.address.freeformAddress}
-              />
+              <h3 className="mb-0">
+                {/* <BsShop/>{' '} */}
+                {option.poi.name}
+              </h3>
+              <p>{option.address.freeformAddress}</p>
             </Link>
           );
         })}
