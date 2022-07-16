@@ -27,7 +27,7 @@ function DesktopComponent() {
   return (
     <div className="dskBanner1Container">
       <img
-        style={{ width: '100%', borderRadius: '5px', maxHeight: '50vh' }}
+        style={{ width: '100%', borderRadius: '5px', maxHeight: '45vh' }}
         src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
       />
       <Table
@@ -41,7 +41,7 @@ function DesktopComponent() {
       >
         <tr className="border-0">
           <td
-            className="h2 mb-0  cursiveFont"
+            className="h1 mb-0 cursiveFont"
             style={{ paddingLeft: '40%', color: 'white', textAlign: 'center' }}
           >
             What you eat there?
@@ -59,6 +59,6 @@ function DesktopComponent() {
 }
 
 function Home() {
-  return window.innerWidth < 992 ? <MobileComponent /> : <DesktopComponent />;
+  return window.innerWidth < 92 ? <MobileComponent /> : <DesktopComponent />;
 }
 export default Home;
