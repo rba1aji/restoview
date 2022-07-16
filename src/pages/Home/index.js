@@ -27,7 +27,7 @@ function DesktopComponent() {
   return (
     <div className="dskBanner1Container">
       <img
-        style={{ width: '100%', borderRadius: '5px', maxHeight: '45vh' }}
+        style={{ width: '100%', borderRadius: '5px', maxHeight: '215px' }}
         src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
       />
       <Table
@@ -36,7 +36,7 @@ function DesktopComponent() {
           position: 'absolute',
           top: '5%',
           borderColor: 'transparent',
-          height: '40vh',
+          height: '200px',
         }}
       >
         <tr className="border-0">
