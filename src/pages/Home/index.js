@@ -31,11 +31,11 @@ function DesktopComponent() {
         src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
       />
       <Col className="h2 mb-0 dskBanner1text">
-        <Row>
+        <Row style={{ textAlign: 'right' }}>
           What you eat there?
           <br /> Rate it here!
         </Row>
-        <Row style={{ width: '100%' }}>
+        <Row style={{ width: '52vw' }}>
           <Search />
         </Row>
       </Col>
