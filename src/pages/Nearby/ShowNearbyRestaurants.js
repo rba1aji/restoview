@@ -70,10 +70,11 @@ export default function ShowNearbyRestaurants(props) {
             .map((item, index) => {
               return (
                 <Col>
-                  <Card as={Link}>
+                  <Card >
                     <Card.Img variant="top" src="" />
                     <Card.Body>
-                      <Card.Title>
+                      <Link className="text-reset text-decoration-none" to={`/restaurant/${item.id}`}>
+                      <Card.Title >
                         <h2 className="m-0 p-0">{item.name}</h2>
                       </Card.Title>
                       <Card.Text className="m-0" style={{ fontSize: 12 }}>
@@ -91,6 +92,7 @@ export default function ShowNearbyRestaurants(props) {
                         );
                       })}
                       <Card.Text className="">Rating: ⭐⭐⭐⭐</Card.Text>
+                      </Link>
                       <Row>
                         <Col>
                           {item.phone && (
