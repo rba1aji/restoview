@@ -7,6 +7,7 @@ import { MdSavedSearch } from 'react-icons/md';
 import SuggestionListItem from './SuggestionListItem';
 import SelectedRestaurant from './SelectedRestaurant';
 import API_KEY from '../../components/GetAPIKey';
+import { Link } from 'react-router-dom';
 
 export default function Search() {
   // console.log(process.env);
@@ -48,18 +49,20 @@ export default function Search() {
       <ul className="bg-light list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <span
+            <Link
               onClick={(e) => {
                 clearSearchBar();
                 setSelectedRestauarantId(option.id);
                 setSelected(true);
               }}
+              // to={`/restaurant/${props.id}`}
             >
               <SuggestionListItem
+                id={option.id}
                 restaurantName={option.poi.name}
                 restaurantAddress={option.address.freeformAddress}
               />
-            </span>
+            </Link>
           );
         })}
       </ul>
@@ -88,7 +91,7 @@ export default function Search() {
         </InputGroup>
         {searchInputRef.current.value && <ShowSuggestions />}
       </div>
-      {selectedRestaurantId && <SelectedRestaurant id={selectedRestaurantId} />}
+      {/* {selectedRestaurantId && <SelectedRestaurant id={selectedRestaurantId} />} */}
     </>
   );
 }

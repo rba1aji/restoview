@@ -8,6 +8,7 @@ import Alert from './components/Alert';
 import Login from './pages/Authentication/Login';
 import Signup from './pages/Authentication/Signup';
 import PrivateWrapper from './components/PrivateWrapper';
+import RestaurantPage from './components/RestaurantPage';
 
 export default function App() {
   return (
@@ -37,6 +38,11 @@ export default function App() {
 
           <Route path="/auth/login" exact element={<Login />}></Route>
           <Route path="/auth/signup" exact element={<Signup />}></Route>
+          <Route
+            path="/restaurant/:id"
+            exact
+            element={<RestaurantPage />}
+          ></Route>
         </Routes>
       </BrowserRouter>
       <Alert />
