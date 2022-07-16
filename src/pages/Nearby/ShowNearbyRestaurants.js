@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
 import { AppState } from '../../reducers/AppContext';
+import {Link} from 'react-router-dom';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
@@ -69,7 +70,7 @@ export default function ShowNearbyRestaurants(props) {
             .map((item, index) => {
               return (
                 <Col>
-                  <Card>
+                  <Card as={Link}>
                     <Card.Img variant="top" src="" />
                     <Card.Body>
                       <Card.Title>
