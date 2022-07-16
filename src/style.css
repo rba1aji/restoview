@@ -36,16 +36,6 @@ h1 {
   margin-right: 6vw;
   margin-top: 4vh;
 }
-.dskBanner1text {
+.cursiveFont{
   font-family: 'Edu VIC WA NT Beginner', cursive;
-  position: absolute;
-  color: white;
-  left:40%;
-  top: 10%;
-}
-.dskBanner1search{
-  position:absolute;
-  right:0%;
-  bottom:20%;
-  width:65%;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from './Search';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Table } from 'react-bootstrap';
 // import '../../assets/chicken.jpg'
 
 function MobileComponent() {
@@ -27,18 +27,33 @@ function DesktopComponent() {
   return (
     <div className="dskBanner1Container">
       <img
-        style={{ width: '100%', borderRadius: '5px', maxHeight: '225px' }}
+        style={{ width: '100%', borderRadius: '5px', maxHeight: '50vh' }}
         src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
       />
-      <Col className="h2 mb-0 dskBanner1text">
-        <Row style={{ textAlign: 'right' }}>
-          What you eat there?
-          <br /> Rate it here!
-        </Row>
-        <Row style={{ width: '52vw' }}>
-          <Search />
-        </Row>
-      </Col>
+      <Table
+        className=""
+        style={{
+          position: 'absolute',
+          top: '5%',
+          borderColor: 'transparent',
+          height: '40vh',
+        }}
+      >
+        <tr className="border-0">
+          <td
+            className="h2 mb-0  cursiveFont"
+            style={{ paddingLeft: '40%', color: 'white', textAlign: 'center' }}
+          >
+            What you eat there?
+            <br /> Rate it here!
+          </td>
+        </tr>
+        <tr className="border-0">
+          <td style={{ paddingLeft: '35%', paddingRight: '3%' }}>
+            <Search />
+          </td>
+        </tr>
+      </Table>
     </div>
   );
 }
