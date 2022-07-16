@@ -46,7 +46,7 @@ export default function Header() {
             <Nav className="ms-auto">
               {routes?.map((item, index) => {
                 return item.private ? (
-                  <PrivateWrapper>
+                  <PrivateWrapper key={index}>
                     <Nav.Item key={index} as={LinkContainer} to={item.path}>
                       <Nav.Link key={index}>{item.title}</Nav.Link>
                     </Nav.Item>
