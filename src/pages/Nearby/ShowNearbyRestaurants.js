@@ -69,7 +69,7 @@ export default function ShowNearbyRestaurants(props) {
             .slice((currpage - 1) * 10, (currpage - 1) * 10 + 10)
             .map((item, index) => {
               return (
-                <Col>
+                <Col key={index}>
                   <Card >
                     <Card.Img variant="top" src="" />
                     <Card.Body>
@@ -80,9 +80,10 @@ export default function ShowNearbyRestaurants(props) {
                       <Card.Text className="m-0" style={{ fontSize: 12 }}>
                         {item.address}
                       </Card.Text>
-                      {item.tags.map((tag) => {
+                      {item.tags.map((tag,index) => {
                         return (
                           <button
+                          key={index}
                             disabled
                             className="pt-0 pb-0 border-0 mt-0"
                             style={{ fontSize: 12 }}
