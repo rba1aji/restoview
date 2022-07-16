@@ -45,7 +45,7 @@ export default function Search() {
       setOptions();
     }
     return (
-      <ul className="list-unstyled p-4 border border-prime">
+      <ul className="bg-light list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
             <span
