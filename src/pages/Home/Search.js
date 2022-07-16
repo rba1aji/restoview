@@ -49,23 +49,22 @@ export default function Search() {
       <ul className="bg-light list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <span
-            key={index}
+            <Link
+              key={index}
               onClick={(e) => {
                 clearSearchBar();
                 setSelectedRestauarantId(option.id);
                 setSelected(true);
               }}
-              as='Link'
               to={`/restaurant/${option.id}`}
             >
               <SuggestionListItem
-              key={option.id}
+                key={option.id}
                 id={option.id}
                 restaurantName={option.poi.name}
                 restaurantAddress={option.address.freeformAddress}
               />
-            </span>
+            </Link>
           );
         })}
       </ul>
