@@ -9,9 +9,9 @@ h1 {
   font-weight: bold;
   text-align: center;
 }
-p {
-  /* font-family: 'Montserrat', sans-serif; */
-}
+/* p {
+   font-family: 'Montserrat', sans-serif; 
+} */
 h1 {
   font-family: 'Montserrat', sans-serif;
 }
@@ -28,4 +28,24 @@ h1 {
   color: white;
   right: 5%;
   top: 25%;
+}
+
+.dskBanner1Container {
+  position: relative;
+  margin-left: 6vw;
+  margin-right: 6vw;
+  margin-top: 4vh;
+}
+.dskBanner1text {
+  font-family: 'Edu VIC WA NT Beginner', cursive;
+  position: absolute;
+  color: white;
+  right: 25%;
+  top: 10%;
+}
+.dskBanner1search{
+  position:absolute;
+  right:0%;
+  bottom:20%;
+  width:65%;
 }
