@@ -36,6 +36,7 @@ h1 {
   margin-right: 6vw;
   margin-top: 4vh;
 }
-.cursiveFont{
+.cursiveFont {
   font-family: 'Edu VIC WA NT Beginner', cursive;
+  webkit-font-family: 'Edu VIC WA NT Beginner', cursive;
 }

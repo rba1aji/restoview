@@ -14,9 +14,9 @@ export default function TheAlert() {
   return (
     <div
       style={{
-        left: 20,
-        bottom: 20,
-        position: 'fixed',
+        left: "20%",
+        bottom: "20%",
+        position: 'absolute',
         zIndex: 1,
         width: 'auto',
       }}
