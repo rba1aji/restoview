@@ -11,6 +11,7 @@ export default function StarRating(props) {
           console.log(res.data());
         } else {
           const docData = {
+            id: props.id,
             ratings: {
               overall: 5,
               food: 5,
@@ -25,7 +26,7 @@ export default function StarRating(props) {
             FetchData();
           })
           .catch((err)=>{
-
+            console.log(err)
           })
         }
       })
