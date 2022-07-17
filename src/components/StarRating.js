@@ -26,7 +26,7 @@ export default function StarRating(props) {
   function FetchData() {
     const docRef = doc(db, 'restaurants', props.id);
 
-    const unsub = onSnapshot(docRef, (doc) => {
+    onSnapshot(docRef, (doc) => {
       if (doc.data()) {
         console.log(doc.data());
       } else {
