@@ -7,7 +7,7 @@ export default function StarRating(props) {
     const docRef = doc(db, 'restaurants', props.id);
     getDoc(docRef)
       .then((res) => {
-        console.log(res);
+        console.log(res.data());
       })
       .catch((err) => {
         console.log(err);
