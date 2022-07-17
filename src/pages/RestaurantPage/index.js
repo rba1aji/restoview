@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import API_KEY from '../../components/GetAPIKey';
+import StarRating from '../../components/StarRating';
 
 export default function SelectedRestaurant() {
   const { id } = useParams();
@@ -27,6 +28,7 @@ export default function SelectedRestaurant() {
     <div>
       <h1>{res?.poi?.name}</h1>
       <h2>Ratings</h2>
+      <StarRating id={id} />
     </div>
   );
 }
