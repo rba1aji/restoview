@@ -1,13 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../configs/firebaseConfig';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 
 export default function StarRating(props) {
   function FetchData() {
     const docRef = doc(db, 'restaurants', props.id);
     getDoc(docRef)
       .then((res) => {
-        console.log(res.data());
+        if (res.data()) {
+          console.log(res.data());
+        } else {
+          const docData = {
+            
+            ratings: {
+              overall: 5,
+              food: 5,
+              service: 5,
+              valueForMoney: 5,
+            },
+            reviews: [],
+            photos: [],
+          };
+          setDoc(doc(db, 'restaurants', props.id), docData)
+            .then((res) => {
+            FetchData();
+          })
+          .catch((err)=>{
+
+          })
+        }
       })
       .catch((err) => {
         console.log(err);
