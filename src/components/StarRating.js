@@ -37,7 +37,7 @@ export default function StarRating(props) {
 
   useEffect(() => {
     FetchData();
-  }, [props.id]);
+  }, []);
 
   const stars = [];
   for (let i = 0; i < 4; i++) {
