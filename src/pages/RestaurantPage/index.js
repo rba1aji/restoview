@@ -11,9 +11,8 @@ export default function SelectedRestaurant() {
   async function FetchResData() {
     await axios
       .get(placeByIdUrl)
-      .then((res) => {
-        setRes(res.data.results[0]);
-        console.log(res);
+      .then((r) => {
+        setRes(r.data.results[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -24,5 +23,9 @@ export default function SelectedRestaurant() {
     FetchResData();
   }, []);
 
-  return <p>s</p>;
+  return (
+    <div>
+      <h1>{res?.poi?.name}</h1>
+    </div>
+  );
 }
