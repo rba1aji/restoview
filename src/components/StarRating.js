@@ -11,7 +11,6 @@ export default function StarRating(props) {
           console.log(res.data());
         } else {
           const docData = {
-            
             ratings: {
               overall: 5,
               food: 5,
@@ -37,7 +36,7 @@ export default function StarRating(props) {
 
   useEffect(() => {
     FetchData();
-  }, []);
+  }, [props.id]);
 
   const stars = [];
   for (let i = 0; i < 4; i++) {
