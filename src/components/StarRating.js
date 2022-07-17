@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from '../configs/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 
 export default function StarRating(props) {
-  const docRef = doc(db, 'restaurants', '0');
+  function FetchData() {
+    const docRef = doc(db, 'restaurants', props.id);
+    getDoc(docRef)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-  getDoc(docRef)
-    .then((doc) => {
-      if (doc.exists) {
-        console.log('Document data:', doc.data());
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!');
-      }
-    })
-    .catch((error) => {
-      console.log('Error getting document:', error);
-    });
+  useEffect(() => {
+    FetchData();
+  }, []);
 
   const stars = [];
   for (let i = 0; i < 4; i++) {
