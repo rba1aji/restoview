@@ -23,11 +23,11 @@ export default function StarRating(props) {
           };
           setDoc(doc(db, 'restaurants', props.id), docData)
             .then((res) => {
-            FetchData();
-          })
-          .catch((err)=>{
-            console.log(err)
-          })
+              FetchData();
+            })
+            .catch((err) => {
+              console.log(err, props.id);
+            });
         }
       })
       .catch((err) => {
