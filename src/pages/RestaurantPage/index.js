@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-const KEY = `O1W6gyHOMcvAfFFPGxQOGR2mBzWUAH2P`;
+import API_KEY from '../../components/GetAPIKey'
 
 export default function SelectedRestaurant() {
   const { id } = useParams();
   const [res, setRes] = useState();
-  const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${KEY}&view=IN`;
+  const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${API_KEY}&view=IN`;
 
   async function FetchResData() {
     await axios
@@ -26,6 +26,7 @@ export default function SelectedRestaurant() {
   return (
     <div>
       <h1>{res?.poi?.name}</h1>
+      <h2>Ratings</h2>
     </div>
   );
 }
