@@ -26,18 +26,13 @@ export default function StarRating(props) {
   function FetchData() {
     const docRef = doc(db, 'restaurants', props.id);
 
-    const unsub = onSnapshot();
-    getDoc(docRef)
-      .then((res) => {
-        if (res.data()) {
-          console.log(res.data());
-        } else {
-          HandleUndefined();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const unsub = onSnapshot(docRef, (doc) => {
+      if (doc.data()) {
+        console.log(doc.data());
+      } else {
+        HandleUndefined();
+      }
+    });
   }
 
   useEffect(() => {
@@ -46,7 +41,7 @@ export default function StarRating(props) {
 
   const stars = [];
   for (let i = 0; i < 4; i++) {
-    stars.push(<span>⭐</span>);
+    stars.push(<span key={i}>⭐</span>);
   }
 
   return <div>{stars}</div>;
