@@ -8,11 +8,9 @@ function MostViewed() {
   return <div>mostviewed</div>;
 }
 
-export default function TopRated() {
+export default function Famous() {
   const [famousType, setFamousType] = useState();
-  function HandleChange(event, eventKey) {
-    setFamousType(event.target.eventKey);
-  }
+
   return (
     <>
       <h1>Famous Restaurants</h1>
@@ -22,14 +20,15 @@ export default function TopRated() {
         variant="tabs"
         defaultActiveKey="0"
         style={{ marginLeft: '10vw', marginRight: '10vw', marginTop: '5vh' }}
+        onSelect={(key) => setFamousType(key)}
       >
         <Nav.Item>
-          <Nav.Link className="text-reset" eventKey="0" onSelect={HandleChange}>
+          <Nav.Link className="text-reset" eventKey="0">
             Top Rated
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link className="text-reset" eventKey="1" onSelect={HandleChange}>
+          <Nav.Link className="text-reset" eventKey="1">
             Most Viewed
           </Nav.Link>
         </Nav.Item>
