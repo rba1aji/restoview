@@ -4,7 +4,7 @@ import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 import { AppState } from '../reducers/AppContext';
 
 export default function StarRating(props) {
-  const { setRestoCloudData } = AppState();
+  const {restoCloudData, setRestoCloudData } = AppState();
 
   function HandleUndefined() {
     const docData = {
@@ -32,7 +32,6 @@ export default function StarRating(props) {
     onSnapshot(docRef, (doc) => {
       if (doc.data()) {
         setRestoCloudData(doc.data());
-        console.log(doc.data());
       } else {
         HandleUndefined();
       }

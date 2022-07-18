@@ -25,7 +25,7 @@ const AppContextProvider = ({ children }) => {
     });
   }, []);
 
-  const [restoCloudData, setRestoCloudData] = useState({});
+  const [restoCloudData, setRestoCloudData] = useState();
 
   return (
     <AppContext.Provider

@@ -32,7 +32,7 @@ export default function Header() {
           <Navbar.Brand
             as={Link}
             to="/"
-            style={{ fontWeight: 'bold', fontSize: 25, letterSpacing: 2 }}
+            style={{ fontWeight: 'bold', fontSize: 24, letterSpacing: 2 }}
             className="h1 mb-0 ps-3 me-auto"
           >
             RESTOVIEW
