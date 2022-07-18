@@ -49,12 +49,10 @@ export default function StarRating(props) {
   }
 
   return (
-    <>
-      {/* {stars} */}
-      <Rating
-        ratingValue={(restoCloudData?.ratings?.overall / 20) * 500}
-        readonly siz={20}
-      />
-    </>
+    <Rating
+      ratingValue={(restoCloudData?.ratings?.overall / 20) * 500}
+      readonly="true"
+      size="25px"
+    />
   );
 }

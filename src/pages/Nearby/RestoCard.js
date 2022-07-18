@@ -31,7 +31,8 @@ export default function RestoCard(props) {
             );
           })}
           <Card.Text className="">
-            Rating: <StarRating id={props.item.id} />{' '}
+            {/* Rating:  */}
+            <StarRating id={props.item.id} />{' '}
           </Card.Text>
         </Link>
         <Row>
