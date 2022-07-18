@@ -25,6 +25,7 @@ const AppContextProvider = ({ children }) => {
     });
   }, []);
 
+  const [restoApiData, setRestoApiData]=useState();
   const [restoCloudData, setRestoCloudData] = useState();
 
   return (
@@ -36,6 +37,8 @@ const AppContextProvider = ({ children }) => {
         setAlert,
         user,
         setUser,
+        restoApiData,
+        setRestoApiData,
         restoCloudData,
         setRestoCloudData,
       }}
