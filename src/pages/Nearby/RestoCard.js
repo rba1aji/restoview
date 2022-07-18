@@ -72,7 +72,7 @@ export default function RestoCard(props) {
               as={Link}
               to={`/restaurant/${props?.item?.id}`}
             >
-              Explore{'🍕'}
+              Explore{'🍴'}
             </Button>
           </Col>
         </Row>
