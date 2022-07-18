@@ -39,8 +39,9 @@ export default function RestoCard(props) {
           <Col>
             {props?.item?.phone && (
               <Button
+                style={{float:'left'}}
                 variant="secondary"
-                className="pt-0 pb-0 px-auto m-0"
+                className="py-0 px-auto"
                 as="a"
                 href={`tel:${props?.item?.phone}`}
               >
@@ -52,7 +53,7 @@ export default function RestoCard(props) {
             <Button
               style={{ float: 'center' }}
               variant="secondary"
-              className="py-0 ps-3 pe-3 m-0 px-auto"
+              className="py-0 px-auto"
               as="a"
               href={`https://www.swiggy.com/search?query=${props?.item?.name.replaceAll(
                 ' ',
@@ -67,11 +68,11 @@ export default function RestoCard(props) {
             <Button
               style={{ float: 'right' }}
               variant="secondary"
-              className="pt-0 pb-0 m-0"
+              className="py-0 px-auto"
               as={Link}
               to={`/restaurant/${props?.item?.id}`}
             >
-              Explore
+              Explore{'>>'}
             </Button>
           </Col>
         </Row>
