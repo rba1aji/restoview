@@ -22,6 +22,8 @@ export default function StarRating(props) {
       },
       reviews: [{}],
       photos: [{}],
+      views: 0,
+      address: '',
     };
 
     setDoc(doc(db, 'restaurants', props.id), newDocData)
