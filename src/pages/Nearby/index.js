@@ -86,7 +86,7 @@ export default function Nearby() {
   ////////// SHOW SUGGESTION ///////////////
   function ShowCitySuggestion() {
     return (
-      <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime">
+      <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime bg-light">
         {suggestionCityList?.map((item,index) => {
           const name = item.matching_full_name;
           if (name.includes('India')) {
