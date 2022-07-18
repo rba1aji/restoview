@@ -3,7 +3,7 @@ import { db } from '../configs/firebaseConfig';
 import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 import { AppState } from '../reducers/AppContext';
 import { Rating } from 'react-simple-star-rating';
-import {restoDocRef} from '../reducers/constants';
+import { restoDocRef } from '../reducers/constants';
 
 export default function StarRating(props) {
   const { restoCloudData, setRestoCloudData } = AppState();
@@ -35,7 +35,7 @@ export default function StarRating(props) {
 
   // function FetchData() {
   // const docRef = doc(db, 'restaurants', props.id);
-  const docRef=restoDocRef(props.id);
+  const docRef = restoDocRef(props.id);
 
   const unsubscribe = onSnapshot(docRef, (doc) => {
     if (doc.data()) {
