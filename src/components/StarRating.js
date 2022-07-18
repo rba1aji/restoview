@@ -48,5 +48,13 @@ export default function StarRating(props) {
     stars.push(<span key={i}>⭐</span>);
   }
 
-  return <div>{stars}</div>;
+  return (
+    <>
+      {/* {stars} */}
+      <Rating
+        ratingValue={(restoCloudData?.ratings?.overall / 20) * 500}
+        readonly siz={20}
+      />
+    </>
+  );
 }
