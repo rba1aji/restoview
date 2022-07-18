@@ -5,17 +5,16 @@ import { AppState } from '../../reducers/AppContext';
 import { Link } from 'react-router-dom';
 import RestoCard from './RestoCard';
 
-function scrollToRef(ref) {
-  const { setLoading } = AppState();
-  window.scrollTo(0, ref.current.offsetTop);
-  setLoading(false);
-}
-
 export default function ShowNearbyRestaurants(props) {
   const { setLoading } = AppState();
   const [currpage, setCurrpage] = useState(1);
   let PaginationItems = [];
   const paginationScrollRef = useRef();
+
+  function scrollToRef(ref) {
+    window.scrollTo(0, ref.current.offsetTop);
+    setLoading(false);
+  }
 
   PaginationItems.push(
     <Button

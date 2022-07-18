@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import StarRating from '../../components/StarRating';
 
 export default function RestoCard(props) {
   return (
@@ -29,7 +30,9 @@ export default function RestoCard(props) {
               </button>
             );
           })}
-          <Card.Text className="">Rating: ⭐⭐⭐⭐</Card.Text>
+          <Card.Text className="">
+            Rating: <StarRating id={props.item.id} />{' '}
+          </Card.Text>
         </Link>
         <Row>
           <Col>

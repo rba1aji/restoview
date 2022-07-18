@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../configs/firebaseConfig';
 import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 import { AppState } from '../reducers/AppContext';
+import { Rating } from 'react-simple-star-rating';
 
 export default function StarRating(props) {
   const { restoCloudData, setRestoCloudData } = AppState();
