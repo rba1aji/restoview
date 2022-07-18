@@ -2,24 +2,27 @@ import React, { useState } from 'react';
 import { Nav } from 'react-bootstrap';
 
 function TopRated() {
-  return <div>top viewed</div>;
+  return <div>top ra</div>;
 }
 function MostViewed() {
   return <div>mostviewed</div>;
 }
 
 export default function Famous() {
-  const [famousType, setFamousType] = useState();
+  const [famousType, setFamousType] = useState(0);
 
   return (
     <>
       <h1>Famous Restaurants</h1>
-
+      <div 
+        style={{ marginLeft: '10vw', marginRight: '10vw', marginTop: '5vh' }}
+        // className='border-dark border'
+        >
       <Nav
         fill
         variant="tabs"
         defaultActiveKey="0"
-        style={{ marginLeft: '10vw', marginRight: '10vw', marginTop: '5vh' }}
+        className=" "
         onSelect={(key) => setFamousType(key)}
       >
         <Nav.Item>
@@ -33,7 +36,9 @@ export default function Famous() {
           </Nav.Link>
         </Nav.Item>
       </Nav>
+
       {famousType == 0 ? <TopRated /> : <MostViewed />}
+    </div>
     </>
   );
 }
