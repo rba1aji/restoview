@@ -39,13 +39,13 @@ export default function RestoCard(props) {
           <Col>
             {props?.item?.phone && (
               <Button
-                style={{float:'left'}}
+                style={{ float: 'left' }}
                 variant="secondary"
                 className="py-0 px-auto mx-0"
                 as="a"
                 href={`tel:${props?.item?.phone}`}
               >
-                Call{' ☎️'}
+                Call{' 📞'}
               </Button>
             )}
           </Col>
