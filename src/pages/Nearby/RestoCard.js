@@ -45,7 +45,7 @@ export default function RestoCard(props) {
                 as="a"
                 href={`tel:${props?.item?.phone}`}
               >
-                Call{'📞'}
+                Call{' ☎️'}
               </Button>
             )}
           </Col>
@@ -61,7 +61,7 @@ export default function RestoCard(props) {
               )}`}
               target="_blank"
             >
-              Order{'🛒'}
+              Order{' 🛒'}
             </Button>
           </Col>
           <Col>
@@ -72,7 +72,7 @@ export default function RestoCard(props) {
               as={Link}
               to={`/restaurant/${props?.item?.id}`}
             >
-              Explore{''}
+              Explore{'🚀'}
             </Button>
           </Col>
         </Row>
