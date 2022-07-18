@@ -2,11 +2,13 @@ import React, { useState, useRef } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
 import { AppState } from '../../reducers/AppContext';
-import {Link} from 'react-router-dom';
-import {RestoCard} from './RestoCard';
+import { Link } from 'react-router-dom';
+import RestoCard from './RestoCard';
 
 function scrollToRef(ref) {
+  const { setLoading } = AppState();
   window.scrollTo(0, ref.current.offsetTop);
+  setLoading(false);
 }
 
 export default function ShowNearbyRestaurants(props) {
@@ -66,12 +68,12 @@ export default function ShowNearbyRestaurants(props) {
       </h1>
       <div className="m-4">
         <Row xs={1} md={2} className="g-4">
-          {props.nearbyList
+          {props?.nearbyList
             .slice((currpage - 1) * 10, (currpage - 1) * 10 + 10)
             .map((item, index) => {
               return (
                 <Col key={index}>
-                 <RestoCard item={item} />
+                  <RestoCard item={item} />
                 </Col>
               );
             })}
@@ -89,7 +91,7 @@ export default function ShowNearbyRestaurants(props) {
             onClick={() => {
               setLoading(true);
               scrollToRef(paginationScrollRef);
-              setLoading(false);
+              // setLoading(false);
             }}
             onClick={() => scrollToRef(paginationScrollRef)}
           >
