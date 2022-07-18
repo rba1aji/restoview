@@ -14,8 +14,8 @@ export default function SelectedRestaurant() {
   async function FetchRestoApiData() {
     await axios
       .get(placeByIdUrl)
-      .then((r) => {
-        setRestoApiData(r.data.results[0]);
+      .then((res) => {
+        setRestoApiData(res.data.results[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -26,7 +26,9 @@ export default function SelectedRestaurant() {
     FetchRestoApiData();
   }, []);
 
-  return (
+  return !restoApiData ? (
+    <div>404 error</div>
+  ) : (
     <div>
       <h1>{restoApiData?.poi?.name}</h1>
       <h2>Star Rating</h2>
