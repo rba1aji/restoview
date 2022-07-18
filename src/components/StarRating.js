@@ -8,7 +8,7 @@ export default function StarRating(props) {
   const { restoCloudData, setRestoCloudData } = AppState();
 
   function HandleUndefined() {
-    const docData = {
+    const newDocData = {
       ratings: {
         star: 5,
         collection: {
@@ -22,29 +22,32 @@ export default function StarRating(props) {
       reviews: [{}],
       photos: [{}],
     };
-    setDoc(doc(db, 'restaurants', props.id), docData)
+
+    setDoc(doc(db, 'restaurants', props.id), newDocData)
       .then((res) => {
-        FetchData();
+        unsubscribe();
       })
       .catch((err) => {
         console.log(err, props.id);
       });
   }
 
-  function FetchData() {
-    const docRef = doc(db, 'restaurants', props.id);
+  // function FetchData() {
+  const docRef = doc(db, 'restaurants', props.id);
 
-    onSnapshot(docRef, (doc) => {
-      if (doc.data()) {
-        setRestoCloudData(doc.data());
-      } else {
-        HandleUndefined();
-      }
-    });
-  }
+  const unsubscribe = onSnapshot(docRef, (doc) => {
+    if (doc.data()) {
+      setRestoCloudData(doc.data());
+    } else {
+      HandleUndefined();
+    }
+  });
+  // }
 
   useEffect(() => {
-    FetchData();
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
