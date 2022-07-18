@@ -3,6 +3,7 @@ import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
 import { AppState } from '../../reducers/AppContext';
 import {Link} from 'react-router-dom';
+import {RestoCard} from './RestoCard';
 
 function scrollToRef(ref) {
   window.scrollTo(0, ref.current.offsetTop);
@@ -70,61 +71,7 @@ export default function ShowNearbyRestaurants(props) {
             .map((item, index) => {
               return (
                 <Col key={index}>
-                  <Card >
-                    <Card.Img variant="top" src="" />
-                    <Card.Body>
-                      <Link className="text-reset text-decoration-none" to={`/restaurant/${item.id}`}>
-                      <Card.Title >
-                        <h2 className="m-0 p-0">{item.name}</h2>
-                      </Card.Title>
-                      <Card.Text className="m-0" style={{ fontSize: 12 }}>
-                        {item.address}
-                      </Card.Text>
-                      {item.tags.map((tag,index) => {
-                        return (
-                          <button
-                          key={index}
-                            disabled
-                            className="pt-0 pb-0 border-0 mt-0"
-                            style={{ fontSize: 12 }}
-                          >
-                            {tag}
-                          </button>
-                        );
-                      })}
-                      <Card.Text className="">Rating: ⭐⭐⭐⭐</Card.Text>
-                      </Link>
-                      <Row>
-                        <Col>
-                          {item.phone && (
-                            <Button
-                              variant="secondary"
-                              className="pt-0 pb-0 ps-4 pe-4"
-                              as="a"
-                              href={`tel:${item.phone}`}
-                            >
-                              Call
-                            </Button>
-                          )}
-                        </Col>
-                        <Col>
-                          <Button
-                            style={{ float: 'right' }}
-                            variant="secondary"
-                            className="pt-0 pb-0 ps-3 pe-3"
-                            as="a"
-                            href={`https://www.swiggy.com/search?query=${item.name.replaceAll(
-                              ' ',
-                              '+'
-                            )}`}
-                            target="_blank"
-                          >
-                            Order online
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Card.Body>
-                  </Card>
+                 <RestoCard item={item} />
                 </Col>
               );
             })}

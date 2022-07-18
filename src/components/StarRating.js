@@ -6,31 +6,30 @@ import { AppState } from '../reducers/AppContext';
 export default function StarRating(props) {
   const { setRestoCloudData } = AppState();
 
-  useEffect(() => {
-    function HandleUndefined() {
-      const docData = {
-        ratings: {
-          overall: 5,
-          food: 5,
-          service: 5,
-          valueForMoney: 5,
-        },
-        reviews: [],
-        photos: [],
-      };
-      setDoc(doc(db, 'restaurants', props.id), docData)
-        .then((res) => {
-          unsubs();
-        })
-        .catch((err) => {
-          console.log(err, props.id);
-        });
-    }
+  function HandleUndefined() {
+    const docData = {
+      ratings: {
+        overall: 5,
+        food: 5,
+        service: 5,
+        valueForMoney: 5,
+      },
+      reviews: [],
+      photos: [],
+    };
+    setDoc(doc(db, 'restaurants', props.id), docData)
+      .then((res) => {
+        FetchData();
+      })
+      .catch((err) => {
+        console.log(err, props.id);
+      });
+  }
 
-    // function FetchData() {
+  function FetchData() {
     const docRef = doc(db, 'restaurants', props.id);
 
-    const unsubs = onSnapshot(docRef, (doc) => {
+    onSnapshot(docRef, (doc) => {
       if (doc.data()) {
         setRestoCloudData(doc.data());
         console.log(doc.data());
@@ -38,9 +37,10 @@ export default function StarRating(props) {
         HandleUndefined();
       }
     });
-    // }
+  }
 
-    unsubs();
+  useEffect(() => {
+    FetchData();
   }, []);
 
   const stars = [];
