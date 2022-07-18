@@ -4,7 +4,7 @@ import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 import { AppState } from '../reducers/AppContext';
 
 export default function StarRating(props) {
-  const {restoCloudData, setRestoCloudData } = AppState();
+  const { restoCloudData, setRestoCloudData } = AppState();
 
   function HandleUndefined() {
     const docData = {
@@ -43,7 +43,7 @@ export default function StarRating(props) {
   }, []);
 
   const stars = [];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < restoCloudData?.ratings?.overall; i++) {
     stars.push(<span key={i}>⭐</span>);
   }
 
