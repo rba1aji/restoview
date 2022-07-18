@@ -4,17 +4,14 @@ import { Dropdown, FormControl, InputGroup } from 'react-bootstrap';
 import { BsShop, BsSearch } from 'react-icons/bs';
 import { FaSearchLocation } from 'react-icons/fa';
 import { MdSavedSearch } from 'react-icons/md';
-import SuggestionListItem from './SuggestionListItem';
-import SelectedRestaurant from './SelectedRestaurant';
 import API_KEY from '../../components/GetAPIKey';
-
+import { Link } from 'react-router-dom';
+import { Card, Container } from 'react-bootstrap';
 export default function Search() {
   // console.log(process.env);
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
-  const [selectedRestaurantId, setSelectedRestauarantId] = useState();
-  const [selected, setSelected] = useState(false);
 
   function HandleInputChange(e) {
     e.preventDefault();
@@ -31,7 +28,6 @@ export default function Search() {
     axios
       .get(URL)
       .then((res) => {
-        // console.log(res)
         setOptions(res.data.results);
       })
       .catch((error) => {
@@ -48,18 +44,20 @@ export default function Search() {
       <ul className="bg-light list-unstyled p-4 border border-prime">
         {options.map((option, index) => {
           return (
-            <span
+            <Link
+              className="text-reset text-decoration-none"
+              key={index}
               onClick={(e) => {
                 clearSearchBar();
-                setSelectedRestauarantId(option.id);
-                setSelected(true);
               }}
+              to={`/restaurant/${option.id}`}
             >
-              <SuggestionListItem
-                restaurantName={option.poi.name}
-                restaurantAddress={option.address.freeformAddress}
-              />
-            </span>
+              <h3 className="mb-0">
+                {/* <BsShop/>{' '} */}
+                {option.poi.name}
+              </h3>
+              <p>{option.address.freeformAddress}</p>
+            </Link>
           );
         })}
       </ul>
@@ -88,7 +86,6 @@ export default function Search() {
         </InputGroup>
         {searchInputRef.current.value && <ShowSuggestions />}
       </div>
-      {selectedRestaurantId && <SelectedRestaurant id={selectedRestaurantId} />}
     </>
   );
 }

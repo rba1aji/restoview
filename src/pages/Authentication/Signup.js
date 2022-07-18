@@ -38,7 +38,7 @@ export default function Signup() {
           setAlert({
             show: true,
             variant: 'success',
-            msg: 'SignUp success! Welcome ${user.email}',
+            msg: `SignUp successful! Welcome ${user.email}`,
           });
           setLoading(false);
           navigate(-1);

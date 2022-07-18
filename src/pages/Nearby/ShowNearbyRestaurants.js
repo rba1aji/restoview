@@ -2,16 +2,19 @@ import React, { useState, useRef } from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Pagination } from 'react-bootstrap';
 import { AppState } from '../../reducers/AppContext';
-
-function scrollToRef(ref) {
-  window.scrollTo(0, ref.current.offsetTop);
-}
+import { Link } from 'react-router-dom';
+import RestoCard from './RestoCard';
 
 export default function ShowNearbyRestaurants(props) {
   const { setLoading } = AppState();
   const [currpage, setCurrpage] = useState(1);
   let PaginationItems = [];
   const paginationScrollRef = useRef();
+
+  function scrollToRef(ref) {
+    window.scrollTo(0, ref.current.offsetTop);
+    setLoading(false);
+  }
 
   PaginationItems.push(
     <Button
@@ -64,63 +67,12 @@ export default function ShowNearbyRestaurants(props) {
       </h1>
       <div className="m-4">
         <Row xs={1} md={2} className="g-4">
-          {props.nearbyList
+          {props?.nearbyList
             .slice((currpage - 1) * 10, (currpage - 1) * 10 + 10)
             .map((item, index) => {
               return (
-                <Col>
-                  <Card>
-                    <Card.Img variant="top" src="" />
-                    <Card.Body>
-                      <Card.Title>
-                        <h2 className="m-0 p-0">{item.name}</h2>
-                      </Card.Title>
-                      <Card.Text className="m-0" style={{ fontSize: 12 }}>
-                        {item.address}
-                      </Card.Text>
-                      {item.tags.map((tag) => {
-                        return (
-                          <button
-                            disabled
-                            className="pt-0 pb-0 border-0 mt-0"
-                            style={{ fontSize: 12 }}
-                          >
-                            {tag}
-                          </button>
-                        );
-                      })}
-                      <Card.Text className="">Rating: ⭐⭐⭐⭐</Card.Text>
-                      <Row>
-                        <Col>
-                          {item.phone && (
-                            <Button
-                              variant="secondary"
-                              className="pt-0 pb-0 ps-4 pe-4"
-                              as="a"
-                              href={`tel:${item.phone}`}
-                            >
-                              Call
-                            </Button>
-                          )}
-                        </Col>
-                        <Col>
-                          <Button
-                            style={{ float: 'right' }}
-                            variant="secondary"
-                            className="pt-0 pb-0 ps-3 pe-3"
-                            as="a"
-                            href={`https://www.swiggy.com/search?query=${item.name.replaceAll(
-                              ' ',
-                              '+'
-                            )}`}
-                            target="_blank"
-                          >
-                            Order online
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Card.Body>
-                  </Card>
+                <Col key={index}>
+                  <RestoCard item={item} />
                 </Col>
               );
             })}
@@ -138,7 +90,7 @@ export default function ShowNearbyRestaurants(props) {
             onClick={() => {
               setLoading(true);
               scrollToRef(paginationScrollRef);
-              setLoading(false);
+              // setLoading(false);
             }}
             onClick={() => scrollToRef(paginationScrollRef)}
           >

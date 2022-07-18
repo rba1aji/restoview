@@ -26,16 +26,16 @@ export default function Header() {
     <>
       <Navbar collapseOnSelect bg="light" expand="lg" fixed="top">
         <Container>
-          <span className="mb-1.5">
+          <span className="mb-1">
             <MdFoodBank size="33" />
           </span>
           <Navbar.Brand
             as={Link}
             to="/"
-            style={{ fontWeight: 'bold', fontSize: 25, letterSpacing: 2 }}
+            style={{ fontWeight: 'bold', fontSize: 24, letterSpacing: 2 }}
             className="h1 mb-0 ps-3 me-auto"
           >
-            RESRAT
+            RESTOVIEW
             {/* Restaurant Rating App */}
           </Navbar.Brand>
           <Navbar.Toggle
@@ -46,7 +46,7 @@ export default function Header() {
             <Nav className="ms-auto">
               {routes?.map((item, index) => {
                 return item.private ? (
-                  <PrivateWrapper>
+                  <PrivateWrapper key={index}>
                     <Nav.Item key={index} as={LinkContainer} to={item.path}>
                       <Nav.Link key={index}>{item.title}</Nav.Link>
                     </Nav.Item>
