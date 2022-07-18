@@ -35,7 +35,7 @@ export default function Header() {
             style={{ fontWeight: 'bold', fontSize: 25, letterSpacing: 2 }}
             className="h1 mb-0 ps-3 me-auto"
           >
-            RESRAT
+            RESTOVIEW
             {/* Restaurant Rating App */}
           </Navbar.Brand>
           <Navbar.Toggle

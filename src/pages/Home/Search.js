@@ -4,7 +4,6 @@ import { Dropdown, FormControl, InputGroup } from 'react-bootstrap';
 import { BsShop, BsSearch } from 'react-icons/bs';
 import { FaSearchLocation } from 'react-icons/fa';
 import { MdSavedSearch } from 'react-icons/md';
-import SuggestionListItem from './SuggestionListItem';
 import API_KEY from '../../components/GetAPIKey';
 import { Link } from 'react-router-dom';
 import { Card, Container } from 'react-bootstrap';
