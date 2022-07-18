@@ -10,13 +10,17 @@ export default function StarRating(props) {
   function HandleUndefined() {
     const docData = {
       ratings: {
-        overall: 5,
-        food: 5,
-        service: 5,
-        valueForMoney: 5,
+        star: 5,
+        collection: {
+          overall: [{}],
+          food: [{}],
+          service: [{}],
+          quality: [{}],
+          valueForMoney: [{}],
+        },
       },
-      reviews: [],
-      photos: [],
+      reviews: [{}],
+      photos: [{}],
     };
     setDoc(doc(db, 'restaurants', props.id), docData)
       .then((res) => {
