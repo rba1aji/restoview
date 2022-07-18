@@ -30,7 +30,7 @@ export default function RestoCard(props) {
               </button>
             );
           })}
-          <Card.Text className='mb-3'>
+          <Card.Text className="mb-3">
             {/* Rating:  */}
             <StarRating id={props.item.id} />{' '}
           </Card.Text>
@@ -40,7 +40,7 @@ export default function RestoCard(props) {
             {props?.item?.phone && (
               <Button
                 variant="secondary"
-                className="pt-0 pb-0 ps-4 pe-4"
+                className="pt-0 pb-0 px-auto m-0"
                 as="a"
                 href={`tel:${props?.item?.phone}`}
               >
@@ -50,9 +50,9 @@ export default function RestoCard(props) {
           </Col>
           <Col>
             <Button
-              style={{ float: 'right' }}
+              style={{ float: 'center' }}
               variant="secondary"
-              className="pt-0 pb-0 ps-3 pe-3"
+              className="py-0 ps-3 pe-3 m-0 px-auto"
               as="a"
               href={`https://www.swiggy.com/search?query=${props?.item?.name.replaceAll(
                 ' ',
@@ -60,7 +60,18 @@ export default function RestoCard(props) {
               )}`}
               target="_blank"
             >
-              Order online
+              Order
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              style={{ float: 'right' }}
+              variant="secondary"
+              className="pt-0 pb-0 m-0"
+              as={Link}
+              to={`/restaurant/${props?.item?.id}`}
+            >
+              Explore
             </Button>
           </Col>
         </Row>
