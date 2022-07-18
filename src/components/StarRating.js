@@ -11,7 +11,7 @@ export default function StarRating(props) {
   function HandleUndefined() {
     const newDocData = {
       ratings: {
-        star: 5,
+        star: 0,
         collection: {
           overall: [{}],
           food: [{}],
