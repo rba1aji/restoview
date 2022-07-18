@@ -26,7 +26,7 @@ export default function Header() {
     <>
       <Navbar collapseOnSelect bg="light" expand="lg" fixed="top">
         <Container>
-          <span className="mb-1.5">
+          <span className="mb-1">
             <MdFoodBank size="33" />
           </span>
           <Navbar.Brand
