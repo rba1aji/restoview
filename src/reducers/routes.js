@@ -1,6 +1,6 @@
 import FilterComponent from '../pages/Filter';
 import HomeComponent from '../pages/Home';
-import TopRatedComponent from '../pages/TopRated';
+import TopRatedComponent from '../pages/Famous';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
 import Dashboard from '../pages/Dashboard';

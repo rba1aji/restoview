@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import { FormControl, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { TbCurrentLocation } from 'react-icons/tb';
-import API_KEY from '../../components/GetAPIKey';
+import API_KEY from '../../reducers/API_KEY';
 import Loader from '../../components/Loader';
 import ShowNearbyRestaurants from './ShowNearbyRestaurants';
 import { AppState } from '../../reducers/AppContext';
