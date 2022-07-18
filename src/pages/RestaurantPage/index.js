@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import API_KEY from '../../components/GetAPIKey';
+import API_KEY from '../../reducers/API_KEY';
 import StarRating from '../../components/StarRating';
 import DetailedRatings from './DetailedRatings';
 import { AppState } from '../../reducers/AppContext';
