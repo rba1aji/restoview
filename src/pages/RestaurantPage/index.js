@@ -27,7 +27,7 @@ export default function SelectedRestaurant() {
   }, []);
 
   return !restoApiData ? (
-    <div>404 error</div>
+    <div></div>
   ) : (
     <div>
       <h1>{restoApiData?.poi?.name}</h1>
