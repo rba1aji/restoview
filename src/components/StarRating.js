@@ -47,14 +47,9 @@ export default function StarRating(props) {
     FetchData();
   }, []);
 
-  const stars = [];
-  for (let i = 0; i < restoCloudData?.ratings?.overall; i++) {
-    stars.push(<span key={i}>⭐</span>);
-  }
-
   return (
     <Rating
-      ratingValue={(restoCloudData?.ratings?.overall / 20) * 500}
+      ratingValue={(restoCloudData?.ratings?.star / 5) * 500}
       readonly="true"
       size="25px"
     />
