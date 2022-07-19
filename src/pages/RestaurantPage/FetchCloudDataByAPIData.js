@@ -1,6 +1,6 @@
-import { db } from '../configs/firebaseConfig';
+import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import API_KEY from './API_KEY';
+import API_KEY from '../reducers/API_KEY';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { AppState } from './AppContext';
@@ -53,7 +53,7 @@ export default function FetchCloudData(APIData) {
 
   useEffect(() => {
     FetchData();
-  }, []);
+  }, []);  
 
   return cloudData;
 }

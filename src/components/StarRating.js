@@ -4,13 +4,14 @@ import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 import { AppState } from '../reducers/AppContext';
 import { Rating } from 'react-simple-star-rating';
 import { restoDocRef, FetchCloudData } from '../reducers/constants';
+import FetchCloudDataByAPIData from '../pages/RestaurantPage/FetchCloudDataByAPIData'
 
 export default function StarRating(props) {
   // const { cloudData, setCloudData } = AppState();
   // const docRef = doc(db, 'restaurants', props.resto.id);
   // const docRef = restoDocRef(props.resto.id);
 
-  const t=FetchCloudData(props.resto);
+  const t=FetchCloudDataByAPIData(props.resto);
   // console.log(t);
 
   // function HandleUndefined() {
