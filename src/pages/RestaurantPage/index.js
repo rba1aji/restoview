@@ -8,20 +8,12 @@ import { AppState } from '../../reducers/AppContext';
 import { restoDocRef } from '../../reducers/constants';
 import { updateDoc, increment } from 'firebase/firestore';
 import { PlaceByIdUrl } from '../../reducers/constants';
+import UpdateViewsById from './UpdateViewsById';
 
 export default function SelectedRestaurant() {
-  const { APIData, setAPIData } = AppState();
+  const [APIData, setAPIData ] = useState();
   const { id } = useParams();
 
-  function UpdateViews() {
-    updateDoc(restoDocRef(id), {
-      views: increment(1), 
-    })
-      .then((res) => {
-      })
-      .catch((err) => {
-      });
-  }
 
   async function FetchDataFromAPI() {
     await axios
@@ -36,7 +28,7 @@ export default function SelectedRestaurant() {
 
   useEffect(() => {
     FetchDataFromAPI();
-    UpdateViews();
+    UpdateViewsById(id);
   }, []);
 
   return !APIData ? (
