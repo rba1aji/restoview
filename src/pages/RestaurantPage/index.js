@@ -7,31 +7,31 @@ import DetailedRatings from './DetailedRatings';
 import { AppState } from '../../reducers/AppContext';
 import { restoDocRef } from '../../reducers/constants';
 import { updateDoc, increment } from 'firebase/firestore';
-import { AppState } from '../../constants/AppContext';
+import { ApiRestoById } from '../../reducers/constants';
 
 export default function SelectedRestaurant() {
-  const { restoApiData, setRestoApiData } = AppState();
+  const { APIData, setAPIData } = AppState();
   const { id } = useParams();
+
+  // function UpdateViews() {
+  //   updateDoc(restoDocRef(restoApiData), {
+  //     views: increment(1),
+  //   })
+  //     .then(() => {
+  //       console.log(1);
+  //     })
+  //     .catch(() => {
+  //       console.log(0);
+  //     });
+  // }
+
   const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${API_KEY}&view=IN`;
 
-  function UpdateViews() {
-    updateDoc(restoDocRef(restoApiData), {
-      views: increment(1),
-    })
-      .then(() => {
-        console.log(1);
-      })
-      .catch(() => {
-        console.log(0);
-      });
-  }
-
-  async function FetchRestoApiData() {
+  async function FetchDataFromAPI() {
     await axios
       .get(placeByIdUrl)
       .then((res) => {
-        setRestoApiData(res.data.results[0]);
-        UpdateViews();
+        setAPIData(res.data.results[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -39,16 +39,16 @@ export default function SelectedRestaurant() {
   }
 
   useEffect(() => {
-    FetchRestoApiData();
+    FetchDataFromAPI();
   }, []);
 
-  return !restoApiData ? (
+  return !APIData ? (
     <div>Loading...</div>
   ) : (
     <div>
-      <h1>{restoApiData?.poi?.name}</h1>
+      <h1>{APIData?.poi?.name}</h1>
       <h2>Star Rating</h2>
-      <StarRating resto={restoApiData} />
+      {/* <StarRating resto={apiData} /> */}
     </div>
   );
 }
