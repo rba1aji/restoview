@@ -15,10 +15,9 @@ import { db } from '../../configs/firebaseConfig';
 
 export default function RestaurantPage() {
   const { id } = useParams();
-  const tempId=''+id;
   const [ APIData, setAPIData ] = useState();
   const [cloudData, setCloudData ] = useState();
-  const docRef = doc(db, 'restaurants', '356009009693128');
+  const docRef = doc(db, 'restaurants', `${id}`);
 
   function HandleUndefined() {
     const newDocData = {
