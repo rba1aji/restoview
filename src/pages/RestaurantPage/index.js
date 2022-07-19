@@ -15,7 +15,6 @@ export default function SelectedRestaurant() {
   const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${API_KEY}&view=IN`;
 
   function UpdateViews() {
-    // const { restoApiData } = AppState();
     updateDoc(restoDocRef(restoApiData), {
       views: increment(1),
     })
