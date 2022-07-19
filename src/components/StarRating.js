@@ -12,6 +12,7 @@ export default function StarRating(props) {
 
   function HandleUndefined() {
     const newDocData = {
+      views: 0,
       ratings: {
         star: 5,
         collection: {
@@ -23,10 +24,9 @@ export default function StarRating(props) {
         },
       },
       reviews: [{}],
-      photos: [{}],
-      views: 0,
       address: props.resto.address,
       openingHours: props.resto.openingHours ? props.resto.openingHours : null,
+      photos: [{}],
     };
 
     setDoc(docRef, newDocData)
