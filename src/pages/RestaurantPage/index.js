@@ -17,7 +17,7 @@ export default function SelectedRestaurant() {
   const { id } = useParams();
   const { APIData, setAPIData } = AppState();
   const { cloudData, setCloudData } = AppState();
-  const docRef = doc(db, 'restaurants', APIData?.id);
+  const docRef = doc(db, 'restaurants', id);
 
   function HandleUndefined() {
     const newDocData = {
@@ -51,6 +51,7 @@ export default function SelectedRestaurant() {
       .then((res) => {
         if (res.data()) {
           setCloudData(res.data());
+          console.log(res.data());
         } else {
           HandleUndefined();
         }
@@ -73,6 +74,7 @@ export default function SelectedRestaurant() {
 
   useEffect(() => {
     FetchDataFromAPI();
+    console.log(APIData);
     FetchDataFromCloud();
     UpdateViewsById(id);
   }, []);
