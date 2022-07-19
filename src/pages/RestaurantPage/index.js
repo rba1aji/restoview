@@ -18,10 +18,10 @@ export default function SelectedRestaurant() {
       views: increment(1),
     })
       .then((res) => {
-        console.log(1);
+        // console.log(1);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 
@@ -39,6 +39,7 @@ export default function SelectedRestaurant() {
   useEffect(() => {
     FetchDataFromAPI();
     UpdateViews();
+    console.log(0);
   }, []);
 
   return !APIData ? (
