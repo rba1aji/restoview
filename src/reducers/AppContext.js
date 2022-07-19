@@ -26,7 +26,7 @@ const AppContextProvider = ({ children }) => {
   }, []);
 
   const [APIData, setAPIData]=useState();
-  const [restoCloudData, setRestoCloudData] = useState();
+  const [cloudData, setCloudData] = useState();
 
   return (
     <AppContext.Provider
@@ -39,8 +39,8 @@ const AppContextProvider = ({ children }) => {
         setUser,
         APIData,
         setAPIData,
-        restoCloudData,
-        setRestoCloudData,
+        cloudData,
+        setCloudData,
       }}
     >
       {children}

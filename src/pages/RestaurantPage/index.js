@@ -18,10 +18,8 @@ export default function SelectedRestaurant() {
       views: increment(1), 
     })
       .then((res) => {
-        // console.log(1);
       })
       .catch((err) => {
-        // console.log(err);
       });
   }
 
@@ -48,6 +46,7 @@ export default function SelectedRestaurant() {
       <h1>{APIData?.poi?.name}</h1>
       <h2>Star Rating</h2>
       <StarRating resto={APIData} />
+      <DetailedRating/>
     </div>
   );
 }

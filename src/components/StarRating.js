@@ -6,7 +6,7 @@ import { Rating } from 'react-simple-star-rating';
 import { restoDocRef } from '../reducers/constants';
 
 export default function StarRating(props) {
-  const { restoCloudData, setRestoCloudData } = AppState();
+  const { cloudData, setCloudData } = AppState();
   // const docRef = doc(db, 'restaurants', props.resto.id);
   const docRef = restoDocRef(props.resto.id);
 
@@ -42,7 +42,7 @@ export default function StarRating(props) {
 
   const unsubscribe = onSnapshot(docRef, (doc) => {
     if (doc.data()) {
-      setRestoCloudData(doc.data());
+      setCloudData(doc.data());
     } else {
       HandleUndefined();
     }
@@ -58,11 +58,11 @@ export default function StarRating(props) {
   return (
     <>
       <Rating
-        ratingValue={(restoCloudData?.ratings?.star / 5) * 500}
+        ratingValue={(cloudData?.ratings?.star / 5) * 500}
         readonly="true"
         size="25px"
       />
-      <p>views: {restoCloudData?.views}</p>
+      <p>views: {cloudData?.views}</p>
     </>
   );
 }
