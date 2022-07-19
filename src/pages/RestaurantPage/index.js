@@ -56,6 +56,7 @@ export default function RestaurantPage() {
         } else {
           HandleUndefined();
         }
+        console.log(docRef);
       })
       .catch((err) => {
         console.log(0);
