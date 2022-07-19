@@ -12,19 +12,19 @@ export default function StarRatingForCard(props) {
     const newDocData = {
       views: 0,
       ratings: {
-        star: 5,
+        star: 5,//change
         collection: {
-          overall: [{}],
-          food: [{}],
-          service: [{}],
-          quality: [{}],
-          valueForMoney: [{}],
+          overall: [],
+          food: [],
+          service: [],
+          quality: [],
+          valueForMoney: [],
         },
       },
-      reviews: [{}],
+      reviews: [],
       address: props.resto.address,
       openingHours: props.resto.openingHours ? props.resto.openingHours : null,
-      photos: [{}],
+      photos: [],
     };
 
     setDoc(docRef, newDocData)
