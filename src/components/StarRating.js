@@ -7,9 +7,12 @@ import { restoDocRef } from '../reducers/constants';
 
 export default function StarRating(props) {
   const { restoCloudData, setRestoCloudData } = AppState();
+  // const docRef = doc(db, 'restaurants', props.resto.id);
+  const docRef = restoDocRef(props.resto.id);
 
   function HandleUndefined() {
     const newDocData = {
+      views: 0,
       ratings: {
         star: 5,
         collection: {
@@ -21,21 +24,21 @@ export default function StarRating(props) {
         },
       },
       reviews: [{}],
+      address: props.resto.address,
+      openingHours: props.resto.openingHours ? props.resto.openingHours : null,
       photos: [{}],
     };
 
-    setDoc(doc(db, 'restaurants', props.id), newDocData)
+    setDoc(docRef, newDocData)
       .then((res) => {
         unsubscribe();
       })
       .catch((err) => {
-        console.log(err, props.id);
+        console.log(err, props.resto.id);
       });
   }
 
   // function FetchData() {
-  // const docRef = doc(db, 'restaurants', props.id);
-  const docRef = restoDocRef(props.id);
 
   const unsubscribe = onSnapshot(docRef, (doc) => {
     if (doc.data()) {

@@ -1,8 +1,9 @@
 import FilterComponent from '../pages/Filter';
 import HomeComponent from '../pages/Home';
-import TopRatedComponent from '../pages/TopRated';
+import TopRatedComponent from '../pages/Famous';
 import NearbyComponent from '../pages/Nearby';
 import PutRatingComponent from '../pages/PutRating';
+import Dashboard from '../pages/Dashboard';
 
 const routes = [
   {
@@ -25,15 +26,21 @@ const routes = [
   },
   {
     private: false,
-    path: '/top-rated-restaurants',
+    path: '/famous-restaurants',
     component: TopRatedComponent,
-    title: 'Top Rated',
+    title: 'Famous',
   },
   {
     private: true,
     path: '/put-rating',
     component: PutRatingComponent,
     title: 'Put Rating',
+  },
+  {
+    private: true,
+    path: '/dashboard/:uid',
+    component: Dashboard,
+    title: 'Dashboard',
   },
 ];
 
