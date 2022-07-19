@@ -1,5 +1,5 @@
 import { db } from '../configs/firebaseConfig';
-import { doc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import API_KEY from './API_KEY';
 import axios from 'axios';
 import React, { useState } from 'react';
@@ -11,11 +11,40 @@ export function restoDocRef(id) {
 
 export function PlaceByIdUrl(id) {
   return `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${API_KEY}&view=IN`;
-}
+}5
 
 export function FetchCloudData(APIData) {
   const { cloudData, setCloudData } = AppState();
-  useEffect(() => {
+
+  function HandleUndefined() {
+    const newDocData = {
+      views: 0,
+      ratings: {
+        star: 5,
+        collection: {
+          overall: [{}],
+          food: [{}],
+          service: [{}],
+          quality: [{}],
+          valueForMoney: [{}],
+        },
+      },
+      reviews: [{}],
+      address: props.resto.address,
+      openingHours: props.resto.openingHours ? props.resto.openingHours : null,
+      photos: [{}],
+    };
+
+    setDoc(docRef, newDocData)
+      .then((res) => {
+        FetchData();
+      })
+      .catch((err) => {
+        console.log(err, props.resto.id);
+      });
+  }
+
+  function FetchData() {
     getDoc(restoDocRef(APIData))
       .then((res) => {
         if (res.data()) {
@@ -27,5 +56,11 @@ export function FetchCloudData(APIData) {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  useEffect(() => {
+    FetchData();
   }, []);
+
+  return cloudData;
 }
