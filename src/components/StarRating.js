@@ -11,7 +11,6 @@ export default function StarRating(props) {
   // const docRef = doc(db, 'restaurants', props.resto.id);
   // const docRef = restoDocRef(props.resto.id);
 
-  const t=FetchCloudDataByAPIData(props.resto);
   // console.log(t);
 
   // function HandleUndefined() {
@@ -58,15 +57,17 @@ export default function StarRating(props) {
   //     unsubscribe();
   //   };
   // }, []);
+
+  const cloudData=FetchCloudDataByAPIData(props.resto);
  
   return (
     <>
       <Rating
-        ratingValue={(t?.ratings?.star / 5) * 500}
+        ratingValue={(cloudData?.ratings?.star / 5) * 500}
         readonly="true"
         size="25px"
       />
-      <p>views: {t?.views}</p>
+      <p>views: {cloudData?.views}</p>
     </>
   );
 }
