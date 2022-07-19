@@ -32,7 +32,7 @@ export default function RestoCard(props) {
           })}
           <Card.Text className="mb-3">
             {/* Rating:  */}
-            <StarRating id={props.item.id} />{' '}
+            <StarRating resto={props.item} />{' '}
           </Card.Text>
         </Link>
         <Row>
