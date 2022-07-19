@@ -10,8 +10,8 @@ import { updateDoc, increment } from 'firebase/firestore';
 import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
 // import FetchCloudDataByAPIData from './FetchCloudDataByAPIData';
-import {doc,setDoc,getDoc} from 'firebase/firestore';
-import {db} from '../../configs/firebaseConfig';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { db } from '../../configs/firebaseConfig';
 
 export default function SelectedRestaurant() {
   const { id } = useParams();
@@ -23,19 +23,19 @@ export default function SelectedRestaurant() {
     const newDocData = {
       views: 0,
       ratings: {
-        star: 5,
-        collection: {
-          overall: [{}],
-          food: [{}],
-          service: [{}],
-          quality: [{}],
-          valueForMoney: [{}],
+        star: 5,//change0
+        types: {
+          overall: [],
+          food: [],
+          service: [],
+          quality: [],
+          valueForMoney: [],
         },
       },
-      reviews: [{}],
-      address: APIData.address,
+      reviews: [],
+      address: APIData.address.freeformAddress,
       openingHours: APIData.openingHours ? APIData.openingHours : null,
-      photos: [{}],
+      photos: [],
     };
     setDoc(docRef, newDocData)
       .then((res) => {
@@ -66,6 +66,7 @@ export default function SelectedRestaurant() {
       .get(PlaceByIdUrl(id))
       .then((res) => {
         setAPIData(res.data.results[0]);
+        console.log(res.data.results[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -74,7 +75,6 @@ export default function SelectedRestaurant() {
 
   useEffect(() => {
     FetchDataFromAPI();
-    console.log(APIData);
     FetchDataFromCloud();
     UpdateViewsById(id);
   }, []);
