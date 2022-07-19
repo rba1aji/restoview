@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { Nav } from 'react-bootstrap';
-
-function TopRated() {
-  return <div>top ra</div>;
-}
-function MostViewed() {
-  return <div>mostviewed</div>;
-}
+import TopRated from './TopRated';
+import MostViewed from './MostViewed';
 
 export default function Famous() {
   const [famousType, setFamousType] = useState(0);
