@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Rating } from 'react-simple-star-rating';
-import {db} from '../configs/firebaseConfig';
-import {doc,onSnapshot, setDoc} from 'firebase/firestore';
-import FetchCloudDataByAPIData from '../pages/RestaurantPage/FetchCloudDataByAPIData';
+import { db } from '../configs/firebaseConfig';
+import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 
-export default function StarRating(props) {
-  // const cloudData = FetchCloudDataByAPIData(props.resto);
-
+export default function StarRatingForCard(props) {
   const [cloudData, setCloudData] = useState();
   const docRef = doc(db, 'restaurants', props.resto.id);
   // const docRef = restoDocRef(props.resto.id);
