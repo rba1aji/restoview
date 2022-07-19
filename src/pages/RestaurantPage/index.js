@@ -15,9 +15,10 @@ import { db } from '../../configs/firebaseConfig';
 
 export default function RestaurantPage() {
   const { id } = useParams();
-  const { APIData, setAPIData } = AppState();
-  const { cloudData, setCloudData } = AppState();
-  const docRef = doc(db, 'restaurants', id);
+  const tempId=''+id;
+  const [ APIData, setAPIData ] = useState();
+  const [cloudData, setCloudData ] = useState();
+  const docRef = doc(db, 'restaurants', '356009009693128');
 
   function HandleUndefined() {
     const newDocData = {
@@ -42,6 +43,7 @@ export default function RestaurantPage() {
         FetchDataFromCloud();
       })
       .catch((err) => {
+        console.log(2);
         console.log(err);
       });
   }
@@ -57,6 +59,8 @@ export default function RestaurantPage() {
         }
       })
       .catch((err) => {
+        console.log(0);
+        console.log(docRef);
         console.log(err);
       });
   }
