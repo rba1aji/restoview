@@ -54,7 +54,6 @@ export default function FetchCloudData() {
 
   useEffect(() => {
     FetchData();
-    alert();
   }, []);  
 
   return cloudData;
