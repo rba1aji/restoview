@@ -31,12 +31,12 @@ export function FetchCloudData(APIData) {
         },
       },
       reviews: [{}],
-      address: props.resto.address,
-      openingHours: props.resto.openingHours ? props.resto.openingHours : null,
+      address: APIData.address,
+      openingHours: APIData.openingHours ? APIData.openingHours : null,
       photos: [{}],
     };
 
-    setDoc(docRef, newDocData)
+    setDoc(retoDocRef(APIData.id), newDocData)
       .then((res) => {
         FetchData();
       })
@@ -46,7 +46,7 @@ export function FetchCloudData(APIData) {
   }
 
   function FetchData() {
-    getDoc(restoDocRef(APIData))
+    getDoc(restoDocRef(APIData.id))
       .then((res) => {
         if (res.data()) {
           setCloudData(res.data());

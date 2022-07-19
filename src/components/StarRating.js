@@ -11,6 +11,7 @@ export default function StarRating(props) {
   const docRef = restoDocRef(props.resto.id);
 
   const t=FetchCloudData(props.resto);
+  // console.log(t);
 
   function HandleUndefined() {
     const newDocData = {
