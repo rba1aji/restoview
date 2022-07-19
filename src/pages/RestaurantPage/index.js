@@ -15,7 +15,7 @@ export default function SelectedRestaurant() {
 
   function UpdateViews() {
     updateDoc(restoDocRef(id), {
-      views: increment(1),
+      views: increment(1), 
     })
       .then((res) => {
         // console.log(1);
@@ -39,7 +39,6 @@ export default function SelectedRestaurant() {
   useEffect(() => {
     FetchDataFromAPI();
     UpdateViews();
-    console.log(0);
   }, []);
 
   return !APIData ? (
