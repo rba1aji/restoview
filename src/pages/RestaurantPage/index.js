@@ -13,7 +13,7 @@ import UpdateViewsById from './UpdateViewsById';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
 
-export default function SelectedRestaurant() {
+export default function RestaurantPage() {
   const { id } = useParams();
   const { APIData, setAPIData } = AppState();
   const { cloudData, setCloudData } = AppState();
@@ -23,7 +23,7 @@ export default function SelectedRestaurant() {
     const newDocData = {
       views: 0,
       ratings: {
-        star: 5,//change0
+        star: 5, //change0
         types: {
           overall: [],
           food: [],
