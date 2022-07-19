@@ -42,7 +42,7 @@ export default function RestaurantPage() {
         FetchDataFromCloud();
       })
       .catch((err) => {
-        console.log(2);
+        // console.log(2);
         console.log(err);
       });
   }
@@ -56,11 +56,11 @@ export default function RestaurantPage() {
         } else {
           HandleUndefined();
         }
-        console.log(docRef);
+        // console.log(docRef);
       })
       .catch((err) => {
-        console.log(0);
-        console.log(docRef);
+        // console.log(0);
+        // console.log(docRef);
         console.log(err);
       });
   }
