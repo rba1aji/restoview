@@ -17,11 +17,11 @@ export default function SelectedRestaurant() {
     updateDoc(restoDocRef(id), {
       views: 1,
     })
-      .then(() => {
-        console.log(1);
+      .then((res) => {
+        console.log(res);
       })
-      .catch(() => {
-        console.log(0);
+      .catch((err) => {
+        console.log(err);
       });
   }
 
