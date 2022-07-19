@@ -26,7 +26,7 @@ export default function StarRating(props) {
       photos: [{}],
       views: 0,
       address: props.resto.address,
-      openingHours: props.resto.openingHours,
+      openingHours: props.resto.openingHours ? props.resto.openingHours : null,
     };
 
     setDoc(docRef, newDocData)

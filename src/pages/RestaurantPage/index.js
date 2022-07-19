@@ -27,12 +27,12 @@ export default function SelectedRestaurant() {
   }, []);
 
   return !restoApiData ? (
-    <div></div>
+    <div>Loading...</div>
   ) : (
     <div>
       <h1>{restoApiData?.poi?.name}</h1>
       <h2>Star Rating</h2>
-      <StarRating id={id} />
+      <StarRating resto={restoApiData} />
     </div>
   );
 }
