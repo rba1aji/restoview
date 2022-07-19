@@ -7,7 +7,7 @@ import { AppState } from '../../reducers/AppContext';
 
 export default function FetchCloudData(APIData) {
   const [cloudData, setCloudData] = useState();
-  const docRef = doc(db, 'restaurants', APIData.id);
+  const docRef = doc(db, 'restaurants', APIData?.id);
 
   function HandleUndefined() {
     const newDocData = {
