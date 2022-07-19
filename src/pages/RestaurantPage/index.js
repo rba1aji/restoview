@@ -9,11 +9,56 @@ import { restoDocRef } from '../../reducers/constants';
 import { updateDoc, increment } from 'firebase/firestore';
 import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
-import FetchCloudDataByAPIData from './FetchCloudDataByAPIData';
+// import FetchCloudDataByAPIData from './FetchCloudDataByAPIData';
+import {doc,setDoc,getDoc} from 'firebase/firestore';
+import {db} from '../../configs/firebaseConfig';
 
 export default function SelectedRestaurant() {
   const { id } = useParams();
-  const [APIData, setAPIData ] = useState();
+  const { APIData, setAPIData } = AppState();
+  const { cloudData, setCloudData } = AppState();
+  const docRef = doc(db, 'restaurants', APIData?.id);
+
+  function HandleUndefined() {
+    const newDocData = {
+      views: 0,
+      ratings: {
+        star: 5,
+        collection: {
+          overall: [{}],
+          food: [{}],
+          service: [{}],
+          quality: [{}],
+          valueForMoney: [{}],
+        },
+      },
+      reviews: [{}],
+      address: APIData.address,
+      openingHours: APIData.openingHours ? APIData.openingHours : null,
+      photos: [{}],
+    };
+    setDoc(docRef, newDocData)
+      .then((res) => {
+        FetchDataFromCloud();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function FetchDataFromCloud() {
+    getDoc(docRef)
+      .then((res) => {
+        if (res.data()) {
+          setCloudData(res.data());
+        } else {
+          HandleUndefined();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   async function FetchDataFromAPI() {
     await axios
@@ -28,11 +73,9 @@ export default function SelectedRestaurant() {
 
   useEffect(() => {
     FetchDataFromAPI();
+    FetchDataFromCloud();
     UpdateViewsById(id);
   }, []);
-
-  const cloudData=FetchCloudDataByAPIData(APIData);
-
 
   return !APIData ? (
     <div>Loading...</div>
@@ -41,7 +84,7 @@ export default function SelectedRestaurant() {
       <h1>{APIData?.poi?.name}</h1>
       <h2>Star Rating</h2>
       <StarRating ratings={cloudData?.ratings} />
-      <DetailedRatings/>
+      <DetailedRatings />
     </div>
   );
 }

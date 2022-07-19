@@ -5,8 +5,9 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { AppState } from '../../reducers/AppContext';
 
-export default function FetchCloudData(APIData) {
-  const [cloudData, setCloudData] = useState();
+export default function FetchCloudData() {
+  const {cloudData, setCloudData} = AppState();
+  const {APIData}=AppState();
   const docRef = doc(db, 'restaurants', APIData?.id);
 
   function HandleUndefined() {
@@ -53,6 +54,7 @@ export default function FetchCloudData(APIData) {
 
   useEffect(() => {
     FetchData();
+    alert();
   }, []);  
 
   return cloudData;
