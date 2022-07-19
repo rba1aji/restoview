@@ -3,12 +3,14 @@ import { db } from '../configs/firebaseConfig';
 import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 import { AppState } from '../reducers/AppContext';
 import { Rating } from 'react-simple-star-rating';
-import { restoDocRef } from '../reducers/constants';
+import { restoDocRef, FetchCloudData } from '../reducers/constants';
 
 export default function StarRating(props) {
   const { cloudData, setCloudData } = AppState();
   // const docRef = doc(db, 'restaurants', props.resto.id);
   const docRef = restoDocRef(props.resto.id);
+
+  const t=FetchCloudData(props.resto);
 
   function HandleUndefined() {
     const newDocData = {
@@ -50,6 +52,7 @@ export default function StarRating(props) {
   // }
 
   useEffect(() => {
+    // console.log(FetchCloudData(props.resto));
     return () => {
       unsubscribe();
     };

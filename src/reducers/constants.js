@@ -2,7 +2,7 @@ import { db } from '../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import API_KEY from './API_KEY';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppState } from './AppContext';
 
 export function restoDocRef(id) {
@@ -11,7 +11,8 @@ export function restoDocRef(id) {
 
 export function PlaceByIdUrl(id) {
   return `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${API_KEY}&view=IN`;
-}5
+}
+5;
 
 export function FetchCloudData(APIData) {
   const { cloudData, setCloudData } = AppState();
@@ -40,7 +41,7 @@ export function FetchCloudData(APIData) {
         FetchData();
       })
       .catch((err) => {
-        console.log(err, props.resto.id);
+        console.log(err);
       });
   }
 
