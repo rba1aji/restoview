@@ -9,4 +9,6 @@ export function restoDocRef(id) {
   return doc(db, 'restaurants', id);
 }
 
-export functi
+export function PlaceByIdUrl(id){
+  return `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${API_KEY}&view=IN`;
+}

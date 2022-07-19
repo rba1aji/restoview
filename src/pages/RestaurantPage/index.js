@@ -7,29 +7,27 @@ import DetailedRatings from './DetailedRatings';
 import { AppState } from '../../reducers/AppContext';
 import { restoDocRef } from '../../reducers/constants';
 import { updateDoc, increment } from 'firebase/firestore';
-import { ApiRestoById } from '../../reducers/constants';
+import { PlaceByIdUrl } from '../../reducers/constants';
 
 export default function SelectedRestaurant() {
   const { APIData, setAPIData } = AppState();
   const { id } = useParams();
 
-  // function UpdateViews() {
-  //   updateDoc(restoDocRef(restoApiData), {
-  //     views: increment(1),
-  //   })
-  //     .then(() => {
-  //       console.log(1);
-  //     })
-  //     .catch(() => {
-  //       console.log(0);
-  //     });
-  // }
-
-  const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${API_KEY}&view=IN`;
+  function UpdateViews() {
+    updateDoc(restoDocRef(id), {
+      views: 1,
+    })
+      .then(() => {
+        console.log(1);
+      })
+      .catch(() => {
+        console.log(0);
+      });
+  }
 
   async function FetchDataFromAPI() {
     await axios
-      .get(placeByIdUrl)
+      .get(PlaceByIdUrl(id))
       .then((res) => {
         setAPIData(res.data.results[0]);
       })
@@ -40,6 +38,7 @@ export default function SelectedRestaurant() {
 
   useEffect(() => {
     FetchDataFromAPI();
+    UpdateViews();
   }, []);
 
   return !APIData ? (
@@ -48,7 +47,7 @@ export default function SelectedRestaurant() {
     <div>
       <h1>{APIData?.poi?.name}</h1>
       <h2>Star Rating</h2>
-      {/* <StarRating resto={apiData} /> */}
+      <StarRating resto={APIData} />
     </div>
   );
 }
