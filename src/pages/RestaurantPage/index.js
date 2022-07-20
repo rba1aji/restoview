@@ -91,16 +91,16 @@ export default function RestaurantPage() {
     <>
       <h1 style={{ textAlign: 'left' }}>{APIData?.poi?.name}</h1>
       {/* <hr /> */}
-      <h3 className="font1 mb-0">Ratings</h3>
+      <h3 className="font1">Ratings</h3>
       <div
-        className="bg-light"
+        className="bg-light border"
         style={{
           display: 'flex',
           flexWrap: 'wrap',
           alignContent: 'center',
           justifyContent: 'center',
           marginLeft: '5vw',
-          marginRight: '10vw',
+          marginRight: '5vw',
           paddingTop: '3vh',
         }}
       >
