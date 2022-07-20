@@ -26,14 +26,23 @@ export default function DetailedRating() {
     xaxis: {
       categories: ['Overall', 'Food', 'Service', 'Quality', `Value for money`],
     },
-    fill: {
-      colors: ['#']
-    }
+    // fill: {
+    //   colors: ['#'],
+    // },
+    theme: {
+      palette: 'palette9',
+    },
   });
 
   return (
-    <div style={{marginLeft:'5vw',marginRight:'10vw'}}>
-    <ReactApexChart options={options} series={series} type="bar" height={250} />
+    <div style={{ marginLeft: '5vw', marginRight: '10vw' }}>
+      <h1>Detailed R
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+        height={250}
+      />
     </div>
   );
 }
