@@ -48,6 +48,9 @@ export default function DetailedRating() {
           fontSize: '14px',
         },
       },
+      axisBorder:{
+        show:true,
+      }, 
     },
     theme: {
       palette: 'palette9',
