@@ -98,6 +98,8 @@ export default function RestaurantPage() {
           display: 'grid',
           alignItems: 'center',
           justifyContent: 'center',
+          marginLeft: '5vw',
+          marginRight: '10vw'
         }}
       >
         <div>
