@@ -1,13 +1,20 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 export default function DetailedRating(props) {
-  
-  useEffect(()=>{
-    console.log(props.ratings);
-  },[]);
+  const ratings = [];
+  const ob = { a: ['1', 2] };
+  Object.keys(ob).map(function (key, index) {
+    let tot = 0;
+    ob.key.map((i, ind) => {
+      console.log(i);
+      tot += i;
+    });
+    ratings.push(tot);
+  });
+  // console.log(ratings)
 
   const [series, setSeries] = useState([
     {
