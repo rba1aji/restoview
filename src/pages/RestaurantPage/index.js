@@ -93,10 +93,21 @@ export default function RestaurantPage() {
     <div>Loading...</div>
   ) : (
     <div>
-      <h1>{APIData?.poi?.name}</h1>
-      <h2>Star Rating</h2>
-      <StarRating ratings={cloudData?.ratings} />
+      <h1 className="mb-5">{APIData?.poi?.name}</h1>
+      <h3 className="text-center mb-0">Ratings</h3>
+      <hr />
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <StarRating ratings={cloudData?.ratings} />
+      </div>
+      <hr />
       <DetailedRatings />
+      <hr />
     </div>
   );
 }

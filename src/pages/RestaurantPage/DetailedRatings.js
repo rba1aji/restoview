@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 export default function DetailedRating() {
+
   const [series, setSeries] = useState([
     {
       name: 'Rating',
@@ -26,17 +27,13 @@ export default function DetailedRating() {
     xaxis: {
       categories: ['Overall', 'Food', 'Service', 'Quality', `Value for money`],
     },
-    // fill: {
-    //   colors: ['#'],
-    // },
     theme: {
       palette: 'palette9',
     },
   });
 
   return (
-    <div style={{ marginLeft: '5vw', marginRight: '10vw' }}>
-      <h1>Detailed R
+    <div style={{ marginLeft: '2vw', marginRight: '10vw' }}>
       <ReactApexChart
         options={options}
         series={series}
