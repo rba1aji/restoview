@@ -10,6 +10,9 @@ export default function DetailedRating() {
   ]);
 
   const [options, setOptions] = useState({
+    fill: {
+      colors: ['#000'],
+    },
     chart: {
       type: 'bar',
       // height: 350,
@@ -40,6 +43,9 @@ export default function DetailedRating() {
         'Ambience',
         `Value \nfor money`,
       ],
+      axisTicks: {
+        show: false,
+      },
     },
     yaxis: {
       labels: {
@@ -48,9 +54,6 @@ export default function DetailedRating() {
           fontSize: '14px',
         },
       },
-      axisBorder:{
-        show:true,
-      }, 
     },
     theme: {
       palette: 'palette9',
