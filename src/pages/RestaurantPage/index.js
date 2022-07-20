@@ -42,13 +42,11 @@ export default function RestaurantPage() {
         FetchDataFromCloud();
       })
       .catch((err) => {
-        // console.log(2);
         console.log(err);
       });
   }
 
   function FetchDataFromCloud() {
-    console.log(2);
     getDoc(docRef)
       .then((res) => {
         if (res.data()) {
@@ -64,7 +62,6 @@ export default function RestaurantPage() {
   }
 
   async function FetchDataFromAPI() {
-    console.log(1);
     await axios
       .get(PlaceByIdUrl(id))
       .then((res) => {
@@ -81,8 +78,8 @@ export default function RestaurantPage() {
   }, []);
 
   useMemo(() => {
-    APIData?.id && FetchDataFromCloud();  
-  }, [APIData?.id]); 
+    APIData?.id && FetchDataFromCloud();
+  }, [APIData?.id]);
 
   // useEffect(() => {
   //   APIData?.id && FetchDataFromCloud();
