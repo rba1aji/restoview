@@ -17,6 +17,9 @@ export default function DetailedRating() {
         show: false,
       },
     },
+    grid: {
+      show: false,
+    },
     plotOptions: {
       bar: {
         borderRadius: 4,
@@ -27,13 +30,24 @@ export default function DetailedRating() {
       enabled: true,
     },
     xaxis: {
+      labels: {
+        show: false,
+      },
       categories: [
         'Overall',
         'Food',
         'Service',
-        'Quality',
+        'Atmosphere',
         `Value \nfor money`,
       ],
+    },
+    yaxis: {
+      labels: {
+        align: 'left',
+        style: {
+          fontSize: '14px',
+        },
+      },
     },
     theme: {
       palette: 'palette9',
