@@ -18,11 +18,11 @@ export default function DetailedRating(props) {
     types[key].map((i) => {
       console.log(i);
       console.log(i.val);
-      tot += parseInt();
+      tot += parseInt(i.val);
     });
-    // ratings.push(tot);
+    ratings.push(tot);
   });
-  // console.log(ratings);
+  console.log(ratings);
 
   const [series, setSeries] = useState([
     {
