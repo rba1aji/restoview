@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import API_KEY from '../../reducers/API_KEY';
@@ -80,10 +80,14 @@ export default function RestaurantPage() {
     FetchDataFromAPI();
   }, []);
 
-  useEffect(() => {
-    APIData?.id && FetchDataFromCloud();
-  }, [APIData]);
- 
+  useMemo(() => {
+    APIData?.id && FetchDataFromCloud();  
+  }, [APIData?.id]); 
+
+  // useEffect(() => {
+  //   APIData?.id && FetchDataFromCloud();
+  // }, [APIData]);
+
   useEffect(() => {
     UpdateViewsById(id);
   }, []);
