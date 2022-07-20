@@ -10,7 +10,6 @@ export default function DetailedRating() {
   ]);
 
   const [options, setOptions] = useState({
-    // options: {
     chart: {
       type: 'bar',
       // height: 350,
@@ -27,10 +26,14 @@ export default function DetailedRating() {
     xaxis: {
       categories: ['Overall', 'Food', 'Service', 'Quality', `Value for money`],
     },
-    // }
+    fill: {
+      colors: ['#']
+    }
   });
 
   return (
+    <div style={{marginLeft:'5vw',marginRight:'10vw'}}>
     <ReactApexChart options={options} series={series} type="bar" height={250} />
+    </div>
   );
 }
