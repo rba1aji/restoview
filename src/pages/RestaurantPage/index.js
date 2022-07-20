@@ -93,23 +93,19 @@ export default function RestaurantPage() {
       {/* <hr /> */}
       <h3 className="font1 mb-0">Ratings</h3>
       <div
-      className='bg-light'
+        className="bg-light"
         style={{
           display: 'grid',
           alignItems: 'center',
           justifyContent: 'center',
           marginLeft: '5vw',
-          marginRight: '10vw'
+          marginRight: '10vw',
+          paddingTop: '3vh',
         }}
       >
-        <div>
-          <StarRating ratings={cloudData?.ratings} />({cloudData?.ratings.star}
-          /5)
-        </div>
+        <StarRating ratings={cloudData?.ratings} />
       </div>
-      {/* <hr /> */}
       <DetailedRatings ratings={cloudData?.ratings} />
-      <hr />
     </div>
   );
 }
