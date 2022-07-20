@@ -51,7 +51,7 @@ export default function DetailedRating() {
       labels: {
         align: 'left',
         style: {
-          fontSize: '14px',
+          fontSize: '15px',
         },
       },
     },
