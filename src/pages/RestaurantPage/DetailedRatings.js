@@ -41,6 +41,7 @@ export default function DetailedRating(props) {
       toolbar: {
         show: false,
       },
+      background: 'light',
     },
     grid: {
       show: false,

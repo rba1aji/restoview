@@ -25,7 +25,7 @@ export default function RestaurantPage() {
       ratings: {
         star: 5, //change0
         types: {
-          overall:[],// overall: [{ id: 'none', value: 0 }],
+          overall: [], // overall: [{ id: 'none', value: 0 }],
           food: [],
           service: [],
           ambience: [],
@@ -81,10 +81,6 @@ export default function RestaurantPage() {
     APIData?.id && FetchDataFromCloud();
   }, [APIData?.id]);
 
-  // useEffect(() => {
-  //   APIData?.id && FetchDataFromCloud();
-  // }, [APIData]);
-
   useEffect(() => {
     UpdateViewsById(id);
   }, []);
@@ -94,16 +90,20 @@ export default function RestaurantPage() {
   ) : (
     <div>
       <h1 style={{ textAlign: 'left' }}>{APIData?.poi?.name}</h1>
-      <h3 className="">Ratings</h3>
-      <hr />
+      {/* <hr /> */}
+      <h3 className="font1 mb-0">Ratings</h3>
       <div
+      className='bg-light'
         style={{
-          display: 'flex',
+          display: 'grid',
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
-        <StarRating ratings={cloudData?.ratings} />({cloudData?.ratings.star}/5)
+        <div>
+          <StarRating ratings={cloudData?.ratings} />({cloudData?.ratings.star}
+          /5)
+        </div>
       </div>
       {/* <hr /> */}
       <DetailedRatings ratings={cloudData?.ratings} />
