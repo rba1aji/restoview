@@ -4,7 +4,8 @@ import ReactApexChart from 'react-apexcharts';
 export default function DetailedRating() {
   const [series, setSeries] = useState([
     {
-      data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+      name: 'Rating',
+      data: [4, 2, 3, 1, 5],
     },
   ]);
 
@@ -12,7 +13,7 @@ export default function DetailedRating() {
     // options: {
     chart: {
       type: 'bar',
-      height: 350,
+      // height: 350,
     },
     plotOptions: {
       bar: {
@@ -21,26 +22,15 @@ export default function DetailedRating() {
       },
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
     },
     xaxis: {
-      categories: [
-        'South Korea',
-        'Canada',
-        'United Kingdom',
-        'Netherlands',
-        'Italy',
-        'France',
-        'Japan',
-        'United States',
-        'China',
-        'Germany',
-      ],
+      categories: ['Overall', 'Food', 'Service', 'Quality', `Value for money`],
     },
     // }
   });
 
   return (
-    <ReactApexChart options={options} series={series} type="bar" height={350} />
+    <ReactApexChart options={options} series={series} type="bar" height={250} />
   );
 }
