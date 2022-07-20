@@ -20,7 +20,7 @@ export default function DetailedRating(props) {
       console.log(i.val);
       tot += parseInt(i.val);
     });
-    ratings.push({key:tot});
+    ratings.push(tot);
   });
   console.log(ratings);
 
