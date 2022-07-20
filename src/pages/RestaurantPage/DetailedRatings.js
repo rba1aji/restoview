@@ -6,18 +6,23 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 export default function DetailedRating(props) {
   const ratings = [];
   const types = {
-    food: [{ id1: 2 }, { id2: 4 }],
-    ambience: [{ id3: 4 }],
+    food: [
+      { id: 'id1', val: 2 },
+      { id: 'id2', val: 2 },
+    ],
+    ambience: [{ id: 'id4', val: 3 }],
   };
   Object.keys(types).map(function (key, index) {
-    console.log(types[key])
+    console.log(key);
     let tot = 0;
-    types[key].map((i, ind) => {
-      tot += parseInt(i);
+    types[key].map((i) => {
+      console.log(i);
+      console.log(i.val);
+      tot += parseInt();
     });
-    ratings.push(tot);
+    // ratings.push(tot);
   });
-  console.log(ratings);
+  // console.log(ratings);
 
   const [series, setSeries] = useState([
     {
