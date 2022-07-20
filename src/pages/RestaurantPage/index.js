@@ -25,7 +25,7 @@ export default function RestaurantPage() {
       ratings: {
         star: 5, //change0
         types: {
-          overall: [],
+          overall:[],// overall: [{ id: 'none', value: 0 }],
           food: [],
           service: [],
           ambience: [],
