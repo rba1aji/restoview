@@ -15,8 +15,8 @@ import { db } from '../../configs/firebaseConfig';
 
 export default function RestaurantPage() {
   const { id } = useParams();
-  const [ APIData, setAPIData ] = useState();
-  const [cloudData, setCloudData ] = useState();
+  const [APIData, setAPIData] = useState();
+  const [cloudData, setCloudData] = useState();
   const docRef = doc(db, 'restaurants', `${id}`);
 
   function HandleUndefined() {
@@ -48,6 +48,7 @@ export default function RestaurantPage() {
   }
 
   function FetchDataFromCloud() {
+    console.log(2);
     getDoc(docRef)
       .then((res) => {
         if (res.data()) {
@@ -56,16 +57,14 @@ export default function RestaurantPage() {
         } else {
           HandleUndefined();
         }
-        // console.log(docRef);
       })
       .catch((err) => {
-        // console.log(0);
-        // console.log(docRef);
         console.log(err);
       });
   }
 
   async function FetchDataFromAPI() {
+    console.log(1);
     await axios
       .get(PlaceByIdUrl(id))
       .then((res) => {
@@ -79,7 +78,13 @@ export default function RestaurantPage() {
 
   useEffect(() => {
     FetchDataFromAPI();
-    FetchDataFromCloud();
+  }, []);
+
+  useEffect(() => {
+    APIData?.id && FetchDataFromCloud();
+  }, [APIData]);
+ 
+  useEffect(() => {
     UpdateViewsById(id);
   }, []);
 
