@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import { db } from '../../configs/firebaseConfig';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 export default function DetailedRating() {
   const [series, setSeries] = useState([
