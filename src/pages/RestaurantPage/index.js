@@ -93,8 +93,8 @@ export default function RestaurantPage() {
     <div>Loading...</div>
   ) : (
     <div>
-      <h1 className="mb-5">{APIData?.poi?.name}</h1>
-      <h3 className="text-center mb-0">Ratings</h3>
+      <h1 style={{ textAlign: 'left' }}>{APIData?.poi?.name}</h1>
+      <h3 className="">Ratings</h3>
       <hr />
       <div
         style={{
@@ -103,9 +103,10 @@ export default function RestaurantPage() {
           justifyContent: 'center',
         }}
       >
-        <StarRating ratings={cloudData?.ratings} />
+        <StarRating ratings={cloudData?.ratings} /> ({cloudData?.ratings.star}
+        /5)
       </div>
-      <hr />
+      {/* <hr /> */}
       <DetailedRatings />
       <hr />
     </div>

@@ -55,9 +55,9 @@ export default function StarRatingForCard(props) {
       <Rating
         ratingValue={(cloudData?.ratings?.star / 5) * 500}
         readonly="true"
-        size="25px"
+        size="22px"
       />
-      <div>views: {cloudData?.views}</div>
+      <div className='ps-2'>views: {cloudData?.views}</div>
     </>
   );
 }
