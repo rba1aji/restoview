@@ -37,7 +37,7 @@ export default function DetailedRating() {
         'Overall',
         'Food',
         'Service',
-        'Atmosphere',
+        'Ambience',
         `Value \nfor money`,
       ],
     },
