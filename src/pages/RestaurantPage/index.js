@@ -12,6 +12,7 @@ import UpdateViewsById from './UpdateViewsById';
 // import FetchCloudDataByAPIData from './FetchCloudDataByAPIData';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
+import { Button } from 'react-bootstrap';
 
 export default function RestaurantPage() {
   const { id } = useParams();
@@ -89,15 +90,17 @@ export default function RestaurantPage() {
     <div>Loading...</div>
   ) : (
     <>
-      <h1 style={{ textAlign: 'left' }}>{APIData?.poi?.name}</h1>
-      {/* <hr /> */}
+      <h1
+      // style={{ textAlign: 'left' }}
+      >
+        {APIData?.poi?.name}
+      </h1>
       <h3 className="font1">Ratings</h3>
       <div
         className="bg-light border"
         style={{
           display: 'flex',
           flexWrap: 'wrap',
-          alignContent: 'center',
           justifyContent: 'center',
           marginLeft: '5vw',
           marginRight: '5vw',
@@ -107,6 +110,19 @@ export default function RestaurantPage() {
         <StarRating ratings={cloudData?.ratings} />
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
+      <br />
+      {/* <br /> */}
+      <div className="text-center">
+        <Button
+          className="border-5"
+          variant="outline-dark"
+          style={{ width: '80vw' }}
+        >
+          Write A Review
+        </Button>
+      </div>
+      <br />
+      <br />
     </>
   );
 }
