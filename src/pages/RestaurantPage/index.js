@@ -103,11 +103,10 @@ export default function RestaurantPage() {
           justifyContent: 'center',
         }}
       >
-        <StarRating ratings={cloudData?.ratings} /> ({cloudData?.ratings.star}
-        /5)
+        <StarRating ratings={cloudData?.ratings} />({cloudData?.ratings.star}/5)
       </div>
       {/* <hr /> */}
-      <DetailedRatings />
+      <DetailedRatings ratings={cloudData?.ratings} />
       <hr />
     </div>
   );

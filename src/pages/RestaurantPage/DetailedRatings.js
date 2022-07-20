@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState,useeffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-export default function DetailedRating() {
+export default function DetailedRating(props) {
+  
+  useEffect(()=>{
+    console.log(props.ratings);
+  },[]);
+
   const [series, setSeries] = useState([
     {
       name: 'Rating',
