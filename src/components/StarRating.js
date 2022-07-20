@@ -17,7 +17,7 @@ export default function StarRatingForCard(props) {
           overall: [],
           food: [],
           service: [],
-          quality: [],
+          ambience: [],
           valueForMoney: [],
         },
       },

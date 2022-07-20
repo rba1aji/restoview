@@ -28,7 +28,7 @@ export default function RestaurantPage() {
           overall: [],
           food: [],
           service: [],
-          quality: [],
+          ambience: [],
           valueForMoney: [],
         },
       },
