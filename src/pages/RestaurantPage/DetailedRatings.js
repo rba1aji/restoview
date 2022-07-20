@@ -1,4 +1,4 @@
-import React, { useState,useeffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
