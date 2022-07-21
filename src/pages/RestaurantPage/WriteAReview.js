@@ -6,8 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 function WriteAReviewModal(props) {
   const { user } = AppState();
-  const navigate = useNavigate();
-  const [loginAlertShow, setLoginAlertShow] = useState(true);
+  const [overall,setOverall]=useState(0);
 
   if (!user && props?.show) {
     return (
@@ -35,7 +34,7 @@ function WriteAReviewModal(props) {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id="contained-modal-title-vcenter" className="mb-0 pb-0">
           Write A Review
         </Modal.Title>
       </Modal.Header>
@@ -43,16 +42,25 @@ function WriteAReviewModal(props) {
         <p className="text-center">Add your ratings</p>
         <Table>
           {props?.ratings?.types &&
-            Object.keys(props.ratings.types)?.map(function (key, index) {
-              return (
+            Object.keys(props.ratings.types)?.map(function (type, index) {
+              return type !== 'overall' ? (
                 <tr>
-                  <td className="border p-3">{key}</td>
+                  <td className="border p-3">{type}</td>
                   <td className="border">
                     <Rating allowHalfIcon="true" size="30px" />
                   </td>
                 </tr>
+              ) : (
+                <></>
               );
             })}
+
+          <tr>
+            <td className="border p-3">overall</td>
+            <td className="border">
+              <Rating allowHalfIcon="true" size="30px" />
+            </td>
+          </tr>
         </Table>
       </Modal.Body>
       <Modal.Footer className="py-0">
