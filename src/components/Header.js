@@ -20,6 +20,7 @@ export default function Header() {
       variant: 'success',
       msg: `Sad to see you go Bye ${user.email}`,
     });
+    navigate(-1);
     return;
   }
 
