@@ -7,6 +7,7 @@ import { useNavigate, Link } from 'react-router-dom';
 function WriteAReviewModal(props) {
   const { user } = AppState();
   const [rate, setRate] = useState(0);
+  const [overallrate,setOverallrate]=useState(0);
   let rates = {
     overall: 0,
     food: 0,
@@ -30,11 +31,6 @@ function WriteAReviewModal(props) {
         </Modal.Header>
       </Modal>
     );
-  }
-
-  function handleOnClick(rate) {
-    console.log(rate);
-    // setRates()
   }
 
   return (
@@ -91,6 +87,7 @@ function WriteAReviewModal(props) {
             <td className="border p-3">overall</td>
             <td className="border">
               <Rating
+                ratingValue={overallrate}
                 allowHalfIcon="true"
                 size="30px"
                 showTooltip="true"
