@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../configs/firebaseConfig';
-import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
-import { AppState } from '../reducers/AppContext';
 import { Rating } from 'react-simple-star-rating';
-import { restoDocRef } from '../reducers/constants';
+import { db } from '../configs/firebaseConfig';
+import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 
-export default function StarRating(props) {
-  const { restoCloudData, setRestoCloudData } = AppState();
-  // const docRef = doc(db, 'restaurants', props.resto.id);
-  const docRef = restoDocRef(props.resto.id);
+export default function StarRatingForCard(props) {
+  const [cloudData, setCloudData] = useState();
+  const docRef = doc(db, 'restaurants', props.resto.id);
+  // const docRef = restoDocRef(props.resto.id);
 
   function HandleUndefined() {
     const newDocData = {
       views: 0,
       ratings: {
-        star: 5,
-        collection: {
-          overall: [{}],
-          food: [{}],
-          service: [{}],
-          quality: [{}],
-          valueForMoney: [{}],
+        star: 0,
+        types: {
+          overall: [],
+          food: [],
+          service: [],
+          ambience: [],
+          valueForMoney: [],
         },
       },
-      reviews: [{}],
-      address: props.resto.address,
+      reviews: [],
+      address: props.resto.address, 
       openingHours: props.resto.openingHours ? props.resto.openingHours : null,
-      photos: [{}],
+      photos: [],
     };
 
     setDoc(docRef, newDocData)
@@ -34,20 +32,17 @@ export default function StarRating(props) {
         unsubscribe();
       })
       .catch((err) => {
-        console.log(err, props.resto.id);
+        console.log(err);
       });
   }
 
-  // function FetchData() {
-
   const unsubscribe = onSnapshot(docRef, (doc) => {
     if (doc.data()) {
-      setRestoCloudData(doc.data());
+      setCloudData(doc.data());
     } else {
       HandleUndefined();
     }
   });
-  // }
 
   useEffect(() => {
     return () => {
@@ -56,10 +51,13 @@ export default function StarRating(props) {
   }, []);
 
   return (
-    <Rating
-      ratingValue={(restoCloudData?.ratings?.star / 5) * 500}
-      readonly="true"
-      size="25px"
-    />
+    <>
+      <Rating
+        ratingValue={(cloudData?.ratings?.star / 5) * 100}
+        readonly="true"
+        size="22px"
+      />
+      <div className="ps-1">views: {cloudData?.views}</div>
+    </>
   );
 }

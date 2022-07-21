@@ -1,21 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import API_KEY from '../../reducers/API_KEY';
-import StarRating from '../../components/StarRating';
+import StarRating from './StarRating';
 import DetailedRatings from './DetailedRatings';
-import { AppState } from '../../reducers/AppContext';
+import { PlaceByIdUrl } from '../../reducers/constants';
+import UpdateViewsById from './UpdateViewsById';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { db } from '../../configs/firebaseConfig';
+import { Button } from 'react-bootstrap';
+import WriteAReview from './WriteAReview';
 
-export default function SelectedRestaurant() {
-  const { restoApiData, setRestoApiData } = AppState();
+export default function RestaurantPage() {
   const { id } = useParams();
-  const placeByIdUrl = `https://api.tomtom.com/search/2/place.json?entityId=${id}&key=${API_KEY}&view=IN`;
+  const [APIData, setAPIData] = useState();
+  const [cloudData, setCloudData] = useState();
+  const docRef = doc(db, 'restaurants', `${id}`);
 
-  async function FetchRestoApiData() {
-    await axios
-      .get(placeByIdUrl)
+  function HandleUndefined() {
+    const newDocData = {
+      views: 0,
+      ratings: {
+        star: 0,
+        types: {
+          overall: [], // overall: [{ id: 'none', value: 0 }],
+          food: [],
+          service: [],
+          ambience: [],
+          valueForMoney: [],
+        },
+      },
+      reviews: [],
+      address: APIData.address.freeformAddress,
+      openingHours: APIData.openingHours ? APIData.openingHours : null,
+      photos: [],
+    };
+    setDoc(docRef, newDocData)
       .then((res) => {
-        setRestoApiData(res.data.results[0]);
+        FetchDataFromCloud();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function FetchDataFromCloud() {
+    getDoc(docRef)
+      .then((res) => {
+        if (res.data()) {
+          setCloudData(res.data());
+          console.log(res.data());
+        } else {
+          HandleUndefined();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  async function FetchDataFromAPI() {
+    await axios
+      .get(PlaceByIdUrl(id))
+      .then((res) => {
+        setAPIData(res.data.results[0]);
+        console.log(res.data.results[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -23,16 +71,56 @@ export default function SelectedRestaurant() {
   }
 
   useEffect(() => {
-    FetchRestoApiData();
+    FetchDataFromAPI();
   }, []);
 
-  return !restoApiData ? (
+  useMemo(() => {
+    APIData?.id && FetchDataFromCloud();
+  }, [APIData?.id]);
+
+  useEffect(() => {
+    UpdateViewsById(id);
+  }, []);
+
+  return !APIData ? (
     <div>Loading...</div>
   ) : (
-    <div>
-      <h1>{restoApiData?.poi?.name}</h1>
-      <h2>Star Rating</h2>
-      <StarRating resto={restoApiData} />
-    </div>
+    <>
+      <h1
+      // style={{ textAlign: 'left' }}
+      >
+        {APIData?.poi?.name}
+      </h1>
+      <h4
+        className="font1"
+        style={{
+          marginLeft: '5vw',
+        }}
+      >
+        Ratings({cloudData?.ratings?.types?.overall?.length})
+      </h4>
+      <div
+        className="bg-light border"
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          marginLeft: '6vw',
+          marginRight: '6vw',
+          paddingTop: '2vh',
+        }}
+      >
+        <StarRating ratings={cloudData?.ratings} />
+        <DetailedRatings ratings={cloudData?.ratings} />
+      </div>
+      <br />
+      <WriteAReview ratings={cloudData?.ratings} />
+      <br />
+      {cloudData?.ratings?.types?.overall?.length < 3 && (
+        <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
+          {`There aren't enough food, service, value or ambience ratings for ${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
+        </p>
+      )}
+    </>
   );
 }
