@@ -7,8 +7,17 @@ import { useNavigate } from 'react-router-dom';
 function WriteAReviewModal(props) {
   const { user } = AppState();
   const navigate = useNavigate();
+  const [loginAlertShow, setLoginAlertShow] = useState(true);
 
-  return !user && props.show? <p>login to continue</p>: (
+  if (!user && props?.show) {
+    return (
+      <Modal show={props.show} onHide={props.onHide}>
+        <Modal.Header closeButton>login to continue</Modal.Header>
+      </Modal>
+    );
+  }
+
+  return (
     <Modal
       show={props.show}
       onHide={props.onHide}
