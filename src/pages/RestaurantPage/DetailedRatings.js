@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useMemo } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -12,17 +12,26 @@ export default function DetailedRating(props) {
     ],
     ambience: [{ id: 'id4', val: 3 }],
   };
-  Object.keys(types).map(function (key, index) {
-    console.log(key);
-    let tot = 0;
-    types[key].map((i) => {
-      console.log(i);
-      console.log(i.val);
-      tot += parseInt(i.val);
+
+  const getRating=useMemo((type)=>{
+    const tot=0;
+    types[type]?.map((item)=>{
+      tot+=item.val;
     });
-    ratings.push(tot);
-  });
-  console.log(ratings);
+    return tot;
+  },[]);
+
+  // Object.keys(types).map(function (key, index) {
+  //   console.log(key);
+  //   let tot = 0;
+  //   types[key].map((i) => {
+  //     console.log(i);
+  //     console.log(i.val);
+  //     tot += parseInt(i.val);
+  //   });
+  //   ratings.push(tot);
+  // });
+  // console.log(ratings);
 
   const [series, setSeries] = useState([
     {
