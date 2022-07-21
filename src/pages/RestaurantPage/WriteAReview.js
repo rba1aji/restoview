@@ -13,8 +13,9 @@ function WriteAReviewModal(props) {
     return (
       <Modal show={props.show} onHide={props.onHide} centered>
         <Modal.Header closeButton>
-          <br/><br/>
-          <Link to="/auth/login" className='ms-auto'>
+          <br />
+          <br />
+          <Link to="/auth/login" className="ms-auto">
             <Button className="me-2 py-0" variant="outline-dark">
               Login
             </Button>
