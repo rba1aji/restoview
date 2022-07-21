@@ -2,7 +2,7 @@ import { Button, Modal, Table } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function WriteAReviewModal(props) {
   const { user } = AppState();
@@ -12,7 +12,14 @@ function WriteAReviewModal(props) {
   if (!user && props?.show) {
     return (
       <Modal show={props.show} onHide={props.onHide}>
-        <Modal.Header closeButton>login to continue</Modal.Header>
+        <Modal.Header closeButton>
+          <Link to="/auth/login">
+            <Button className="me-2 py-0" variant="dark">
+              Login
+            </Button>
+          </Link>{' '}
+          to continue
+        </Modal.Header>
       </Modal>
     );
   }

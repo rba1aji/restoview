@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useNavigate, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
@@ -13,6 +13,10 @@ export default function Login() {
   const navigate = useNavigate();
   // const histoy=useHistory();
 
+  const Back = useCallback(() => {
+    navigate(-1);
+  }, []);
+
   function HandleLogin(e) {
     setLoading(true);
     e.preventDefault();
@@ -25,7 +29,7 @@ export default function Login() {
           msg: `Welcome back ${user.email}`,
         });
         setLoading(false);
-        navigate(-1);
+        Back();
       })
       .catch((error) => {
         setAlert({
