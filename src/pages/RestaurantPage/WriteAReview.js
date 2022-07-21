@@ -17,15 +17,14 @@ function WriteAReviewModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="m-0 text-center">Add your ratings</p>
-        <Table className="border">
+        <p className="text-center">Add your ratings</p>
+        <Table>
           {props?.ratings?.types &&
             Object.keys(props.ratings.types)?.map(function (key, index) {
               return (
                 <tr>
-                  <td>{key}</td>
-                  <td> {'  '} </td>
-                  <td>
+                  <td className="border p-3">{key}</td>
+                  <td className="border">
                     <Rating allowHalfIcon="true" size="30px" />
                   </td>
                 </tr>
