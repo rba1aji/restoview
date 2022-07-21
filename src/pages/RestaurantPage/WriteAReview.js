@@ -7,11 +7,13 @@ import { useNavigate, Link } from 'react-router-dom';
 function WriteAReviewModal(props) {
   const { user } = AppState();
   const [rates, setRates] = useState({
-    overall: 0,
-    food: 10,
-    service: 0,
-    ambience: 0,
-    valueForMoney: 0,
+    ob: {
+      overall: 0,
+      food: 10,
+      service: 0,
+      ambience: 0,
+      valueForMoney: 0,
+    },
   });
 
   if (!user && props?.show) {
@@ -31,7 +33,10 @@ function WriteAReviewModal(props) {
     );
   }
 
-  function handleOnClick() {}
+  function handleOnClick(rate) {
+    console.log(rate);
+    // setRates()
+  }
 
   return (
     <Modal
@@ -56,9 +61,11 @@ function WriteAReviewModal(props) {
                   <td className="border p-3">{type}</td>
                   <td className="border">
                     <Rating
-                      onClick={handleOnClick}
-                      ratingValue={rates[type]}
-                      key={index}
+                      ratingValue={rates?.ob[type]}
+                      onClick={(rate) => {
+                        console.log(rate,type);
+                      }}
+                      key={type}
                       allowHalfIcon="true"
                       size="30px"
                       allowHover="false"
