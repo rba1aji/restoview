@@ -6,7 +6,8 @@ import { Rating } from 'react-simple-star-rating';
 function WriteAReviewModal(props) {
   return (
     <Modal
-      {...props}
+      show={props.show}
+      onHide={props.onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -29,7 +30,7 @@ function WriteAReviewModal(props) {
   );
 }
 
-export default function WriteAReview() {
+export default function WriteAReview(props) {
   const [modalShow, setModalShow] = useState(false);
 
   return (
