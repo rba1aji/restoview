@@ -1,5 +1,4 @@
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import { Button, Modal, Table } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
 
@@ -19,18 +18,20 @@ function WriteAReviewModal(props) {
       </Modal.Header>
       <Modal.Body>
         <p className="m-0 text-center">Add your ratings</p>
-        {props?.ratings?.types &&
-          Object.keys(props.ratings.types)?.map(function (key, index) {
-            return (
-              <tr>
-                <td>{key}</td>
-                <td> {'  '} </td>
-                <td>
-                  <Rating allowHalfIcon="true" size="30px" />
-                </td>
-              </tr>
-            );
-          })}
+        <Table className="border">
+          {props?.ratings?.types &&
+            Object.keys(props.ratings.types)?.map(function (key, index) {
+              return (
+                <tr>
+                  <td>{key}</td>
+                  <td> {'  '} </td>
+                  <td>
+                    <Rating allowHalfIcon="true" size="30px" />
+                  </td>
+                </tr>
+              );
+            })}
+        </Table>
       </Modal.Body>
       <Modal.Footer className="py-0">
         <Button variant="secondary" onClick={props.onHide}>
