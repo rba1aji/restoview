@@ -8,7 +8,7 @@ function WriteAReviewModal(props) {
   const { user } = AppState();
   const [rates, setRates] = useState({
     overall: 0,
-    food: 0,
+    food: 10,
     service: 0,
     ambience: 0,
     valueForMoney: 0,
