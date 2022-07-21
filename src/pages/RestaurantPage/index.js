@@ -114,13 +114,13 @@ export default function RestaurantPage() {
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
       <br />
-      <WriteAReview />
+      <WriteAReview ratings={cloudData?.ratings} />
       <br />
-      <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
-        {' '}
-        There aren't enough food, service, value or ambience ratings for{' '}
-        {APIData?.poi?.name}, India yet. Be one of the first to write a review!
-      </p>
+      {cloudData?.ratings?.types?.overall?.length < 3 && (
+        <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
+          {`There aren't enough food, service, value or ambience ratings for${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
+        </p>
+      )}
     </>
   );
 }

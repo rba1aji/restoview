@@ -27,13 +27,13 @@ export default function DetailedRating(props) {
 
   // Object.keys(types).map(function (key, index) {
   //   console.log(key);
-  //   let tot = 0;
-  //   types[key].map((i) => {
-  //     console.log(i);
-  //     console.log(i.val);
-  //     tot += parseInt(i.val);
-  //   });
-  //   ratings.push(tot);
+    // let tot = 0;
+    // types[key].map((i) => {
+    //   console.log(i);
+    //   console.log(i.val);
+    //   tot += parseInt(i.val);
+    // });
+    // ratings.push(tot);
   // });
   // console.log(ratings);
 

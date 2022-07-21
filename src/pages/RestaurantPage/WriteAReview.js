@@ -18,14 +18,19 @@ function WriteAReviewModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h5>Put ratings:</h5>
-        <Rating allowHalfIcon="true" />
-        <Rating allowHalfIcon="true" />
-        <Rating allowHalfIcon="true" />
-        <Rating allowHalfIcon='true'/>
-        <Rating allowHalfIcon='true'/>
+        <p className="m-0 text-center">Add your ratings</p>
+        {props?.ratings?.types &&
+          Object.keys(props.ratings.types)?.map(function (key, index) {
+            return (
+              <tr>
+                <td>{key}</td>
+                <td> {'  '} </td>
+                <td><Rating allowHalfIcon="true" size='30px' /></td>
+              </tr>
+            );
+          })}
       </Modal.Body>
-      <Modal.Footer>
+      <Modal.Footer className="py-0">
         <Button variant="secondary" onClick={props.onHide}>
           Close
         </Button>
@@ -50,7 +55,11 @@ export default function WriteAReview(props) {
         </Button>
       </div>
 
-      <WriteAReviewModal show={modalShow} onHide={() => setModalShow(false)} />
+      <WriteAReviewModal
+        ratings={props?.ratings}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </>
   );
 }
