@@ -118,7 +118,7 @@ export default function RestaurantPage() {
       <br />
       {cloudData?.ratings?.types?.overall?.length < 3 && (
         <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
-          {`There aren't enough food, service, value or ambience ratings for${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
+          {`There aren't enough food, service, value or ambience ratings for ${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
         </p>
       )}
     </>
