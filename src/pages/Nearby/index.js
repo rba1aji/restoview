@@ -164,7 +164,7 @@ export default function Nearby() {
         className=""
         style={{
           display: 'grid',
-          marginTop: '10vh',
+          marginTop: '20vh',
           marginLeft: '20vw',
           marginRight: '20vw',
           // marginBottom: '10vh',
@@ -199,17 +199,7 @@ export default function Nearby() {
       </div>
 
       <div>
-        <div
-          style={{
-            position: 'fixed',
-            display: 'flex',
-            marginLeft: '45vw',
-            marginTop: '45vh',
-          }}
-        >
-          {/* <Loader /> */}
-        </div>
-        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop: 45 }}>
+        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop:45 }}>
           {!loading && (
             <ShowNearbyRestaurants
               place={selectedPlace}
