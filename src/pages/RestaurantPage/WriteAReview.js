@@ -31,6 +31,8 @@ function WriteAReviewModal(props) {
     );
   }
 
+  function handleOnClick() {}
+
   return (
     <Modal
       show={props.show}
@@ -54,7 +56,9 @@ function WriteAReviewModal(props) {
                   <td className="border p-3">{type}</td>
                   <td className="border">
                     <Rating
-                      kry={type}
+                      onClick={handleOnClick}
+                      ratingValue={rates[type]}
+                      key={index}
                       allowHalfIcon="true"
                       size="30px"
                       allowHover="false"
@@ -80,7 +84,6 @@ function WriteAReviewModal(props) {
             <td className="border p-3">overall</td>
             <td className="border">
               <Rating
-                key="overall"
                 allowHalfIcon="true"
                 size="30px"
                 showTooltip="true"
