@@ -104,7 +104,7 @@ export default function RestaurantPage() {
           justifyContent: 'center',
           marginLeft: '5vw',
           marginRight: '5vw',
-          paddingTop: '3vh',
+          paddingTop: '2vh',
         }}
       >
         <StarRating ratings={cloudData?.ratings} />
@@ -114,7 +114,7 @@ export default function RestaurantPage() {
       {/* <br /> */}
       <div className="text-center">
         <Button
-          className="border-5"
+          className="outline-5"
           variant="outline-dark"
           style={{ width: '80vw' }}
         >

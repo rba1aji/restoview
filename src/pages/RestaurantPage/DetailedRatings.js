@@ -84,12 +84,7 @@ export default function DetailedRating(props) {
   });
 
   return (
-    <div
-      style={{
-        marginLeft: '5vw',
-        marginRight: '10vw',
-      }}
-    >
+    <div>
       <ReactApexChart
         options={options}
         series={series}
