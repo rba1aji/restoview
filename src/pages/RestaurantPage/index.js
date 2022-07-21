@@ -24,7 +24,7 @@ export default function RestaurantPage() {
     const newDocData = {
       views: 0,
       ratings: {
-        star: 5, //change0
+        star: 0,
         types: {
           overall: [], // overall: [{ id: 'none', value: 0 }],
           food: [],
@@ -95,7 +95,7 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
-      <h3 className="font1">Ratings{cloudData?.ratings?.types?.overall?.length}</h3>
+      <h4 className="font1">Ratings({cloudData?.ratings?.types?.overall?.length})</h4>
       <div
         className="bg-light border"
         style={{

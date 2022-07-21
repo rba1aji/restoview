@@ -12,7 +12,7 @@ export default function StarRatingForCard(props) {
     const newDocData = {
       views: 0,
       ratings: {
-        star: 5,//change
+        star: 0,
         collection: {
           overall: [],
           food: [],
