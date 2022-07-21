@@ -22,6 +22,7 @@ const AppContextProvider = ({ children }) => {
       } else {
         setUser(null);
       }
+      setLoading(false);
     });
   }, []);
 

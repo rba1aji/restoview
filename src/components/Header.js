@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { MdOutlineFoodBank, BsShop, MdFoodBank } from 'react-icons/md';
@@ -11,6 +11,7 @@ import PrivateWrapper from './PrivateWrapper';
 
 export default function Header() {
   const { user, setAlert } = AppState();
+  const navigate = useNavigate();
 
   function Logout() {
     signOut(auth);
@@ -19,6 +20,7 @@ export default function Header() {
       variant: 'success',
       msg: `Sad to see you go Bye ${user.email}`,
     });
+    // navigate(-1);
     return;
   }
 
@@ -62,7 +64,7 @@ export default function Header() {
                   <Nav.Link>LogIn</Nav.Link>
                 </Nav.Item>
               ) : (
-                <Nav.Item as={LinkContainer} onClick={Logout} to="/">
+                <Nav.Item as={LinkContainer} to="/" onClick={Logout}>
                   <Nav.Link>LogOut</Nav.Link>
                 </Nav.Item>
               )}
