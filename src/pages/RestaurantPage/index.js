@@ -13,6 +13,7 @@ import UpdateViewsById from './UpdateViewsById';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
 import { Button } from 'react-bootstrap';
+import WriteAReview from './WriteAReview';
 
 export default function RestaurantPage() {
   const { id } = useParams();
@@ -112,15 +113,7 @@ export default function RestaurantPage() {
       </div>
       <br />
       {/* <br /> */}
-      <div className="text-center">
-        <Button
-          className="outline-5"
-          variant="outline-dark"
-          style={{ width: '80vw' }}
-        >
-          Write A Review
-        </Button>
-      </div>
+      <WriteAReview/>
       <br />
       <br />
     </>

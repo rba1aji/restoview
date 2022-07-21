@@ -1,7 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import React, { useState } from 'react';
+import { Rating } from 'react-simple-star-rating';
 
-function MyVerticallyCenteredModal(props) {
+function WriteAReviewModal(props) {
   return (
     <Modal
       {...props}
@@ -11,39 +13,39 @@ function MyVerticallyCenteredModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          Write A Review
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <h4>Put ratings:</h4>
+        <Rating/>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button variant="secondary" onClick={props.onHide}>
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );
 }
 
-function App() {
-  const [modalShow, setModalShow] = React.useState(false);
+export default function WriteAReview() {
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button>
+      <div className="text-center">
+        <Button
+          className="outline-5"
+          variant="outline-dark"
+          style={{ width: '80vw' }}
+          onClick={() => setModalShow(true)}
+        >
+          Write A Review
+        </Button>
+      </div>
 
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+      <WriteAReviewModal show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 }
-
-render(<App />);
