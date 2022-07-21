@@ -18,7 +18,7 @@ function WriteAReviewModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Put ratings:</h4>
+        <h5>Put ratings:</h5>
         <Rating allowHalfIcon="true" />
         <Rating allowHalfIcon="true" />
         <Rating allowHalfIcon="true" />
