@@ -5,7 +5,7 @@ export default function StarRating(props) {
   return (
     <span>
       <Rating
-        ratingValue={(props?.ratings?.star / 5) * 500}
+        ratingValue={(props?.ratings?.star / 5) * 100}
         readonly="true"
         size="25px"
       />

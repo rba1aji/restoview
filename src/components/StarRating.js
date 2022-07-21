@@ -53,7 +53,7 @@ export default function StarRatingForCard(props) {
   return (
     <>
       <Rating
-        ratingValue={(cloudData?.ratings?.star / 5) * 500}
+        ratingValue={(cloudData?.ratings?.star / 5) * 100}
         readonly="true"
         size="22px"
       />
