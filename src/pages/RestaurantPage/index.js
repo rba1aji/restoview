@@ -96,7 +96,9 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
-      <h4 className="font1">Ratings({cloudData?.ratings?.types?.overall?.length})</h4>
+      <h4 className="font1">
+        Ratings({cloudData?.ratings?.types?.overall?.length})
+      </h4>
       <div
         className="bg-light border"
         style={{
@@ -112,10 +114,13 @@ export default function RestaurantPage() {
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
       <br />
-      {/* <br /> */}
-      <WriteAReview/>
+      <WriteAReview />
       <br />
-      <br />
+      <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
+        {' '}
+        There aren't enough food, service, value or ambience ratings for{' '}
+        {APIData?.poi?.name}, India yet. Be one of the first to write a review!
+      </p>
     </>
   );
 }

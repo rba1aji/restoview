@@ -20,6 +20,10 @@ function WriteAReviewModal(props) {
       <Modal.Body>
         <h4>Put ratings:</h4>
         <Rating/>
+        <Rating/>
+        <Rating/>
+        <Rating/>
+        <Rating/>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.onHide}>
