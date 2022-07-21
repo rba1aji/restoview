@@ -25,7 +25,9 @@ function WriteAReviewModal(props) {
               <tr>
                 <td>{key}</td>
                 <td> {'  '} </td>
-                <td><Rating allowHalfIcon="true" size='30px' /></td>
+                <td>
+                  <Rating allowHalfIcon="true" size="30px" />
+                </td>
               </tr>
             );
           })}

@@ -13,7 +13,7 @@ export default function StarRatingForCard(props) {
       views: 0,
       ratings: {
         star: 0,
-        collection: {
+        types: {
           overall: [],
           food: [],
           service: [],
@@ -22,7 +22,7 @@ export default function StarRatingForCard(props) {
         },
       },
       reviews: [],
-      address: props.resto.address,
+      address: props.resto.address, 
       openingHours: props.resto.openingHours ? props.resto.openingHours : null,
       photos: [],
     };

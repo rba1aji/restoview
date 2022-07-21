@@ -31,7 +31,7 @@ export default function RestaurantPage() {
           food: [],
           service: [],
           ambience: [],
-          valueForMoney: [],
+          valueForMoney: [], 
         },
       },
       reviews: [],
