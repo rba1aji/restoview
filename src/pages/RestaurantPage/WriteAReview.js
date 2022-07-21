@@ -19,11 +19,11 @@ function WriteAReviewModal(props) {
       </Modal.Header>
       <Modal.Body>
         <h4>Put ratings:</h4>
-        <Rating/>
-        <Rating/>
-        <Rating/>
-        <Rating/>
-        <Rating/>
+        <Rating allowHalfIcon="true" />
+        <Rating allowHalfIcon="true" />
+        <Rating allowHalfIcon="true" />
+        <Rating allowHalfIcon='true'/>
+        <Rating allowHalfIcon='true'/>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.onHide}>
