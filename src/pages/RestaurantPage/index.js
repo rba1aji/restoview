@@ -1,15 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import API_KEY from '../../reducers/API_KEY';
 import StarRating from './StarRating';
 import DetailedRatings from './DetailedRatings';
-import { AppState } from '../../reducers/AppContext';
-import { restoDocRef } from '../../reducers/constants';
-import { updateDoc, increment } from 'firebase/firestore';
 import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
-// import FetchCloudDataByAPIData from './FetchCloudDataByAPIData';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
 import { Button } from 'react-bootstrap';
@@ -31,7 +26,7 @@ export default function RestaurantPage() {
           food: [],
           service: [],
           ambience: [],
-          valueForMoney: [], 
+          valueForMoney: [],
         },
       },
       reviews: [],
@@ -96,7 +91,12 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
-      <h4 className="font1">
+      <h4
+        className="font1"
+        style={{
+          marginLeft: '5vw',
+        }}
+      >
         Ratings({cloudData?.ratings?.types?.overall?.length})
       </h4>
       <div
@@ -105,8 +105,8 @@ export default function RestaurantPage() {
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
-          marginLeft: '5vw',
-          marginRight: '5vw',
+          marginLeft: '6vw',
+          marginRight: '6vw',
           paddingTop: '2vh',
         }}
       >

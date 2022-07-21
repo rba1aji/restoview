@@ -70,7 +70,7 @@ export default function WriteAReview(props) {
       <div className="text-center">
         <Button
           className="outline-5"
-          variant="outline-dark"
+          variant="dark"
           style={{ width: '80vw' }}
           onClick={() => {
             setModalShow(true);
