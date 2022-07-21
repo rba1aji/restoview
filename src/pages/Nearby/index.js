@@ -164,7 +164,7 @@ export default function Nearby() {
         className=""
         style={{
           display: 'grid',
-          marginTop: '20vh',
+          marginTop: '15vh',
           marginLeft: '20vw',
           marginRight: '20vw',
           // marginBottom: '10vh',
