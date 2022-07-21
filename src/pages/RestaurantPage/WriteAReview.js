@@ -6,7 +6,13 @@ import { useNavigate, Link } from 'react-router-dom';
 
 function WriteAReviewModal(props) {
   const { user } = AppState();
-  const [overall, setOverall] = useState(0);
+  const [rates, setRates] = useState({
+    overall: 0,
+    food: 0,
+    service: 0,
+    ambience: 0,
+    valueForMoney: 0,
+  });
 
   if (!user && props?.show) {
     return (
@@ -48,6 +54,7 @@ function WriteAReviewModal(props) {
                   <td className="border p-3">{type}</td>
                   <td className="border">
                     <Rating
+                      kry={type}
                       allowHalfIcon="true"
                       size="30px"
                       allowHover="false"
@@ -73,6 +80,7 @@ function WriteAReviewModal(props) {
             <td className="border p-3">overall</td>
             <td className="border">
               <Rating
+                key="overall"
                 allowHalfIcon="true"
                 size="30px"
                 showTooltip="true"
