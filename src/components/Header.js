@@ -20,7 +20,6 @@ export default function Header() {
       variant: 'success',
       msg: `Sad to see you go Bye ${user.email}`,
     });
-    navigate(-1);
     return;
   }
 
@@ -64,7 +63,7 @@ export default function Header() {
                   <Nav.Link>LogIn</Nav.Link>
                 </Nav.Item>
               ) : (
-                <Nav.Item as={LinkContainer} to="/" onClick={Logout}>
+                <Nav.Item  onClick={Logout} as={LinkContainer} to="/">
                   <Nav.Link>LogOut</Nav.Link>
                 </Nav.Item>
               )}
