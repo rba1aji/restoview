@@ -1,4 +1,4 @@
-import { Button, Modal, Table } from 'react-bootstrap';
+import { Button, Modal, Table, FloatingLabel, Form } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
@@ -54,8 +54,8 @@ function WriteAReviewModal(props) {
               Object.keys(props.ratings.types)?.map(function (type, index) {
                 return type !== 'overall' ? (
                   <tr>
-                    <td className="border p-3">{type}</td>
-                    <td className="border">
+                    <td className="border border-dark p-3">{type}</td>
+                    <td className="border border-dark">
                       <Rating
                         ratingValue={rate}
                         onClick={(rate) => {
@@ -85,8 +85,8 @@ function WriteAReviewModal(props) {
               })}
 
             <tr>
-              <td className="border p-3">overall</td>
-              <td className="border">
+              <td className="border border-dark p-3">overall</td>
+              <td className="border border-dark">
                 <Rating
                   ratingValue={overallrate}
                   allowHalfIcon="true"
@@ -106,8 +106,16 @@ function WriteAReviewModal(props) {
             </tr>
           </tbody>
         </Table>
-        <div className="text-center">
-          <Button variant="outline-dark" style={{ width: '90%' }}>
+        <FloatingLabel controlId="floatingTextarea2" label="Comments">
+          <Form.Control
+            className="border border-5-dark"
+            as="textarea"
+            placeholder="Leave a comment here"
+            style={{ height: '100px', marginBottom: '20px' }}
+          />
+        </FloatingLabel>
+        <div className="text-center ">
+          <Button variant="dark" style={{ width: '100%' }}>
             Submit
           </Button>
         </div>
