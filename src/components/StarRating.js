@@ -57,7 +57,7 @@ export default function StarRatingForCard(props) {
         readonly="true"
         size="22px"
       />
-      <div className='ps-2'>views: {cloudData?.views}</div>
+      <div className="ps-1">views: {cloudData?.views}</div>
     </>
   );
 }
