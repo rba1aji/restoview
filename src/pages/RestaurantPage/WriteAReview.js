@@ -60,6 +60,7 @@ function WriteAReviewModal(props) {
                         paddingRight: 5,
                         margin: 4,
                       }}
+                      tooltipDefaultText="0"
                     />
                   </td>
                 </tr>
@@ -71,7 +72,20 @@ function WriteAReviewModal(props) {
           <tr>
             <td className="border p-3">overall</td>
             <td className="border">
-              <Rating allowHalfIcon="true" size="30px" />
+              <Rating
+                allowHalfIcon="true"
+                size="30px"
+                showTooltip="true"
+                tooltipStyle={{
+                  fontSize: '10px',
+                  paddingTop: 0,
+                  paddingBottom: 0,
+                  paddingLeft: 5,
+                  paddingRight: 5,
+                  margin: 4,
+                }}
+                tooltipDefaultText="0"
+              />
             </td>
           </tr>
         </Table>
