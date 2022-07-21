@@ -95,7 +95,7 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
-      <h3 className="font1">Ratings</h3>
+      <h3 className="font1">Ratings{cloudData?.ratings?.types?.overall?.length}</h3>
       <div
         className="bg-light border"
         style={{

@@ -18,9 +18,10 @@ export default function DetailedRating(props) {
 
   const getRating = (type) => {
     var tot = 0;
-    types[type]?.map((item) => {
-      tot += item.val;
-    });
+    props.types &&
+      props?.types[type]?.map((item) => {
+        tot += item.val;
+      });
     return tot;
   };
 
