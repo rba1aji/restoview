@@ -1,9 +1,14 @@
 import { Button, Modal, Table } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Rating } from 'react-simple-star-rating';
+import { AppState } from '../../reducers/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 function WriteAReviewModal(props) {
-  return (
+  const { user } = AppState();
+  const navigate = useNavigate();
+
+  return !user && props.show? <p>login to continue</p>: (
     <Modal
       show={props.show}
       onHide={props.onHide}
@@ -51,7 +56,9 @@ export default function WriteAReview(props) {
           className="outline-5"
           variant="outline-dark"
           style={{ width: '80vw' }}
-          onClick={() => setModalShow(true)}
+          onClick={() => {
+            setModalShow(true);
+          }}
         >
           Write A Review
         </Button>
