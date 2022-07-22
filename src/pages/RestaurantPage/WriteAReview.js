@@ -1,5 +1,5 @@
 import { Button, Modal, Table, FloatingLabel, Form } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
 import { useNavigate, Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { useNavigate, Link } from 'react-router-dom';
 function WriteAReviewModal(props) {
   const { user } = AppState();
   const [rate, setRate] = useState(0);
-  const [overallrate, setOverallrate] = useState(0);
+  const [overAll,setOverAll]=useState(0);
   let rates = {
     overall: 0,
     food: 0,
@@ -33,6 +33,10 @@ function WriteAReviewModal(props) {
     );
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   return (
     <Modal
       show={props.show}
@@ -47,78 +51,89 @@ function WriteAReviewModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="text-center">Add your ratings</p>
-        <Table style={{ width: '100%', overflowY: 'auto' }}>
-          <tbody>
-            {props?.ratings?.types &&
-              Object.keys(props.ratings.types)?.map(function (type, index) {
-                return type !== 'overall' ? (
-                  <tr>
-                    <td className="border border-dark p-3">{type}</td>
-                    <td className="border border-dark">
-                      <Rating
-                        ratingValue={rate}
-                        onClick={(rate) => {
-                          rates[type] = rate;
-                          console.log(rates);
-                        }}
-                        key={type}
-                        allowHalfIcon="true"
-                        size="30px"
-                        allowHover="false"
-                        showTooltip="true"
-                        tooltipStyle={{
-                          fontSize: '10px',
-                          paddingTop: 0,
-                          paddingBottom: 0,
-                          paddingLeft: 5,
-                          paddingRight: 5,
-                          margin: 4,
-                        }}
-                        tooltipDefaultText="0"
-                      />
-                    </td>
-                  </tr>
-                ) : (
-                  <></>
-                );
-              })}
+        <Form onSubmit={handleSubmit}>
+          <p className="text-center">Add your ratings</p>
+          <Table style={{ width: '100%', overflowY: 'auto' }}>
+            <tbody>
+              {props?.ratings?.types &&
+                Object.keys(props.ratings.types)?.map(function (type, index) {
+                  return type !== 'overall' ? (
+                    <tr>
+                      <td className="border border-dark p-3">{type}</td>
+                      <td className="border border-dark">
+                        <Rating
+                          ratingValue={rate}
+                          onClick={(rate) => {
+                            rates[type] = rate;
+                            var tot = 0;
+                            Object.keys(rates).map((type) => {
+                              if(type!=='overall') tot += rates[type];
+                            });
+                            rates['overall'] = (tot / 400) * 100;
+                            setOverAll(rates['overall']);
+                            console.log(rates);
+                          }}
+                          key={type}
+                          allowHalfIcon="true"
+                          size="30px"
+                          allowHover="false"
+                          showTooltip="true"
+                          tooltipStyle={{
+                            fontSize: '10px',
+                            paddingTop: 0,
+                            paddingBottom: 0,
+                            paddingLeft: 5,
+                            paddingRight: 5,
+                            margin: 4,
+                          }}
+                          tooltipDefaultText="0"
+                        />
+                      </td>
+                    </tr>
+                  ) : (
+                    <></>
+                  );
+                })}
 
-            <tr>
-              <td className="border border-dark p-3">overall</td>
-              <td className="border border-dark">
-                <Rating
-                  ratingValue={overallrate}
-                  allowHalfIcon="true"
-                  size="30px"
-                  showTooltip="true"
-                  tooltipStyle={{
-                    fontSize: '10px',
-                    paddingTop: 0,
-                    paddingBottom: 0,
-                    paddingLeft: 5,
-                    paddingRight: 5,
-                    margin: 4,
-                  }}
-                  tooltipDefaultText="0"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-        <FloatingLabel controlId="floatingTextarea2" label="Comments">
-          <Form.Control
-            className="border border-5-dark"
-            as="textarea"
-            placeholder="Leave a comment here"
-            style={{ height: '100px', marginBottom: '20px' }}
-          />
-        </FloatingLabel>
-        <div className="text-center ">
-          <Button variant="dark" style={{ width: '100%' }}>
-            Submit
-          </Button>
-        </div>
+              <tr>
+                <td className="border border-dark p-3">overall</td>
+                <td className="border border-dark">
+                  <Rating
+                    readonly
+                    ratingValue={overAll}
+                    onClick={() => {}}
+                    allowHalfIcon="true"
+                    size="30px"
+                    showTooltip="true"
+                    tooltipStyle={{
+                      fontSize: '10px',
+                      paddingTop: 0,
+                      paddingBottom: 0,
+                      paddingLeft: 5,
+                      paddingRight: 5,
+                      margin: 4,
+                    }}
+                    tooltipDefaultText="0"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          <FloatingLabel controlId="floatingTextarea2" label="Add your review">
+            <Form.Control
+              className="border-5 border-dark"
+              as="textarea"
+              placeholder="Leave a comment here"
+              style={{ height: '100px', marginBottom: '20px' }}
+              required
+            />
+          </FloatingLabel>
+          <div className="text-center ">
+            <Button variant="dark" style={{ width: '100%' }} type="submit">
+              Submit
+            </Button>
+          </div>
+        </Form>
       </Modal.Body>
       {/* <Modal.Footer className="py-0">
         <Button variant="secondary" onClick={props.onHide}>
