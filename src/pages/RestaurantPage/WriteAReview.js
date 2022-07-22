@@ -47,7 +47,7 @@ function WriteAReviewModal(props) {
       id: props.id,
       uId: user.id,
       ratings: rates,
-      review: reviewRef,
+      review: reviewRef.current.value,
       onHide: props.onHide,
     };
     UpdateRatingInCloud(cloudProps);
