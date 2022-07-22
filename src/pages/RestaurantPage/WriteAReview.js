@@ -14,7 +14,7 @@ import UpdateRatingInCloud from './UpdateRatingInCloud';
 function WriteAReviewModal(props) {
   const { user, setAlert } = AppState();
   const [rate, setRate] = useState(0);
-  const [overAll, setOverAll] = useState(0);
+  const [totrate, setTotrate] = useState(0);
   const [rates, setRates] = useState({
     overall: 0,
     food: 0,
@@ -48,6 +48,7 @@ function WriteAReviewModal(props) {
       id: props.id,
       uId: user.uid,
       ratings: rates,
+      totrating: totrate,
       review: reviewRef.current.value,
       onHide: props.onHide,
       setAlert: () => {
@@ -83,22 +84,19 @@ function WriteAReviewModal(props) {
                 Object.keys(props.ratings.types)?.map(function (type, index) {
                   return type !== 'overall' ? (
                     <tr>
-                      <td className="border border-dark p-3" >
-                        {type}
-                      </td>
+                      <td className="border border-dark p-3">{type}</td>
                       <td className="border border-dark">
                         <Rating
                           ratingValue={rate}
                           onClick={(rate) => {
                             rates[type] = rate;
-                            var ov = 0;
-                            Object.keys(rates).map((type) => {
-                              if (type != 'overall') ov += rates[type];
-                            });
-                            ov = ov / 4;
-                            rates['overall'] = ov;
-                            setOverAll(rates['overall']);
-                            // console.log(rates);
+                            // var tot = 0;
+                            // Object.keys(rates).map((type) => {
+                            //   tot += rates[type];
+                            // });
+                            // tot /= 4;
+                            // setTotrate(tot);
+                            console.log(rates);
                           }}
                           key={type}
                           allowHalfIcon="true"
@@ -126,9 +124,18 @@ function WriteAReviewModal(props) {
                 <td className="border border-dark p-3">overall</td>
                 <td className="border border-dark">
                   <Rating
-                    readonly
                     // ratingValue={rates['overall']}
-                    ratingValue={overAll}
+                    ratingValue={rate}
+                    onClick={(rate) => {
+                      rates.overall = rate;
+                      var tot = 0;
+                      Object.keys(rates).map((type) => {
+                        tot += rates[type];
+                      });
+                      tot /= 4;
+                      setTotrate(tot);
+                      console.log(rates);
+                    }}
                     allowHalfIcon="true"
                     size="30px"
                     showTooltip="true"
