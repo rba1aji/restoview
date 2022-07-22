@@ -55,14 +55,15 @@ export default function DetailedRating(props) {
     },
   ]);
 
+  
+
   function setCloudRates() {
     for (let i = 0; i < 5; i++) {
       var t = 0;
       props?.ratings?.types[series[0].data[i]]?.map((item) => {
         t += item.val;
-        // console.log(item.val);
       });
-      series[0].data[i] = t/props.ratings.types.food.length;
+      series[0].data[i] = (t/props.ratings.types.food.length).toFixed(1);
       console.log(series[0].data);
     }
   }
