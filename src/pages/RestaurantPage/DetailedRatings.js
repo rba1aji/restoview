@@ -96,6 +96,9 @@ function BarChart(props) {
         'Ambience',
         `Value \nfor money`,
       ],
+      axisBorder:{
+        show:false,
+      },
       axisTicks: {
         show: false,
       },
