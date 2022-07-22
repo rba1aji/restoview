@@ -16,41 +16,25 @@ export default function DetailedRating(props) {
   //   overall: [{ id: 'id4', val: 3 }],
   // };
 
-  const [rates, setRates] = useState([
-    'overall',
-    'food',
-    'service',
-    'ambience',
-    'valueForMoney',
-  ]);
-  
-  const setCloudRates = useCallback(() => {
-    for (let i = 0; i < 5; i++) {
-      var t = 0;
-      props?.ratings?.types[rates[i]].map((item) => {
-        t += item.val;
-        // console.log(item.val);
-      });
-      rates[i] = parseInt(t);
-      console.log(rates);
-    }
-  });
+  // const [rates, setRates] = useState([
+  //   'overall',
+  //   'food',
+  //   'service',
+  //   'ambience',
+  //   'valueForMoney',
+  // ]);
 
-  useEffect(() => {
-    props?.ratings && setCloudRates();
-  }, [props?.ratings]);
-
-  const getRating = (type) => {
-    var tot = 0;
-    // console.log(props?.ratings?.types[type][0].val)
-    props.ratings &&
-      props?.ratings?.types[type].map((item, index) => {
-        tot += item.val;
-        // console.log(item.val);
-      });
-    // console.log(tot)
-    return tot;
-  };
+  // const getRating = (type) => {
+  //   var tot = 0;
+  //   // console.log(props?.ratings?.types[type][0].val)
+  //   props.ratings &&
+  //     props?.ratings?.types[type].map((item, index) => {
+  //       tot += item.val;
+  //       // console.log(item.val);
+  //     });
+  //   // console.log(tot)
+  //   return tot;
+  // };
 
   // Object.keys(types).map(function (key, index) {
   //   console.log(key);
@@ -67,15 +51,25 @@ export default function DetailedRating(props) {
   const [series, setSeries] = useState([
     {
       name: 'Rating',
-      data: [
-        getRating('overall'),
-        getRating('food'),
-        getRating('service'),
-        getRating('ambience'),
-        getRating('valueForMoney'),
-      ],
+      data: ['overall', 'food', 'service', 'ambience', 'valueForMoney'],
     },
   ]);
+
+  function setCloudRates() {
+    for (let i = 0; i < 5; i++) {
+      var t = 0;
+      props?.ratings?.types[series[0].data[i]]?.map((item) => {
+        t += item.val;
+        // console.log(item.val);
+      });
+      series[0].data[i] = t;
+      console.log(series[0].data);
+    }
+  }
+
+  useEffect(() => {
+    props?.ratings && setCloudRates();
+  }, [props?.ratings]);
 
   const [options, setOptions] = useState({
     fill: {
@@ -130,12 +124,14 @@ export default function DetailedRating(props) {
   });
   return (
     <div>
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="bar"
-        height={200}
-      />
+      {props?.ratings && (
+        <ReactApexChart
+          options={options}
+          series={series}
+          type="bar"
+          height={200}
+        />
+      )}
     </div>
   );
 }
