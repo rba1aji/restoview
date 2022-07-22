@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import StarRating from './StarRating';
@@ -16,7 +16,7 @@ export default function RestaurantPage() {
   const [cloudData, setCloudData] = useState();
   const docRef = doc(db, 'restaurants', `${id}`);
 
-  function HandleUndefined() {
+  const HandleUndefined = useCallback(() => {
     const newDocData = {
       views: 0,
       ratings: {
@@ -41,25 +41,26 @@ export default function RestaurantPage() {
       .catch((err) => {
         console.log(err);
       });
-  }
+  });
 
-  function FetchDataFromCloud() {
+  const FetchDataFromCloud = useCallback(() => {
     getDoc(docRef)
       .then((res) => {
         if (res.data()) {
           setCloudData(res.data());
           console.log(res.data());
         } else {
+          console.log('undefined', res.data());
           HandleUndefined();
         }
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  });
 
-  async function FetchDataFromAPI() {
-    await axios
+  const FetchDataFromAPI = useCallback(() => {
+    axios
       .get(PlaceByIdUrl(id))
       .then((res) => {
         setAPIData(res.data.results[0]);
@@ -68,7 +69,7 @@ export default function RestaurantPage() {
       .catch((err) => {
         console.log(err);
       });
-  }
+  });
 
   useEffect(() => {
     FetchDataFromAPI();
@@ -91,14 +92,14 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
-      <h4
+      <h5
         className="font1"
         style={{
           marginLeft: '5vw',
         }}
       >
         Ratings({cloudData?.ratings?.types?.overall?.length})
-      </h4>
+      </h5>
       <div
         className="bg-light border"
         style={{
@@ -114,7 +115,7 @@ export default function RestaurantPage() {
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
       <br />
-      <WriteAReview ratings={cloudData?.ratings} />
+      <WriteAReview ratings={cloudData?.ratings} id={id} />
       <br />
       {cloudData?.ratings?.types?.overall?.length < 3 && (
         <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>

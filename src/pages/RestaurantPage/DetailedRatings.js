@@ -1,54 +1,63 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-export default function DetailedRating(props) {
-  const ratings = [];
-  const types = {
-    food: [
-      { id: 'id1', val: 2 },
-      { id: 'id2', val: 2 },
-    ],
-    ambience: [{ id: 'id4', val: 3 }],
-    service: [{ id: 'id4', val: 3 }],
-    valueForMoney: [{ id: 'id4', val: 3 }],
-    overall: [{ id: 'id4', val: 3 }],
-  };
+// const ratings = [];
+// const types = {
+//   food: [
+//     { id: 'id1', val: 2 },
+//     { id: 'id2', val: 2 },
+//   ],
+//   ambience: [{ id: 'id4', val: 3 }],
+//   service: [{ id: 'id4', val: 3 }],
+//   valueForMoney: [{ id: 'id4', val: 3 }],
+//   overall: [{ id: 'id4', val: 3 }],
+// };
 
-  const getRating = (type) => {
-    var tot = 0;
-    props.types &&
-      props?.types[type]?.map((item) => {
-        tot += item.val;
-      });
-    return tot;
-  };
+// const [rates, setRates] = useState([
+//   'overall',
+//   'food',
+//   'service',
+//   'ambience',
+//   'valueForMoney',
+// ]);
 
-  // Object.keys(types).map(function (key, index) {
-  //   console.log(key);
-    // let tot = 0;
-    // types[key].map((i) => {
-    //   console.log(i);
-    //   console.log(i.val);
-    //   tot += parseInt(i.val);
-    // });
-    // ratings.push(tot);
-  // });
-  // console.log(ratings);
+// const getRating = (type) => {
+//   var tot = 0;
+//   // console.log(props?.ratings?.types[type][0].val)
+//   props.ratings &&
+//     props?.ratings?.types[type].map((item, index) => {
+//       tot += item.val;
+//       // console.log(item.val);
+//     });
+//   // console.log(tot)
+//   return tot;
+// };
 
+// Object.keys(types).map(function (key, index) {
+//   console.log(key);
+// let tot = 0;
+// types[key].map((i) => {
+//   console.log(i);
+//   console.log(i.val);
+//   tot += parseInt(i.val);
+// });
+// ratings.push(tot);
+// });
+// console.log(ratings);
+
+function BarChart(props) {
   const [series, setSeries] = useState([
     {
       name: 'Rating',
-      data: [
-        getRating('overall'),
-        getRating('food'),
-        getRating('service'),
-        getRating('ambience'),
-        getRating('valueForMoney'),
-      ],
+      data: props.rates,
     },
   ]);
+
+  // console.log(props.rates);
+
+  series.data = props.rates;
 
   const [options, setOptions] = useState({
     fill: {
@@ -75,6 +84,8 @@ export default function DetailedRating(props) {
       enabled: true,
     },
     xaxis: {
+      min: 0,
+      max: 5,
       labels: {
         show: false,
       },
@@ -85,6 +96,9 @@ export default function DetailedRating(props) {
         'Ambience',
         `Value \nfor money`,
       ],
+      axisBorder:{
+        show:false,
+      },
       axisTicks: {
         show: false,
       },
@@ -101,7 +115,6 @@ export default function DetailedRating(props) {
       palette: 'palette9',
     },
   });
-
   return (
     <div>
       <ReactApexChart
@@ -112,4 +125,33 @@ export default function DetailedRating(props) {
       />
     </div>
   );
+}
+
+export default function DetailedRatings(props) {
+  const [rates, setRates] = useState([
+    'overall',
+    'food',
+    'service',
+    'ambience',
+    'valueForMoney',
+  ]);
+  const [done, setDone] = useState(false);
+
+  function setCloudRates() {
+    for (let i = 0; i < 5; i++) {
+      var t = 0;
+      props?.ratings?.types[rates[i]]?.map((item) => {
+        t += item.val;
+      });
+      rates[i] = (t / props.ratings.types.food.length).toFixed(1);
+      // console.log(rates);
+      i == 4 && setDone(true);
+    }
+  }
+
+  useEffect(() => {
+    props?.ratings && setCloudRates();
+  }, [props?.ratings]);
+
+  return done && <BarChart rates={rates} />;
 }

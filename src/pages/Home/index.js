@@ -14,7 +14,7 @@ function MobileComponent() {
           style={{ width: '100%', borderRadius: '5px' }}
           src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
         />
-        <div className="h2 mb-0 mobBanner1text">
+        <div className="h3 mb-0 mobBanner1text">
           What you eat there?
           <br /> Rate it here!
         </div>
