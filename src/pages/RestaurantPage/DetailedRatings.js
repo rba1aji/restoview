@@ -84,6 +84,8 @@ function BarChart(props) {
       enabled: true,
     },
     xaxis: {
+      min: 0,
+      max: 5,
       labels: {
         show: false,
       },
