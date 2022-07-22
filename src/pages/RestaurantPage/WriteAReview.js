@@ -1,5 +1,5 @@
 import { Button, Modal, Table, FloatingLabel, Form } from 'react-bootstrap';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo ,useCallback} from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
 import { useNavigate, Link } from 'react-router-dom';
@@ -37,18 +37,9 @@ function WriteAReviewModal(props) {
     event.preventDefault();
   }
 
-    function overallSet() {
-      var ov = 0;
-      Object.keys(rates).map((type) => {
-        if (type != 'overall') ov += rates[type];
-      });
-      ov = ov / 4;
-      rates['overall'] = ov;
-      // setOverAll(ov);
-    }
-    useEffect(()=>{
-      setOverAll(rates['overall']);
-    },[rates[ 'overall']]);
+  const overallSet = useCallback(() => {
+    setOverAll(rates['overall']);
+  });
 
   return (
     <Modal
@@ -78,6 +69,12 @@ function WriteAReviewModal(props) {
                           ratingValue={rate}
                           onClick={(rate) => {
                             rates[type] = rate;
+                            var ov = 0;
+                            Object.keys(rates).map((type) => {
+                              if (type != 'overall') ov += rates[type];
+                            });
+                            ov = ov / 4;
+                            rates['overall'] = ov;
                             overallSet();
                             console.log(rates);
                           }}
