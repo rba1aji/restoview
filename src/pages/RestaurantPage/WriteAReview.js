@@ -45,7 +45,7 @@ function WriteAReviewModal(props) {
     event.preventDefault();
     const cloudProps = {
       id: props.id,
-      uId: user.id,
+      uId: user.uid,
       ratings: rates,
       review: reviewRef.current.value,
       onHide: props.onHide,
