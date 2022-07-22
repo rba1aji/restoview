@@ -44,8 +44,11 @@ function WriteAReviewModal(props) {
       });
       ov = ov / 4;
       rates['overall'] = ov;
-      ()=>setOverAll(ov);
+      // setOverAll(ov);
     }
+    useEffect(()=>{
+      setOverAll(rates['overall']);
+    },[rates[ 'overall']]);
 
   return (
     <Modal
@@ -75,8 +78,8 @@ function WriteAReviewModal(props) {
                           ratingValue={rate}
                           onClick={(rate) => {
                             rates[type] = rate;
-                            console.log(rate);
                             overallSet();
+                            console.log(rates);
                           }}
                           key={type}
                           allowHalfIcon="true"
