@@ -16,44 +16,51 @@ export default function DetailedRating(props) {
   //   overall: [{ id: 'id4', val: 3 }],
   // };
 
-  const [rates,setRates]=useState([
+  const [rates, setRates] = useState([
     'overall',
     'food',
     'service',
     'ambience',
     'valueForMoney',
   ]);
-
-  const setCloudRates=useCallback(()=>{
-    for(let i=0;i<5;i++){
-      console.log(props?.ratings?.types[rates[i]]);
+  
+  const setCloudRates = useCallback(() => {
+    for (let i = 0; i < 5; i++) {
+      var t = 0;
+      props?.ratings?.types[rates[i]].map((item) => {
+        t += item.val;
+        // console.log(item.val);
+      });
+      rates[i] = parseInt(t);
+      console.log(rates);
     }
-  })
+  });
 
-  useEffect(()=>{
-    setCloudRates();
-  })
+  useEffect(() => {
+    props?.ratings && setCloudRates();
+  }, [props?.ratings]);
 
   const getRating = (type) => {
     var tot = 0;
     // console.log(props?.ratings?.types[type][0].val)
-      props.ratings && props?.ratings?.types[type].map((item,index) => {
+    props.ratings &&
+      props?.ratings?.types[type].map((item, index) => {
         tot += item.val;
         // console.log(item.val);
       });
-      // console.log(tot)
+    // console.log(tot)
     return tot;
-  }; 
+  };
 
   // Object.keys(types).map(function (key, index) {
   //   console.log(key);
-    // let tot = 0;
-    // types[key].map((i) => {
-    //   console.log(i);
-    //   console.log(i.val);
-    //   tot += parseInt(i.val);
-    // });
-    // ratings.push(tot);
+  // let tot = 0;
+  // types[key].map((i) => {
+  //   console.log(i);
+  //   console.log(i.val);
+  //   tot += parseInt(i.val);
+  // });
+  // ratings.push(tot);
   // });
   // console.log(ratings);
 
