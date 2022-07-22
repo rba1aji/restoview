@@ -5,8 +5,8 @@ export default function UpdateRatingInCloud(props) {
   console.log(props);
   const docRef = doc(db, 'restaurants', props.id);
   updateDoc(docRef, {
-    'reviews': arrayUnion({
-      uId: props.uId, 
+    reviews: arrayUnion({
+      uId: props.uId,
       val: props.review,
     }),
     'ratings.types.ambience': arrayUnion({
@@ -17,7 +17,7 @@ export default function UpdateRatingInCloud(props) {
       uId: props.uId,
       val: props.ratings.service,
     }),
-    'ratings.types.food': arrayUnion({ 
+    'ratings.types.food': arrayUnion({
       uId: props.uId,
       val: props.ratings.food,
     }),
@@ -31,7 +31,7 @@ export default function UpdateRatingInCloud(props) {
     }),
   })
     .then((res) => {
-      console.log(res.message);
+      console.log(res);
       console.log('success upload rating');
       props.onHide();
     })
