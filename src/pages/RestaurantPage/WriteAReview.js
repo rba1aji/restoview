@@ -39,7 +39,7 @@ function WriteAReviewModal(props) {
 
   const overallSet = useCallback(() => {
     setOverAll(rates['overall']);
-  });
+  },[]);
 
   return (
     <Modal
