@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -15,6 +15,24 @@ export default function DetailedRating(props) {
   //   valueForMoney: [{ id: 'id4', val: 3 }],
   //   overall: [{ id: 'id4', val: 3 }],
   // };
+
+  const [rates,setRates]=useState([
+    'overall',
+    'food',
+    'service',
+    'ambience',
+    'valueForMoney',
+  ]);
+
+  const setCloudRates=useCallback(()=>{
+    for(let i=0;i<5;i++){
+      console.log(props?.ratings?.types[rates[i]]);
+    }
+  })
+
+  useEffect(()=>{
+    setCloudRates();
+  })
 
   const getRating = (type) => {
     var tot = 0;
