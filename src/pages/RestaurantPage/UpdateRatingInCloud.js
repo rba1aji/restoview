@@ -1,7 +1,8 @@
 import { db } from '../../configs/firebaseConfig';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import React,{useCallback} from 'react';
 
-export default const UpdateRatingInCloud((props)=> {
+const UpdateRatingInCloud =useCallback((props)=> {
   console.log(props);
   const docRef = doc(db, 'restaurants', props.id);
   updateDoc(docRef, {
@@ -37,4 +38,5 @@ export default const UpdateRatingInCloud((props)=> {
     .catch((err) => {
       console.log(err.message);
     });
-})
+});
+export default 
