@@ -82,11 +82,11 @@ function WriteAReviewModal(props) {
               {props?.ratings?.types &&
                 Object.keys(props.ratings.types)?.map(function (type, index) {
                   return type !== 'overall' ? (
-                    <tr key={index}>
-                      <td className="border border-dark p-3" key={index}>
+                    <tr>
+                      <td className="border border-dark p-3" >
                         {type}
                       </td>
-                      <td key={index} className="border border-dark">
+                      <td className="border border-dark">
                         <Rating
                           ratingValue={rate}
                           onClick={(rate) => {
