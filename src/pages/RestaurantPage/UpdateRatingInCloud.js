@@ -33,7 +33,13 @@ export default function UpdateRatingInCloud(props) {
     .then((res) => {
       console.log(res);
       console.log('success upload rating');
-      props.onHide();
+      // props.onHide();
+      window.location.reload();
+      setAlert({
+        show: true,
+        variant: 'success',
+        msg: 'Thank you for the Review',
+      });
     })
     .catch((err) => {
       console.log(err.message);

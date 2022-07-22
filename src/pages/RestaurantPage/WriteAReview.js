@@ -52,12 +52,6 @@ function WriteAReviewModal(props) {
       onHide: props.onHide,
     };
     UpdateRatingInCloud(cloudProps); 
-    // props.onHide();
-    // setAlert({
-    //   show: true,
-    //   variant: 'success',
-    //   msg: 'Thank you for the Review',
-    // });
   }
 
   return (
