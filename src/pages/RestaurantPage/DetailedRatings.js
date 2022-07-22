@@ -3,72 +3,61 @@ import ReactApexChart from 'react-apexcharts';
 import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-export default function DetailedRating(props) {
-  // const ratings = [];
-  // const types = {
-  //   food: [
-  //     { id: 'id1', val: 2 },
-  //     { id: 'id2', val: 2 },
-  //   ],
-  //   ambience: [{ id: 'id4', val: 3 }],
-  //   service: [{ id: 'id4', val: 3 }],
-  //   valueForMoney: [{ id: 'id4', val: 3 }],
-  //   overall: [{ id: 'id4', val: 3 }],
-  // };
+// const ratings = [];
+// const types = {
+//   food: [
+//     { id: 'id1', val: 2 },
+//     { id: 'id2', val: 2 },
+//   ],
+//   ambience: [{ id: 'id4', val: 3 }],
+//   service: [{ id: 'id4', val: 3 }],
+//   valueForMoney: [{ id: 'id4', val: 3 }],
+//   overall: [{ id: 'id4', val: 3 }],
+// };
 
-  // const [rates, setRates] = useState([
-  //   'overall',
-  //   'food',
-  //   'service',
-  //   'ambience',
-  //   'valueForMoney',
-  // ]);
+// const [rates, setRates] = useState([
+//   'overall',
+//   'food',
+//   'service',
+//   'ambience',
+//   'valueForMoney',
+// ]);
 
-  // const getRating = (type) => {
-  //   var tot = 0;
-  //   // console.log(props?.ratings?.types[type][0].val)
-  //   props.ratings &&
-  //     props?.ratings?.types[type].map((item, index) => {
-  //       tot += item.val;
-  //       // console.log(item.val);
-  //     });
-  //   // console.log(tot)
-  //   return tot;
-  // };
+// const getRating = (type) => {
+//   var tot = 0;
+//   // console.log(props?.ratings?.types[type][0].val)
+//   props.ratings &&
+//     props?.ratings?.types[type].map((item, index) => {
+//       tot += item.val;
+//       // console.log(item.val);
+//     });
+//   // console.log(tot)
+//   return tot;
+// };
 
-  // Object.keys(types).map(function (key, index) {
-  //   console.log(key);
-  // let tot = 0;
-  // types[key].map((i) => {
-  //   console.log(i);
-  //   console.log(i.val);
-  //   tot += parseInt(i.val);
-  // });
-  // ratings.push(tot);
-  // });
-  // console.log(ratings);
+// Object.keys(types).map(function (key, index) {
+//   console.log(key);
+// let tot = 0;
+// types[key].map((i) => {
+//   console.log(i);
+//   console.log(i.val);
+//   tot += parseInt(i.val);
+// });
+// ratings.push(tot);
+// });
+// console.log(ratings);
 
+function BarChart(props) {
   const [series, setSeries] = useState([
     {
       name: 'Rating',
-      data: ['overall', 'food', 'service', 'ambience', 'valueForMoney'],
+      data: props.rates,
     },
   ]);
 
-  function setCloudRates() {
-    for (let i = 0; i < 5; i++) {
-      var t = 0;
-      props?.ratings?.types[series[0].data[i]]?.map((item) => {
-        t += item.val;
-      });
-      series[0].data[i] = parseFloat((t / props.ratings.types.food.length).toFixed(1));
-      console.log(series[0].data);
-    }
-  } 
+  // console.log(props.rates);
 
-  useEffect(() => {
-    props?.ratings && setCloudRates();
-  }, [props?.ratings]);
+  series.data = props.rates;
 
   const [options, setOptions] = useState({
     fill: {
@@ -131,4 +120,33 @@ export default function DetailedRating(props) {
       />
     </div>
   );
+}
+
+export default function DetailedRatings(props) {
+  const [rates, setRates] = useState([
+    'overall',
+    'food',
+    'service',
+    'ambience',
+    'valueForMoney',
+  ]);
+  const [done, setDone] = useState(false);
+
+  function setCloudRates() {
+    for (let i = 0; i < 5; i++) {
+      var t = 0;
+      props?.ratings?.types[rates[i]]?.map((item) => {
+        t += item.val;
+      });
+      rates[i] = (t / props.ratings.types.food.length).toFixed(1);
+      // console.log(rates);
+      i == 4 && setDone(true);
+    }
+  }
+
+  useEffect(() => {
+    props?.ratings && setCloudRates();
+  }, [props?.ratings]);
+
+  return done && <BarChart rates={rates} />;
 }
