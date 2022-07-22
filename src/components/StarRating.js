@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { db } from '../configs/firebaseConfig';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
@@ -8,7 +8,7 @@ export default function StarRatingForCard(props) {
   const docRef = doc(db, 'restaurants', props.resto.id);
   // const docRef = restoDocRef(props.resto.id);
 
-  function HandleUndefined() {
+  const HandleUndefined = useCallback(() => {
     const newDocData = {
       views: 0,
       ratings: {
@@ -22,7 +22,7 @@ export default function StarRatingForCard(props) {
         },
       },
       reviews: [],
-      address: props.resto.address, 
+      address: props.resto.address,
       openingHours: props.resto.openingHours ? props.resto.openingHours : null,
       photos: [],
     };
@@ -34,7 +34,7 @@ export default function StarRatingForCard(props) {
       .catch((err) => {
         console.log(err);
       });
-  }
+  });
 
   const unsubscribe = onSnapshot(docRef, (doc) => {
     if (doc.data()) {

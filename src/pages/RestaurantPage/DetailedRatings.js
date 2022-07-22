@@ -23,7 +23,7 @@ export default function DetailedRating(props) {
         tot += item.val;
         // console.log(item.val);
       });
-      console.log(tot)
+      // console.log(tot)
     return tot;
   }; 
 

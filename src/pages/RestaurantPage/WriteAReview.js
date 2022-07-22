@@ -42,6 +42,7 @@ function WriteAReviewModal(props) {
   }
 
   function handleSubmit(event) {
+    console.log('handlesubmit')
     event.preventDefault();
     const cloudProps = {
       id: props.id,
@@ -50,7 +51,7 @@ function WriteAReviewModal(props) {
       review: reviewRef.current.value,
       onHide: props.onHide,
     };
-    UpdateRatingInCloud(cloudProps);
+    UpdateRatingInCloud(cloudProps); 
     // props.onHide();
     // setAlert({
     //   show: true,
