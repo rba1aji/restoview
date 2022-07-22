@@ -7,7 +7,7 @@ import { useNavigate, Link } from 'react-router-dom';
 function WriteAReviewModal(props) {
   const { user } = AppState();
   const [rate, setRate] = useState(0);
-  const [overAll,setOverAll]=useState(0);
+  const [overAll, setOverAll] = useState(0);
   let rates = {
     overall: 0,
     food: 0,
@@ -37,6 +37,16 @@ function WriteAReviewModal(props) {
     event.preventDefault();
   }
 
+    function overallSet() {
+      var ov = 0;
+      Object.keys(rates).map((type) => {
+        if (type != 'overall') ov += rates[type];
+      });
+      ov = ov / 4;
+      rates['overall'] = ov;
+      ()=>setOverAll(ov);
+    }
+
   return (
     <Modal
       show={props.show}
@@ -65,15 +75,8 @@ function WriteAReviewModal(props) {
                           ratingValue={rate}
                           onClick={(rate) => {
                             rates[type] = rate;
-                            var ov = 0;
-                            Object.keys(rates).map((type) => {
-                              if(type!=='overall') ov += rates[type];
-                            });
-                            ov = (ov / 4);
-                            console.log(ov)
-                            rates['overall']=ov
-                            setOverAll(ov);
                             console.log(rates);
+                            overallSet();
                           }}
                           key={type}
                           allowHalfIcon="true"
@@ -102,8 +105,8 @@ function WriteAReviewModal(props) {
                 <td className="border border-dark">
                   <Rating
                     readonly
+                    // ratingValue={rates['overall']}
                     ratingValue={overAll}
-                    onClick={() => {}}
                     allowHalfIcon="true"
                     size="30px"
                     showTooltip="true"
