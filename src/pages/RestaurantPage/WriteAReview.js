@@ -42,7 +42,7 @@ function WriteAReviewModal(props) {
   }
 
   function handleSubmit(event) {
-    console.log('handlesubmit')
+    console.log('handlesubmit');
     event.preventDefault();
     const cloudProps = {
       id: props.id,
@@ -50,8 +50,14 @@ function WriteAReviewModal(props) {
       ratings: rates,
       review: reviewRef.current.value,
       onHide: props.onHide,
+      setAlert: setAlert({
+        show: true,
+        variant: 'success',
+        msg: 'Thank you for the Review',
+      }),
+      refresh: window.location.reload(),
     };
-    UpdateRatingInCloud(cloudProps); 
+    UpdateRatingInCloud(cloudProps);
   }
 
   return (
@@ -144,7 +150,7 @@ function WriteAReviewModal(props) {
               as="textarea"
               placeholder="Leave a comment here"
               style={{ height: '100px', marginBottom: '20px' }}
-              required
+              // required
             />
           </FloatingLabel>
           <div className="text-center ">
@@ -180,7 +186,9 @@ export default function WriteAReview(props) {
         id={props.id}
         ratings={props?.ratings}
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={() => {
+          setModalShow(false);
+        }}
       />
     </>
   );

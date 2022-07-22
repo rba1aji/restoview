@@ -1,7 +1,12 @@
 import { db } from '../../configs/firebaseConfig';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { AppState } from '../../reducers/AppContext';
+import React,{useCallback} from 'react';
+
+
 
 export default function UpdateRatingInCloud(props) {
+
   console.log(props);
   const docRef = doc(db, 'restaurants', props.id);
   updateDoc(docRef, {
@@ -33,13 +38,9 @@ export default function UpdateRatingInCloud(props) {
     .then((res) => {
       console.log(res);
       console.log('success upload rating');
-      // props.onHide();
-      window.location.reload();
-      setAlert({
-        show: true,
-        variant: 'success',
-        msg: 'Thank you for the Review',
-      });
+      props.onHide();
+      props.setAlert();
+      // props.refresh();
     })
     .catch((err) => {
       console.log(err.message);
