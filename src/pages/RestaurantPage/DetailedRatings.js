@@ -101,7 +101,6 @@ export default function DetailedRating(props) {
       palette: 'palette9',
     },
   });
-
   return (
     <div>
       <ReactApexChart

@@ -1,5 +1,5 @@
 import { Button, Modal, Table, FloatingLabel, Form } from 'react-bootstrap';
-import React, { useState, useEffect, useMemo ,useCallback} from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
 import { useNavigate, Link } from 'react-router-dom';
@@ -8,13 +8,13 @@ function WriteAReviewModal(props) {
   const { user } = AppState();
   const [rate, setRate] = useState(0);
   const [overAll, setOverAll] = useState(0);
-  let rates = {
+  const [rates, setRates] = useState({
     overall: 0,
     food: 0,
     service: 0,
     ambience: 0,
     valueForMoney: 0,
-  };
+  });
 
   if (!user && props?.show) {
     return (
@@ -36,10 +36,6 @@ function WriteAReviewModal(props) {
   function handleSubmit(event) {
     event.preventDefault();
   }
-
-  const overallSet = useCallback(() => {
-    setOverAll(rates['overall']);
-  },[]);
 
   return (
     <Modal
@@ -75,7 +71,7 @@ function WriteAReviewModal(props) {
                             });
                             ov = ov / 4;
                             rates['overall'] = ov;
-                            overallSet();
+                            setOverAll(rates['overall']);
                             console.log(rates);
                           }}
                           key={type}
@@ -140,11 +136,6 @@ function WriteAReviewModal(props) {
           </div>
         </Form>
       </Modal.Body>
-      {/* <Modal.Footer className="py-0">
-        <Button variant="secondary" onClick={props.onHide}>
-          Close
-        </Button>
-      </Modal.Footer> */}
     </Modal>
   );
 }
