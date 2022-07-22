@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { db } from '../configs/firebaseConfig';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
+import { Row, Col } from 'react-bootstrap';
 
 export default function StarRatingForCard(props) {
   const [cloudData, setCloudData] = useState();
@@ -51,13 +52,19 @@ export default function StarRatingForCard(props) {
   }, []);
 
   return (
-    <>
-      <Rating
-        ratingValue={(cloudData?.ratings?.star / 5) * 100}
-        readonly="true"
-        size="22px"
-      />
-      <div className="ps-1">views: {cloudData?.views}</div>
-    </>
+    <Row>
+      <Col>
+        <Rating
+          ratingValue={(cloudData?.ratings?.star / 5) * 100}
+          readonly="true"
+          size="23px"
+        />
+      </Col>
+      <Col>
+        <span className="text-right" style={{opacity:'70%'}}>
+          views: {cloudData?.views}
+        </span>
+      </Col>
+    </Row>
   );
 }
