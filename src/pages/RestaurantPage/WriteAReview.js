@@ -44,6 +44,7 @@ function WriteAReviewModal(props) {
   function handleSubmit(event) {
     event.preventDefault();
     const cloudProps = {
+      id: props.id,
       uId: user.id,
       ratings: rates,
       review: reviewRef,
@@ -181,6 +182,7 @@ export default function WriteAReview(props) {
       </div>
 
       <WriteAReviewModal
+        id={props.id}
         ratings={props?.ratings}
         show={modalShow}
         onHide={() => setModalShow(false)}

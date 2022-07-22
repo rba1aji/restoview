@@ -114,7 +114,7 @@ export default function RestaurantPage() {
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
       <br />
-      <WriteAReview ratings={cloudData?.ratings} />
+      <WriteAReview ratings={cloudData?.ratings} id={id} />
       <br />
       {cloudData?.ratings?.types?.overall?.length < 3 && (
         <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
