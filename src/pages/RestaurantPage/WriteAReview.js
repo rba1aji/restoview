@@ -94,7 +94,7 @@ function WriteAReviewModal(props) {
                             ov = ov / 4;
                             rates['overall'] = ov;
                             setOverAll(rates['overall']);
-                            console.log(rates);
+                            // console.log(rates);
                           }}
                           key={type}
                           allowHalfIcon="true"
