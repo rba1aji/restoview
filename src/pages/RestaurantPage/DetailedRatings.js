@@ -4,26 +4,28 @@ import { db } from '../../configs/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 export default function DetailedRating(props) {
-  const ratings = [];
-  const types = {
-    food: [
-      { id: 'id1', val: 2 },
-      { id: 'id2', val: 2 },
-    ],
-    ambience: [{ id: 'id4', val: 3 }],
-    service: [{ id: 'id4', val: 3 }],
-    valueForMoney: [{ id: 'id4', val: 3 }],
-    overall: [{ id: 'id4', val: 3 }],
-  };
+  // const ratings = [];
+  // const types = {
+  //   food: [
+  //     { id: 'id1', val: 2 },
+  //     { id: 'id2', val: 2 },
+  //   ],
+  //   ambience: [{ id: 'id4', val: 3 }],
+  //   service: [{ id: 'id4', val: 3 }],
+  //   valueForMoney: [{ id: 'id4', val: 3 }],
+  //   overall: [{ id: 'id4', val: 3 }],
+  // };
 
   const getRating = (type) => {
     var tot = 0;
-    props.types &&
-      props?.types[type]?.map((item) => {
+    // console.log(props?.ratings?.types[type][0].val)
+      props.ratings && props?.ratings?.types[type].map((item,index) => {
         tot += item.val;
+        // console.log(item.val);
       });
+      console.log(tot)
     return tot;
-  };
+  }; 
 
   // Object.keys(types).map(function (key, index) {
   //   console.log(key);
