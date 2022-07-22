@@ -1,7 +1,7 @@
 import { db } from '../../configs/firebaseConfig';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
-export default function UpdateRatingInCloud(props) {
+export default const UpdateRatingInCloud((props)=> {
   console.log(props);
   const docRef = doc(db, 'restaurants', props.id);
   updateDoc(docRef, {
@@ -37,4 +37,4 @@ export default function UpdateRatingInCloud(props) {
     .catch((err) => {
       console.log(err.message);
     });
-}
+})
