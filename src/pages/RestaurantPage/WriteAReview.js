@@ -1,11 +1,18 @@
 import { Button, Modal, Table, FloatingLabel, Form } from 'react-bootstrap';
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+} from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
 import { useNavigate, Link } from 'react-router-dom';
+import UpdateRatingInCloud from './UpdateRatingInCloud';
 
 function WriteAReviewModal(props) {
-  const { user } = AppState();
+  const { user, setAlert } = AppState();
   const [rate, setRate] = useState(0);
   const [overAll, setOverAll] = useState(0);
   const [rates, setRates] = useState({
@@ -15,6 +22,7 @@ function WriteAReviewModal(props) {
     ambience: 0,
     valueForMoney: 0,
   });
+  const reviewRef = useRef('');
 
   if (!user && props?.show) {
     return (
@@ -35,6 +43,19 @@ function WriteAReviewModal(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    const cloudProps = {
+      uId: user.id,
+      ratings: rates,
+      review: reviewRef,
+      onHide: props.onHide,
+    };
+    UpdateRatingInCloud(cloudProps);
+    // props.onHide();
+    // setAlert({
+    //   show: true,
+    //   variant: 'success',
+    //   msg: 'Thank you for the Review',
+    // });
   }
 
   return (
@@ -122,6 +143,7 @@ function WriteAReviewModal(props) {
           </Table>
           <FloatingLabel controlId="floatingTextarea2" label="Add your review">
             <Form.Control
+              ref={reviewRef}
               className="border-5 border-dark"
               as="textarea"
               placeholder="Leave a comment here"
