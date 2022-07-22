@@ -62,7 +62,7 @@ export default function DetailedRating(props) {
         t += item.val;
         // console.log(item.val);
       });
-      series[0].data[i] = t;
+      series[0].data[i] = t/props.ratings.types.food.length;
       console.log(series[0].data);
     }
   }
@@ -124,14 +124,12 @@ export default function DetailedRating(props) {
   });
   return (
     <div>
-      {props?.ratings && (
         <ReactApexChart
           options={options}
           series={series}
           type="bar"
           height={200}
         />
-      )}
     </div>
   );
 }
