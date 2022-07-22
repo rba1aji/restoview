@@ -55,18 +55,16 @@ export default function DetailedRating(props) {
     },
   ]);
 
-  
-
   function setCloudRates() {
     for (let i = 0; i < 5; i++) {
       var t = 0;
       props?.ratings?.types[series[0].data[i]]?.map((item) => {
         t += item.val;
       });
-      series[0].data[i] = (t/props.ratings.types.food.length).toFixed(1);
+      series[0].data[i] = parseFloat(t / props.ratings.types.food.length);
       console.log(series[0].data);
     }
-  }
+  } 
 
   useEffect(() => {
     props?.ratings && setCloudRates();
@@ -125,12 +123,12 @@ export default function DetailedRating(props) {
   });
   return (
     <div>
-        <ReactApexChart
-          options={options}
-          series={series}
-          type="bar"
-          height={200}
-        />
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="bar"
+        height={200}
+      />
     </div>
   );
 }
