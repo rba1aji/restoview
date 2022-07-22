@@ -75,7 +75,7 @@ function WriteAReviewModal(props) {
                           ratingValue={rate}
                           onClick={(rate) => {
                             rates[type] = rate;
-                            console.log(rates);
+                            console.log(rate);
                             overallSet();
                           }}
                           key={type}
