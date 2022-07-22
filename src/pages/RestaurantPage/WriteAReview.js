@@ -50,12 +50,13 @@ function WriteAReviewModal(props) {
       ratings: rates,
       review: reviewRef.current.value,
       onHide: props.onHide,
-      setAlert: setAlert({
-        show: true,
-        variant: 'success',
-        msg: 'Thank you for the Review',
-      }),
-      refresh: window.location.reload(),
+      setAlert: () => {
+        setAlert({
+          show: true,
+          variant: 'success',
+          msg: 'Thank you for the Review',
+        });
+      },
     };
     UpdateRatingInCloud(cloudProps);
   }
