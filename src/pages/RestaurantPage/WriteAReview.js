@@ -65,12 +65,14 @@ function WriteAReviewModal(props) {
                           ratingValue={rate}
                           onClick={(rate) => {
                             rates[type] = rate;
-                            var tot = 0;
+                            var ov = 0;
                             Object.keys(rates).map((type) => {
-                              if(type!=='overall') tot += rates[type];
+                              if(type!=='overall') ov += rates[type];
                             });
-                            rates['overall'] = (tot / 400) * 100;
-                            setOverAll(rates['overall']);
+                            ov = (ov / 4);
+                            console.log(ov)
+                            rates['overall']=ov
+                            setOverAll(ov);
                             console.log(rates);
                           }}
                           key={type}
