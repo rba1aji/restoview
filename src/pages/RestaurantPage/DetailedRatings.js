@@ -61,7 +61,7 @@ export default function DetailedRating(props) {
       props?.ratings?.types[series[0].data[i]]?.map((item) => {
         t += item.val;
       });
-      series[0].data[i] = parseInt(t / props.ratings.types.food.length);
+      series[0].data[i] = parseFloat((t / props.ratings.types.food.length).toFixed(1));
       console.log(series[0].data);
     }
   } 
