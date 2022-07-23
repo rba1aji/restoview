@@ -9,7 +9,7 @@ export default function StarRating(props) {
         readonly="true"
         size="25px"
       />
-      ({props?.ratings?.star}
+      ({props?.ratings?.star.toFixed(1)}
       /5)
     </span>
   );
