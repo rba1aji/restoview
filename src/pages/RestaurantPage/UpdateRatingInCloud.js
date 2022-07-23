@@ -13,6 +13,7 @@ export default function UpdateRatingInCloud(props) {
       val: props.review, 
       date: d.getDate() + '-' + d.getMonth() + '-' + d.getYear(),
     }),
+    'ratings.star':props.star,
     'ratings.types.ambience': arrayUnion({
       uId: props.uId,
       val: (props.ratings.ambience / 100) * 5,

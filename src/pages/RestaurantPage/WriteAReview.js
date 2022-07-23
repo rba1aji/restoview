@@ -47,6 +47,10 @@ function WriteAReviewModal(props) {
     const cloudProps = {
       id: props.id,
       uId: user.uid,
+      star:
+        (props.ratings.star * props.ratings.types.overall.length +
+          totrate * 0.05) /
+        (props.ratings.types.overall.length + 1),
       ratings: rates,
       totrating: totrate,
       review: reviewRef.current.value,
