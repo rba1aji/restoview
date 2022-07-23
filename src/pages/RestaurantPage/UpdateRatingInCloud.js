@@ -7,7 +7,7 @@ export default function UpdateRatingInCloud(props) {
   const d = new Date();
   console.log(props);
   const docRef = doc(db, 'restaurants', props.id);
-  updateDoc(docRef, {
+  updateDoc(docRef, { 
     reviews: arrayUnion({
       uId: props.uId,
       val: props.review, 

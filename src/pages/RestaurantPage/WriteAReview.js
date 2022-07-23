@@ -42,8 +42,7 @@ function WriteAReviewModal(props) {
   }
 
   function handleSubmit(event) {
-    console.log('handlesubmit');
-    event.preventDefault();
+    event.preventDefault(); 
     const cloudProps = {
       id: props.id,
       uId: user.uid,

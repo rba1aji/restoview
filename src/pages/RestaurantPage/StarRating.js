@@ -2,6 +2,7 @@ import React from 'react';
 import { Rating } from 'react-simple-star-rating';
 
 export default function StarRating(props) {
+  console.log('star',props?.ratings?.star)
   return (
     <span>
       <Rating
