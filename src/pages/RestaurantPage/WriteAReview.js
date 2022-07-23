@@ -49,10 +49,9 @@ function WriteAReviewModal(props) {
       uId: user.uid,
       star:
         (props.ratings.star * props.ratings.types.overall.length +
-          totrate * 0.05) /
+          (totrate/100*5 )) /
         (props.ratings.types.overall.length + 1),
       ratings: rates,
-      totrating: totrate,
       review: reviewRef.current.value,
       onHide: props.onHide,
       setAlert: () => {
