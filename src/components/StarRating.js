@@ -61,7 +61,7 @@ export default function StarRatingForCard(props) {
         />
       </Col>
       <Col>
-        <span className="text-right" style={{opacity:'70%'}}>
+        <span className="text-right" style={{ opacity: '70%' }}>
           views: {cloudData?.views}
         </span>
       </Col>
