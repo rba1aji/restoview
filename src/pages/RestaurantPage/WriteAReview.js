@@ -48,7 +48,7 @@ function WriteAReviewModal(props) {
       id: props.id,
       uId: user.uid,
       star:
-        (props.ratings.star * props.ratings.types.overall.length +
+        ((props.ratings.star * props.ratings.types.overall.length) +
           (totrate/100*5 )) /
         (props.ratings.types.overall.length + 1),
       ratings: rates,
@@ -57,7 +57,7 @@ function WriteAReviewModal(props) {
       setAlert: () => {
         setAlert({
           show: true,
-          variant: 'success',
+          variant: 'success', 
           msg: 'Thank you for the Review',
         });
       },
@@ -99,7 +99,7 @@ function WriteAReviewModal(props) {
                             });
                             tot /= 5;
                             setTotrate(tot);
-                            console.log(rates);
+                            console.log(totrate);
                           }}
                           key={type}
                           allowHalfIcon="true"
