@@ -1,7 +1,7 @@
 import { db } from '../../configs/firebaseConfig';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { AppState } from '../../reducers/AppContext';
-import React, { useCallback } from 'react';
+import Main from './index'
 
 export default function UpdateRatingInCloud(props) {
   const d = new Date();
@@ -40,6 +40,7 @@ export default function UpdateRatingInCloud(props) {
       console.log('success upload rating');
       props.onHide();
       props.setAlert();
+      main();
     })
     .catch((err) => {
       console.log(err.message);
