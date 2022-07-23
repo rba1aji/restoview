@@ -40,7 +40,7 @@ export default function UpdateRatingInCloud(props) {
       console.log(res);
       console.log('success upload rating');
       props.onHide();
-      // props.refresh();
+      props.refresh();
       props.setAlert();
     })
     .catch((err) => {

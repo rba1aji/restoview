@@ -9,11 +9,13 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
 import { Button } from 'react-bootstrap';
 import WriteAReview from './WriteAReview';
+import {AppState} from '../../reducers/AppContext';
 
 export default function RestaurantPage() {
   const { id } = useParams();
   const [APIData, setAPIData] = useState();
   const [cloudData, setCloudData] = useState();
+  const {refresh}=AppState();
   const docRef = doc(db, 'restaurants', `${id}`);
 
   const HandleUndefined = useCallback(() => {
@@ -77,7 +79,7 @@ export default function RestaurantPage() {
 
   useMemo(() => {
     APIData?.id && FetchDataFromCloud();
-  }, [APIData?.id]);
+  }, [APIData?.id,refresh]);
 
   useEffect(() => {
     UpdateViewsById(id);

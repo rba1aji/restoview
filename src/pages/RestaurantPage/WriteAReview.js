@@ -25,6 +25,7 @@ function WriteAReviewModal(props) {
   });
   const reviewRef = useRef('');
   // const navigate=useNavigate();
+  const {refresh,setRefresh} =AppState();
 
   if (!user && props?.show) { 
     return (
@@ -62,7 +63,7 @@ function WriteAReviewModal(props) {
           msg: 'Thank you for the Review',
         });
       },
-      // refresh: () => navigate(`/restaurant/${props.id}`),
+      refresh:setRefresh(refresh+1),
     };
     UpdateRatingInCloud(cloudProps);
   }
