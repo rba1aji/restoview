@@ -25,9 +25,9 @@ function WriteAReviewModal(props) {
   });
   const reviewRef = useRef('');
   // const navigate=useNavigate();
-  const {refresh,setRefresh} =AppState();
+  const { refresh, setRefresh } = AppState();
 
-  if (!user && props?.show) { 
+  if (!user && props?.show) {
     return (
       <Modal show={props.show} onHide={props.onHide} centered>
         <Modal.Header closeButton>
@@ -63,7 +63,7 @@ function WriteAReviewModal(props) {
           msg: 'Thank you for the Review',
         });
       },
-      refresh:setRefresh(refresh+1),
+      refresh: setRefresh(refresh + 1),
     };
     UpdateRatingInCloud(cloudProps);
   }
