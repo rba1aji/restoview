@@ -8,9 +8,8 @@ import React, {
 } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import UpdateRatingInCloud from './UpdateRatingInCloud';
-import { useNavigate } from 'react-router-dom';
 
 function WriteAReviewModal(props) {
   const { user, setAlert } = AppState();
@@ -24,7 +23,6 @@ function WriteAReviewModal(props) {
     valueForMoney: 0,
   });
   const reviewRef = useRef('');
-  // const navigate=useNavigate();
   const { refresh, setRefresh } = AppState();
 
   if (!user && props?.show) {
