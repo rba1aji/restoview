@@ -17,5 +17,21 @@ export function StarRating(props) {
 }
 
 export function ShowReviews(props) {
-  props.reviews
+  return (
+    <div>
+      <h5
+        className="font1"
+        style={{
+          marginLeft: '5vw',
+        }}
+      >
+        Reviews
+      </h5>
+      <ul>
+        {props?.reviews?.map((review) => {
+          return <li>{review.val}</li>;
+        })}
+      </ul>
+    </div>
+  );
 }
