@@ -1,12 +1,12 @@
 import React from 'react';
 import { Rating } from 'react-simple-star-rating';
 
-export default function StarRating(props) {
+export function StarRating(props) {
   // console.log('star',props?.ratings?.star)
   return (
     <span>
       <Rating
-        ratingValue={props?.ratings?.star*100/5}
+        ratingValue={(props?.ratings?.star * 100) / 5}
         readonly="true"
         size="25px"
       />
@@ -14,4 +14,8 @@ export default function StarRating(props) {
       /5)
     </span>
   );
+}
+
+export function ShowReviews(props) {
+  props.reviews
 }
