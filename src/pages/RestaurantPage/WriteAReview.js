@@ -10,6 +10,7 @@ import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
 import { useNavigate, Link } from 'react-router-dom';
 import UpdateRatingInCloud from './UpdateRatingInCloud';
+import { useNavigate } from 'react-router-dom';
 
 function WriteAReviewModal(props) {
   const { user, setAlert } = AppState();
@@ -23,8 +24,9 @@ function WriteAReviewModal(props) {
     valueForMoney: 0,
   });
   const reviewRef = useRef('');
+  // const navigate=useNavigate();
 
-  if (!user && props?.show) {
+  if (!user && props?.show) { 
     return (
       <Modal show={props.show} onHide={props.onHide} centered>
         <Modal.Header closeButton>
@@ -42,13 +44,13 @@ function WriteAReviewModal(props) {
   }
 
   function handleSubmit(event) {
-    event.preventDefault(); 
+    event.preventDefault();
     const cloudProps = {
       id: props.id,
       uId: user.uid,
       star:
-        ((props.ratings.star * props.ratings.types.overall.length) +
-          (totrate/100*5 )) /
+        (props.ratings.star * props.ratings.types.overall.length +
+          (totrate / 100) * 5) /
         (props.ratings.types.overall.length + 1),
       ratings: rates,
       review: reviewRef.current.value,
@@ -56,10 +58,11 @@ function WriteAReviewModal(props) {
       setAlert: () => {
         setAlert({
           show: true,
-          variant: 'success', 
+          variant: 'success',
           msg: 'Thank you for the Review',
         });
       },
+      // refresh: () => navigate(`/restaurant/${props.id}`),
     };
     UpdateRatingInCloud(cloudProps);
   }
