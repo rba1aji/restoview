@@ -98,7 +98,7 @@ function WriteAReviewModal(props) {
                             });
                             tot /= 5;
                             setTotrate(tot);
-                            console.log(totrate);
+                            // console.log(totrate);
                           }}
                           key={type}
                           allowHalfIcon="true"
@@ -136,7 +136,7 @@ function WriteAReviewModal(props) {
                       });
                       tot /= 5;
                       setTotrate(tot);
-                      console.log(rates);
+                      // console.log(rates);
                     }}
                     allowHalfIcon="true"
                     size="30px"
@@ -162,7 +162,7 @@ function WriteAReviewModal(props) {
               as="textarea"
               placeholder="Leave a comment here"
               style={{ height: '100px', marginBottom: '20px' }}
-              // required
+              required
             />
           </FloatingLabel>
           <div className="text-center ">

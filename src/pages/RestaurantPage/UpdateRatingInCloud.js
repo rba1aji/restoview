@@ -5,7 +5,7 @@ import React, { useCallback } from 'react';
 
 export default function UpdateRatingInCloud(props) {
   const d = new Date();
-  console.log(props);
+  // console.log(props);
   const docRef = doc(db, 'restaurants', props.id);
   updateDoc(docRef, { 
     reviews: arrayUnion({
