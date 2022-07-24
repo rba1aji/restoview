@@ -184,7 +184,7 @@ export default function WriteAReview(props) {
 
   return (
     <>
-      <div className="text-center">
+      <div className="text-center m-0 p-0">
         <Button
           className="outline-5"
           variant="dark"
