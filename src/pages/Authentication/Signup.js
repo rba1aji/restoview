@@ -6,6 +6,7 @@ import { auth } from '../../configs/firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default function Signup() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -58,13 +59,24 @@ export default function Signup() {
     <div style={{ minHeight: '60vh' }} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto"
-        style={{ width: '18rem' }}
+        style={{ width: '18.5rem' }}
         onSubmit={HandleSignUp}
       >
         <h1>Sign Up</h1>
         <Link to="/auth/login">
           <p className="text-center">Login here</p>
         </Link>
+
+        <Form.Group className="mb-3" >
+          <Form.Label>Your Name</Form.Label>
+          <Form.Control
+            className="border-dark"
+            type="text"
+            placeholder="Full name"
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -106,7 +118,7 @@ export default function Signup() {
             variant="dark"
             type="submit"
           >
-            Sign Up
+            Sign Up 🍕
           </Button>
         </div>
       </Form>
