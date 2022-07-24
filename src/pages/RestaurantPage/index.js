@@ -155,7 +155,7 @@ export default function RestaurantPage() {
         hotelName={APIData?.poi?.name}
         reviews={cloudData?.reviews}
       />
-      <ContactAndAddress />
+      <ContactAndAddress phone={APIData?.poi.phone} />
       <br />
     </>
   );
