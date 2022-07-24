@@ -1,17 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 import { AppState } from '../../reducers/AppContext';
 import { auth } from '../../configs/firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 export default function Signup() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const regEx = '^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$';
-  const { setAlert, setLoading } = AppState();
+  const { setAlert, setLoading, user } = AppState();
   const navigate = useNavigate();
+
+  const updateName = useCallback(() => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+    })
+      .then(() => {
+        setAlert({
+          show: true,
+          variant: 'success',
+          msg: `Welcome ${name}`,
+        });
+        setLoading(false);
+        navigate(-2);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  });
 
   function HandleSignUp(e) {
     setLoading(true);
@@ -35,13 +54,7 @@ export default function Signup() {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          setAlert({
-            show: true,
-            variant: 'success',
-            msg: `SignUp successful! Welcome ${user.email}`,
-          });
-          setLoading(false);
-          navigate(-1);
+          user && updateName();
         })
         .catch((error) => {
           setAlert({
@@ -58,13 +71,24 @@ export default function Signup() {
     <div style={{ minHeight: '60vh' }} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto"
-        style={{ width: '18rem' }}
+        style={{ width: '18.5rem' }}
         onSubmit={HandleSignUp}
       >
         <h1>Sign Up</h1>
         <Link to="/auth/login">
           <p className="text-center">Login here</p>
         </Link>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Your Name</Form.Label>
+          <Form.Control
+            className="border-dark"
+            type="text"
+            placeholder="Full name"
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -106,7 +130,7 @@ export default function Signup() {
             variant="dark"
             type="submit"
           >
-            Sign Up
+            Sign Up 🍕
           </Button>
         </div>
       </Form>

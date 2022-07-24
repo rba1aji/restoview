@@ -8,13 +8,13 @@ import React, {
 } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { AppState } from '../../reducers/AppContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import UpdateRatingInCloud from './UpdateRatingInCloud';
 
 function WriteAReviewModal(props) {
   const { user, setAlert } = AppState();
   const [rate, setRate] = useState(0);
-  const [overAll, setOverAll] = useState(0);
+  const [totrate, setTotrate] = useState(0);
   const [rates, setRates] = useState({
     overall: 0,
     food: 0,
@@ -23,6 +23,7 @@ function WriteAReviewModal(props) {
     valueForMoney: 0,
   });
   const reviewRef = useRef('');
+  const { refresh, setRefresh } = AppState();
 
   if (!user && props?.show) {
     return (
@@ -42,11 +43,15 @@ function WriteAReviewModal(props) {
   }
 
   function handleSubmit(event) {
-    console.log('handlesubmit');
     event.preventDefault();
     const cloudProps = {
       id: props.id,
+      name: user.displayName,
       uId: user.uid,
+      star:
+        (props.ratings.star * props.ratings.types.overall.length +
+          (totrate / 100) * 5) /
+        (props.ratings.types.overall.length + 1),
       ratings: rates,
       review: reviewRef.current.value,
       onHide: props.onHide,
@@ -57,8 +62,9 @@ function WriteAReviewModal(props) {
           msg: 'Thank you for the Review',
         });
       },
+      refresh: setRefresh(refresh + 1),
     };
-    UpdateRatingInCloud(cloudProps);
+    cloudProps.ratings && UpdateRatingInCloud(cloudProps);
   }
 
   return (
@@ -82,23 +88,20 @@ function WriteAReviewModal(props) {
               {props?.ratings?.types &&
                 Object.keys(props.ratings.types)?.map(function (type, index) {
                   return type !== 'overall' ? (
-                    <tr key={index}>
-                      <td className="border border-dark p-3" key={index}>
-                        {type}
-                      </td>
-                      <td key={index} className="border border-dark">
+                    <tr>
+                      <td className="border border-dark p-3">{type}</td>
+                      <td className="border border-dark">
                         <Rating
                           ratingValue={rate}
                           onClick={(rate) => {
                             rates[type] = rate;
-                            var ov = 0;
+                            var tot = 0;
                             Object.keys(rates).map((type) => {
-                              if (type != 'overall') ov += rates[type];
+                              tot += rates[type];
                             });
-                            ov = ov / 4;
-                            rates['overall'] = ov;
-                            setOverAll(rates['overall']);
-                            // console.log(rates);
+                            tot /= 5;
+                            setTotrate(tot);
+                            // console.log(totrate);
                           }}
                           key={type}
                           allowHalfIcon="true"
@@ -126,9 +129,18 @@ function WriteAReviewModal(props) {
                 <td className="border border-dark p-3">overall</td>
                 <td className="border border-dark">
                   <Rating
-                    readonly
                     // ratingValue={rates['overall']}
-                    ratingValue={overAll}
+                    ratingValue={rate}
+                    onClick={(rate) => {
+                      rates.overall = rate;
+                      var tot = 0;
+                      Object.keys(rates).map((type) => {
+                        tot += rates[type];
+                      });
+                      tot /= 5;
+                      setTotrate(tot);
+                      // console.log(rates);
+                    }}
                     allowHalfIcon="true"
                     size="30px"
                     showTooltip="true"

@@ -9,7 +9,7 @@ export default function TheAlert() {
   function HandleClose() {
     setAlert({ show: false, variant: '', msg: '' });
   }
-  alert.show && setTimeout(HandleClose, 2500);
+  alert.show && setTimeout(HandleClose, 3000);
 
   return (
     <div

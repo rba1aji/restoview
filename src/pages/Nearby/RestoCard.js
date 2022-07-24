@@ -39,6 +39,7 @@ export default function RestoCard(props) {
           <Col>
             {props?.item?.phone && (
               <Button
+                size="sm"
                 variant="secondary"
                 as="a"
                 href={`tel:${props?.item?.phone}`}
@@ -49,6 +50,7 @@ export default function RestoCard(props) {
           </Col>
           <Col>
             <Button
+              size="sm"
               variant="secondary"
               as="a"
               href={`https://www.swiggy.com/search?query=${props?.item?.name.replaceAll(
@@ -62,6 +64,7 @@ export default function RestoCard(props) {
           </Col>
           <Col>
             <Button
+              size="sm"
               variant="secondary"
               as={Link}
               to={`/restaurant/${props?.item?.id}`}

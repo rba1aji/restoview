@@ -26,7 +26,7 @@ export default function Login() {
         setAlert({
           show: true,
           variant: 'success',
-          msg: `Welcome back ${user.email}`,
+          msg: `Welcome back ${user.displayName}`,
         });
         setLoading(false);
         Back();
@@ -48,7 +48,7 @@ export default function Login() {
     >
       <Form
         className="d-flex-inline mx-auto justify-content-center"
-        style={{ width: '18rem' }}
+        style={{ width: '18.5rem' }}
         onSubmit={HandleLogin}
       >
         <h1>Login</h1>

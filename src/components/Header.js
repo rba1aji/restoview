@@ -18,7 +18,7 @@ export default function Header() {
     setAlert({
       show: true,
       variant: 'success',
-      msg: `Sad to see you go Bye ${user.email}`,
+      msg: `Bye.. ${user.displayName}`,
     });
     navigate(-1);
     return;

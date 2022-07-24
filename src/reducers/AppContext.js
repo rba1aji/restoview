@@ -18,15 +18,14 @@ const AppContextProvider = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        // console.log(user);
+        console.log(user);
       } else {
         setUser(null);
       }
     });
   }, []);
 
-  const [APIData,setAPIData]=useState(null);
-  const [cloudData,setCloudData]=useState(null);
+  const [refresh,setRefresh]=useState(0);
 
   return (
     <AppContext.Provider
@@ -37,10 +36,8 @@ const AppContextProvider = ({ children }) => {
         setAlert,
         user,
         setUser,
-        cloudData,
-        setCloudData,
-        APIData,
-        setAPIData,
+        refresh,
+        setRefresh,
       }}
     >
       {children}

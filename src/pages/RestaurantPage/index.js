@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import StarRating from './StarRating';
+import {StarRating, ShowReviews} from './components';
 import DetailedRatings from './DetailedRatings';
 import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
@@ -9,11 +9,14 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
 import { Button } from 'react-bootstrap';
 import WriteAReview from './WriteAReview';
+import { AppState } from '../../reducers/AppContext';
+// import ShowReviews from '../'
 
 export default function RestaurantPage() {
   const { id } = useParams();
   const [APIData, setAPIData] = useState();
   const [cloudData, setCloudData] = useState();
+  const { refresh, loading, setLoading } = AppState();
   const docRef = doc(db, 'restaurants', `${id}`);
 
   const HandleUndefined = useCallback(() => {
@@ -40,6 +43,7 @@ export default function RestaurantPage() {
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   });
 
@@ -49,6 +53,7 @@ export default function RestaurantPage() {
         if (res.data()) {
           setCloudData(res.data());
           console.log(res.data());
+          setLoading(false);
         } else {
           console.log('undefined', res.data());
           HandleUndefined();
@@ -56,6 +61,7 @@ export default function RestaurantPage() {
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   });
 
@@ -65,26 +71,30 @@ export default function RestaurantPage() {
       .then((res) => {
         setAPIData(res.data.results[0]);
         console.log(res.data.results[0]);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   });
 
   useEffect(() => {
+    setLoading(true);
     FetchDataFromAPI();
   }, []);
 
   useMemo(() => {
+    setLoading(true);
     APIData?.id && FetchDataFromCloud();
-  }, [APIData?.id]);
+  }, [APIData?.id, refresh]);
 
   useEffect(() => {
     UpdateViewsById(id);
   }, []);
 
-  return !APIData ? (
-    <div>Loading...</div>
+  return !APIData && !loading ? (
+    <div>error not available</div>
   ) : (
     <>
       <h1
@@ -122,6 +132,8 @@ export default function RestaurantPage() {
           {`There aren't enough food, service, value or ambience ratings for ${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
         </p>
       )}
+      <br/>
+      <ShowReviews reviews={cloudData?.reviews}/>
     </>
   );
 }
