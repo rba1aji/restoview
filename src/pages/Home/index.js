@@ -7,7 +7,7 @@ function MobileComponent() {
   return (
     <div>
       <div style={{ marginLeft: '6vw', marginRight: '6vw', marginTop: '2vh' }}>
-        <Search />
+        <Search autoFocus={false} />
       </div>
       <div className="mobBanner1Container">
         <img
@@ -50,7 +50,7 @@ function DesktopComponent() {
         </tr>
         <tr className="border-0">
           <td style={{ paddingLeft: '40%', paddingRight: '3%' }}>
-            <Search />
+            <Search autoFocus={false} />
           </td>
         </tr>
       </Table>

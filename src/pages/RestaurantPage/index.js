@@ -105,7 +105,7 @@ export default function RestaurantPage() {
         {APIData?.poi?.name}
       </h1>
       <p style={{ marginLeft: '5vw', marginRight: '5vw' }}>
-        {`${APIData?.poi.name}, one of the good restaurants located in ${APIData?.address.countrySecondarySubdivision}, ${APIData?.address.countrySubdivision}. Reviewed by ${cloudData?.ratings.types.food.length} people. `}
+        {`${APIData?.poi.name}, one of the restaurants located in ${APIData?.address.countrySecondarySubdivision}, ${APIData?.address.countrySubdivision}. Reviewed by ${cloudData?.ratings.types.food.length} people. `}
         {APIData?.poi.categories?.map((tag) => {
           return <span>{tag} </span>;
         })}
@@ -144,7 +144,7 @@ export default function RestaurantPage() {
       >
         <StarRating ratings={cloudData?.ratings} />
         <DetailedRatings ratings={cloudData?.ratings} />
-      </div> 
+      </div>
       <WriteAReview
         hotelName={APIData?.poi.name}
         ratings={cloudData?.ratings}

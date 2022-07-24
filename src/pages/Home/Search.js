@@ -7,7 +7,7 @@ import { MdSavedSearch } from 'react-icons/md';
 import API_KEY from '../../reducers/API_KEY';
 import { Link } from 'react-router-dom';
 import { Card, Container } from 'react-bootstrap';
-export default function Search() {
+export default function Search(props) {
   // console.log(process.env);
 
   const searchInputRef = useRef('');
@@ -74,7 +74,7 @@ export default function Search() {
             <span className="h2 m-0">🍳</span>
           </InputGroup.Text>
           <FormControl
-            // autoFocus
+            autoFocus={props.autoFocus}
             size="lg"
             placeholder="Search for Restaurants "
             ref={searchInputRef}
