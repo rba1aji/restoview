@@ -31,7 +31,7 @@ export default function ShowReviews(props) {
             >
               {review.uName}{' '}
               <span style={{ fontSize: '60%' }}>
-                {review.rate}
+                {review.rate*0.05}
                 {/* <Rating ratingValue="70" fillColor='black' readonly="true" size="15px" /> */}
               </span>
             </Card.Text>
