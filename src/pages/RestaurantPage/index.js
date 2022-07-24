@@ -144,8 +144,7 @@ export default function RestaurantPage() {
       >
         <StarRating ratings={cloudData?.ratings} />
         <DetailedRatings ratings={cloudData?.ratings} />
-      </div>
-      <br />
+      </div> 
       <WriteAReview
         hotelName={APIData?.poi.name}
         ratings={cloudData?.ratings}

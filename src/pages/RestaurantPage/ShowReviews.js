@@ -25,7 +25,7 @@ export default function ShowReviews(props) {
       {props?.reviews?.map((review) => {
         return (
           <Card
-            className="p-2 mb-3"
+            className="p-2 my-3 "
             // style={{marginLeft:'5vw', marginRight:'5vw'}}
           >
             <Card.Text
@@ -39,7 +39,7 @@ export default function ShowReviews(props) {
               </span>
             </Card.Text>
             <span className="ps-2" style={{ fontSize: '80%' }}>
-              {review.rate * 0.05}{' '}
+              {parseFloat(review.rate * 0.05).toFixed(1)}{' '}
               <span>
                 <Rating
                   className="pb-1"
