@@ -188,9 +188,9 @@ export default function WriteAReview(props) {
         <Button
           className="outline-5"
           variant="dark"
-          style={{ width: '80vw' }}
+          style={{ width: '85vw' }}
           onClick={() => {
-            setModalShow(true);
+            setModalShow(true); 
           }}
         >
           Write A Review

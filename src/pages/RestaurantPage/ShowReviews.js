@@ -10,7 +10,7 @@ export default function ShowReviews(props) {
         marginRight: '5vw',
       }}
     >
-      <h4 className="font2">
+      <h4 className="font2 mt-2">
         Reviews
         <span style={{ fontWeight: 'normal', fontSize: '12px' }}>
           {' '}
@@ -43,7 +43,7 @@ export default function ShowReviews(props) {
               <span>
                 <Rating
                   className="pb-1"
-                  ratingValue="70"
+                  ratingValue={review.rate}
                   readonly="true"
                   size="15px"
                 />
