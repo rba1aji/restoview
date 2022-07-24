@@ -62,7 +62,7 @@ function WriteAReviewModal(props) {
           msg: 'Thank you for the Review',
         });
       },
-      refresh: setRefresh(refresh + 1),
+      refresh: ()=>setRefresh(refresh + 1),
     };
     cloudProps.ratings && UpdateRatingInCloud(cloudProps);
   }

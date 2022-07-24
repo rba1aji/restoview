@@ -1,5 +1,6 @@
 import React from 'react';
 import { Rating } from 'react-simple-star-rating';
+import { Card } from 'react-bootstrap';
 
 export function StarRating(props) {
   // console.log('star',props?.ratings?.star)
@@ -18,7 +19,7 @@ export function StarRating(props) {
 
 export function ShowReviews(props) {
   return (
-    <div>
+    <>
       <h5
         className="font1"
         style={{
@@ -27,11 +28,21 @@ export function ShowReviews(props) {
       >
         Reviews
       </h5>
-      <ul>
-        {props?.reviews?.map((review) => {
-          return <li>{review.val}</li>;
-        })}
-      </ul>
-    </div>
+
+      {props?.reviews?.map((review) => {
+        return (
+          <Card
+            style={{
+              marginLeft: '5vw',
+              // border:0,
+            }}
+          >
+            <Card.Title className='m-0'>{review.name}</Card.Title>
+            <Card.Text>{review.val}</Card.Text>
+          </Card>
+        );
+      })}
+      <br/><br/><br/>
+    </>
   );
 }
