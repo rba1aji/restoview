@@ -11,7 +11,7 @@ export default function StarRating(props) {
         size="25px"
       />
       ({props?.ratings?.star.toFixed(1)}
-      /5)
+      /5.0)
     </span>
   );
 }
