@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { Rating } from 'react-simple-star-rating';
 
 export default function ShowReviews(props) {
   return (
@@ -24,8 +25,15 @@ export default function ShowReviews(props) {
       {props?.reviews?.map((review) => {
         return (
           <Card className="p-2 mb-3">
-            <Card.Text className="mb-0" style={{ fontWeight: '500' }}>
-              {review.uName}
+            <Card.Text
+              className="mb-0"
+              style={{ fontWeight: '500', fontSize: '120%' }}
+            >
+              {review.uName}{' '}
+              <span style={{ fontSize: '60%' }}>
+                {review.rate}
+                {/* <Rating ratingValue="70" fillColor='black' readonly="true" size="15px" /> */}
+              </span>
             </Card.Text>
             <Card.Text className="ps-3">{review.val}</Card.Text>
           </Card>
