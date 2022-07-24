@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import {StarRating, ShowReviews} from './components';
+import { StarRating, ShowReviews } from './components';
 import DetailedRatings from './DetailedRatings';
 import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
@@ -109,7 +109,9 @@ export default function RestaurantPage() {
         }}
       >
         Ratings
-        <span style={{fontWeight:'normal'}}>({cloudData?.ratings?.types?.overall?.length}) </span>
+        <span style={{ fontWeight: 'normal', fontSize: '12px' }}>
+          {''}({cloudData?.ratings?.types?.overall?.length})
+        </span>
       </h5>
       {cloudData?.ratings?.types?.overall?.length < 1 && (
         <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
@@ -121,7 +123,7 @@ export default function RestaurantPage() {
         style={{
           display: 'flex',
           flexWrap: 'wrap',
-          justifyContent: 'center', 
+          justifyContent: 'center',
           marginLeft: '6vw',
           marginRight: '6vw',
           paddingTop: '2vh',
@@ -131,9 +133,16 @@ export default function RestaurantPage() {
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
       <br />
-      <WriteAReview hotelName={APIData?.poi.name} ratings={cloudData?.ratings} id={id} />
-      <br/>
-      <ShowReviews hotelName={APIData?.poi?.name} reviews={cloudData?.reviews}/>
+      <WriteAReview
+        hotelName={APIData?.poi.name}
+        ratings={cloudData?.ratings}
+        id={id}
+      />
+      <br />
+      <ShowReviews
+        hotelName={APIData?.poi?.name}
+        reviews={cloudData?.reviews}
+      />
     </>
   );
 }
