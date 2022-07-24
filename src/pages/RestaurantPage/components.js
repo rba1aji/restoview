@@ -34,6 +34,7 @@ export function ShowReviews(props) {
           <Card
             style={{
               marginLeft: '5vw',
+              marginRight: '5vw',
               // border:0
               padding:5,
             }}
