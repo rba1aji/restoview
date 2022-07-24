@@ -9,9 +9,9 @@ export default function StarRating(props) {
         ratingValue={(props?.ratings?.star * 100) / 5}
         readonly="true"
         size="25px"
-      />
+      />{' '}
       ({props?.ratings?.star.toFixed(1)}
-      /5.0)
+      /5)
     </span>
   );
 }
