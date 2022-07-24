@@ -36,10 +36,11 @@ export function ShowReviews(props) {
           <Card
             style={{
               // border:0
-              padding:5,
+              padding:10,
+              marginBottom:'15px',
             }}
           >
-            <Card.Title className='m-0 font-weight-normal'>{review.name}</Card.Title>
+            <Card.Title className='m-0 font-weight-normal'>{review.uName}</Card.Title>
             <Card.Text className='ps-3'>{review.val}</Card.Text>
           </Card>
         );
