@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Row, Col, Button, Form } from 'react-bootstrap';
 import { AppState } from '../../reducers/AppContext';
 import { auth } from '../../configs/firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 export default function Signup() {
   const [name, setName] = useState('');
@@ -11,8 +11,26 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const regEx = '^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$';
-  const { setAlert, setLoading } = AppState();
+  const { setAlert, setLoading,user } = AppState();
   const navigate = useNavigate();
+
+  const updateName = useCallback(() => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+    })
+      .then(() => {
+        setAlert({
+          show: true,
+          variant: 'success',
+          msg: `SignUp successful! Welcome ${name}`,
+        });
+        setLoading(false);
+        navigate(-2);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  });
 
   function HandleSignUp(e) {
     setLoading(true);
@@ -36,13 +54,7 @@ export default function Signup() {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          setAlert({
-            show: true,
-            variant: 'success',
-            msg: `SignUp successful! Welcome ${user.email}`,
-          });
-          setLoading(false);
-          navigate(-1);
+          user && updateName();
         })
         .catch((error) => {
           setAlert({
@@ -67,7 +79,7 @@ export default function Signup() {
           <p className="text-center">Login here</p>
         </Link>
 
-        <Form.Group className="mb-3" >
+        <Form.Group className="mb-3">
           <Form.Label>Your Name</Form.Label>
           <Form.Control
             className="border-dark"
