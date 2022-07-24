@@ -104,10 +104,11 @@ export default function RestaurantPage() {
         {APIData?.poi?.name}
       </h1>
       <p style={{ marginLeft: '5vw' }}>
-        {`${APIData?.poi.name}, one of the good restaurants located in ${APIData?.address.countrySecondarySubdivision}, ${APIData?.address.countrySubdivision}. Reviewed by ${cloudData?.ratings.types.food.length} people.`}
+        {`${APIData?.poi.name}, one of the good restaurants located in ${APIData?.address.countrySecondarySubdivision}, ${APIData?.address.countrySubdivision}. Reviewed by ${cloudData?.ratings.types.food.length} people. `}
         {APIData?.poi.categories?.map((tag) => {
-          return <span>{tag}{'</span>;
+          return <span>{tag} </span>;
         })}
+        {`. Having ${cloudData?.ratings?.star.toFixed(1)} star rating. Improve this listening by adding your review.`}
       </p>
       <h4
         className="font2"
