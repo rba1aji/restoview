@@ -33,7 +33,7 @@ export default function ShowReviews(props) {
               style={{ fontWeight: '500', fontSize: '120%' }}
             >
               {review.uName}
-              <span style={{ fontSize: '70%' }}>
+              <span className=" pb-4" style={{ fontSize: '70%',opacity:'50%' }}>
                 {' on '}
                 {review.date}
               </span>
