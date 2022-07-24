@@ -62,7 +62,7 @@ function WriteAReviewModal(props) {
           msg: 'Thank you for the Review',
         });
       },
-      refresh: setRefresh(refresh + 1),
+      refresh: () => setRefresh(refresh + 1),
     };
     cloudProps.ratings && UpdateRatingInCloud(cloudProps);
   }
@@ -165,7 +165,7 @@ function WriteAReviewModal(props) {
               as="textarea"
               placeholder="Leave a comment here"
               style={{ height: '100px', marginBottom: '20px' }}
-              // required
+              required
             />
           </FloatingLabel>
           <div className="text-center ">

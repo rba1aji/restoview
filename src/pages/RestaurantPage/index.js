@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import {StarRating, ShowReviews} from './components';
+import StarRating from './StarRating';
+import ShowReviews from './ShowReviews';
 import DetailedRatings from './DetailedRatings';
 import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import WriteAReview from './WriteAReview';
 import { AppState } from '../../reducers/AppContext';
+import ContactAndAddress from './ContactAddress';
 // import ShowReviews from '../'
 
 export default function RestaurantPage() {
@@ -102,16 +104,35 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
-      <h5
-        className="font1"
+      <p style={{ marginLeft: '5vw', marginRight: '5vw' }}>
+        {`${APIData?.poi.name}, one of the good restaurants located in ${APIData?.address.countrySecondarySubdivision}, ${APIData?.address.countrySubdivision}. Reviewed by ${cloudData?.ratings.types.food.length} people. `}
+        {APIData?.poi.categories?.map((tag) => {
+          return <span>{tag} </span>;
+        })}
+        {`. Having ${cloudData?.ratings?.star.toFixed(
+          1
+        )} star rating. Improve this listening by adding your review.`}
+      </p>
+      <h4
+        className="font2"
         style={{
           marginLeft: '5vw',
+          marginRight: '5vw',
         }}
       >
-        Ratings({cloudData?.ratings?.types?.overall?.length})
-      </h5>
+        Ratings
+        <span style={{ fontWeight: 'normal', fontSize: '12px' }}>
+          {' '}
+          ({cloudData?.ratings?.types?.overall?.length})
+        </span>
+      </h4>
+      {cloudData?.ratings?.types?.overall?.length < 1 && (
+        <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
+          {`There aren't enough food, service, value or ambience ratings for ${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
+        </p>
+      )}
       <div
-        className="bg-light border"
+        // className="bg-light border"
         style={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -125,15 +146,18 @@ export default function RestaurantPage() {
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
       <br />
-      <WriteAReview ratings={cloudData?.ratings} id={id} />
+      <WriteAReview
+        hotelName={APIData?.poi.name}
+        ratings={cloudData?.ratings}
+        id={id}
+      />
       <br />
-      {cloudData?.ratings?.types?.overall?.length < 3 && (
-        <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
-          {`There aren't enough food, service, value or ambience ratings for ${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
-        </p>
-      )}
-      <br/>
-      <ShowReviews reviews={cloudData?.reviews}/>
+      <ShowReviews
+        hotelName={APIData?.poi?.name}
+        reviews={cloudData?.reviews}
+      />
+      <ContactAndAddress />
+      <br />
     </>
   );
 }
