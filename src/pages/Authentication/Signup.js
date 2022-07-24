@@ -11,7 +11,7 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const regEx = '^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$';
-  const { setAlert, setLoading,user } = AppState();
+  const { setAlert, setLoading, user } = AppState();
   const navigate = useNavigate();
 
   const updateName = useCallback(() => {
@@ -22,7 +22,7 @@ export default function Signup() {
         setAlert({
           show: true,
           variant: 'success',
-          msg: `SignUp successful! Welcome ${name}`,
+          msg: `Welcome ${name}`,
         });
         setLoading(false);
         navigate(-2);
