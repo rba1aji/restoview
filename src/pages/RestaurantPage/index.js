@@ -8,9 +8,10 @@ import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import WriteAReview from './WriteAReview';
 import { AppState } from '../../reducers/AppContext';
+import ContactAndAddress from './ContactAddress';
 // import ShowReviews from '../'
 
 export default function RestaurantPage() {
@@ -103,17 +104,20 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
-      <p style={{ marginLeft: '5vw' }}>
+      <p style={{ marginLeft: '5vw', marginRight: '5vw' }}>
         {`${APIData?.poi.name}, one of the good restaurants located in ${APIData?.address.countrySecondarySubdivision}, ${APIData?.address.countrySubdivision}. Reviewed by ${cloudData?.ratings.types.food.length} people. `}
         {APIData?.poi.categories?.map((tag) => {
           return <span>{tag} </span>;
         })}
-        {`. Having ${cloudData?.ratings?.star.toFixed(1)} star rating. Improve this listening by adding your review.`}
+        {`. Having ${cloudData?.ratings?.star.toFixed(
+          1
+        )} star rating. Improve this listening by adding your review.`}
       </p>
       <h4
         className="font2"
         style={{
           marginLeft: '5vw',
+          marginRight: '5vw',
         }}
       >
         Ratings
@@ -152,6 +156,8 @@ export default function RestaurantPage() {
         hotelName={APIData?.poi?.name}
         reviews={cloudData?.reviews}
       />
+      <ContactAndAddress />
+      <br />
     </>
   );
 }

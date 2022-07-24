@@ -24,7 +24,9 @@ export default function ShowReviews(props) {
 
       {props?.reviews?.map((review) => {
         return (
-          <Card className="p-2 mb-3">
+          <Card className="p-2 mb-3 ms-4 me-4" 
+          // style={{marginLeft:'5vw', marginRight:'5vw'}}
+          >
             <Card.Text
               className="mb-0"
               style={{ fontWeight: '500', fontSize: '120%' }}
@@ -39,9 +41,6 @@ export default function ShowReviews(props) {
           </Card>
         );
       })}
-      <br />
-      <br />
-      <br />
     </div>
   );
 }
