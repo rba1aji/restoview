@@ -108,7 +108,8 @@ export default function RestaurantPage() {
           marginLeft: '5vw',
         }}
       >
-        Ratings({cloudData?.ratings?.types?.overall?.length})
+        Ratings
+        <span style={{fontWeight:'normal'}}>({cloudData?.ratings?.types?.overall?.length}) </span>
       </h5>
       {cloudData?.ratings?.types?.overall?.length < 1 && (
         <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>

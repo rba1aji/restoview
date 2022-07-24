@@ -20,32 +20,30 @@ export function StarRating(props) {
 export function ShowReviews(props) {
   return (
     <div
-    style={{
-      marginLeft: '5vw',
-      marginRight: '5vw',}}>
-      <h5
-        className="font1"
-      >
-        Reviews
-      </h5>
+      style={{
+        marginLeft: '5vw',
+        marginRight: '5vw',
+      }}
+    >
+      <h5 className="font1">Reviews</h5>
 
-      {props.reviews?.length===0&& <p>{`There aren't enough reviews for ${props.hotelName}, India yet. Be one of the first to write a review!`}</p>}
+      {props.reviews?.length<1 && (
+        <p>{`There aren't enough reviews for ${props.hotelName}, India yet. Be one of the first to write a review!`}</p>
+      )}
 
       {props?.reviews?.map((review) => {
         return (
-          <Card
-            style={{
-              // border:0
-              padding:10,
-              marginBottom:'15px',
-            }}
-          >
-            <Card.Title className='m-0 font-weight-normal'>{review.uName}</Card.Title>
-            <Card.Text className='ps-3'>{review.val}</Card.Text>
+          <Card className="p-2 mb-3">
+            <Card.Text className="mb-0" style={{ fontWeight: '500' }}>
+              {review.uName}
+            </Card.Text>
+            <Card.Text className="ps-3">{review.val}</Card.Text>
           </Card>
         );
       })}
-      <br/><br/><br/>
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
