@@ -111,7 +111,15 @@ export default function RestaurantPage() {
         })}
         {`. Having ${cloudData?.ratings?.star.toFixed(
           1
-        )} star rating. Improve this listening by adding your review.`}
+        )} star rating. Improve this listening by adding `}
+          <WriteAReview
+          className='py-0 px-2 mb-0'
+            variant="outline-dark"
+            placeHolder="your review"
+            hotelName={APIData?.poi.name}
+            ratings={cloudData?.ratings}
+            id={id}
+          />{`.`}
       </p>
       <h4
         className="font2"
@@ -145,11 +153,16 @@ export default function RestaurantPage() {
         <StarRating ratings={cloudData?.ratings} />
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
+      <div className="text-center m-0 p-0">
       <WriteAReview
+        variant="dark"
+        placeHolder="Write A Review"
+        width="85%"
         hotelName={APIData?.poi.name}
         ratings={cloudData?.ratings}
         id={id}
       />
+      </div>
       <br />
       <ShowReviews
         hotelName={APIData?.poi?.name}
