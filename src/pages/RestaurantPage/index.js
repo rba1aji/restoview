@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import StarRating from './StarRating'; 
+import StarRating from './StarRating';
 import ShowReviews from './ShowReviews';
 import DetailedRatings from './DetailedRatings';
 import { PlaceByIdUrl } from '../../reducers/constants';
@@ -103,6 +103,12 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
+      <p style={{ marginLeft: '5vw' }}>
+        {`${APIData?.poi.name}, one of the good restaurants located in ${APIData?.address.countrySecondarySubdivision}, ${APIData?.address.countrySubdivision}. Reviewed by ${cloudData?.ratings.types.food.length} people.`}
+        {APIData?.poi.categories?.map((tag) => {
+          return <span>{tag}{'</span>;
+        })}
+      </p>
       <h4
         className="font2"
         style={{
@@ -111,7 +117,8 @@ export default function RestaurantPage() {
       >
         Ratings
         <span style={{ fontWeight: 'normal', fontSize: '12px' }}>
-          {' '}({cloudData?.ratings?.types?.overall?.length})
+          {' '}
+          ({cloudData?.ratings?.types?.overall?.length})
         </span>
       </h4>
       {cloudData?.ratings?.types?.overall?.length < 1 && (
