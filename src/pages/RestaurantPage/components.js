@@ -34,11 +34,12 @@ export function ShowReviews(props) {
           <Card
             style={{
               marginLeft: '5vw',
-              // border:0,
+              // border:0
+              padding:5,
             }}
           >
-            <Card.Title className='m-0'>{review.name}</Card.Title>
-            <Card.Text>{review.val}</Card.Text>
+            <Card.Title className='m-0 font-weight-100'>{review.name}</Card.Title>
+            <Card.Text className='ps-3'>{review.val}</Card.Text>
           </Card>
         );
       })}
