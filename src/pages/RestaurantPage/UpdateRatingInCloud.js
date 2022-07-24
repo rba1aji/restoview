@@ -1,7 +1,6 @@
 import { db } from '../../configs/firebaseConfig';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { AppState } from '../../reducers/AppContext';
-import Main from './index';
 import React, { useEffect } from 'react';
 
 export default function UpdateRatingInCloud(props) {
