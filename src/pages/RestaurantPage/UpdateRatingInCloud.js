@@ -2,37 +2,49 @@ import { db } from '../../configs/firebaseConfig';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { AppState } from '../../reducers/AppContext';
 import Main from './index';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function UpdateRatingInCloud(props) {
   const d = new Date();
-  // console.log(props);
   const docRef = doc(db, 'restaurants', props.id);
-  updateDoc(docRef, { 
+  // console.log(props);
+
+  // for(const type in props.ratings){
+  //   updateDoc(docRef,{
+  //     `ratings.types.${type}` : arrayUnion({
+  //       date:new Date(),
+  //       uId:props.uId,
+  //       val:props.ratings[type]/100*5,
+  //     }),
+  //   }).then(()=>{}).catch(()=>{});
+  // }
+
+  updateDoc(docRef, {
     reviews: arrayUnion({
       uId: props.uId,
-      val: props.review, 
+      name: props.name,
+      val: props.review,
       date: d.getDate() + '-' + d.getMonth() + '-' + d.getYear(),
     }),
-    'ratings.star':props.star,
+    'ratings.star': props.star,
     'ratings.types.ambience': arrayUnion({
-      uId: props.uId,
+      key: props.uId + d,
       val: (props.ratings.ambience / 100) * 5,
     }),
     'ratings.types.service': arrayUnion({
-      uId: props.uId,
+      key: props.uId + d,
       val: (props.ratings.service / 100) * 5,
     }),
     'ratings.types.food': arrayUnion({
-      uId: props.uId,
+      key: props.uId + d,
       val: (props.ratings.food / 100) * 5,
     }),
     'ratings.types.valueForMoney': arrayUnion({
-      uId: props.uId,
+      key: props.uId + d,
       val: (props.ratings.valueForMoney / 100) * 5,
     }),
     'ratings.types.overall': arrayUnion({
-      uId: props.uId,
+      key: props.uId + d,
       val: (props.ratings.overall / 100) * 5,
     }),
   })

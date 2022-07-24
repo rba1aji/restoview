@@ -46,6 +46,7 @@ function WriteAReviewModal(props) {
     event.preventDefault();
     const cloudProps = {
       id: props.id,
+      name: user.displayName,
       uId: user.uid,
       star:
         (props.ratings.star * props.ratings.types.overall.length +
@@ -63,7 +64,7 @@ function WriteAReviewModal(props) {
       },
       refresh: setRefresh(refresh + 1),
     };
-    UpdateRatingInCloud(cloudProps);
+    cloudProps.ratings && UpdateRatingInCloud(cloudProps);
   }
 
   return (
@@ -164,7 +165,7 @@ function WriteAReviewModal(props) {
               as="textarea"
               placeholder="Leave a comment here"
               style={{ height: '100px', marginBottom: '20px' }}
-              required
+              // required
             />
           </FloatingLabel>
           <div className="text-center ">
