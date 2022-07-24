@@ -102,8 +102,8 @@ export default function RestaurantPage() {
       >
         {APIData?.poi?.name}
       </h1>
-      <h5
-        className="font1"
+      <h4
+        className="font2"
         style={{
           marginLeft: '5vw',
         }}
@@ -112,7 +112,7 @@ export default function RestaurantPage() {
         <span style={{ fontWeight: 'normal', fontSize: '12px' }}>
           {' '}({cloudData?.ratings?.types?.overall?.length})
         </span>
-      </h5>
+      </h4>
       {cloudData?.ratings?.types?.overall?.length < 1 && (
         <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
           {`There aren't enough food, service, value or ambience ratings for ${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
