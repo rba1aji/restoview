@@ -110,12 +110,17 @@ export default function RestaurantPage() {
       >
         Ratings({cloudData?.ratings?.types?.overall?.length})
       </h5>
+      {cloudData?.ratings?.types?.overall?.length < 1 && (
+        <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
+          {`There aren't enough food, service, value or ambience ratings for ${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
+        </p>
+      )}
       <div
-        className="bg-light border"
+        // className="bg-light border"
         style={{
           display: 'flex',
           flexWrap: 'wrap',
-          justifyContent: 'center',
+          justifyContent: 'center', 
           marginLeft: '6vw',
           marginRight: '6vw',
           paddingTop: '2vh',
@@ -125,15 +130,9 @@ export default function RestaurantPage() {
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
       <br />
-      <WriteAReview ratings={cloudData?.ratings} id={id} />
-      <br />
-      {cloudData?.ratings?.types?.overall?.length < 3 && (
-        <p style={{ marginLeft: '5vw', marginRight: '2.5vw' }}>
-          {`There aren't enough food, service, value or ambience ratings for ${APIData?.poi?.name}, India yet. Be one of the first to write a review!`}
-        </p>
-      )}
+      <WriteAReview hotelName={APIData?.poi.name} ratings={cloudData?.ratings} id={id} />
       <br/>
-      <ShowReviews reviews={cloudData?.reviews}/>
+      <ShowReviews hotelName={APIData?.poi?.name} reviews={cloudData?.reviews}/>
     </>
   );
 }

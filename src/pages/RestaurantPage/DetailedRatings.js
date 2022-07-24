@@ -69,7 +69,7 @@ function BarChart(props) {
       toolbar: {
         show: false,
       },
-      background: '#f8f9fa',
+      // background: '#f8f9fa',
     },
     grid: {
       show: false,

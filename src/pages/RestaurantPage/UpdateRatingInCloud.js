@@ -21,7 +21,7 @@ export default function UpdateRatingInCloud(props) {
   updateDoc(docRef, {
     reviews: arrayUnion({
       uId: props.uId,
-      name: props.name,
+      uName: props.name,
       val: props.review,
       date: d.getDate() + '-' + d.getMonth() + '-' + d.getYear(),
     }),
