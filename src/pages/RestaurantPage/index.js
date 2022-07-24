@@ -110,7 +110,7 @@ export default function RestaurantPage() {
       >
         Ratings
         <span style={{ fontWeight: 'normal', fontSize: '12px' }}>
-          {''}({cloudData?.ratings?.types?.overall?.length})
+          {' '}({cloudData?.ratings?.types?.overall?.length})
         </span>
       </h5>
       {cloudData?.ratings?.types?.overall?.length < 1 && (
