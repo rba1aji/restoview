@@ -148,11 +148,11 @@ export default function DetailedRatings(props) {
       // console.log(rates);
       i == 4 && setDone(true);
     }
-  }
+  } 
 
   useEffect(() => {
     props?.ratings && setCloudRates();
-  }, [props?.ratings, refresh]);
+  }, [props]);
 
   return done && <BarChart rates={rates} />;
 }
