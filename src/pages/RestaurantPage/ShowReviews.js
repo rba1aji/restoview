@@ -24,20 +24,32 @@ export default function ShowReviews(props) {
 
       {props?.reviews?.map((review) => {
         return (
-          <Card className="p-2 mb-3 ms-4 me-4" 
-          // style={{marginLeft:'5vw', marginRight:'5vw'}}
+          <Card
+            className="p-2 mb-3"
+            // style={{marginLeft:'5vw', marginRight:'5vw'}}
           >
             <Card.Text
-              className="mb-0"
+              className="m-0 p-0"
               style={{ fontWeight: '500', fontSize: '120%' }}
             >
-              {review.uName}{' '}
-              <span style={{ fontSize: '60%' }}>
-                {review.rate*0.05}
-                {/* <Rating ratingValue="70" fillColor='black' readonly="true" size="15px" /> */}
+              {review.uName}
+              <span style={{ fontSize: '70%' }}>
+                {' on '}
+                {review.date}
               </span>
             </Card.Text>
-            <Card.Text className="ps-3">{review.val}</Card.Text>
+            <span className="ps-2" style={{ fontSize: '80%' }}>
+              {review.rate * 0.05}{' '}
+              <span>
+                <Rating
+                  className="pb-1"
+                  ratingValue="70"
+                  readonly="true"
+                  size="15px"
+                />
+              </span>
+            </span>
+            <Card.Text className="ps-2">{review.val}</Card.Text>
           </Card>
         );
       })}
