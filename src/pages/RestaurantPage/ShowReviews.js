@@ -1,23 +1,7 @@
 import React from 'react';
-import { Rating } from 'react-simple-star-rating';
 import { Card } from 'react-bootstrap';
 
-export function StarRating(props) {
-  // console.log('star',props?.ratings?.star)
-  return (
-    <span>
-      <Rating
-        ratingValue={(props?.ratings?.star * 100) / 5}
-        readonly="true"
-        size="25px"
-      />
-      ({props?.ratings?.star.toFixed(1)}
-      /5)
-    </span>
-  );
-}
-
-export function ShowReviews(props) {
+export default function ShowReviews(props) {
   return (
     <div
       style={{
@@ -25,9 +9,15 @@ export function ShowReviews(props) {
         marginRight: '5vw',
       }}
     >
-      <h5 className="font1">Reviews</h5>
+      <h4 className="font2">
+        Reviews
+        <span style={{ fontWeight: 'normal', fontSize: '12px' }}>
+          {' '}
+          ({props.reviews?.length})
+        </span>
+      </h4>
 
-      {props.reviews?.length<1 && (
+      {props.reviews?.length < 1 && (
         <p>{`There aren't enough reviews for ${props.hotelName}, India yet. Be one of the first to write a review!`}</p>
       )}
 

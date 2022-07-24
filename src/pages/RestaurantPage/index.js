@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { StarRating, ShowReviews } from './components';
+import StarRating from './StarRating'; 
+import ShowReviews from './ShowReviews';
 import DetailedRatings from './DetailedRatings';
 import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
