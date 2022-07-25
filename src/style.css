@@ -55,3 +55,15 @@ h1 {
   font-family: 'Edu VIC WA NT Beginner', cursive;
   -webkit-font-family: 'Edu VIC WA NT Beginner', cursive;
 }
+
+
+.mobBanner2text {
+  /* font-family: 'Edu VIC WA NT Beginner', cursive; */
+  position: absolute;
+  color:white;
+  right: 12%;
+  top: 94%;
+  text-align:right;
+  opacity:90%;
+  font-weight:bolder;
+}

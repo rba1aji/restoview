@@ -19,21 +19,26 @@ function MobileComponent() {
           <br /> Rate it here!
         </div>
       </div>
-      <br/>
-      <div className='text-center'>
-        <img src='https://raw.githubusercontent.com/rba1aji/my-assets/main/pm2.jpg' style={{width:'87.5%', borderRadius:'5px'}}/>
+      <br />
+      <div className="text-center">
+        <img
+          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm2.jpg"
+          style={{ width: '87.5%', borderRadius: '5px' }}
+        />
 
-        <div className=" ">
-          RESTOVIEW
-          <br /> FOODIES CHOICE
+        <div className="h2 mobBanner2text">
+          FOODIES<br/>
+          <br /> CHOICE<br/>
+          <br />
+          <span style={{fontSize:''}}>RESTOVIEW</span>
         </div>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
