@@ -8,6 +8,7 @@ function MobileComponent() {
     <div>
       <div style={{ marginLeft: '6vw', marginRight: '6vw', marginTop: '2vh' }}>
         <Search autoFocus={false} />
+        <br/>
       </div>
       <div className="mobBanner1Container text-center">
         <img
@@ -20,7 +21,7 @@ function MobileComponent() {
         </div>
       </div>
       <br />
-      <div className="text-center">
+      <div className="text-center" style={{position:'relative'}}>
         <img
           src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm2.jpg"
           style={{ width: '87.5%', borderRadius: '5px' }}

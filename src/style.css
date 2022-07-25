@@ -24,7 +24,7 @@ h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 }
-.font2{
+.font2 {
   font-family: 'Edu VIC WA NT Beginner', cursive;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -34,7 +34,7 @@ h1 {
   position: relative;
   /* margin-left: 6vw; */
   /* margin-right: 6vw; */
-  margin-top: 4vh;
+  /* margin-top: 4vh; */
 }
 .mobBanner1text {
   font-family: 'Edu VIC WA NT Beginner', cursive;
@@ -42,8 +42,8 @@ h1 {
   color: white;
   right: 9%;
   top: 25%;
-  text-align:left;
-  opacity:90%;
+  text-align: left;
+  opacity: 90%;
 }
 .dskBanner1Container {
   position: relative;
@@ -56,14 +56,13 @@ h1 {
   -webkit-font-family: 'Edu VIC WA NT Beginner', cursive;
 }
 
-
 .mobBanner2text {
   /* font-family: 'Edu VIC WA NT Beginner', cursive; */
   position: absolute;
-  color:white;
+  color: white;
   right: 12%;
-  top: 94%;
-  text-align:right;
-  opacity:90%;
-  font-weight:bolder;
+  top: 14%;
+  text-align: right;
+  opacity: 90%;
+  font-weight: bolder;
 }
