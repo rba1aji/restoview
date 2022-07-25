@@ -24,7 +24,7 @@ export default function UpdateRatingInCloud(props) {
       uName: props.name,
       rate: props.ratings.overall,
       val: props.review,
-      date: d.getDate() + '-' + d.getMonth() + '-' + d.getYear(),
+      date: d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear(),
     }),
     'ratings.star': props.star,
     'ratings.types.ambience': arrayUnion({

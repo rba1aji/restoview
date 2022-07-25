@@ -184,18 +184,16 @@ export default function WriteAReview(props) {
 
   return (
     <>
-      <div className="text-center">
         <Button
-          className="outline-5"
-          variant="dark"
-          style={{ width: '80vw' }}
+        className={props.className}
+          variant={props.variant}
+          style={{ width: props.width }}
           onClick={() => {
-            setModalShow(true);
+            setModalShow(true); 
           }}
         >
-          Write A Review
+          {props.placeHolder}
         </Button>
-      </div>
 
       <WriteAReviewModal
         id={props.id}

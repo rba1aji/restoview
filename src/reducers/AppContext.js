@@ -25,7 +25,7 @@ const AppContextProvider = ({ children }) => {
     });
   }, []);
 
-  const [refresh,setRefresh]=useState(0);
+  const [refresh, setRefresh] = useState(0);
 
   return (
     <AppContext.Provider
