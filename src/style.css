@@ -32,16 +32,18 @@ h1 {
 
 .mobBanner1Container {
   position: relative;
-  margin-left: 6vw;
-  margin-right: 6vw;
+  /* margin-left: 6vw; */
+  /* margin-right: 6vw; */
   margin-top: 4vh;
 }
 .mobBanner1text {
   font-family: 'Edu VIC WA NT Beginner', cursive;
   position: absolute;
   color: white;
-  right: 5%;
+  right: 9%;
   top: 25%;
+  text-align:left;
+  opacity:90%;
 }
 .dskBanner1Container {
   position: relative;
