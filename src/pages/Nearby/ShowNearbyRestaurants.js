@@ -65,7 +65,7 @@ export default function ShowNearbyRestaurants(props) {
       <h1 ref={paginationScrollRef} style={{ opacity: props.place ? 1 : 0 }}>
         {props.place} Nearby Restaurants
       </h1>
-      <div className="m-4">
+      <div style={{marginLeft:'6vw', marginRight:'6vw'}} className='mt-4 mb-4'>
         <Row xs={1} md={2} className="g-4">
           {props?.nearbyList
             .slice((currpage - 1) * 10, (currpage - 1) * 10 + 10)
