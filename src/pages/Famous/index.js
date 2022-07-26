@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Nav, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Nav, DropdownButton, Dropdown,ButtonGroup } from 'react-bootstrap';
 import TopRated from './TopRated';
 import MostViewed from './MostViewed';
 import { StateDropdown } from 'react-india-state-region-selector';
@@ -40,24 +40,18 @@ export default function Famous() {
     'Uttar Pradesh',
     'Uttarakhand',
   ];
-  console.log(states.length)
+  console.log(states.length);
   const [state, setState] = useState('India');
 
   return (
     <>
       <h1>Famous Restaurants</h1>
-      <div>
-        <StateDropdown
-          defaultOptionLabel="India"
-          value={state}
-          onChange={(val) => {
-            setState(val);
-            if (!val) setState("'ndia'");
-            console.log("'" + state + "',");
-          }}
-          className="bg-dark"
-          style={{ background: 'black' }}
-        />
+      <div className='' style={{width:'100%',display:'flex', alignItems:'center', justifyContent:'center'}}>
+      <DropdownButton id="dropdown-basic-button" title={state} variant='dark' as={ButtonGroup} >
+          {states.map((state) => {
+            return<Dropdown.Item onClick={(val)=>setState(val)} className=''>{state}</Dropdown.Item>;
+          })}
+        </DropdownButton>
       </div>
       <div
         style={{ marginLeft: '7vw', marginRight: '7vw', marginTop: '5vh' }}
