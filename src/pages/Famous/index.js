@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Nav, DropdownButton, Dropdown,ButtonGroup } from 'react-bootstrap';
+import { Nav, DropdownButton, Dropdown, ButtonGroup } from 'react-bootstrap';
 import TopRated from './TopRated';
 import MostViewed from './MostViewed';
 import { StateDropdown } from 'react-india-state-region-selector';
@@ -46,13 +46,27 @@ export default function Famous() {
   return (
     <>
       <h1>Famous Restaurants</h1>
-      <div className='' style={{width:'100%',display:'flex', alignItems:'center', justifyContent:'center'}}>
-      <DropdownButton id="dropdown-basic-button" title={state} variant='dark' as={ButtonGroup} >
+      
+        <DropdownButton
+          id="dropdown-basic-button"
+          title={state}
+          variant="outline-dark"
+          as={ButtonGroup}
+          style={{
+            marginLeft:'20%',
+            marginRight:'20%',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
           {states.map((state) => {
-            return<Dropdown.Item onClick={(val)=>setState(val)} className=''>{state}</Dropdown.Item>;
+            return (
+              <Dropdown.Item onClick={() => setState(state)} className="">
+                {state}
+              </Dropdown.Item>
+            );
           })}
         </DropdownButton>
-      </div>
       <div
         style={{ marginLeft: '7vw', marginRight: '7vw', marginTop: '5vh' }}
         // className='border-dark border'
