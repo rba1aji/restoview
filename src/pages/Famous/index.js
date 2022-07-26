@@ -6,15 +6,55 @@ import { StateDropdown } from 'react-india-state-region-selector';
 
 export default function Famous() {
   const [famousType, setFamousType] = useState(0);
-  const [state,setState]=useState('India');
+  const states = [
+    'India',
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    'Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
+    'Haryana',
+    'Himachal Pradesh',
+    'Jammu and Kashmir Pradesh',
+    'Jharkhand',
+    'Karnataka',
+    'Kerala',
+    'Madhya Pradesh',
+    'Maharashtra',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Odisha',
+    'Punjab',
+    'Rajasthan',
+    'Sikkim',
+    'Tamil Nadu',
+    'Telangana',
+    'Tripura',
+    'Uttar Pradesh',
+    'Uttarakhand',
+  ];
+  console.log(states.length)
+  const [state, setState] = useState('India');
 
   return (
     <>
       <h1>Famous Restaurants</h1>
       <div>
         <StateDropdown
+          defaultOptionLabel="India"
           value={state}
-          onChange={(val) => this.setState(val)} />
+          onChange={(val) => {
+            setState(val);
+            if (!val) setState("'ndia'");
+            console.log("'" + state + "',");
+          }}
+          className="bg-dark"
+          style={{ background: 'black' }}
+        />
       </div>
       <div
         style={{ marginLeft: '7vw', marginRight: '7vw', marginTop: '5vh' }}
