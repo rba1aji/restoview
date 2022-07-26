@@ -35,7 +35,9 @@ export default function RestaurantPage() {
         },
       },
       reviews: [],
-      address: APIData.address.freeformAddress,
+      address: {
+        state: APIData.address.countrySubdivision,
+      },
       openingHours: APIData.openingHours ? APIData.openingHours : null,
       photos: [],
     };
@@ -112,14 +114,14 @@ export default function RestaurantPage() {
         {`. Having ${cloudData?.ratings?.star.toFixed(
           1
         )} star rating. Improve this listening by adding `}
-          <WriteAReview
-          className='py-0 px-2 mb-0'
-            variant="outline-dark"
-            placeHolder="your review"
-            hotelName={APIData?.poi.name}
-            ratings={cloudData?.ratings}
-            id={id}
-          />
+        <WriteAReview
+          className="py-0 px-2 mb-0"
+          variant="outline-dark"
+          placeHolder="your review"
+          hotelName={APIData?.poi.name}
+          ratings={cloudData?.ratings}
+          id={id}
+        />
       </p>
       <h4
         className="font2"
@@ -154,14 +156,14 @@ export default function RestaurantPage() {
         <DetailedRatings ratings={cloudData?.ratings} />
       </div>
       <div className="text-center m-0 p-0">
-      <WriteAReview
-        variant="dark"
-        placeHolder="Write A Review"
-        width="85%"
-        hotelName={APIData?.poi.name}
-        ratings={cloudData?.ratings}
-        id={id}
-      />
+        <WriteAReview
+          variant="dark"
+          placeHolder="Write A Review"
+          width="85%"
+          hotelName={APIData?.poi.name}
+          ratings={cloudData?.ratings}
+          id={id}
+        />
       </div>
       <br />
       <ShowReviews

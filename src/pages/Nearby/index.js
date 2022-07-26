@@ -29,7 +29,7 @@ export default function Nearby() {
       const details = {
         id: item.id,
         name: item.poi.name,
-        address: item.address.freeformAddress,
+        state: item.address.countrySubdivision,
         phone: item.poi.phone,
         tags: item.poi.categories,
         openingHours: item.openingHours,

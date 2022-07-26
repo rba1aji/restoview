@@ -23,7 +23,9 @@ export default function StarRatingForCard(props) {
         },
       },
       reviews: [],
-      address: props.resto.address,
+      address:{
+        state: props.resto.state,
+      },
       openingHours: props.resto.openingHours ? props.resto.openingHours : null,
       photos: [],
     };
