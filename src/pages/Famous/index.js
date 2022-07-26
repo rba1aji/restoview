@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Nav, DropDdown, Dropdown } from 'react-bootstrap';
+import { Nav, DropdownButton, Dropdown } from 'react-bootstrap';
 import TopRated from './TopRated';
 import MostViewed from './MostViewed';
+import { StateDropdown } from 'react-india-state-region-selector';
 
 export default function Famous() {
   const [famousType, setFamousType] = useState(0);
+  const [state,setState]=useState('India');
 
   return (
     <>
       <h1>Famous Restaurants</h1>
       <div>
-        <DropdownButton>India</DropdownButton>
+        <StateDropdown
+          value={state}
+          onChange={(val) => this.setState(val)} />
       </div>
       <div
         style={{ marginLeft: '7vw', marginRight: '7vw', marginTop: '5vh' }}
