@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Nav } from 'react-bootstrap';
+import { Nav, DropDdown, Dropdown } from 'react-bootstrap';
 import TopRated from './TopRated';
 import MostViewed from './MostViewed';
 
@@ -9,6 +9,9 @@ export default function Famous() {
   return (
     <>
       <h1>Famous Restaurants</h1>
+      <div>
+        <DropdownButton>India</DropdownButton>
+      </div>
       <div
         style={{ marginLeft: '7vw', marginRight: '7vw', marginTop: '5vh' }}
         // className='border-dark border'
