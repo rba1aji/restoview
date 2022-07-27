@@ -4,6 +4,7 @@ import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
 function Show(props) {
+  console.log(props.numImg)
   return (
     <div>
       {props.numImg.map((res, index) => {
@@ -14,31 +15,22 @@ function Show(props) {
 }
 
 export default function TopRated(props) {
-  const [numImg, setNumImg] = useState([]);
-  const [restos, setRestos] = useState([]);
-
-  async function fetchNumberImagesFromStorage() {
-    for (let i = 0; i < 10; i++) {
-      await getDownloadURL(ref(storage, `Top10/${i}.jpg`))
-        .then((url) => {
-          setNumImg((old) => {
-            return [...old, { key: i, url: url }];
-          });
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    }
-  }
+  const [restos, setRestos] = useState([]); 
 
   function fetchTopRated() {
     console.log(props.state);
+
     const collectionRef = collection(db, 'restaurants');
     const q = query(collectionRef, where('address.state', '==', props.state));
 
     getDocs(q)
       .then((res) => {
-        console.log(res.docs);
+        res.docs.map((doc) => {
+          setRestos((old) => {
+            return [...old, { id: doc.id, cloudData: doc.data() }];
+          });
+        });
+        console.log(restos);
       })
       .catch((err) => {
         console.log(err.message);
@@ -46,13 +38,12 @@ export default function TopRated(props) {
   }
 
   useEffect(() => {
-    fetchNumberImagesFromStorage();
     fetchTopRated();
   }, [props.state]);
 
   return (
     <>
-      <Show numImg={numImg} />
+      <Show numImg={props.numImg} />
     </>
   );
 }
