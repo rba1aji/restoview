@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db, storage } from '../../configs/firebaseConfig';
 import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 function Show(props) {
   return (
@@ -30,12 +31,24 @@ export default function TopRated(props) {
     }
   }
 
-  async function fetchTopRated() {}
+  async function fetchTopRated() {
+    console.log(props.state);
+    const collectionRef = collection(db, 'restaurants');
+    const q = query(citiesRef, where('address.state', '==', props.state));
+
+    getDocs(collectionRef)
+      .foEach((doc) => {
+        console.log(doc.data());
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
 
   useEffect(() => {
     fetchNumberImagesFromStorage();
     fetchTopRated();
-  }, []);
+  }, [props.state]);
 
   return (
     <>

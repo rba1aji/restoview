@@ -103,7 +103,7 @@ function WriteAReviewModal(props) {
                             setTotrate(tot);
                             // console.log(totrate);
                           }}
-                          key={type}
+                          key={index}
                           allowHalfIcon="true"
                           size="30px"
                           allowHover="false"
