@@ -14,7 +14,7 @@ function Show(props) {
 
 export default function TopRated(props) {
   const [numImg, setNumImg] = useState([]);
-  const [restos,setRestos]=useState([]);
+  const [restos, setRestos] = useState([]);
 
   async function fetchNumberImagesFromStorage() {
     for (let i = 0; i < 10; i++) {
@@ -30,9 +30,7 @@ export default function TopRated(props) {
     }
   }
 
-  async function fetchTopRated(){
-
-  }
+  async function fetchTopRated() {}
 
   useEffect(() => {
     fetchNumberImagesFromStorage();
