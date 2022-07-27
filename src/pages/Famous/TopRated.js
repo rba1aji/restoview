@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useCallback} from 'react';
 import { db, storage } from '../../configs/firebaseConfig';
 import {
   collection,
@@ -9,7 +9,7 @@ import {
   limit,
 } from 'firebase/firestore';
 import axios from 'axios';
-import {placebyIdUrl} from '../../constants/URLs';
+import { placeByIdUrl } from '../../reducers/URLs';
 
 function Show(props) {
   // console.log(props.numImg)
@@ -24,9 +24,9 @@ function Show(props) {
 
 export default function TopRated(props) {
   const [restos, setRestos] = useState([]);
-  const [APIData,setAPIData]=useState();
+  const [APIData, setAPIData] = useState();
 
-  function fetchAPIData(id){
+  const fetchAPIData= useCallback((id)=> {
     axios
       .get(placeByIdUrl(id))
       .then((res) => {
@@ -35,8 +35,8 @@ export default function TopRated(props) {
       .catch((err) => {
         console.log(err.message);
       });
-      return APIData;
-  }
+    return APIData;
+  });
 
   function fetchTopRated() {
     console.log(props.state);
@@ -45,7 +45,7 @@ export default function TopRated(props) {
     const q =
       props.state == 'India'
         ? query(collectionRef, orderBy('ratings.star', 'desc'), limit(10))
-        : query(
+        : query( 
             collectionRef,
             where('address.state', '==', props.state),
             orderBy('ratings.star', 'desc'),
@@ -56,7 +56,14 @@ export default function TopRated(props) {
       .then((res) => {
         res.docs.map((doc) => {
           setRestos((old) => {
-            return [...old, { id: doc.id, cloudData: doc.data(), APIData:fetchAPIData(doc.id) }];
+            return [
+              ...old,
+              {
+                id: doc.id,
+                cloudData: doc.data(),
+                APIData: fetchAPIData(doc.id),
+              },
+            ];
           });
         });
         console.log(restos);
