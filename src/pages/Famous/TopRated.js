@@ -13,12 +13,13 @@ import { placeByIdUrl } from '../../reducers/URLs';
 
 function Show(props) {
   // console.log(props.numImg)
+  const index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
-    <div>
-      {props.numImg.map((res, index) => {
-        return <img key={index} src={res.url} style={{ width: '100%' }} />;
+    <>
+      {index.map((i) => {
+        return <p>{props?.restos[i]?.id}</p>;
       })}
-    </div>
+    </>
   );
 }
 
@@ -26,13 +27,13 @@ export default function TopRated(props) {
   const [restos, setRestos] = useState([]);
 
   async function fetchAPIData() {
-    await restos.map(async(resto, index) => {
+    await restos.map(async (resto, index) => {
       await axios
         .get(placeByIdUrl(resto.id))
         .then((res) => {
           const data = res.data.results[0];
           console.log(index);
-          console.log(data.id,restos[index].id);
+          console.log(data.id, restos[index].id);
         })
         .catch((err) => {
           console.log(err);
