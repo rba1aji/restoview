@@ -58,9 +58,9 @@ export default function Famous() {
             justifyContent: 'center',
           }}
         >
-          {states.map((state) => {
+          {states.map((state,index) => {
             return (
-              <Dropdown.Item onClick={() => setState(state)} className="">
+              <Dropdown.Item key={index} onClick={() => setState(state)} className="">
                 {state}
               </Dropdown.Item>
             );
