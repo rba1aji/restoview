@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, storage } from '../../configs/firebaseConfig';
-import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
 
 function Show(props) {
   // console.log(props.numImg)
@@ -15,13 +14,20 @@ function Show(props) {
 }
 
 export default function TopRated(props) {
-  const [restos, setRestos] = useState([]); 
+  const [restos, setRestos] = useState([]);
 
   function fetchTopRated() {
     console.log(props.state);
 
     const collectionRef = collection(db, 'restaurants');
-    const q = query(collectionRef, where('address.state', '==', props.state));
+    const q =
+      props.state == 'India'
+        ? query(collectionRef, orderBy('ratings.star', 'desc'))
+        : query(
+            collectionRef,
+            where('address.state', '==', props.state),
+            orderBy('ratings.star', 'desc')
+          );
 
     getDocs(q)
       .then((res) => {
