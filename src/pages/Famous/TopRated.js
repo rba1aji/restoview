@@ -4,7 +4,7 @@ import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
 function Show(props) {
-  console.log(props.numImg)
+  // console.log(props.numImg)
   return (
     <div>
       {props.numImg.map((res, index) => {
