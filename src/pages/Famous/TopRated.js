@@ -12,7 +12,7 @@ export default function TopRated(props) {
         numImg.push(<img src={url}/>);
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error.message); 
       });
   }
   return ;
