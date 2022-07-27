@@ -8,6 +8,8 @@ import {
   orderBy,
   limit,
 } from 'firebase/firestore';
+import axios from 'axios';
+import {placebyIdUrl} from '../../constants/URLs';
 
 function Show(props) {
   // console.log(props.numImg)
@@ -22,9 +24,18 @@ function Show(props) {
 
 export default function TopRated(props) {
   const [restos, setRestos] = useState([]);
+  const [APIData,setAPIData]=useState();
 
   function fetchAPIData(id){
-    
+    axios
+      .get(placeByIdUrl(id))
+      .then((res) => {
+        setAPIData(res.data.results[0]);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+      return APIData;
   }
 
   function fetchTopRated() {
