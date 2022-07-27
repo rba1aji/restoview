@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useCallback} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { db, storage } from '../../configs/firebaseConfig';
 import {
   collection,
@@ -24,28 +24,30 @@ function Show(props) {
 
 export default function TopRated(props) {
   const [restos, setRestos] = useState([]);
-  const [APIData, setAPIData] = useState();
 
-  const fetchAPIData= useCallback((id)=> {
-    axios
-      .get(placeByIdUrl(id))
-      .then((res) => {
-        setAPIData(res.data.results[0]);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-    return APIData;
-  });
+  async function fetchAPIData() {
+    await restos.map(async(resto, index) => {
+      await axios
+        .get(placeByIdUrl(resto.id))
+        .then((res) => {
+          const data = res.data.results[0];
+          console.log(index);
+          console.log(data.id,restos[index].id);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  }
 
   function fetchTopRated() {
-    console.log(props.state);
+    setRestos([]);
 
     const collectionRef = collection(db, 'restaurants');
     const q =
       props.state == 'India'
         ? query(collectionRef, orderBy('ratings.star', 'desc'), limit(10))
-        : query( 
+        : query(
             collectionRef,
             where('address.state', '==', props.state),
             orderBy('ratings.star', 'desc'),
@@ -61,25 +63,28 @@ export default function TopRated(props) {
               {
                 id: doc.id,
                 cloudData: doc.data(),
-                APIData: fetchAPIData(doc.id),
+                APIData: {},
               },
             ];
           });
         });
-        console.log(restos);
       })
       .catch((err) => {
         console.log(err.message);
       });
+
+    console.log(restos);
+    console.log(props.state);
   }
 
   useEffect(() => {
     fetchTopRated();
+    fetchAPIData();
   }, [props.state]);
 
   return (
     <>
-      <Show numImg={props.numImg} />
+      <Show numImg={props.numImg} restos={restos} />
     </>
   );
 }
