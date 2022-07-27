@@ -31,14 +31,14 @@ export default function TopRated(props) {
     }
   }
 
-  async function fetchTopRated() {
+  function fetchTopRated() {
     console.log(props.state);
     const collectionRef = collection(db, 'restaurants');
-    const q = query(citiesRef, where('address.state', '==', props.state));
+    const q = query(collectionRef, where('address.state', '==', props.state));
 
-    getDocs(collectionRef)
-      .foEach((doc) => {
-        console.log(doc.data());
+    getDocs(q)
+      .then((res) => {
+        console.log(res.docs);
       })
       .catch((err) => {
         console.log(err.message);
