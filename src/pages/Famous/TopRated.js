@@ -11,38 +11,55 @@ import {
 import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
 
+function Show2(props) {
+  const [APIData, setAPIData] = useState();
+  function fetchAPI() {
+    axios
+      .get(placeByIdUrl(props.cloudData?.id))
+      .then((res) => {
+        setAPIData(res.data.results[0]);
+      }) 
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+  useEffect(() => {
+    console.log(props);
+    fetchAPI();
+  }, [props]);
+}
+
 function Show(props) {
   // console.log(props.numImg)
-  const index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
     <>
-      {index.map((i) => {
-        return <p>{props?.restos[i]?.id}</p>;
+      {props?.numImg?.map((url, index) => {
+        return <Show2 numImgUrl={url} cloudData={props?.cloudData[index]} />;
       })}
     </>
   );
 }
 
 export default function TopRated(props) {
-  const [restos, setRestos] = useState([]);
+  const [cloudData, setCloudData] = useState([]);
 
-  async function fetchAPIData() {
-    await restos.map(async (resto, index) => {
-      await axios
-        .get(placeByIdUrl(resto.id))
-        .then((res) => {
-          const data = res.data.results[0];
-          console.log(index);
-          console.log(data.id, restos[index].id);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
-  }
+  // async function fetchAPIData() {
+  //   await restos.map(async (resto, index) => {
+  //     await axios
+  //       .get(placeByIdUrl(resto.id))
+  //       .then((res) => {
+  //         const data = res.data.results[0];
+  //         console.log(index);
+  //         console.log(data.id, restos[index].id);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   });
+  // }
 
   function fetchTopRated() {
-    setRestos([]);
+    setCloudData([]);
 
     const collectionRef = collection(db, 'restaurants');
     const q =
@@ -58,13 +75,12 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         res.docs.map((doc) => {
-          setRestos((old) => {
+          setCloudData((old) => {
             return [
               ...old,
               {
                 id: doc.id,
-                cloudData: doc.data(),
-                APIData: {},
+                data: doc.data(),
               },
             ];
           });
@@ -74,18 +90,18 @@ export default function TopRated(props) {
         console.log(err.message);
       });
 
-    console.log(restos);
+    // console.log(cloudData);
     console.log(props.state);
   }
 
   useEffect(() => {
     fetchTopRated();
-    fetchAPIData();
+    // fetchAPIData();
   }, [props.state]);
 
   return (
     <>
-      <Show numImg={props.numImg} restos={restos} />
+      <Show numImg={props.numImg} cloudData={cloudData} />
     </>
   );
 }
