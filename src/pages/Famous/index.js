@@ -40,7 +40,6 @@ export default function Famous() {
     'Uttar Pradesh',
     'Uttarakhand',
   ];
-  console.log(states.length);
   const [state, setState] = useState('India');
 
   return (
@@ -90,7 +89,7 @@ export default function Famous() {
           </Nav.Item>
         </Nav>
 
-        {famousType == 0 ? <TopRated /> : <MostViewed />}
+        {famousType == 0 ? <TopRated state={state} /> : <MostViewed state={state} />}
       </div>
     </>
   );
