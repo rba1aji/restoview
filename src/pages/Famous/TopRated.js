@@ -11,37 +11,14 @@ import {
 import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
 
-function Show2(props) {
-  // console.log('show2')
-  const [APIData, setAPIData] = useState();
-  const fetchAPI = () => {
-    axios
-      .get(placeByIdUrl(props.cloudData?.id))
-      .then((res) => {
-        const data = res.data.results[0];
-        setAPIData(data);
-        // console.log(data.id,props?.cloudData?.id)
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
-  useEffect(() => {
-    console.log(props);
-    fetchAPI();
-  }, [props?.cloudData?.id]);
-
-  useEffect(() => {
-    console.log(APIData);
-  }, [APIData]);
-}
-
 function Show(props) {
-  // console.log(props.cloudData)
+  useEffect(() => {
+    console.log(cloudData, APIData, props.state);
+  }, [props]);
   return (
     <>
       {props?.numImg?.map((url, index) => {
-        return <Show2 numImgUrl={url} cloudData={props?.cloudData[index]} />;
+        return;
       })}
     </>
   );
@@ -80,8 +57,8 @@ export default function TopRated(props) {
   }
 
   function fetchTopRated() {
-    setAPIData([]);
-    setCloudData([]);
+    // setAPIData([]);
+    // setCloudData([]);
 
     const collectionRef = collection(db, 'restaurants');
     const q =
@@ -114,14 +91,15 @@ export default function TopRated(props) {
   }
 
   useEffect(() => {
+    setAPIData([]);
+    setCloudData([]);
     fetchTopRated();
-    cloudData.length == 10 && fetchAPIData();
+    fetchAPIData();
   }, [props.state]);
 
-  useEffect(() => {
-    // console.log(APIData)
-    console.log(cloudData, APIData, props.state);
-  }, [props.state]);
-
-  return <>{/* <Show numImg={props.numImg} cloudData={cloudData} /> */}</>;
+  return (
+    <>
+      <Show numImg={props.numImg} cloudData={cloudData} APIData={APIData} />
+    </>
+  );
 }
