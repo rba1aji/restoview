@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore';
 import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
+import { Card } from 'react-bootstrap';
 
 function Show(props) {
   useEffect(() => {
@@ -17,9 +18,20 @@ function Show(props) {
   }, [props.state]);
   return (
     <>
-      {props?.numImg?.map((url, index) => {
-        return;
-      })}
+      {
+        // props?.cloudData?.length == 10 &&
+        //   props?.APIData?.length == 10 && 
+        props?.numImg?.map((url, index) => {
+          return (
+            <Card key={index}>
+              <Card.Title>
+                {props?.cloudData[index]?.id}
+                {props?.APIData[index]?.poi?.name}
+              </Card.Title>
+            </Card>
+          );
+        })
+      }
     </>
   );
 }
@@ -28,7 +40,7 @@ export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
   const [APIData, setAPIData] = useState([]);
 
-  async function autoRetryFetch(id, index) {
+  const autoRetryFetch= useCallback(async (id, index)=> {
     await axios
       .get(placeByIdUrl(id))
       .then((res) => {
@@ -48,18 +60,16 @@ export default function TopRated(props) {
         // console.log(err.message);
         autoRetryFetch(id, index);
       });
-  }
+  });
 
-  async function fetchAPIData() {
-    setAPIData([]);
+  const fetchAPIData=useCallback(async()=> {
 
     await cloudData.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
-  }
+  });
 
-  function fetchTopRated() {
-    setCloudData([]);
+  const fetchTopRated=useCallback(()=> {
 
     const collectionRef = collection(db, 'restaurants');
     const q =
@@ -74,29 +84,30 @@ export default function TopRated(props) {
 
     getDocs(q)
       .then((res) => {
-        res.docs.map((doc) => {
+        res.docs.map((doc,index) => {
           setCloudData((old) => {
-            return [
-              ...old,
-              {
-                id: doc.id,
-                data: doc.data(),
-              },
-            ];
+            // return [
+            //   ...old,
+            //   {
+            //     id: doc.id,
+            //     data: doc.data(),
+            //   },
+            // ];
+            const t = old;
+            t[index] = { id: doc.id, data: doc.data };
+            return t;
           });
         });
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }
+  });
 
   useEffect(() => {
-    // setAPIData([]);
-    // setCloudData([]);
     fetchTopRated();
     fetchAPIData();
-  }, [props.state]);
+  }, [props]);
 
   return (
     <>
