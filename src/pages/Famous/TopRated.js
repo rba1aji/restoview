@@ -100,7 +100,7 @@ export default function TopRated(props) {
         console.log(err.message);
       });
   };
-
+  
   useEffect(() => {
     console.log(props.state,cloudData,APIData);
     fetchTopRated(props.state);
