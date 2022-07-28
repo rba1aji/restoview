@@ -16,20 +16,25 @@ function Show2(props) {
   const [APIData, setAPIData] = useState();
   const fetchAPI=()=> {
     axios
-      .get(placeByIdUrl(props.cloudData?.id))
+      .get(placeByIdUrl(props.cloudData?.id)) 
       .then((res) => { 
         const data= res.data.results[0];
         setAPIData(data);
-  // console.log(data,props?.cloudData?.id)
+  // console.log(data.id,props?.cloudData?.id) 
       })  
       .catch((err) => {
-        console.log(err.message);
+        console.log(err.message); 
       });
   } 
   useEffect(() => { 
     console.log(props);
     fetchAPI();
   }, [props?.cloudData?.id]);
+
+  useEffect(()=>{
+    console.log(APIData)
+    
+  },[APIData]);
 
 }
 
