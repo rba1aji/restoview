@@ -69,14 +69,14 @@ export default function TopRated(props) {
   //   });
   // }
 
-  const fetchTopRated = () => { 
+  const fetchTopRated = (state) => { 
     const collectionRef = collection(db, 'restaurants');
     const q =
       props.state == 'India'
         ? query(collectionRef, orderBy('ratings.star', 'desc'), limit(10))
         : query(
             collectionRef,
-            where('address.state', '==', props.state),
+            where('address.state', '==', state),
             orderBy('ratings.star', 'desc'),
             limit(10)
           );
@@ -84,8 +84,8 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         console.log('fetching firestore');
-        setAPIData([]);
-        setCloudData([]);
+        // setAPIData([]);
+        // setCloudData([]);
         res.docs.map((doc, index) => {
           setCloudData((old) => {
             const t = old;
@@ -102,8 +102,8 @@ export default function TopRated(props) {
   };
 
   useEffect(() => {
-    fetchTopRated();
     console.log(props.state,cloudData,APIData);
+    fetchTopRated(props.state);
   }, [props.state]);
 
   return ( 
@@ -115,13 +115,13 @@ export default function TopRated(props) {
         APIData={APIData}
       /> */}
       <>
-        { APIData?.map((item, index) => {
+        { cloudData?.map((item, index) => {
           return (
             <Card key={index}>
               <Card.Title>
                 {index}
                 {cloudData[index]?.id}
-                {item?.poi?.name}
+                {APIData[index]?.poi?.name}
               </Card.Title>
             </Card>
           );
