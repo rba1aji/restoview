@@ -13,8 +13,8 @@ import { placeByIdUrl } from '../../reducers/URLs';
 
 function Show(props) {
   useEffect(() => {
-    console.log(cloudData, APIData, props.state);
-  }, [props]);
+    console.log(props.cloudData, props.APIData, props.state);
+  }, [props.state]);
   return (
     <>
       {props?.numImg?.map((url, index) => {
@@ -51,14 +51,15 @@ export default function TopRated(props) {
   }
 
   async function fetchAPIData() {
+    setAPIData([]);
+
     await cloudData.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
   }
 
   function fetchTopRated() {
-    // setAPIData([]);
-    // setCloudData([]);
+    setCloudData([]);
 
     const collectionRef = collection(db, 'restaurants');
     const q =
@@ -91,15 +92,20 @@ export default function TopRated(props) {
   }
 
   useEffect(() => {
-    setAPIData([]);
-    setCloudData([]);
+    // setAPIData([]);
+    // setCloudData([]);
     fetchTopRated();
     fetchAPIData();
   }, [props.state]);
 
   return (
     <>
-      <Show numImg={props.numImg} cloudData={cloudData} APIData={APIData} />
+      <Show
+        state={props.state}
+        numImg={props.numImg}
+        cloudData={cloudData}
+        APIData={APIData}
+      />
     </>
   );
 }
