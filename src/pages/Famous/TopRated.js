@@ -104,9 +104,9 @@ export default function TopRated(props) {
   useEffect(() => {
     fetchTopRated();
     console.log(props.state,cloudData,APIData);
-  }, [props?.state]);
+  }, [props.state]);
 
-  return (
+  return ( 
     <>
       {/* <Show
         state={props.state}
@@ -121,7 +121,7 @@ export default function TopRated(props) {
               <Card.Title>
                 {index}
                 {cloudData[index]?.id}
-                {APIData[index]?.poi?.name}
+                {item?.poi?.name}
               </Card.Title>
             </Card>
           );
