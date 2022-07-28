@@ -58,11 +58,11 @@ export default function TopRated(props) {
         const data = res.data.results[0];
         // console.log(index);
         // console.log(data.id, cloudData[index].id);
-        setAPIData((old)=>{
-          const t=old;
-          t[index]=data;
+        setAPIData((old) => {
+          const t = old;
+          t[index] = data;
           return t;
-        })
+        });
         // setAPIData((old)=>{
         //   return [...old,data];
         // })
@@ -71,17 +71,15 @@ export default function TopRated(props) {
         // console.log(err.message);
         autoRetryFetch(id, index);
       });
-      // console.log(APIData) 
   }
 
   async function fetchAPIData() {
     await cloudData.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
-
   }
 
-  function fetchTopRated() { 
+  function fetchTopRated() {
     setAPIData([]);
     setCloudData([]);
 
@@ -115,18 +113,15 @@ export default function TopRated(props) {
       });
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     fetchTopRated();
-    cloudData.length==10 &&fetchAPIData();
-
+    cloudData.length == 10 && fetchAPIData();
   }, [props.state]);
 
-  useEffect(()=>{
+  useEffect(() => {
     // console.log(APIData)
-  console.log(cloudData, APIData, props.state);
-
-  },[props.state])
-
+    console.log(cloudData, APIData, props.state);
+  }, [props.state]);
 
   return <>{/* <Show numImg={props.numImg} cloudData={cloudData} /> */}</>;
 }
