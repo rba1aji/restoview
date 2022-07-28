@@ -20,7 +20,7 @@ function Show(props) {
     <>
       {
         // props?.cloudData?.length == 10 &&
-        //   props?.APIData?.length == 10 && 
+        //   props?.APIData?.length == 10 &&
         props?.numImg?.map((url, index) => {
           return (
             <Card key={index}>
@@ -40,12 +40,12 @@ export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
   const [APIData, setAPIData] = useState([]);
 
-  const autoRetryFetch= async(id, index)=>{
+  const autoRetryFetch = async (id, index) => {
     await axios
       .get(placeByIdUrl(id))
       .then((res) => {
         const data = res.data.results[0];
-        console.log(index);
+        // console.log(index);
         // console.log(data.id, cloudData[index].id);
         setAPIData((old) => {
           const t = old;
@@ -57,18 +57,19 @@ export default function TopRated(props) {
         // })
       })
       .catch((err) => {
-        console.log(err);
-        // autoRetryFetch(id, index); 
+        console.log(err.message);
+        autoRetryFetch(id, index);
       });
-  }
- 
-  const fetchAPIData= useCallback(()=>{
-    cloudData?.map(async(item, index) => {
-      await autoRetryFetch(item.id, index);
-    });  
-  },[cloudData])
+  };
 
-  const fetchTopRated=()=> { 
+  const fetchAPIData = () => {
+    console.log('fetching API');
+    cloudData?.map(async (item, index) => {
+      await autoRetryFetch(item.id, index);
+    });
+  };
+
+  const fetchTopRated = () => {
     const collectionRef = collection(db, 'restaurants');
     const q =
       props.state == 'India'
@@ -83,8 +84,8 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         setCloudData([]);
-        console.log('fetching firestore')
-        res.docs.map((doc,index) => { 
+        console.log('fetching firestore');
+        res.docs.map((doc, index) => {
           setCloudData((old) => {
             // return [
             //   ...old,
@@ -93,21 +94,24 @@ export default function TopRated(props) {
             //     data: doc.data(),
             //   },
             // ];
-            const t = old; 
+            const t = old;
             t[index] = { id: doc.id, data: doc.data };
             return t;
           });
         });
-         fetchAPIData();
+        //  fetchAPIData();
       })
       .catch((err) => {
         console.log(err.message);
       });
-  }
+  };
 
   useEffect(() => {
-    fetchTopRated(); 
+    fetchTopRated();
   }, [props.state]);
+  useEffect(() => {
+    fetchAPIData();
+  }, [cloudData]);
 
   return (
     <>
