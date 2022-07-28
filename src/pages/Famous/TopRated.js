@@ -15,7 +15,7 @@ import { Card } from 'react-bootstrap';
 function Show(props) {
   useEffect(() => {
     console.log(props.cloudData, props.APIData, props.state);
-  }, [props.state]);
+  }, [props]);
   return (
     <>
       {
@@ -42,6 +42,7 @@ export default function TopRated(props) {
   const [APIData, setAPIData] = useState([]);
 
   const autoRetryFetch = async (id, index) => {
+    console.log('AutoRetryFetch');
     await axios
       .get(placeByIdUrl(id))
       .then((res) => {
@@ -53,9 +54,6 @@ export default function TopRated(props) {
           t[index] = data;
           return t;
         });
-        // setAPIData((old)=>{
-        //   return [...old,data];
-        // })
       })
       .catch((err) => {
         console.log(err.message);
@@ -63,13 +61,13 @@ export default function TopRated(props) {
       });
   };
 
-  const fetchAPIData = () => {
+  const fetchAPIData = useCallback(() => {
     console.log('fetching API');
     // if (cloudData.length == 0) setAPIData([]);
     cloudData?.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
-  };
+  });
 
   const fetchTopRated = () => {
     const collectionRef = collection(db, 'restaurants');
@@ -85,24 +83,20 @@ export default function TopRated(props) {
 
     getDocs(q)
       .then((res) => {
-        setCloudData([]);
-        // setAPIData([]);
         console.log('fetching firestore');
-        res.docs.map((doc, index) => {
-          setCloudData((old) => {
-            // return [
-            //   ...old,
-            //   {
-            //     id: doc.id,
-            //     data: doc.data(),
-            //   },
-            // ];
-            const t = old;
-            t[index] = { id: doc.id, data: doc.data };
-            return t;
+        if (res.docs.length) {
+          res.docs.map((doc, index) => {
+            setCloudData((old) => {
+              const t = old;
+              t[index] = { id: doc.id, data: doc.data };
+              return t;
+            });
           });
-        });
-        //  fetchAPIData();
+           fetchAPIData();
+        } else {
+          setAPIData([]);
+          setCloudData([]);
+        }
       })
       .catch((err) => {
         console.log(err.message);
@@ -111,11 +105,13 @@ export default function TopRated(props) {
 
   useEffect(() => {
     fetchTopRated();
+    console.log(props.state)
   }, [props.state]);
-  
-  useEffect(() => {
-    fetchAPIData();
-  }, [cloudData]);
+
+  // useEffect(() => {
+  //   // cloudData.length && fetchAPIData();
+  //   console.log(props.state);
+  // }, [cloudData]);
 
   return (
     <>
