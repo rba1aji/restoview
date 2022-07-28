@@ -52,20 +52,21 @@ function Show(props) {
 export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
 
-  // async function fetchAPIData() {
-  //   await restos.map(async (resto, index) => {
-  //     await axios
-  //       .get(placeByIdUrl(resto.id))
-  //       .then((res) => {
-  //         const data = res.data.results[0];
-  //         console.log(index);
-  //         console.log(data.id, restos[index].id);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   });
-  // }
+  async function fetchAPIData() {
+    await cloudData.map(async (resto, index) => {
+      await axios
+        .get(placeByIdUrl(resto.id))
+        .then((res) => {
+          const data = res.data.results[0];
+          console.log(index);
+          console.log(data.id, cloudData[index].id);
+        })
+        .catch((err) => {
+          console.log(err);
+            // tryAgain();
+        });
+    });
+  }
 
   function fetchTopRated() {
     setCloudData([]);
@@ -99,18 +100,18 @@ export default function TopRated(props) {
         console.log(err.message);
       });
 
-    // console.log(cloudData);
+    console.log(cloudData);
     console.log(props.state);
   }
 
   useEffect(() => {
     fetchTopRated();
-    // fetchAPIData();
+    fetchAPIData();
   }, [props.state]);
 
   return (
     <>
-      <Show numImg={props.numImg} cloudData={cloudData} />
+      {/* <Show numImg={props.numImg} cloudData={cloudData} /> */}
     </>
   );
 }
