@@ -48,7 +48,7 @@ export default function TopRated(props) {
       .get(placeByIdUrl(id))
       .then((res) => {
         const data = res.data.results[0];
-        // console.log(index);
+        console.log(index);
         // console.log(data.id, cloudData[index].id);
         setAPIData((old) => {
           const t = old;
@@ -61,15 +61,15 @@ export default function TopRated(props) {
         autoRetryFetch(id, index);
       });
   };
-
-  const fetchAPIData = useCallback(() => {
+ 
+  const fetchAPIData =() => {
     console.log('fetching API');
     cloudData?.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
-  });
+  }
 
-  const fetchTopRated = () => {
+  const fetchTopRated = () => { 
     const collectionRef = collection(db, 'restaurants');
     const q =
       props.state == 'India'
@@ -92,7 +92,9 @@ export default function TopRated(props) {
             t[index] = { id: doc.id, data: doc.data };
             return t;
           });
+          autoRetryFetch(doc.id, index);
         });
+        // fetchAPIData(); 
       })
       .catch((err) => {
         console.log(err.message);
@@ -101,7 +103,7 @@ export default function TopRated(props) {
 
   useEffect(() => {
     fetchTopRated();
-    console.log(props.state);
+    console.log(props.state,cloudData,APIData);
   }, [props?.state]);
 
   return (
@@ -113,7 +115,7 @@ export default function TopRated(props) {
         APIData={APIData}
       /> */}
       <>
-        {cloudData?.map((item, index) => {
+        { APIData?.map((item, index) => {
           return (
             <Card key={index}>
               <Card.Title>
