@@ -63,7 +63,6 @@ export default function TopRated(props) {
   });
 
   const fetchAPIData=useCallback(()=> {
-
     cloudData.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
@@ -84,7 +83,7 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         setCloudData([]);
-        setAPIData([])
+        // setAPIData([])
         res.docs.map((doc,index) => {
           setCloudData((old) => {
             // return [
@@ -98,7 +97,7 @@ export default function TopRated(props) {
             t[index] = { id: doc.id, data: doc.data };
             return t;
           });
-          fetchAPIData()
+          // fetchAPIData()
         });
       })
       .catch((err) => {
@@ -108,7 +107,7 @@ export default function TopRated(props) {
 
   useEffect(() => {
     fetchTopRated();
-    // fetchAPIData();
+    fetchAPIData();
   }, [props]);
 
   return (
