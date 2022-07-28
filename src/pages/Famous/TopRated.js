@@ -50,7 +50,7 @@ function Show(props) {
 export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
 
-  async function fetch(id, index) {
+  async function autoRetryFetch(id, index) {
     await axios
       .get(placeByIdUrl(id))
       .then((res) => {
@@ -66,7 +66,7 @@ export default function TopRated(props) {
 
   async function fetchAPIData() {
     await cloudData.map(async (item, index) => {
-      await fetch(item.id, index);
+      await autoRetryFetch(item.id, index);
     });
   }
 
