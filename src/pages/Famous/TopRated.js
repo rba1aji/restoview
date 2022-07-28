@@ -40,7 +40,7 @@ export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
   const [APIData, setAPIData] = useState([]);
 
-  async function autoRetryFetch (id, index){
+  async function autoRetryFetch(id, index){
     await axios
       .get(placeByIdUrl(id))
       .then((res) => {
@@ -58,13 +58,13 @@ export default function TopRated(props) {
       })
       .catch((err) => {
         console.log(err);
-        autoRetryFetch(id, index);
+        // autoRetryFetch(id, index);
       });
   }
 
-  const fetchAPIData=()=> {
-    cloudData?.map(async (item, index) => {
-      // await autoRetryFetch(item.id, index);
+  async function fetchAPIData(){
+    await cloudData?.map((item, index) => {
+      // autoRetryFetch(item.id, index);
     });
   }
 
