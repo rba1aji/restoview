@@ -14,32 +14,30 @@ import { placeByIdUrl } from '../../reducers/URLs';
 function Show2(props) {
   // console.log('show2')
   const [APIData, setAPIData] = useState();
-  const fetchAPI=()=> {
+  const fetchAPI = () => {
     axios
-      .get(placeByIdUrl(props.cloudData?.id)) 
-      .then((res) => { 
-        const data= res.data.results[0];
+      .get(placeByIdUrl(props.cloudData?.id))
+      .then((res) => {
+        const data = res.data.results[0];
         setAPIData(data);
-  // console.log(data.id,props?.cloudData?.id) 
-      })  
+        // console.log(data.id,props?.cloudData?.id)
+      })
       .catch((err) => {
-        console.log(err.message); 
+        console.log(err.message);
       });
-  } 
-  useEffect(() => { 
+  };
+  useEffect(() => {
     console.log(props);
     fetchAPI();
   }, [props?.cloudData?.id]);
 
-  useEffect(()=>{
-    console.log(APIData)
-    
-  },[APIData]);
-
+  useEffect(() => {
+    console.log(APIData);
+  }, [APIData]);
 }
 
 function Show(props) {
-  // console.log(props.cloudData) 
+  // console.log(props.cloudData)
   return (
     <>
       {props?.numImg?.map((url, index) => {
@@ -52,19 +50,23 @@ function Show(props) {
 export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
 
+  async function fetch(id, index) {
+    await axios
+      .get(placeByIdUrl(id))
+      .then((res) => {
+        const data = res.data.results[0];
+        console.log(index);
+        console.log(data.id, cloudData[index].id);
+      })
+      .catch((err) => {
+        // console.log(err.message);
+        fetch(id, index);
+      });
+  }
+
   async function fetchAPIData() {
-    await cloudData.map(async (resto, index) => {
-      await axios
-        .get(placeByIdUrl(resto.id))
-        .then((res) => {
-          const data = res.data.results[0];
-          console.log(index);
-          console.log(data.id, cloudData[index].id);
-        })
-        .catch((err) => {
-          console.log(err);
-            // tryAgain();
-        });
+    await cloudData.map(async (item, index) => {
+      await fetch(item.id, index);
     });
   }
 
@@ -109,9 +111,5 @@ export default function TopRated(props) {
     fetchAPIData();
   }, [props.state]);
 
-  return (
-    <>
-      {/* <Show numImg={props.numImg} cloudData={cloudData} /> */}
-    </>
-  );
+  return <>{/* <Show numImg={props.numImg} cloudData={cloudData} /> */}</>;
 }
