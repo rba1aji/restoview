@@ -40,12 +40,12 @@ export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
   const [APIData, setAPIData] = useState([]);
 
-  const autoRetryFetch= useCallback(async (id, index)=> {
+  async function autoRetryFetch (id, index){
     await axios
       .get(placeByIdUrl(id))
       .then((res) => {
         const data = res.data.results[0];
-        // console.log(index);
+        console.log(index);
         // console.log(data.id, cloudData[index].id);
         setAPIData((old) => {
           const t = old;
@@ -57,18 +57,18 @@ export default function TopRated(props) {
         // })
       })
       .catch((err) => {
-        // console.log(err.message);
+        console.log(err);
         autoRetryFetch(id, index);
       });
-  });
+  }
 
-  const fetchAPIData=useCallback(()=> {
-    cloudData.map(async (item, index) => {
-      await autoRetryFetch(item.id, index);
+  const fetchAPIData=()=> {
+    cloudData?.map(async (item, index) => {
+      // await autoRetryFetch(item.id, index);
     });
-  });
+  }
 
-  const fetchTopRated=useCallback(()=> {
+  const fetchTopRated=()=> {
     const collectionRef = collection(db, 'restaurants');
     const q =
       props.state == 'India'
@@ -97,16 +97,15 @@ export default function TopRated(props) {
             t[index] = { id: doc.id, data: doc.data };
             return t;
           });
-          // fetchAPIData()
         });
       })
       .catch((err) => {
         console.log(err.message);
       });
-  });
+  }
 
   useEffect(() => {
-    fetchTopRated();
+    fetchTopRated(); 
     fetchAPIData();
   }, [props]);
 
