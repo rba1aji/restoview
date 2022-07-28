@@ -14,7 +14,7 @@ import { Card } from 'react-bootstrap';
 
 function Show(props) {
   useEffect(() => {
-    console.log(props.cloudData, props.APIData, props.state);
+    // console.log(props.cloudData, props.APIData, props.state);
   }, [props]);
   return (
     <>
@@ -40,6 +40,7 @@ function Show(props) {
 export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
   const [APIData, setAPIData] = useState([]);
+  const [state, setState] = useState(props?.state);
 
   const autoRetryFetch = async (id, index) => {
     console.log('AutoRetryFetch');
@@ -63,7 +64,6 @@ export default function TopRated(props) {
 
   const fetchAPIData = useCallback(() => {
     console.log('fetching API');
-    // if (cloudData.length == 0) setAPIData([]);
     cloudData?.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
@@ -84,7 +84,7 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         console.log('fetching firestore');
-        if (res.docs.length) {
+        if (res.docs.length>0) {
           res.docs.map((doc, index) => {
             setCloudData((old) => {
               const t = old;
@@ -92,7 +92,7 @@ export default function TopRated(props) {
               return t;
             });
           });
-           fetchAPIData();
+          fetchAPIData();
         } else {
           setAPIData([]);
           setCloudData([]);
@@ -105,8 +105,8 @@ export default function TopRated(props) {
 
   useEffect(() => {
     fetchTopRated();
-    console.log(props.state)
-  }, [props]);
+    console.log(props.state);
+  }, [props?.state]);
 
   // useEffect(() => {
   //   // cloudData.length && fetchAPIData();
