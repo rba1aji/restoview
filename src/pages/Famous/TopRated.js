@@ -49,28 +49,40 @@ function Show(props) {
 
 export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
+  const [APIData, setAPIData] = useState([]);
 
   async function autoRetryFetch(id, index) {
     await axios
       .get(placeByIdUrl(id))
       .then((res) => {
         const data = res.data.results[0];
-        console.log(index);
-        console.log(data.id, cloudData[index].id);
+        // console.log(index);
+        // console.log(data.id, cloudData[index].id);
+        setAPIData((old)=>{
+          const t=old;
+          t[index]=data;
+          return t;
+        })
+        // setAPIData((old)=>{
+        //   return [...old,data];
+        // })
       })
       .catch((err) => {
         // console.log(err.message);
-        fetch(id, index);
+        autoRetryFetch(id, index);
       });
+      // console.log(APIData) 
   }
 
   async function fetchAPIData() {
     await cloudData.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
+
   }
 
-  function fetchTopRated() {
+  function fetchTopRated() { 
+    setAPIData([]);
     setCloudData([]);
 
     const collectionRef = collection(db, 'restaurants');
@@ -101,15 +113,20 @@ export default function TopRated(props) {
       .catch((err) => {
         console.log(err.message);
       });
-
-    console.log(cloudData);
-    console.log(props.state);
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchTopRated();
-    fetchAPIData();
+    cloudData.length==10 &&fetchAPIData();
+
   }, [props.state]);
+
+  useEffect(()=>{
+    // console.log(APIData)
+  console.log(cloudData, APIData, props.state);
+
+  },[props.state])
+
 
   return <>{/* <Show numImg={props.numImg} cloudData={cloudData} /> */}</>;
 }
