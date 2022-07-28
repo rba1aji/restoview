@@ -40,7 +40,7 @@ export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
   const [APIData, setAPIData] = useState([]);
 
-  async function autoRetryFetch(id, index){
+  const autoRetryFetch= async(id, index)=>{
     await axios
       .get(placeByIdUrl(id))
       .then((res) => {
@@ -58,17 +58,17 @@ export default function TopRated(props) {
       })
       .catch((err) => {
         console.log(err);
-        // autoRetryFetch(id, index);
+        // autoRetryFetch(id, index); 
       });
   }
+ 
+  const fetchAPIData= useCallback(()=>{
+    cloudData?.map(async(item, index) => {
+      await autoRetryFetch(item.id, index);
+    });  
+  },[cloudData])
 
-  async function fetchAPIData(){
-    await cloudData?.map((item, index) => {
-      // autoRetryFetch(item.id, index);
-    });
-  }
-
-  const fetchTopRated=()=> {
+  const fetchTopRated=()=> { 
     const collectionRef = collection(db, 'restaurants');
     const q =
       props.state == 'India'
@@ -83,8 +83,8 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         setCloudData([]);
-        // setAPIData([])
-        res.docs.map((doc,index) => {
+        console.log('fetching firestore')
+        res.docs.map((doc,index) => { 
           setCloudData((old) => {
             // return [
             //   ...old,
@@ -98,6 +98,7 @@ export default function TopRated(props) {
             return t;
           });
         });
+         fetchAPIData();
       })
       .catch((err) => {
         console.log(err.message);
@@ -106,8 +107,7 @@ export default function TopRated(props) {
 
   useEffect(() => {
     fetchTopRated(); 
-    fetchAPIData();
-  }, [props]);
+  }, [props.state]);
 
   return (
     <>
