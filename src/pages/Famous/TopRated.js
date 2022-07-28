@@ -62,15 +62,14 @@ export default function TopRated(props) {
       });
   });
 
-  const fetchAPIData=useCallback(async()=> {
+  const fetchAPIData=useCallback(()=> {
 
-    await cloudData.map(async (item, index) => {
+    cloudData.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
   });
 
   const fetchTopRated=useCallback(()=> {
-
     const collectionRef = collection(db, 'restaurants');
     const q =
       props.state == 'India'
@@ -84,6 +83,8 @@ export default function TopRated(props) {
 
     getDocs(q)
       .then((res) => {
+        setCloudData([]);
+        setAPIData([])
         res.docs.map((doc,index) => {
           setCloudData((old) => {
             // return [
@@ -93,10 +94,11 @@ export default function TopRated(props) {
             //     data: doc.data(),
             //   },
             // ];
-            const t = old;
+            const t = old; 
             t[index] = { id: doc.id, data: doc.data };
             return t;
           });
+          fetchAPIData()
         });
       })
       .catch((err) => {
@@ -106,7 +108,7 @@ export default function TopRated(props) {
 
   useEffect(() => {
     fetchTopRated();
-    fetchAPIData();
+    // fetchAPIData();
   }, [props]);
 
   return (
