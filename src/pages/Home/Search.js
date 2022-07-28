@@ -6,7 +6,7 @@ import { FaSearchLocation } from 'react-icons/fa';
 import { MdSavedSearch } from 'react-icons/md';
 import API_KEY from '../../reducers/API_KEY';
 import { Link } from 'react-router-dom';
-import { Card, Container,Dropdown } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 export default function Search(props) {
   // console.log(process.env);
 
