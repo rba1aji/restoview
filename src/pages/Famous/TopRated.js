@@ -12,6 +12,7 @@ import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
 
 function Show2(props) {
+  // console.log('show2')
   const [APIData, setAPIData] = useState();
   const fetchAPI=()=> {
     axios
@@ -19,21 +20,21 @@ function Show2(props) {
       .then((res) => { 
         const data= res.data.results[0];
         setAPIData(data);
-  console.log(data,props?.cloudData?.id)
-      }) 
+  // console.log(data,props?.cloudData?.id)
+      })  
       .catch((err) => {
         console.log(err.message);
       });
-  }
-  useEffect(() => {
-    // console.log(props);
+  } 
+  useEffect(() => { 
+    console.log(props);
     fetchAPI();
-  }, [props.numImgUrl]);
+  }, [props?.cloudData?.id]);
 
 }
 
 function Show(props) {
-  // console.log(props.numImg)
+  // console.log(props.cloudData) 
   return (
     <>
       {props?.numImg?.map((url, index) => {
