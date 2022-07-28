@@ -13,9 +13,9 @@ import { placeByIdUrl } from '../../reducers/URLs';
 import { Card } from 'react-bootstrap';
 
 function Show(props) {
-  useEffect(() => {
-    // console.log(props.cloudData, props.APIData, props.state);
-  }, [props]);
+  // useEffect(() => {
+  //   // console.log(props.cloudData, props.APIData, props.state);
+  // }, [props]);
   return (
     <>
       {
@@ -84,7 +84,7 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         console.log('fetching firestore');
-        if (res.docs.length>0) {
+        if (res.docs.length) {
           res.docs.map((doc, index) => {
             setCloudData((old) => {
               const t = old;
@@ -92,7 +92,7 @@ export default function TopRated(props) {
               return t;
             });
           });
-          fetchAPIData();
+          // fetchAPIData();
         } else {
           setAPIData([]);
           setCloudData([]);
@@ -115,12 +115,29 @@ export default function TopRated(props) {
 
   return (
     <>
-      <Show
+      {/* <Show
         state={props.state}
         numImg={props.numImg}
         cloudData={cloudData}
         APIData={APIData}
-      />
+      /> */}
+      <>
+        {
+          // props?.cloudData?.length == 10 &&
+          //   props?.APIData?.length == 10 &&
+          cloudData?.map((item, index) => {
+            return (
+              <Card key={index}> 
+                <Card.Title>
+                  {index}
+                  {cloudData[index]?.id}
+                  {APIData[index]?.poi?.name}
+                </Card.Title>
+              </Card>
+            );
+          })
+        }
+      </>
     </>
   );
 }
