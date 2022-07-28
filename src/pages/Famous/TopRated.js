@@ -84,19 +84,15 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         console.log('fetching firestore');
-        if (res.docs.length) {
-          res.docs.map((doc, index) => {
-            setCloudData((old) => {
-              const t = old;
-              t[index] = { id: doc.id, data: doc.data };
-              return t;
-            });
+        setAPIData([]);
+        setCloudData([]);
+        res.docs.map((doc, index) => {
+          setCloudData((old) => {
+            const t = old;
+            t[index] = { id: doc.id, data: doc.data };
+            return t;
           });
-          // fetchAPIData();
-        } else {
-          setAPIData([]);
-          setCloudData([]);
-        }
+        });
       })
       .catch((err) => {
         console.log(err.message);
@@ -108,11 +104,6 @@ export default function TopRated(props) {
     console.log(props.state);
   }, [props?.state]);
 
-  // useEffect(() => {
-  //   // cloudData.length && fetchAPIData();
-  //   console.log(props.state);
-  // }, [cloudData]);
-
   return (
     <>
       {/* <Show
@@ -122,21 +113,17 @@ export default function TopRated(props) {
         APIData={APIData}
       /> */}
       <>
-        {
-          // props?.cloudData?.length == 10 &&
-          //   props?.APIData?.length == 10 &&
-          cloudData?.map((item, index) => {
-            return (
-              <Card key={index}> 
-                <Card.Title>
-                  {index}
-                  {cloudData[index]?.id}
-                  {APIData[index]?.poi?.name}
-                </Card.Title>
-              </Card>
-            );
-          })
-        }
+        {cloudData?.map((item, index) => {
+          return (
+            <Card key={index}>
+              <Card.Title>
+                {index}
+                {cloudData[index]?.id}
+                {APIData[index]?.poi?.name}
+              </Card.Title>
+            </Card>
+          );
+        })}
       </>
     </>
   );
