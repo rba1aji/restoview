@@ -21,7 +21,7 @@ function Show(props) {
       {
         // props?.cloudData?.length == 10 &&
         //   props?.APIData?.length == 10 &&
-        props?.numImg?.map((url, index) => {
+        props?.cloudData?.map((item, index) => {
           return (
             <Card key={index}>
               <Card.Title>
@@ -106,7 +106,7 @@ export default function TopRated(props) {
   useEffect(() => {
     fetchTopRated();
     console.log(props.state)
-  }, [props.state]);
+  }, [props]);
 
   // useEffect(() => {
   //   // cloudData.length && fetchAPIData();
