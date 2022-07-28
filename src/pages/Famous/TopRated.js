@@ -25,6 +25,7 @@ function Show(props) {
           return (
             <Card key={index}>
               <Card.Title>
+                {index}
                 {props?.cloudData[index]?.id}
                 {props?.APIData[index]?.poi?.name}
               </Card.Title>
@@ -64,6 +65,7 @@ export default function TopRated(props) {
 
   const fetchAPIData = () => {
     console.log('fetching API');
+    // if (cloudData.length == 0) setAPIData([]);
     cloudData?.map(async (item, index) => {
       await autoRetryFetch(item.id, index);
     });
@@ -84,6 +86,7 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         setCloudData([]);
+        // setAPIData([]);
         console.log('fetching firestore');
         res.docs.map((doc, index) => {
           setCloudData((old) => {
@@ -109,6 +112,7 @@ export default function TopRated(props) {
   useEffect(() => {
     fetchTopRated();
   }, [props.state]);
+  
   useEffect(() => {
     fetchAPIData();
   }, [cloudData]);
