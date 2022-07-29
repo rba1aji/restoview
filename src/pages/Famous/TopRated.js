@@ -77,7 +77,7 @@ export default function TopRated(props) {
   };
 
   useEffect(() => {
-    console.log(props.state, cloudData);
+    // console.log(props.state, cloudData);
     fetchTopRated(props.state);
   }, [props.state]);
 
@@ -92,19 +92,24 @@ export default function TopRated(props) {
               className="mt-4 p-2"
             >
               <Row className="list-unstyled">
-                <li style={{ width: '25%' }} className="border">
+                <li 
+                style={{ width: '25%' }} 
+                // className="border"
+                >
                   <img
                     src={props?.numImg[index]?.url}
-                    className="border"
+                    // className="border"
                     style={{
                       width: '120px',
                       height: '60px',
                       objectFit: 'cover',
-                      objectPosition:'0% 100% 100% 100%',
+                      objectPosition: '-25px 50%',
                     }}
                   />
                 </li>
-                <li style={{ width: '75%' }} className="border">
+                <li style={{ width: '75%' }} 
+                // className="border"
+                >
                   <Card.Title className="mb-1">{item?.data?.name}</Card.Title>
                   <Card.Text style={{ fontSize: '80%' }}>
                     {/* {item?.data?.address?.full} */}
