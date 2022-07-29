@@ -39,35 +39,27 @@ function Show(props) {
 
 export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
-  const [APIData, setAPIData] = useState([]);
-  const [state, setState] = useState(props?.state);
+  // const [APIData, setAPIData] = useState([]);
 
-  const autoRetryFetch = async (id, index) => {
-    console.log('AutoRetryFetch');
-    await axios
-      .get(placeByIdUrl(id))
-      .then((res) => {
-        const data = res.data.results[0];
-        // console.log(index);
-        // console.log(data.id, cloudData[index].id);
-        setAPIData((old) => {
-          const t = old;
-          t[index] = data;
-          return t;
-        });
-      })
-      .catch((err) => {
-        console.log(err.message);
-        autoRetryFetch(id, index);
-      });
-  };
- 
-  // const fetchAPIData =() => {
-  //   console.log('fetching API');
-  //   cloudData?.map(async (item, index) => {
-  //     await autoRetryFetch(item.id, index);
-  //   });
-  // }
+  // const autoRetryFetch = async (id, index) => {
+  //   console.log('AutoRetryFetch');
+  //   await axios
+  //     .get(placeByIdUrl(id))
+  //     .then((res) => {
+  //       const data = res.data.results[0];
+  //       // console.log(index);
+  //       // console.log(data.id, cloudData[index].id);
+  //       setAPIData((old) => {
+  //         const t = old;
+  //         t[index] = data;
+  //         return t;
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //       autoRetryFetch(id, index);
+  //     });
+  // };
 
   const fetchTopRated = (state) => { 
     const collectionRef = collection(db, 'restaurants');
@@ -84,17 +76,16 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         console.log('fetching firestore');
-        setAPIData([]);
+        // setAPIData([]);
         setCloudData([]);
         res.docs.map((doc, index) => {
           setCloudData((old) => {
             const t = old;
-            t[index] = { id: doc.id, data: doc.data };
+            t[index] = { id: doc.id, data: doc.data() };
             return t;
           });
-          autoRetryFetch(doc.id, index);
+          // autoRetryFetch(doc.id, index);
         });
-        // fetchAPIData(); 
       })
       .catch((err) => {
         console.log(err.message);
@@ -102,7 +93,7 @@ export default function TopRated(props) {
   };
   
   useEffect(() => {
-    console.log(props.state,cloudData,APIData);
+    console.log(props.state,cloudData);
     fetchTopRated(props.state);
   }, [props.state]);
 
@@ -115,13 +106,13 @@ export default function TopRated(props) {
         APIData={APIData}
       /> */}
       <>
-        { APIData?.map((item, index) => {
+        { cloudData?.map((item, index) => {
           return (
             <Card key={index}>
               <Card.Title>
                 {index}
                 {cloudData[index]?.id}
-                {APIData[index]?.poi?.name}
+                {cloudData[index]?.data?.name}
               </Card.Title>
             </Card>
           );
