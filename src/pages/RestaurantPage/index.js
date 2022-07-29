@@ -35,10 +35,11 @@ export default function RestaurantPage() {
         },
       },
       reviews: [],
+      name: APIData.poi.name,
       address: {
         state: APIData.address.countrySubdivision,
+        full: APIData.address.freeformAddress,
       },
-      openingHours: APIData.openingHours ? APIData.openingHours : null,
       photos: [],
     };
     setDoc(docRef, newDocData)

@@ -23,10 +23,11 @@ export default function StarRatingForCard(props) {
         },
       },
       reviews: [],
+      name: props.resto.name,
       address:{
         state: props.resto.state,
+        full: props.resto.address,
       },
-      openingHours: props.resto.openingHours ? props.resto.openingHours : null,
       photos: [],
     };
 
