@@ -12,29 +12,12 @@ import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
 import { Card, Row, Col } from 'react-bootstrap';
 
-function Show(props) {
-  // useEffect(() => {
-  //   // console.log(props.cloudData, props.APIData, props.state);
-  // }, [props]);
-  return (
-    <>
-      {
-        // props?.cloudData?.length == 10 &&
-        //   props?.APIData?.length == 10 &&
-        props?.cloudData?.map((item, index) => {
-          return (
-            <Card key={index}>
-              <Card.Title>
-                {index}
-                {props?.cloudData[index]?.id}
-                {props?.APIData[index]?.poi?.name}
-              </Card.Title>
-            </Card>
-          );
-        })
-      }
-    </>
-  );
+function splitAddress(address){
+  address=address.split(',');
+  // console.log(address);
+  let t=address[address.length-2].replace('^(?=.*[0-9])$','');
+  address=t+','+address[address.length-1];
+  return address;
 }
 
 export default function TopRated(props) {
@@ -75,7 +58,7 @@ export default function TopRated(props) {
 
     getDocs(q)
       .then((res) => {
-        console.log('fetching firestore');
+        // console.log('fetching firestore');
         // setAPIData([]);
         setCloudData([]);
         res.docs.map((doc, index) => {
@@ -99,24 +82,22 @@ export default function TopRated(props) {
 
   return (
     <>
-      {/* <Show
-        state={props.state}
-        numImg={props.numImg}
-        cloudData={cloudData}
-        APIData={APIData}
-      /> */}
       <>
         {cloudData?.map((item, index) => {
           return (
             <Card key={index} style={{marginLeft:'4vw', marginRight:'4vw'}} className='mt-4 p-2'>
               <Row className='list-unstyled'>
                 <li style={{width:'20%'}}>
-                <img src={props?.numImg[index]?.url} style={{width:'100%'}}/>
+                <img src={props?.numImg[index]?.url} className="border-0" style={{width:'40px', height:'90px', objectFit:'cover'}}/>
                 </li>
                 <li style={{width:'80%'}}>
-                  <Card.Title>
+                  <Card.Title className='mb-1'>
                     {item?.data?.name}
                   </Card.Title>
+                  <Card.Text style={{fontSize:'80%'}}>
+                    {item?.data?.address?.full}
+                    {splitAddress(item?.data?.address?.full)}
+                    </Card.Text>
                 </li>
               </Row>
             </Card>
