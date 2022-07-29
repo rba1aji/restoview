@@ -84,8 +84,8 @@ export default function TopRated(props) {
     getDocs(q)
       .then((res) => {
         console.log('fetching firestore');
-        // setAPIData([]);
-        // setCloudData([]);
+        setAPIData([]);
+        setCloudData([]);
         res.docs.map((doc, index) => {
           setCloudData((old) => {
             const t = old;
@@ -115,7 +115,7 @@ export default function TopRated(props) {
         APIData={APIData}
       /> */}
       <>
-        { cloudData?.map((item, index) => {
+        { APIData?.map((item, index) => {
           return (
             <Card key={index}>
               <Card.Title>
