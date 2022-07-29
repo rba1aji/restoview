@@ -56,7 +56,7 @@ export default function Search(props) {
                 {/* <BsShop/>{' '} */}
                 {option.poi.name}
               </h3>
-              <p>{option.address.freeformAddress}</p>
+              <p style={{fontSize:'80%'}}>{option.address.freeformAddress}</p>
             </Link>
           );
         })}

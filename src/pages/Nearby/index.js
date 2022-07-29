@@ -24,12 +24,13 @@ export default function Nearby() {
 
   //////////////////  LATLON 2 RESULT    //////////////////
   function MakeNearbyList(arr) {
-    !selectedPlace&&setSelectedPlace(arr[0].address.localName);
+    !selectedPlace && setSelectedPlace(arr[0].address.localName);
     arr?.map((item) => {
       const details = {
         id: item.id,
         name: item.poi.name,
         address: item.address.freeformAddress,
+        state: item.address.countrySubdivision,
         phone: item.poi.phone,
         tags: item.poi.categories,
         openingHours: item.openingHours,
@@ -87,14 +88,18 @@ export default function Nearby() {
   function ShowCitySuggestion() {
     return (
       <ul className="list-unstyled p-4 pb-2 pt-2 border border-prime bg-light">
-        {suggestionCityList?.map((item,index) => {
+        {suggestionCityList?.map((item, index) => {
           const name = item.matching_full_name;
           if (name.includes('India')) {
             let geoNameId = item['_links']['city:item']['href'].split('/');
             geoNameId = geoNameId[geoNameId.length - 2];
             geoNameId = geoNameId.split(':')[1];
             return (
-              <li className="mb-2" onClick={() => HandleSelected(geoNameId)} key={index}>
+              <li
+                className="mb-2"
+                onClick={() => HandleSelected(geoNameId)}
+                key={index}
+              >
                 {name.split(',')[0]}
               </li>
             );
@@ -199,7 +204,7 @@ export default function Nearby() {
       </div>
 
       <div>
-        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop:45 }}>
+        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop: 45 }}>
           {!loading && (
             <ShowNearbyRestaurants
               place={selectedPlace}

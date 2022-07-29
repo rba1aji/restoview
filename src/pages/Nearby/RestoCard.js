@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import StarRating from '../../components/StarRating';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { BsTelephone } from 'react-icons/bs';
 
 export default function RestoCard(props) {
   return (
@@ -30,11 +32,12 @@ export default function RestoCard(props) {
               </button>
             );
           })}
+        </Link>
+
           <Card.Text className="mb-3">
             {/* Rating:  */}
             <StarRating resto={props.item} />{' '}
           </Card.Text>
-        </Link>
         <Row>
           <Col>
             {props?.item?.phone && (
@@ -44,7 +47,7 @@ export default function RestoCard(props) {
                 as="a"
                 href={`tel:${props?.item?.phone}`}
               >
-                Call{' 📞'}
+                <BsTelephone />{' '}Call
               </Button>
             )}
           </Col>
@@ -59,7 +62,7 @@ export default function RestoCard(props) {
               )}`}
               target="_blank"
             >
-              Order{' 🛒'}
+              Order <AiOutlineShoppingCart size="25%" />
             </Button>
           </Col>
           <Col>
