@@ -61,8 +61,6 @@ export default function MostViewed(props) {
 
     getDocs(q)
       .then((res) => {
-        // console.log('fetching firestore');
-        // setAPIData([]);
         setCloudData([]);
         res.docs.map((doc, index) => {
           setCloudData((old) => {
@@ -70,7 +68,6 @@ export default function MostViewed(props) {
             t[index] = { id: doc.id, data: doc.data() };
             return t;
           });
-          // autoRetryFetch(doc.id, index);
         });
       })
       .catch((err) => {
@@ -121,7 +118,6 @@ export default function MostViewed(props) {
                       {item?.data?.name}
                     </Card.Title>
                     <Card.Text style={{ fontSize: '80%' }} className="mb-1">
-                      {/* {item?.data?.address?.full} */}
                       {splitAddress(item?.data?.address?.full)}
                     </Card.Text>
                   </Link>
