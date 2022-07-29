@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore';
 import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
-import { Card } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 
 function Show(props) {
   // useEffect(() => {
@@ -61,7 +61,7 @@ export default function TopRated(props) {
   //     });
   // };
 
-  const fetchTopRated = (state) => { 
+  const fetchTopRated = (state) => {
     const collectionRef = collection(db, 'restaurants');
     const q =
       props.state == 'India'
@@ -91,13 +91,13 @@ export default function TopRated(props) {
         console.log(err.message);
       });
   };
-  
+
   useEffect(() => {
-    console.log(props.state,cloudData);
+    console.log(props.state, cloudData);
     fetchTopRated(props.state);
   }, [props.state]);
 
-  return ( 
+  return (
     <>
       {/* <Show
         state={props.state}
@@ -106,14 +106,20 @@ export default function TopRated(props) {
         APIData={APIData}
       /> */}
       <>
-        { cloudData?.map((item, index) => {
+        {cloudData?.map((item, index) => {
           return (
-            <Card key={index}>
-              <Card.Title>
-                {index}
-                {cloudData[index]?.id}
-                {cloudData[index]?.data?.name}
-              </Card.Title>
+            <Card key={index} style={{marginLeft:'4vw', marginRight:'4vw'}} className='mt-4 p-2'>
+              <Row className='list-unstyled'>
+                <li style={{width:'20%'}}>
+                <img src={props?.numImg[index]} style={{width:'100%'}}/>
+                {props?.numImg[index]}
+                </li>
+                <li style={{width:'80%'}}>
+                  <Card.Title>
+                    {item?.data?.name}
+                  </Card.Title>
+                </li>
+              </Row>
             </Card>
           );
         })}
