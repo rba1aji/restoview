@@ -111,8 +111,7 @@ export default function TopRated(props) {
             <Card key={index} style={{marginLeft:'4vw', marginRight:'4vw'}} className='mt-4 p-2'>
               <Row className='list-unstyled'>
                 <li style={{width:'20%'}}>
-                <img src={props?.numImg[index]} style={{width:'100%'}}/>
-                {props?.numImg[index]}
+                <img src={props?.numImg[index]?.url} style={{width:'100%'}}/>
                 </li>
                 <li style={{width:'80%'}}>
                   <Card.Title>
