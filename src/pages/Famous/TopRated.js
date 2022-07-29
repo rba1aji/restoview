@@ -11,6 +11,8 @@ import {
 import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
 import { Card, Row, Col } from 'react-bootstrap';
+import { Rating } from 'react-simple-star-rating';
+import { Link } from 'react-router-dom';
 
 function splitAddress(address) {
   address = address.split(',');
@@ -88,17 +90,17 @@ export default function TopRated(props) {
           return (
             <Card
               key={index}
-              style={{ marginLeft: '4vw', marginRight: '4vw' }}
+              // style={{ marginLeft: '4vw', marginRight: '4vw' }}
               className="mt-4 p-2"
             >
               <Row className="list-unstyled">
-                <li 
-                style={{ width: '25%' }} 
-                // className="border"
+                <li
+                  style={{ width: '25%' }}
+                  // className="border"
                 >
                   <img
                     src={props?.numImg[index]?.url}
-                    // className="border"
+                    className="border-0 my-2"
                     style={{
                       width: '120px',
                       height: '60px',
@@ -107,14 +109,33 @@ export default function TopRated(props) {
                     }}
                   />
                 </li>
-                <li style={{ width: '75%' }} 
-                // className="border"
+                <li
+                  style={{ width: '75%' }}
+                  // className="border"
                 >
-                  <Card.Title className="mb-1">{item?.data?.name}</Card.Title>
-                  <Card.Text style={{ fontSize: '80%' }}>
-                    {/* {item?.data?.address?.full} */}
-                    {splitAddress(item?.data?.address?.full)}
-                  </Card.Text>
+                  <Link
+                    to={`/restaurant/${item.id}`}
+                    className="text-reset text-decoration-none"
+                  >
+                    <Card.Title className=" mb-0">
+                      {item?.data?.name}
+                    </Card.Title>
+                    <Card.Text style={{ fontSize: '80%' }} className="mb-1">
+                      {/* {item?.data?.address?.full} */}
+                      {splitAddress(item?.data?.address?.full)}
+                    </Card.Text>
+                  </Link>
+                  <span className="pb-0" style={{ fontSize: '90%' }}>
+                    {item?.data?.ratings?.star.toFixed(1)}{' '}
+                    <span>
+                      <Rating
+                        className="pb-1"
+                        size="20"
+                        readonly
+                        ratingValue={(item?.data?.ratings?.star * 100) / 5}
+                      />
+                    </span>
+                  </span>
                 </li>
               </Row>
             </Card>

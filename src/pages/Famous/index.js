@@ -73,8 +73,8 @@ export default function Famous() {
         variant="outline-dark"
         as={ButtonGroup}
         style={{
-          marginLeft: '20%',
-          marginRight: '20%',
+          marginLeft: '22%',
+          marginRight: '22%',
           display: 'flex',
           justifyContent: 'center',
         }}
@@ -91,8 +91,9 @@ export default function Famous() {
           );
         })}
       </DropdownButton>
+      <br />
       <div
-        style={{ marginLeft: '7vw', marginRight: '7vw', marginTop: '5vh' }}
+        style={{ marginLeft: '7vw', marginRight: '7vw' }}
         // className='border-dark border'
       >
         <Nav
@@ -120,6 +121,7 @@ export default function Famous() {
           <MostViewed state={state} numImg={numImg} />
         )}
       </div>
+      <br />
     </>
   );
 }
