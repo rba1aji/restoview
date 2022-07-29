@@ -12,11 +12,12 @@ import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
 import { Card, Row, Col } from 'react-bootstrap';
 
-function splitAddress(address){
-  address=address.split(',');
-  // console.log(address);
-  let t=address[address.length-2].replace('^(?=.*[0-9])$','');
-  address=t+','+address[address.length-1];
+function splitAddress(address) {
+  address = address.split(',');
+  address =
+    address[address.length - 2].replace(new RegExp('[0-9].*'), '') +
+    ',' +
+    address[address.length - 1];
   return address;
 }
 
@@ -85,19 +86,29 @@ export default function TopRated(props) {
       <>
         {cloudData?.map((item, index) => {
           return (
-            <Card key={index} style={{marginLeft:'4vw', marginRight:'4vw'}} className='mt-4 p-2'>
-              <Row className='list-unstyled'>
-                <li style={{width:'20%'}}>
-                <img src={props?.numImg[index]?.url} className="border-0" style={{width:'40px', height:'90px', objectFit:'cover'}}/>
+            <Card
+              key={index}
+              style={{ marginLeft: '4vw', marginRight: '4vw' }}
+              className="mt-4 p-2"
+            >
+              <Row className="list-unstyled">
+                <li style={{ width: '25%' }} className="border">
+                  <img
+                    src={props?.numImg[index]?.url}
+                    className="border"
+                    style={{
+                      width: '225%',
+                      height: '60px',
+                      objectFit: 'cover',
+                    }}
+                  />
                 </li>
-                <li style={{width:'80%'}}>
-                  <Card.Title className='mb-1'>
-                    {item?.data?.name}
-                  </Card.Title>
-                  <Card.Text style={{fontSize:'80%'}}>
-                    {item?.data?.address?.full}
+                <li style={{ width: '75%' }} className="border">
+                  <Card.Title className="mb-1">{item?.data?.name}</Card.Title>
+                  <Card.Text style={{ fontSize: '80%' }}>
+                    {/* {item?.data?.address?.full} */}
                     {splitAddress(item?.data?.address?.full)}
-                    </Card.Text>
+                  </Card.Text>
                 </li>
               </Row>
             </Card>
