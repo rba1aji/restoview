@@ -100,6 +100,7 @@ export default function TopRated(props) {
                       width: '120px',
                       height: '60px',
                       objectFit: 'cover',
+                      objectPosition:'0% 100% 100% 100%',
                     }}
                   />
                 </li>
