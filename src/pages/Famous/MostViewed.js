@@ -25,27 +25,6 @@ function splitAddress(address) {
 
 export default function MostViewed(props) {
   const [cloudData, setCloudData] = useState([]);
-  // const [APIData, setAPIData] = useState([]);
-
-  // const autoRetryFetch = async (id, index) => {
-  //   console.log('AutoRetryFetch');
-  //   await axios
-  //     .get(placeByIdUrl(id))
-  //     .then((res) => {
-  //       const data = res.data.results[0];
-  //       // console.log(index);
-  //       // console.log(data.id, cloudData[index].id);
-  //       setAPIData((old) => {
-  //         const t = old;
-  //         t[index] = data;
-  //         return t;
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //       autoRetryFetch(id, index);
-  //     });
-  // };
 
   const fetchTopRated = (state) => {
     const collectionRef = collection(db, 'restaurants');
