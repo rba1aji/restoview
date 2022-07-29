@@ -97,7 +97,7 @@ export default function TopRated(props) {
                     src={props?.numImg[index]?.url}
                     className="border"
                     style={{
-                      width: '225%',
+                      width: '120px',
                       height: '60px',
                       objectFit: 'cover',
                     }}
