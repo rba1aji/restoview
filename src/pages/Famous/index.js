@@ -121,6 +121,7 @@ export default function Famous() {
           <MostViewed state={state} numImg={numImg} />
         )}
       </div>
+      <br />
     </>
   );
 }
