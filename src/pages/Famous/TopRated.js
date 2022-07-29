@@ -12,6 +12,7 @@ import axios from 'axios';
 import { placeByIdUrl } from '../../reducers/URLs';
 import { Card, Row, Col } from 'react-bootstrap';
 import { Rating } from 'react-simple-star-rating';
+import { Link } from 'react-router-dom';
 
 function splitAddress(address) {
   address = address.split(',');
@@ -112,11 +113,18 @@ export default function TopRated(props) {
                   style={{ width: '75%' }}
                   // className="border"
                 >
-                  <Card.Title className="mb-1">{item?.data?.name}</Card.Title>
-                  <Card.Text style={{ fontSize: '80%' }} className="mb-0">
-                    {/* {item?.data?.address?.full} */}
-                    {splitAddress(item?.data?.address?.full)}
-                  </Card.Text>
+                  <Link
+                    to={`/restaurant/${item.id}`}
+                    className="text-reset text-decoration-none"
+                  >
+                    <Card.Title className=" mb-0">
+                      {item?.data?.name}
+                    </Card.Title>
+                    <Card.Text style={{ fontSize: '80%' }} className="mb-1">
+                      {/* {item?.data?.address?.full} */}
+                      {splitAddress(item?.data?.address?.full)}
+                    </Card.Text>
+                  </Link>
                   <span className="pb-0" style={{ fontSize: '90%' }}>
                     {item?.data?.ratings?.star.toFixed(1)}{' '}
                     <span>
