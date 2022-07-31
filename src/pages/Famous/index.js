@@ -5,6 +5,7 @@ import MostViewed from './MostViewed';
 import { StateDropdown } from 'react-india-state-region-selector';
 import { db, storage } from '../../configs/firebaseConfig';
 import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
+import { AppState } from '../../reducers/AppContext';
 
 export default function Famous() {
   const [famousType, setFamousType] = useState(0);
@@ -44,9 +45,11 @@ export default function Famous() {
   ];
   const [state, setState] = useState('India');
   const [numImg, setNumImg] = useState([]);
+  const { setLoading } = AppState();
 
   async function fetchNumberImagesFromStorage() {
     for (let i = 0; i < 10; i++) {
+      i==0 && setLoading(true);
       await getDownloadURL(ref(storage, `Top10/${i}.jpg`))
         .then((url) => {
           setNumImg((old) => {
@@ -56,6 +59,7 @@ export default function Famous() {
         .catch((error) => {
           console.log(error.message);
         });
+      i==5 && setLoading(false);
     }
   }
 
@@ -83,7 +87,10 @@ export default function Famous() {
           return (
             <Dropdown.Item
               key={index}
-              onClick={() => setState(state)}
+              onClick={() => {
+                setState(state);
+                setLoading(true);
+              }}
               className=""
             >
               {state}
