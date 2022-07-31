@@ -12,7 +12,7 @@ import RestaurantPage from './pages/RestaurantPage';
 
 export default function App() {
   return (
-    <div>
+    <div style={{ backgroundColor: 'hsl(0, 100%, 98%)', minHeight: '100vh' }}>
       <BrowserRouter>
         <Header />
         <div style={{ height: 60 }}></div>
