@@ -105,7 +105,9 @@ export default function MostViewed(props) {
                     </Card.Text>
                   </Link>
                   <Card.Text className="ps-0">
-                    Views: {item?.data?.views}
+                    <span style={{ color: '#f1a545' }}>Views:{' '}
+                    </span>
+                    {item?.data?.views}
                   </Card.Text>
                 </li>
               </Row>

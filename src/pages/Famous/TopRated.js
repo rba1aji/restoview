@@ -78,10 +78,11 @@ export default function TopRated(props) {
           });
           // autoRetryFetch(doc.id, index);
         });
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
+        setLoading(false);
       });
   };
 
