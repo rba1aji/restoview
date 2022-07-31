@@ -8,7 +8,7 @@ function MobileComponent() {
     <div>
       <div style={{ marginLeft: '6vw', marginRight: '6vw', marginTop: '2vh' }}>
         <Search autoFocus={false} />
-        <br/>
+        <br />
       </div>
       <div className="mobBanner1Container text-center">
         <img
@@ -21,9 +21,9 @@ function MobileComponent() {
         </div>
       </div>
       <br />
-      <div className="text-center" style={{position:'relative'}}>
+      <div className="text-center" style={{ position: 'relative' }}>
         <img
-          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm3.jpg" 
+          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm3.jpg"
           style={{ width: '87.5%', borderRadius: '5px' }}
         />
 
@@ -48,7 +48,7 @@ function DesktopComponent() {
   return (
     <div className="dskBanner1Container">
       <img
-        style={{ width: '100%', borderRadius: '10px', maxHeight: '215px' }}
+        style={{ width: '100%', borderRadius: '10px', maxHeight: '225px' }}
         src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
       />
       <Table

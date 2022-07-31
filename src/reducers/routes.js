@@ -30,12 +30,12 @@ const routes = [
     component: TopRatedComponent,
     title: 'Famous',
   },
-  {
-    private: true,
-    path: '/put-rating',
-    component: PutRatingComponent,
-    title: 'Put Rating',
-  },
+  // {
+  //   private: true,
+  //   path: '/put-rating',
+  //   component: PutRatingComponent,
+  //   title: 'Write A Review',
+  // },
   {
     private: true,
     path: '/dashboard/:uid',
