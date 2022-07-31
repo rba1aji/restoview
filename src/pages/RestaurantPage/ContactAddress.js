@@ -3,11 +3,11 @@ import React from 'react';
 
 export default function ContactAddress(props) {
   return (
-    <>
-      <h4 className="font2" style={{ marginLeft: '5vw', marginTop: '6vw' }}>
-        Contact
+    <div className="border">
+      <h4 className="font2" style={{ marginLeft: '5vw', marginTop: '5vw' }}>
+        Contact {'&'} Address
       </h4>
-      <Card className="border  p-4">
+      <Card className="border-0  p-4">
         {props?.phone ? (
           <Card.Text>
             <a href={`tel:${props?.phone}`} className="text-decoration-none">
@@ -22,12 +22,12 @@ export default function ContactAddress(props) {
         )}
       </Card>
 
-      <h4 className="font2" style={{ marginLeft: '5vw', marginTop: '5vw' }}>
+      {/* <h4 className="font2" style={{ marginLeft: '5vw', marginTop: '5vw' }}>
         Address
-      </h4>
-      <Card className="border p-4">
+      </h4> */}
+      <Card className="border-0 p-4">
         <Card.Text>{props.address}</Card.Text>
       </Card>
-    </>
+    </div>
   );
 }
