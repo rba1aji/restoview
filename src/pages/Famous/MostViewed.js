@@ -13,6 +13,7 @@ import { placeByIdUrl } from '../../reducers/URLs';
 import { Card, Row, Col } from 'react-bootstrap';
 import { Rating } from 'react-simple-star-rating';
 import { Link } from 'react-router-dom';
+import { AppState } from '../../reducers/AppContext';
 
 function splitAddress(address) {
   address = address.split(',');
@@ -25,6 +26,7 @@ function splitAddress(address) {
 
 export default function MostViewed(props) {
   const [cloudData, setCloudData] = useState([]);
+  const { setLoading } = AppState();
 
   const fetchTopRated = (state) => {
     const collectionRef = collection(db, 'restaurants');
@@ -48,9 +50,11 @@ export default function MostViewed(props) {
             return t;
           });
         });
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
+        setLoading(false);
       });
   };
 
@@ -100,9 +104,10 @@ export default function MostViewed(props) {
                       {splitAddress(item?.data?.address?.full)}
                     </Card.Text>
                   </Link>
-                  <Card.Text className='ps-0'>
-                    Views: {item?.data?.views}
-                    </Card.Text>
+                  <Card.Text className="ps-0">
+                    <span style={{ color: '#f1a545' }}>Views: </span>
+                    {item?.data?.views}
+                  </Card.Text>
                 </li>
               </Row>
             </Card>

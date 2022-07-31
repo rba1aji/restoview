@@ -13,6 +13,7 @@ import { placeByIdUrl } from '../../reducers/URLs';
 import { Card, Row, Col } from 'react-bootstrap';
 import { Rating } from 'react-simple-star-rating';
 import { Link } from 'react-router-dom';
+import { AppState } from '../../reducers/AppContext';
 
 function splitAddress(address) {
   address = address.split(',');
@@ -25,6 +26,7 @@ function splitAddress(address) {
 
 export default function TopRated(props) {
   const [cloudData, setCloudData] = useState([]);
+  const { setLoading } = AppState();
   // const [APIData, setAPIData] = useState([]);
 
   // const autoRetryFetch = async (id, index) => {
@@ -67,21 +69,27 @@ export default function TopRated(props) {
         res.docs.map((doc, index) => {
           setCloudData((old) => {
             const t = old;
-            t[index] = { id: doc.id, data: doc.data() };
+            t[index] = {
+              id: doc.id,
+              data: doc.data(),
+              numImgUrl: props?.numImg[index]?.url,
+            };
             return t;
           });
           // autoRetryFetch(doc.id, index);
         });
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.message);
+        setLoading(false);
       });
   };
 
   useEffect(() => {
     // console.log(props.state, cloudData);
-    fetchTopRated(props.state);
-  }, [props.state]);
+    props?.numImg[2] && fetchTopRated(props.state);
+  }, [props]);
 
   return (
     <>
@@ -99,7 +107,8 @@ export default function TopRated(props) {
                   // className="border"
                 >
                   <img
-                    src={props?.numImg[index]?.url}
+                    // src={props?.numImg[index]?.url}
+                    src={item.numImgUrl}
                     className="border-0 my-2"
                     style={{
                       width: '120px',

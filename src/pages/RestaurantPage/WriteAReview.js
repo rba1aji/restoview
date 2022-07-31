@@ -184,16 +184,16 @@ export default function WriteAReview(props) {
 
   return (
     <>
-        <Button
+      <Button
         className={props.className}
-          variant={props.variant}
-          style={{ width: props.width }}
-          onClick={() => {
-            setModalShow(true); 
-          }}
-        >
-          {props.placeHolder}
-        </Button>
+        variant={props.variant}
+        style={{ width: props.width }}
+        onClick={() => {
+          setModalShow(true);
+        }}
+      >
+        {props.placeHolder}
+      </Button>
 
       <WriteAReviewModal
         id={props.id}

@@ -62,7 +62,7 @@ export default function RestoCard(props) {
               )}`}
               target="_blank"
             >
-              Order <AiOutlineShoppingCart size="25%" />
+              Order <AiOutlineShoppingCart size="18" />
             </Button>
           </Col>
           <Col>
