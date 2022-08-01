@@ -49,7 +49,7 @@ export default function Famous() {
 
   async function fetchNumberImagesFromStorage() {
     for (let i = 0; i < 10; i++) {
-      i==0 && setLoading(true);
+      i == 0 && setLoading(true);
       await getDownloadURL(ref(storage, `Top10/${i}.jpg`))
         .then((url) => {
           setNumImg((old) => {
@@ -59,7 +59,7 @@ export default function Famous() {
         .catch((error) => {
           console.log(error.message);
         });
-      i==5 && setLoading(false);
+      i == 5 && setLoading(false);
     }
   }
 
@@ -100,7 +100,10 @@ export default function Famous() {
       </DropdownButton>
       <br />
       <div
-        style={{ marginLeft: '7vw', marginRight: '7vw' }}
+        style={{
+          marginLeft: window.innerWidth < 600 ? '7vw' : '12vw',
+          marginRight: window.innerWidth < 600 ? '7vw' : '12vw',
+        }}
         // className='border-dark border'
       >
         <Nav
