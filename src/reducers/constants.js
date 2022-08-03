@@ -14,7 +14,6 @@ export function PlaceByIdUrl(id) {
 }
 
 export const states = [
-  'India',
   'Andhra Pradesh',
   'Arunachal Pradesh',
   'Assam',
@@ -47,7 +46,6 @@ export const states = [
   'Uttar Pradesh',
   'Uttarakhand',
 ];
-
 
 export function FetchCloudData(APIData) {
   const { cloudData, setCloudData } = AppState();

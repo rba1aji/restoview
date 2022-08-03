@@ -11,8 +11,11 @@ import {
 } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { CustomToggle, CustomMenu } from './customCmp';
+import { states } from '../../reducers/constants';
 
 export default function Filter() {
+  const [state, setState] = useState();
+
   return (
     <>
       <h1>Filter</h1>
@@ -29,7 +32,18 @@ export default function Filter() {
                   State
                 </Dropdown.Toggle>
                 <Dropdown.Menu as={CustomMenu}>
-                  <Dropdown.Item>africa</Dropdown.Item>
+                  {states.map((item) => {
+                    return (
+                      <Dropdown.Item
+                        onClick={() => {
+                          setState(item);
+                          console.log(item);
+                        }}
+                      >
+                        {item}
+                      </Dropdown.Item>
+                    );
+                  })}
                 </Dropdown.Menu>
               </Dropdown>
             </td>
