@@ -23,9 +23,7 @@ export default function Filter() {
                   // ref={reviewRef}
                   className="border-5 border-dark"
                   as="textarea"
-                  placeholder=""
-                  style={{ height: '100px', marginBottom: '20px' }}
-                  required
+                  placeholder="Area"
                 />
               </FloatingLabel>
             </td>
