@@ -20,11 +20,11 @@ export default function Filter() {
         e.preventDefault();
         onClick(e);
       }}
+      className="bg-white"
       variant="outline-dark"
       style={{ width: '100%' }}
-      className="bg-white"
     >
-      {children}
+      {children} {/* State  */}
       &#x25bc;
     </Button>
   ));
@@ -69,13 +69,17 @@ export default function Filter() {
         <tbody>
           <tr>
             <td style={{ width: '50%' }}>
-              <DropdownButton
-                title="State"
-                variant="outline-dark"
-                style={{ width: '100%' }}
-                as={ButtonGroup}
-                className="bg-white"
-              ></DropdownButton>
+              <Dropdown>
+                <Dropdown.Toggle
+                  as={CustomToggle}
+                  id="dropdown-custom-components"
+                >
+                  State
+                </Dropdown.Toggle>
+                <Dropdown.Menu as={CustomMenu}>
+                  <Dropdown.Item>africa</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </td>
             <td>Star Rating</td>
           </tr>
@@ -99,17 +103,13 @@ export default function Filter() {
               </FloatingLabel>
             </td>
             <td>
-              <Dropdown>
-                <Dropdown.Toggle
-                  as={CustomToggle}
-                  id="dropdown-custom-components"
-                >
-                  State
-                </Dropdown.Toggle>
-                <Dropdown.Menu as={CustomMenu}>
-                  <Dropdown.Item>africa</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+              <DropdownButton
+                title="Sort by"
+                variant="outline-dark"
+                style={{ width: '100%' }}
+                as={ButtonGroup}
+                className="bg-white"
+              ></DropdownButton>
             </td>
           </tr>
         </tbody>
