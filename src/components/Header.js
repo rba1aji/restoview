@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <>
-      <Navbar collapseOnSelect bg="light" expand="lg" fixed="top">
+      <Navbar collapseOnSelect bg="white" expand="lg" fixed="top" className='border border-1'>
         <Container>
           <span className="mb-1">
             <MdFoodBank size="33" />
