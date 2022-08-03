@@ -65,7 +65,7 @@ export default function Filter() {
       <h1>Filter</h1>
       <p className="text-center opacity-75">Find the restaurant you want</p>
       <br />
-      <Table bordered>
+      <Table bordered className='filtertable'>
         <tbody>
           <tr>
             <td style={{ width: '50%' }}>
