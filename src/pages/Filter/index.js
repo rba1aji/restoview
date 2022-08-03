@@ -20,7 +20,9 @@ export default function Filter() {
     <>
       <h1>Filter</h1>
       <p className="text-center opacity-75">Find the restaurant you want</p>
-      <Table bordered className="filtertable">
+      <Table
+      //  bordered
+       >
         <tbody>
           <tr>
             <td style={{ width: '50%' }}>
@@ -53,7 +55,7 @@ export default function Filter() {
                 variant="outline-dark"
                 style={{ width: '100%' }}
                 as={ButtonGroup}
-                className="bg-white"
+                // className="bg-white"
               ></DropdownButton>
             </td>
           </tr>
@@ -82,7 +84,7 @@ export default function Filter() {
                 variant="outline-dark"
                 style={{ width: '100%' }}
                 as={ButtonGroup}
-                className="bg-white"
+                // className="bg-white"
               ></DropdownButton>
             </td>
           </tr>

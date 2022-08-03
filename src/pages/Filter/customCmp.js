@@ -9,7 +9,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       e.preventDefault();
       onClick(e);
     }}
-    className="bg-white"
+    // className="bg-white"
     variant="outline-dark"
     style={{ width: '100%' }}
   >
