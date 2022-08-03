@@ -13,6 +13,7 @@ export default function Filter() {
     <>
       <h1>Filter</h1>
       <p className="text-center opacity-75">Find the restaurant you want</p>
+      <br/>
       <Table bordered>
         <tbody>
           <tr>
@@ -48,7 +49,7 @@ export default function Filter() {
             </td>
             <td>
               <DropdownButton
-                title="Sort by"
+                title={`Sort by`}
                 variant="outline-dark"
                 style={{ width: '100%' }}
                 as={ButtonGroup}
