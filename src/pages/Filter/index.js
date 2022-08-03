@@ -1,5 +1,13 @@
-import { Table, DropdownButton, FloatingLabel, Form } from 'react-bootstrap';
+import {
+  Button,
+  Table,
+  DropdownButton,
+  FloatingLabel,
+  Form,
+  ButtonGroup,
+} from 'react-bootstrap';
 import React from 'react';
+
 export default function Filter() {
   return (
     <>
@@ -8,26 +16,45 @@ export default function Filter() {
       <Table bordered>
         <tbody>
           <tr>
-            <td>
+            <td style={{ width: '50%' }}>
               <DropdownButton
                 title="State"
                 variant="outline-dark"
+                style={{ width: '100%' }}
+                as={ButtonGroup}
+                className="bg-white"
               ></DropdownButton>
             </td>
-            <td>Sort by</td>
+            <td>Star Rating</td>
           </tr>
           <tr>
             <td>
-              <FloatingLabel controlId="floatingTextarea2" label="Area">
+              <FloatingLabel
+                controlId="floatingTextarea2"
+                label="Area"
+                className="m-0 p-0"
+                style={{ padding: '0' }}
+              >
                 <Form.Control
                   // ref={reviewRef}
-                  className="border-5 border-dark"
-                  as="textarea"
+                  className="m-0 p-0"
+                  style={{ padding: '0' }}
+                  className="border border-dark"
+                  type="text"
                   placeholder="Area"
+                  style={{ height: '50%' }}
                 />
               </FloatingLabel>
             </td>
-            <td>Star Rating</td>
+            <td>
+              <DropdownButton
+                title="Sort by"
+                variant="outline-dark"
+                style={{ width: '100%' }}
+                as={ButtonGroup}
+                className="bg-white"
+              ></DropdownButton>
+            </td>
           </tr>
         </tbody>
       </Table>
