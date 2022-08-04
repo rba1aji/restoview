@@ -56,7 +56,9 @@ export default function Search(props) {
                 {/* <BsShop/>{' '} */}
                 {option.poi.name}
               </h3>
-              <p style={{fontSize:'80%'}}>{option.address.freeformAddress}</p>
+              <p style={{ fontSize: '80%' }}>
+                {option.address.freeformAddress}
+              </p>
             </Link>
           );
         })}
@@ -69,7 +71,11 @@ export default function Search(props) {
       <div>
         {/* <p> Search for a Restaurant</p> */}
         <InputGroup>
-          <InputGroup.Text id="basic-addon1" className="bg-light border-dark">
+          <InputGroup.Text
+            id="basic-addon1"
+            style={{ background: 'transparent' }}
+            className="border-dark"
+          >
             {/* <BsSearch size="20" /> */}
             <span className="h2 m-0">🍳</span>
           </InputGroup.Text>

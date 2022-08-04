@@ -52,7 +52,7 @@ h1 {
   margin-top: 4vh;
 }
 .cursiveFont {
-  font-family: 'Edu VIC WA NT Beginner',cursive;
+  font-family: 'Edu VIC WA NT Beginner', cursive;
 }
 
 .mobBanner2text {
@@ -64,4 +64,8 @@ h1 {
   text-align: right;
   opacity: 90%;
   font-weight: bolder;
+}
+
+.filtertable li {
+  padding: 50px;
 }
