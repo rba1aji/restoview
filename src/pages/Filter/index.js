@@ -24,11 +24,11 @@ export default function Filter() {
     <>
       <h1>Filter</h1>
       <p className="text-center opacity-75">Find the restaurant you want</p>
-      <Table
-      //  bordered
-      >
+      <Table 
+      // bordered 
+      className="p-4">
         <tbody>
-          <tr>
+          <tr> 
             <td style={{ width: '50%' }}>
               <Dropdown>
                 <Dropdown.Toggle
@@ -84,22 +84,24 @@ export default function Filter() {
               <p className="text-center">{sortby}</p>
             </td>
             <td>
-              <FloatingLabel
+              {/* <FloatingLabel
                 controlId="floatingTextarea2"
                 label="Area"
                 className="m-0 p-0"
                 style={{ padding: '0' }}
-              >
+              > */}
+              {/* <label>Area</label> */}
                 <Form.Control
                   // ref={reviewRef}
-                  className="m-0 p-0"
-                  style={{ padding: '0' }}
+                  className="m-0 p-2"
+                  // style={{ padding: '0' }}
                   className="border border-dark"
                   type="text"
                   placeholder="Area"
-                  style={{ height: '50%' }}
+                  size="md"
+                  // style={{ height: '50%' }}
                 />
-              </FloatingLabel>
+              {/* </FloatingLabel> */}
             </td>
           </tr>
         </tbody>
