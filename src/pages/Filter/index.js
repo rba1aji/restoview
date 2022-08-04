@@ -15,6 +15,7 @@ import { states } from '../../reducers/constants';
 
 export default function Filter() {
   const [state, setState] = useState();
+  console.log(process.env.REACT_APP_TOMTOM_API_KEY);
 
   return (
     <>
@@ -22,7 +23,7 @@ export default function Filter() {
       <p className="text-center opacity-75">Find the restaurant you want</p>
       <Table
       //  bordered
-       >
+      >
         <tbody>
           <tr>
             <td style={{ width: '50%' }}>
@@ -34,9 +35,10 @@ export default function Filter() {
                   State
                 </Dropdown.Toggle>
                 <Dropdown.Menu as={CustomMenu}>
-                  {states.map((item) => {
+                  {states.map((item, index) => {
                     return (
                       <Dropdown.Item
+                        key={index}
                         onClick={() => {
                           setState(item);
                           console.log(item);
