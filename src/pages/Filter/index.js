@@ -15,8 +15,11 @@ import { states } from '../../reducers/constants';
 
 export default function Filter() {
   const [state, setState] = useState();
-  console.log(process.env.REACT_APP_TOMTOM_API_KEY);
-
+  // console.log(process.env.REACT_APP_TOMTOM_API_KEY);
+  const [stars, setStars] = useState([]);
+  const [sortby, setSortby] = useState();
+  const [area, setArea] = useState();
+  const sortbyOptions = ['Rating', 'Views'];
   return (
     <>
       <h1>Filter</h1>
@@ -41,7 +44,6 @@ export default function Filter() {
                         key={index}
                         onClick={() => {
                           setState(item);
-                          console.log(item);
                         }}
                       >
                         {item}
@@ -50,11 +52,12 @@ export default function Filter() {
                   })}
                 </Dropdown.Menu>
               </Dropdown>
+              <p className="text-center">{state}</p>
             </td>
             <td>
               <DropdownButton
-                title="Star Rating"
-                variant="outline-dark"
+                title="Stars "
+                variant=""
                 style={{ width: '100%' }}
                 as={ButtonGroup}
                 // className="bg-white"
@@ -62,6 +65,24 @@ export default function Filter() {
             </td>
           </tr>
           <tr>
+            <td>
+              <DropdownButton
+                title="Sort by "
+                variant=""
+                style={{ width: '100%' }}
+                as={ButtonGroup}
+                // className="bg-white"
+              >
+                {sortbyOptions.map((item, index) => {
+                  return (
+                    <Dropdown.Item key={index} onClick={() => setSortby(item)}>
+                      {item}
+                    </Dropdown.Item>
+                  );
+                })}
+              </DropdownButton>
+              <p className="text-center">{sortby}</p>
+            </td>
             <td>
               <FloatingLabel
                 controlId="floatingTextarea2"
@@ -79,15 +100,6 @@ export default function Filter() {
                   style={{ height: '50%' }}
                 />
               </FloatingLabel>
-            </td>
-            <td>
-              <DropdownButton
-                title="Sort by"
-                variant="outline-dark"
-                style={{ width: '100%' }}
-                as={ButtonGroup}
-                // className="bg-white"
-              ></DropdownButton>
             </td>
           </tr>
         </tbody>
