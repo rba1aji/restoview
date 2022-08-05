@@ -23,7 +23,7 @@ import {
 import { db, storage } from '../../configs/firebaseConfig';
 
 export default function Filter() {
-  const [state, setState] = useState();
+  const [state, setState] = useState('');
   // console.log(process.env.REACT_APP_TOMTOM_API_KEY);
   const [stars, setStars] = useState({
     '5-4': false,
@@ -32,7 +32,7 @@ export default function Filter() {
     '2-1': false,
     '1-0': false,
   });
-  const [sortby, setSortby] = useState();
+  const [sortby, setSortby] = useState('');
   const [area, setArea] = useState('');
   const sortbyOptions = ['Rating', 'Views'];
   const [selectedStars, setSelectedStars] = useState([]);
@@ -50,10 +50,22 @@ export default function Filter() {
 
           const q = query(
             collectionRef,
-            where('address.state', '==', state ? state : state),
-            where('address.full', '==', area ? area : 'address.full'),
-            orderBy(`ratings.${sortby === 'Rating' ? 'star' : 'views'}`, 'desc')
+            where('address.state', '>=', state),
+            where('address.full', '>=', area),
+            orderBy(
+              `ratings.${sortby === 'Rating' ? 'star' : 'views'}`,
+              'desc'
+            ),
+            limit(10)
           );
+
+          getDocs(q)
+            .then((res) => {
+              console.log(res.docs[0].data());
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
         }}
       >
         <Table
