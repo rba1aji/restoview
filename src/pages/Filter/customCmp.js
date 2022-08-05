@@ -11,7 +11,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
       onClick(e);
     }}
     // className="bg-white"
-    variant=""
+    variant="light"
     as={ButtonGroup}
     style={{ width: '100%' }}
   >
