@@ -50,8 +50,7 @@ export default function Filter() {
 
           const q = query(
             collectionRef,
-            where('address.state', '>=', state),
-            where('address.full', '>=', area),
+            where('address.state', '==', state),
             orderBy(
               `ratings.${sortby === 'Rating' ? 'star' : 'views'}`,
               'desc'
