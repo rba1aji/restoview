@@ -9,7 +9,7 @@ import {
   // CustomToggle,
   // CustomMenu,
 } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CustomToggle, CustomMenu } from './customCmp';
 import { states } from '../../reducers/constants';
 
@@ -27,6 +27,8 @@ export default function Filter() {
   const [area, setArea] = useState('');
   const sortbyOptions = ['Rating', 'Views'];
   // const starsOptions = [' 5-4 ', ' 4-3 ', ' 3-2 ', ' 2-1 '];
+  const [selectedStars, setSelectedStars] = useState([]);
+
   return (
     <>
       <h1>Filter</h1>
@@ -99,21 +101,22 @@ export default function Filter() {
                             // console.log(neW);
                             return neW;
                           });
-                          // console.log(stars)
+
+                          // console.log(stars);
+
+                          setSelectedStars((old) => {
+                            var str = '';
+                            Object.keys(stars).map((i) => {
+                              if (stars[i]) str += ' ' + i + ' ';
+                            });
+                            return str;
+                          });
                         }}
                       >
                         <input
                           key={item}
                           type="checkbox"
-                          onChange={() => {
-                            setStars((old) => {
-                              var neW = old;
-                              neW[item] = !neW[item];
-                              // console.log(neW);
-                              return neW;
-                            });
-                            // console.log(stars)
-                          }}
+                          onChange={() => {}}
                           checked={stars[item]}
                         />{' '}
                         {item}
@@ -121,7 +124,8 @@ export default function Filter() {
                     );
                   })}
                 </DropdownButton>
-                <p className="mb-0 mt-2 text-center">{keys(stars)}</p>{' '}
+
+                <p className="mb-0 mt-2 text-center">{selectedStars}</p>
               </td>
             </tr>
             <tr>
