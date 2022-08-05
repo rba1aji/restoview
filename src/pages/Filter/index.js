@@ -12,6 +12,15 @@ import {
 import React, { useState, useEffect } from 'react';
 import { CustomToggle, CustomMenu } from './customCmp';
 import { states } from '../../reducers/constants';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  limit,
+} from 'firebase/firestore';
+import { db, storage } from '../../configs/firebaseConfig';
 
 export default function Filter() {
   const [state, setState] = useState();
@@ -26,8 +35,9 @@ export default function Filter() {
   const [sortby, setSortby] = useState();
   const [area, setArea] = useState('');
   const sortbyOptions = ['Rating', 'Views'];
-  // const starsOptions = [' 5-4 ', ' 4-3 ', ' 3-2 ', ' 2-1 '];
   const [selectedStars, setSelectedStars] = useState([]);
+
+  const collectionRef = collection(db, 'restaurants');
 
   return (
     <>
@@ -35,9 +45,15 @@ export default function Filter() {
       <p className="text-center opacity-75">Find the restaurant you want</p>
 
       <Form
-        // className="bg-white"
         onSubmit={(e) => {
           e.preventDefault();
+
+          const q = query(
+            collectionRef,
+            where('address.state', '==', state ? state : state),
+            where('address.full', '==', area ? area : 'address.full'),
+            orderBy(`ratings.${sortby === 'Rating' ? 'star' : 'views'}`, 'desc')
+          );
         }}
       >
         <Table
@@ -88,7 +104,6 @@ export default function Filter() {
                   variant="light"
                   style={{ width: '100%' }}
                   as={ButtonGroup}
-                  // className="bg-white"
                 >
                   {Object.keys(stars)?.map((item, index) => {
                     return (
@@ -140,7 +155,6 @@ export default function Filter() {
                   variant="light"
                   style={{ width: '100%' }}
                   as={ButtonGroup}
-                  // className="bg-white"
                 >
                   {sortbyOptions.map((item, index) => {
                     return (
@@ -162,13 +176,6 @@ export default function Filter() {
                   borderColor: 'hsl(0, 100%, 96%)',
                 }}
               >
-                {/* <FloatingLabel
-                controlId="floatingTextarea2"
-                label="Area"
-                className="m-0 p-0"
-                style={{ padding: '0' }}
-              > */}
-                {/* <label>Area</label> */}
                 <Form.Control
                   style={{ width: '90%' }}
                   onChange={(e) => {
@@ -180,7 +187,6 @@ export default function Filter() {
                   placeholder="Location"
                   size="md"
                 />
-                {/* </FloatingLabel> */}
               </td>
             </tr>
           </tbody>

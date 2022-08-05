@@ -23,7 +23,7 @@ function MobileComponent() {
       <br />
       <div className="text-center" style={{ position: 'relative' }}>
         <img
-          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm3.jpg"
+          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm4.jpg"
           style={{ width: '87.5%', borderRadius: '5px' }}
         />
 
