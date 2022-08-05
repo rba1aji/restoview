@@ -16,11 +16,17 @@ import { states } from '../../reducers/constants';
 export default function Filter() {
   const [state, setState] = useState();
   // console.log(process.env.REACT_APP_TOMTOM_API_KEY);
-  const [stars, setStars] = useState(new Set());
+  const [stars, setStars] = useState({
+    '5-4': false,
+    '4-3': false,
+    '3-2': false,
+    '2-1': false,
+    '1-0': false,
+  });
   const [sortby, setSortby] = useState();
   const [area, setArea] = useState('');
   const sortbyOptions = ['Rating', 'Views'];
-  const starsOptions = [' 5-4 ', ' 4-3 ', ' 3-2 ', ' 2-1 '];
+  // const starsOptions = [' 5-4 ', ' 4-3 ', ' 3-2 ', ' 2-1 '];
   return (
     <>
       <h1>Filter</h1>
@@ -82,22 +88,40 @@ export default function Filter() {
                   as={ButtonGroup}
                   // className="bg-white"
                 >
-                  {starsOptions.map((item, index) => {
+                  {Object.keys(stars)?.map((item, index) => {
                     return (
                       <Dropdown.Item
                         key={index}
-                        onClick={() =>
+                        onClick={() => {
                           setStars((old) => {
-                            return new Set(old.add(item));
-                          })
-                        }
+                            var neW = old;
+                            neW[item] = !neW[item];
+                            // console.log(neW);
+                            return neW;
+                          });
+                          // console.log(stars)
+                        }}
                       >
+                        <input
+                          key={item}
+                          type="checkbox"
+                          onChange={() => {
+                            setStars((old) => {
+                              var neW = old;
+                              neW[item] = !neW[item];
+                              // console.log(neW);
+                              return neW;
+                            });
+                            // console.log(stars)
+                          }}
+                          checked={stars[item]}
+                        />{' '}
                         {item}
                       </Dropdown.Item>
                     );
                   })}
                 </DropdownButton>
-                <p className="mb-0 mt-2 text-center">{stars}</p>{' '}
+                <p className="mb-0 mt-2 text-center">{keys(stars)}</p>{' '}
               </td>
             </tr>
             <tr>
