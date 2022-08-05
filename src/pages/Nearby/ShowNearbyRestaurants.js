@@ -65,7 +65,10 @@ export default function ShowNearbyRestaurants(props) {
       <h1 ref={paginationScrollRef} style={{ opacity: props.place ? 1 : 0 }}>
         {props.place} Nearby Restaurants
       </h1>
-      <div style={{marginLeft:'6vw', marginRight:'6vw'}} className='mt-4 mb-4'>
+      <div
+        style={{ marginLeft: '6vw', marginRight: '6vw' }}
+        className="mt-4 mb-4"
+      >
         <Row xs={1} md={2} className="g-4">
           {props?.nearbyList
             .slice((currpage - 1) * 10, (currpage - 1) * 10 + 10)
@@ -84,7 +87,7 @@ export default function ShowNearbyRestaurants(props) {
             className="justify-content-center"
             style={{
               marginTop: '10vh',
-              marginBottom: '10vh',
+              paddingBottom: '10vh',
               opacity: props.nearbyList.length > 0 ? 1 : 0,
             }}
             onClick={() => {

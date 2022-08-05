@@ -7,10 +7,10 @@ import { GrMapLocation } from 'react-icons/gr';
 export default function ContactAddress(props) {
   return (
     <div>
-      <h4 className="font2" style={{ marginLeft: '5vw', marginTop: '5vw' }}>
+      <h4 className="font2 mb-3" style={{ marginLeft: '5vw' }}>
         Contact {'&'} Address
       </h4>
-      <div className="border">
+      <div className="border justify-content-center align-items-center d-flex-inline">
         <Card className="border-0  px-4 py-3">
           {props?.phone ? (
             <Card.Text>
@@ -33,8 +33,7 @@ export default function ContactAddress(props) {
       </h4> */}
         <Card className="border-0 px-4 pb-3">
           <Card.Text>
-            <GrMapLocation size='19'/>{' '}
-            {props.address}
+            <GrMapLocation size="19" /> {props.address}
           </Card.Text>
         </Card>
       </div>
