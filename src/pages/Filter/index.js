@@ -107,7 +107,7 @@ export default function Filter() {
                           setSelectedStars((old) => {
                             var str = '';
                             Object.keys(stars).map((i) => {
-                              if (stars[i]) str += ' ' + i + '  ';
+                              if (stars[i]) str += '  ' + i + '  ';
                             });
                             return str;
                           });
