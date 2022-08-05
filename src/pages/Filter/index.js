@@ -37,10 +37,14 @@ export default function Filter() {
           className="p-4 bg-white"
         >
           <tbody>
-            <tr
-            >
+            <tr>
               <td
-              style={{ borderWidth: '20px ', borderColor: 'hsl(0, 100%, 96%)', width: '50%' }}>
+                style={{
+                  borderWidth: '20px ',
+                  borderColor: 'hsl(0, 100%, 96%)',
+                  width: '50%',
+                }}
+              >
                 <Dropdown>
                   <Dropdown.Toggle
                     as={CustomToggle}
@@ -65,8 +69,11 @@ export default function Filter() {
                 </Dropdown>
                 <p className="mb-0 mt-2 text-center">{state}</p>
               </td>
-              <td 
-              style={{ borderWidth: '20px ', borderColor: 'hsl(0, 100%, 96%)' }}
+              <td
+                style={{
+                  borderWidth: '20px ',
+                  borderColor: 'hsl(0, 100%, 96%)',
+                }}
               >
                 <DropdownButton
                   title="Stars "
@@ -81,7 +88,7 @@ export default function Filter() {
                         key={index}
                         onClick={() =>
                           setStars((old) => {
-                            return [old, item];
+                            return new Set(old.add(item));
                           })
                         }
                       >
@@ -93,10 +100,12 @@ export default function Filter() {
                 <p className="mb-0 mt-2 text-center">{stars}</p>{' '}
               </td>
             </tr>
-            <tr
-            >
+            <tr>
               <td
-              style={{ borderWidth: '20px ', borderColor: 'hsl(0, 100%, 96%)' }}
+                style={{
+                  borderWidth: '20px ',
+                  borderColor: 'hsl(0, 100%, 96%)',
+                }}
               >
                 <DropdownButton
                   title="Sort by "
@@ -118,8 +127,12 @@ export default function Filter() {
                 </DropdownButton>
                 <p className="mb-0 mt-2 text-center">{sortby}</p>
               </td>
-              <td className="py-2 ps-3 pe-0"
-              style={{ borderWidth: '20px ', borderColor: 'hsl(0, 100%, 96%)' }}
+              <td
+                className="py-2 ps-3 pe-0"
+                style={{
+                  borderWidth: '20px ',
+                  borderColor: 'hsl(0, 100%, 96%)',
+                }}
               >
                 {/* <FloatingLabel
                 controlId="floatingTextarea2"

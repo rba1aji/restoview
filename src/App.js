@@ -15,7 +15,9 @@ export default function App() {
     <div style={{ backgroundColor: 'hsl(0, 100%, 98%)', minHeight: '100vh' }}>
       <BrowserRouter>
         <Header />
-        <div style={{ height: 60 }}></div>
+        <br/>
+        <br/><br/>
+        {/* <div style={{ height: 60 }}></div> */}
         <Loader />
         <Routes>
           {routes.map((route, index) => (
