@@ -68,7 +68,7 @@ export default function Signup() {
   }
 
   return (
-    <div style={{ minHeight: '90vh' }} className="modal-dialog-centered">
+    <div style={{ minHeight: '70vh' }} className="modal-dialog-centered">
       <Form
         className="d-flex-inline mx-auto"
         style={{ width: '18.5rem' }}

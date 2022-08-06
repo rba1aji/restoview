@@ -7,7 +7,7 @@ import { BsTelephone } from 'react-icons/bs';
 
 export default function RestoCard(props) {
   return (
-    <Card className="bg-light">
+    <Card className="bg-white">
       <Card.Img variant="top" src="" />
       <Card.Body>
         <Link

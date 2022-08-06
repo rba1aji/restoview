@@ -204,7 +204,7 @@ export default function Nearby() {
       </div>
 
       <div>
-        <div ref={contentRef} style={{ minHeight: '100vh', paddingTop: 45 }}>
+        <div ref={contentRef} style={{ minHeight: '90vh', paddingTop: 45 }}>
           {!loading && (
             <ShowNearbyRestaurants
               place={selectedPlace}

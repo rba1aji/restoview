@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { DropdownButton, Button, Form, ButtonGroup } from 'react-bootstrap';
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-  <Button
+  <DropdownButton
     href=""
+    title="State "
     ref={ref}
     onClick={(e) => {
       e.preventDefault();
       onClick(e);
     }}
     // className="bg-white"
-    variant="outline-dark"
+    variant="light"
+    as={ButtonGroup}
     style={{ width: '100%' }}
   >
-    {children} {/* State  */}
-    &#x25bc;
-  </Button>
+    {/* {children}
+    &#x25bc; */}
+  </DropdownButton>
 ));
 
 // forwardRef again here!
