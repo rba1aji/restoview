@@ -66,6 +66,10 @@ export default function Filter() {
               console.log(err.message);
             });
         }}
+        style={{ 
+          marginLeft: window.innerWidth < 600 ? '0' : '10vw',
+          marginRight: window.innerWidth < 600 ? '0' : '10vw',
+        }}
       >
         <Table
           // bordered

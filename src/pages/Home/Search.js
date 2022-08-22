@@ -73,7 +73,9 @@ export default function Search(props) {
         <InputGroup>
           <InputGroup.Text
             id="basic-addon1"
-            style={{ background: 'transparent' }}
+            style={{
+              background: window.innerWidth < 600 ? 'transparent' : 'light',
+            }}
             className="border-dark"
           >
             {/* <BsSearch size="20" /> */}
