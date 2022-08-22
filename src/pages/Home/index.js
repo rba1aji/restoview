@@ -95,7 +95,7 @@ function DesktopComponent() {
                 style={{ width: '100%', borderRadius: '15px' }}
               />
             </td>
-            <td>carasoul</td>
+            <td>carasoul will be here</td>
           </tbody>
         </Table>
       </div>
