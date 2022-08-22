@@ -96,7 +96,7 @@ export default function Nearby() {
             geoNameId = geoNameId.split(':')[1];
             return (
               <li
-                className="mb-2"
+                className="mb-2 bg-white"
                 onClick={() => HandleSelected(geoNameId)}
                 key={index}
               >

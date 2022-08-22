@@ -34,48 +34,72 @@ function MobileComponent() {
           <span style={{fontSize:''}}>RESTOVIEW</span>
         </div> */}
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   );
 }
 
 function DesktopComponent() {
   return (
-    <div className="dskBanner1Container">
-      <img
-        style={{ width: '100%', borderRadius: '10px', maxHeight: '225px' }}
-        src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
-      />
-      <Table
-        className=""
+    <>
+      <div className="dskBanner1Container">
+        <img
+          style={{
+            width: '100%',
+            borderRadius: '10px',
+            maxHeight: '230px',
+            objectFit: 'cover',
+          }}
+          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
+        />
+        <Table
+          className=""
+          style={{
+            position: 'absolute',
+            top: '5%',
+            borderColor: 'transparent',
+            height: '200px',
+          }}
+        >
+          <tr className="border-0">
+            <td
+              className="h1 mb-0 cursiveFont"
+              style={{
+                paddingLeft: '40%',
+                color: 'white',
+                textAlign: 'center',
+              }}
+            >
+              What you eat there?
+              <br /> Rate it here!
+            </td>
+          </tr>
+          <tr className="border-0">
+            <td style={{ paddingLeft: '40%', paddingRight: '3%' }}>
+              <Search autoFocus={false} />
+            </td>
+          </tr>
+        </Table>
+        <br />
+      </div>
+      <div
         style={{
-          position: 'absolute',
-          top: '5%',
-          borderColor: 'transparent',
-          height: '200px',
+          marginLeft: '5.5vw',
+          marginRight: '6vw',
         }}
       >
-        <tr className="border-0">
-          <td
-            className="h1 mb-0 cursiveFont"
-            style={{ paddingLeft: '40%', color: 'white', textAlign: 'center' }}
-          >
-            What you eat there?
-            <br /> Rate it here!
-          </td>
-        </tr>
-        <tr className="border-0">
-          <td style={{ paddingLeft: '40%', paddingRight: '3%' }}>
-            <Search autoFocus={false} />
-          </td>
-        </tr>
-      </Table>
-    </div>
+        <Table style={{ marginTop: '1vh' }}>
+          <tbody>
+            <td style={{ width: '40%' }} className="m-0 p-0">
+              <img
+                src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm4.jpg"
+                style={{ width: '100%', borderRadius: '15px' }}
+              />
+            </td>
+            <td>carasoul</td>
+          </tbody>
+        </Table>
+      </div>
+    </>
   );
 }
 
