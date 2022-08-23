@@ -40,7 +40,7 @@ export default function Filter() {
   const collectionRef = collection(db, 'restaurants');
 
   return (
-    <>
+    <div style={{ minHeight: '100vh' }}>
       <h1>Filter</h1>
       <p className="text-center opacity-75">Find the restaurant you want</p>
 
@@ -66,7 +66,7 @@ export default function Filter() {
               console.log(err.message);
             });
         }}
-        style={{ 
+        style={{
           marginLeft: window.innerWidth < 600 ? '0' : '10vw',
           marginRight: window.innerWidth < 600 ? '0' : '10vw',
         }}
@@ -212,6 +212,6 @@ export default function Filter() {
           </Button>
         </div>
       </Form>
-    </>
+    </div>
   );
 }

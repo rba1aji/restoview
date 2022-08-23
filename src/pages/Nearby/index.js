@@ -166,7 +166,6 @@ export default function Nearby() {
   return (
     <>
       <div
-        className=""
         style={{
           display: 'grid',
           marginTop: '15vh',

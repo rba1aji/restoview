@@ -92,18 +92,16 @@ function DesktopComponent() {
           marginRight: '6vw',
         }}
       >
-        <Table style={{ marginTop: '1vh' }}>
+        <Table style={{ marginTop: '1vh', overFlow: 'hidden' }}>
           <tbody>
             <td style={{ width: '45%' }} className="m-0 p-0">
               <img
                 src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm4.jpg"
-                style={{ width: '100%', borderRadius: '15px' }}
+                style={{ width: '95%', borderRadius: '15px' }}
               />
             </td>
-            <td
-             style={{width:'50%'}}
-            >
-                  <Carousel />
+            <td style={{ width: '47%' }}>
+              <Carousel />
             </td>
           </tbody>
         </Table>

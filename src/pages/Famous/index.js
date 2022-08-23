@@ -68,7 +68,7 @@ export default function Famous() {
   }, []);
 
   return (
-    <>
+    <div style={{ minHeight: '100vh' }}>
       <h1>Famous Restaurants</h1>
 
       <DropdownButton
@@ -132,6 +132,6 @@ export default function Famous() {
         )}
       </div>
       <br />
-    </>
+    </div>
   );
 }

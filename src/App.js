@@ -12,11 +12,15 @@ import RestaurantPage from './pages/RestaurantPage';
 
 export default function App() {
   return (
-    <div style={{ backgroundColor: 'hsl(0, 100%, 98%)', minHeight: '100vh' }}>
+    <div
+      style={{ backgroundColor: 'hsl(0, 100%, 98%)', minHeight: '100vh' }}
+      className="min-vh-100"
+    >
       <BrowserRouter>
         <Header />
-        <br/>
-        <br/><br/>
+        <br />
+        <br />
+        <br />
         {/* <div style={{ height: 60 }}></div> */}
         <Loader />
         <Routes>
@@ -48,6 +52,10 @@ export default function App() {
         </Routes>
       </BrowserRouter>
       <Alert />
+      <br />
+      <footer className="mt-auto text-center">
+        Created by <a href="https://github.com/rba1aji">rba1aji</a>
+      </footer>
     </div>
   );
 }
