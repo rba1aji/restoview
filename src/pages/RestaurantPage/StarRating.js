@@ -8,7 +8,7 @@ export default function StarRating(props) {
       <Rating
         ratingValue={(props?.ratings?.star * 100) / 5}
         readonly="true"
-        size="25px"
+        size={window.innerWidth < 600 ? '25px' : '35px'}
       />{' '}
       ({props?.ratings?.star.toFixed(1)}
       /5)

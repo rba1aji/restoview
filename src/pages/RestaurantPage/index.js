@@ -8,7 +8,7 @@ import { PlaceByIdUrl } from '../../reducers/constants';
 import UpdateViewsById from './UpdateViewsById';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../configs/firebaseConfig';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Row, Col } from 'react-bootstrap';
 import WriteAReview from './WriteAReview';
 import { AppState } from '../../reducers/AppContext';
 import ContactAndAddress from './ContactAddress';
@@ -122,7 +122,8 @@ export default function RestaurantPage() {
           hotelName={APIData?.poi.name}
           ratings={cloudData?.ratings}
           id={id}
-        />{''}
+        />
+        {''}
       </p>
       <h4
         className="font2"
@@ -153,8 +154,31 @@ export default function RestaurantPage() {
           paddingTop: '2vh',
         }}
       >
-        <StarRating ratings={cloudData?.ratings} />
-        <DetailedRatings ratings={cloudData?.ratings} />
+        {window.innerWidth < 600 ? (
+          <>
+            <StarRating ratings={cloudData?.ratings} />
+            <DetailedRatings ratings={cloudData?.ratings} />
+          </>
+        ) : (
+          <>
+            <Col
+              className="d-flex justify-content-center align-items-center"
+              style={{ width: '40%' }}
+            >
+              <span className=" h5 text-center">
+                Star Rating
+                <br />
+                <StarRating ratings={cloudData?.ratings} />
+              </span>{' '}
+            </Col>
+            <Col
+              className="m-2 me-4 d-flex justify-content-center align-items-center"
+              // style={{ width: '80%' }}
+            >
+              <DetailedRatings ratings={cloudData?.ratings} />
+            </Col>
+          </>
+        )}
       </div>
       <div className="text-center m-0 p-0">
         <WriteAReview
@@ -171,7 +195,7 @@ export default function RestaurantPage() {
         hotelName={APIData?.poi?.name}
         reviews={cloudData?.reviews}
       />
-      <br/>
+      <br />
       <ContactAndAddress
         phone={APIData?.poi.phone}
         address={APIData?.address?.freeformAddress}
