@@ -6,7 +6,12 @@ import { carouselImages } from '../../reducers/constants';
 export default function Carousel() {
   // console.log(carouselImages);
   return (
-    <Carousel variant="dark" indicators="" interval="2000">
+    <Carousel
+      variant="dark"
+      indicators=""
+      interval="2000"
+      style={{ objectFit: 'cover', zIndex: '0' }}
+    >
       {carouselImages.map((item, index) => {
         return (
           <Carousel.Item>
@@ -17,7 +22,7 @@ export default function Carousel() {
                 // src={`${item.img}&bg=e5e5e5`}
                 src={item.img}
                 alt={item.alt}
-                style={{ borderRadius: '5px' }}
+                style={{ borderRadius: '5px', zIndex: '-1' }}
               />
             </Link>
           </Carousel.Item>

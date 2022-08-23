@@ -41,7 +41,10 @@ export default function Search(props) {
       setOptions();
     }
     return (
-      <ul className="bg-light list-unstyled p-4 border border-prime">
+      <ul
+        className="bg-light list-unstyled p-4 border border-prime"
+        style={{ zIndex: '100' }}
+      >
         {options.map((option, index) => {
           return (
             <Link

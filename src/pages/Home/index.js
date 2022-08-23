@@ -63,6 +63,7 @@ function DesktopComponent() {
             top: '5%',
             borderColor: 'transparent',
             height: '200px',
+            zIndex:'0'
           }}
         >
           <tr className="border-0">
@@ -92,7 +93,7 @@ function DesktopComponent() {
           marginRight: '6vw',
         }}
       >
-        <Table style={{ marginTop: '1vh', overFlow: 'hidden' }}>
+        <Table style={{ marginTop: '1vh', }}>
           <tbody>
             <td style={{ width: '45%' }} className="m-0 p-0">
               <img
@@ -100,7 +101,7 @@ function DesktopComponent() {
                 style={{ width: '95%', borderRadius: '15px' }}
               />
             </td>
-            <td style={{ width: '47%' }}>
+            <td style={{ width: '47%', }}>
               <Carousel />
             </td>
           </tbody>
