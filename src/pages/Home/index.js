@@ -63,7 +63,7 @@ function DesktopComponent() {
             top: '5%',
             borderColor: 'transparent',
             height: '200px',
-            zIndex:'0'
+            zIndex: '0',
           }}
         >
           <tr className="border-0">
@@ -80,7 +80,9 @@ function DesktopComponent() {
             </td>
           </tr>
           <tr className="border-0">
-            <td style={{ paddingLeft: '40%', paddingRight: '3%' }}>
+            <td
+              style={{ paddingLeft: '40%', paddingRight: '3%', zIndex: '100' }}
+            >
               <Search autoFocus={false} />
             </td>
           </tr>
@@ -93,7 +95,7 @@ function DesktopComponent() {
           marginRight: '6vw',
         }}
       >
-        <Table style={{ marginTop: '1vh', }}>
+        <Table style={{ marginTop: '1vh', zIndex: '-1', position: 'static' }}>
           <tbody>
             <td style={{ width: '45%' }} className="m-0 p-0">
               <img
@@ -101,7 +103,7 @@ function DesktopComponent() {
                 style={{ width: '95%', borderRadius: '15px' }}
               />
             </td>
-            <td style={{ width: '47%', }}>
+            <td style={{ width: '47%', zIndex: '-1' }}>
               <Carousel />
             </td>
           </tbody>

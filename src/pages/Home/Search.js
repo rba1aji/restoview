@@ -55,7 +55,7 @@ export default function Search(props) {
               }}
               to={`/restaurant/${option.id}`}
             >
-              <h3 className="mb-0">
+              <h3 className="mb-0" style={{zIndex:'100'}}>
                 {/* <BsShop/>{' '} */}
                 {option.poi.name}
               </h3>

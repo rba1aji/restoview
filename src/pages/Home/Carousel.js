@@ -14,7 +14,7 @@ export default function Carousel() {
     >
       {carouselImages.map((item, index) => {
         return (
-          <Carousel.Item>
+          <Carousel.Item style={{ zIndex: '0' }}>
             <Link to={item.navlink}>
               <img
                 key={index}
@@ -22,7 +22,7 @@ export default function Carousel() {
                 // src={`${item.img}&bg=e5e5e5`}
                 src={item.img}
                 alt={item.alt}
-                style={{ borderRadius: '5px', zIndex: '-1' }}
+                style={{ borderRadius: '5px', zIndex: '0', objectFit: 'cover' }}
               />
             </Link>
           </Carousel.Item>
