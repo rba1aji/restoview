@@ -2,6 +2,7 @@ import React from 'react';
 import Search from './Search';
 import { Row, Col, Table } from 'react-bootstrap';
 // import '../../assets/chicken.jpg'
+import Carousel from './Carousel';
 
 function MobileComponent() {
   return (
@@ -19,6 +20,10 @@ function MobileComponent() {
           What you eat there?
           <br /> Rate it here!
         </div>
+      </div>
+      <br />
+      <div style={{ marginLeft: '6vw', marginRight: '6vw' }}>
+        <Carousel />
       </div>
       <br />
       <div className="text-center" style={{ position: 'relative' }}>
@@ -89,13 +94,17 @@ function DesktopComponent() {
       >
         <Table style={{ marginTop: '1vh' }}>
           <tbody>
-            <td style={{ width: '40%' }} className="m-0 p-0">
+            <td style={{ width: '45%' }} className="m-0 p-0">
               <img
                 src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm4.jpg"
                 style={{ width: '100%', borderRadius: '15px' }}
               />
             </td>
-            <td>carasoul will be here</td>
+            <td
+             style={{width:'50%'}}
+            >
+                  <Carousel />
+            </td>
           </tbody>
         </Table>
       </div>
