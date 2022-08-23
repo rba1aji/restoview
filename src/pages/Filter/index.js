@@ -36,6 +36,7 @@ export default function Filter() {
   const [area, setArea] = useState('');
   const sortbyOptions = ['Rating', 'Views'];
   const [selectedStars, setSelectedStars] = useState([]);
+  const [result, setResult] = useState();
 
   const collectionRef = collection(db, 'restaurants');
 
@@ -50,16 +51,12 @@ export default function Filter() {
 
           const q = query(
             collectionRef,
-            where('address.state', '==', state),
-            orderBy(
-              `ratings.${sortby === 'Rating' ? 'star' : 'views'}`,
-              'desc'
-            ),
-            limit(10)
+            orderBy(`ratings.${sortby === 'Rating' ? 'star' : 'views'}`, 'desc')
           );
 
           getDocs(q)
             .then((res) => {
+              setResult(res.docs());
               console.log(res.docs[0].data());
             })
             .catch((err) => {
