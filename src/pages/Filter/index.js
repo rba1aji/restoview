@@ -214,19 +214,19 @@ export default function Filter() {
         </div>
       </Form>
 
-      <Row>
+      <Row xs={1} md={2} className="g-4">
         {result?.map((item, index) => {
           const address = item.data().address;
-          const starrate = item.data().star;
+          const starrate = item.data().ratings.star;
           if (address.state.includes(state) && address.full.includes(area)) {
             for (const star in stars) {
-              console.log(star[stars]);
+              // console.log(starrate)
               if (
                 stars[star] &&
-                starrate >= parseInt(star[0]) &&
-                starrate <= parseInt(star[2])
+                starrate <= parseInt(star[0]) &&
+                starrate >= parseInt(star[2])
               ) {
-                console.log(star);
+                // console.log(stars, parseInt(star[0]), parseInt(star[2]));
                 return (
                   <Col>
                     <Card>{item.data().name}</Card>
