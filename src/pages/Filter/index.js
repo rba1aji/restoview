@@ -36,11 +36,12 @@ export default function Filter() {
   const [area, setArea] = useState('');
   const sortbyOptions = ['Rating', 'Views'];
   const [selectedStars, setSelectedStars] = useState([]);
+  const [result, setResult] = useState();
 
   const collectionRef = collection(db, 'restaurants');
 
   return (
-    <>
+    <div style={{ minHeight: '100vh' }}>
       <h1>Filter</h1>
       <p className="text-center opacity-75">Find the restaurant you want</p>
 
@@ -50,21 +51,21 @@ export default function Filter() {
 
           const q = query(
             collectionRef,
-            where('address.state', '==', state),
-            orderBy(
-              `ratings.${sortby === 'Rating' ? 'star' : 'views'}`,
-              'desc'
-            ),
-            limit(10)
+            orderBy(`ratings.${sortby === 'Rating' ? 'star' : 'views'}`, 'desc')
           );
 
           getDocs(q)
             .then((res) => {
+              setResult(res.docs());
               console.log(res.docs[0].data());
             })
             .catch((err) => {
               console.log(err.message);
             });
+        }}
+        style={{
+          marginLeft: window.innerWidth < 600 ? '0' : '10vw',
+          marginRight: window.innerWidth < 600 ? '0' : '10vw',
         }}
       >
         <Table
@@ -208,6 +209,6 @@ export default function Filter() {
           </Button>
         </div>
       </Form>
-    </>
+    </div>
   );
 }

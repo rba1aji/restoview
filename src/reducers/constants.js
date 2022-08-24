@@ -98,3 +98,26 @@ export function FetchCloudData(APIData) {
 
   return cloudData;
 }
+
+export const carouselImages = [
+  {
+    img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/mostviewed.jpg',
+    alt: 'Most Viewed',
+    navlink: '/famous-restaurants',
+  },
+  {
+    img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/nearby.jpg',
+    alt: 'Nearby',
+    navlink: '/near-by-restaurants',
+  },
+  {
+    img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/filter.jpg',
+    alt: 'Filter',
+    navlink: '/filter',
+  },
+  {
+    img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/toprated.jpg',
+    alt: 'Top Rated',
+    navlink: '/famous-restaurants',
+  },
+];

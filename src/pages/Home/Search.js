@@ -41,7 +41,10 @@ export default function Search(props) {
       setOptions();
     }
     return (
-      <ul className="bg-light list-unstyled p-4 border border-prime">
+      <ul
+        className="bg-light list-unstyled p-4 border border-prime"
+        style={{ zIndex: '100' }}
+      >
         {options.map((option, index) => {
           return (
             <Link
@@ -52,7 +55,7 @@ export default function Search(props) {
               }}
               to={`/restaurant/${option.id}`}
             >
-              <h3 className="mb-0">
+              <h3 className="mb-0" style={{zIndex:'100'}}>
                 {/* <BsShop/>{' '} */}
                 {option.poi.name}
               </h3>
@@ -73,7 +76,9 @@ export default function Search(props) {
         <InputGroup>
           <InputGroup.Text
             id="basic-addon1"
-            style={{ background: 'transparent' }}
+            style={{
+              background: window.innerWidth < 600 ? 'transparent' : 'light',
+            }}
             className="border-dark"
           >
             {/* <BsSearch size="20" /> */}

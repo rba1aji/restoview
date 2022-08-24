@@ -96,7 +96,7 @@ export default function Nearby() {
             geoNameId = geoNameId.split(':')[1];
             return (
               <li
-                className="mb-2"
+                className="mb-2 bg-white"
                 onClick={() => HandleSelected(geoNameId)}
                 key={index}
               >
@@ -166,7 +166,6 @@ export default function Nearby() {
   return (
     <>
       <div
-        className=""
         style={{
           display: 'grid',
           marginTop: '15vh',
@@ -179,16 +178,20 @@ export default function Nearby() {
           // variant="outline-dark"
           variant="dark"
           size="md"
-          className="ms-1 me-1 p-2"
           style={{ wordSpacing: 3 }}
           onClick={() => AutoLocationDetect()}
         >
-          Use Current L
-          <span className="pb-5">{<TbCurrentLocation size="15" />}</span>cation
+          <span className={window.innerWidth < 600 ? '' : 'h5 mb-0'}>
+            Use Current L
+            <span className="pb-5">{<TbCurrentLocation size="15" />}</span>
+            cation
+          </span>
         </Button>
         <p className="text-center m-2">or</p>
-        <Form.Group>
-          <p className="mb-1 text-center">Enter location manually</p>
+        <Form.Group className="mb-1 text-center">
+          <p className={window.innerWidth < 600 ? '' : 'h5'}>
+            Enter location manually
+          </p>
           <Form.Control
             className="border-dark p-2"
             type="text"

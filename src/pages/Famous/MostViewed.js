@@ -74,9 +74,10 @@ export default function MostViewed(props) {
               className="mt-4 p-2"
             >
               <Row className="list-unstyled">
-                <li
+                <Col
                   style={{ width: '25%' }}
-                  // className="border"
+                  // className="col-6 col-md-4"
+                  sm={4}
                 >
                   <img
                     src={props?.numImg[index]?.url}
@@ -88,27 +89,35 @@ export default function MostViewed(props) {
                       objectPosition: '-25px 50%',
                     }}
                   />
-                </li>
-                <li
-                  style={{ width: '75%' }}
-                  // className="border"
-                >
-                  <Link
-                    to={`/restaurant/${item.id}`}
-                    className="text-reset text-decoration-none"
+                </Col>
+                <Col>
+                  <Row
+                    xs={1}
+                    md={2}
+                    className="g-4"
+                    // style={{ width: '75%' }}
                   >
-                    <Card.Title className=" mb-0">
-                      {item?.data?.name}
-                    </Card.Title>
-                    <Card.Text style={{ fontSize: '80%' }} className="mb-1">
-                      {splitAddress(item?.data?.address?.full)}
-                    </Card.Text>
-                  </Link>
-                  <Card.Text className="ps-0">
-                    <span style={{ color: '#f1a545' }}>Views: </span>
-                    {item?.data?.views}
-                  </Card.Text>
-                </li>
+                    <li
+                    // className="border"
+                    >
+                      <Link
+                        to={`/restaurant/${item.id}`}
+                        className="text-reset text-decoration-none"
+                      >
+                        <Card.Title className=" mb-0">
+                          {item?.data?.name}
+                        </Card.Title>
+                        <Card.Text style={{ fontSize: '80%' }} className="mb-1">
+                          {splitAddress(item?.data?.address?.full)}
+                        </Card.Text>
+                      </Link>
+                      <Card.Text className="ps-0">
+                        <span style={{ color: '#f1a545' }}>Views: </span>
+                        {item?.data?.views}
+                      </Card.Text>
+                    </li>
+                  </Row>
+                </Col>
               </Row>
             </Card>
           );
