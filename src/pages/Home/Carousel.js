@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { carouselImages } from '../../reducers/constants';
 
-export default function Carousel() {
+export default function Carousel1() {
   // console.log(carouselImages);
   return (
     <Carousel

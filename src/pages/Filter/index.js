@@ -6,6 +6,9 @@ import {
   Form,
   ButtonGroup,
   Dropdown,
+  Row,
+  Col,
+  Card,
   // CustomToggle,
   // CustomMenu,
 } from 'react-bootstrap';
@@ -47,17 +50,18 @@ export default function Filter() {
 
       <Form
         onSubmit={(e) => {
+          // setResult([]);
           e.preventDefault();
 
           const q = query(
             collectionRef,
-            orderBy(`ratings.${sortby === 'Rating' ? 'star' : 'views'}`, 'desc')
+            orderBy(`ratings.${sortby === 'Views' ? 'views' : 'star'}`, 'desc')
           );
 
           getDocs(q)
             .then((res) => {
-              setResult(res.docs());
-              console.log(res.docs[0].data());
+              setResult(res.docs);
+              // console.log(result.length);
             })
             .catch((err) => {
               console.log(err.message);
@@ -129,7 +133,7 @@ export default function Filter() {
                             return neW;
                           });
 
-                          // console.log(stars);
+                          // console.log(stars,selectedStars);
 
                           setSelectedStars((old) => {
                             var str = '';
@@ -209,6 +213,30 @@ export default function Filter() {
           </Button>
         </div>
       </Form>
+
+      <Row>
+        {result?.map((item, index) => {
+          const address = item.data().address;
+          const starrate = item.data().star;
+          if (address.state.includes(state) && address.full.includes(area)) {
+            for (const star in stars) {
+              console.log(star[stars]);
+              if (
+                stars[star] &&
+                starrate >= parseInt(star[0]) &&
+                starrate <= parseInt(star[2])
+              ) {
+                console.log(star);
+                return (
+                  <Col>
+                    <Card>{item.data().name}</Card>
+                  </Col>
+                );
+              }
+            }
+          }
+        })}
+      </Row>
     </div>
   );
 }
