@@ -24,6 +24,7 @@ import {
   limit,
 } from 'firebase/firestore';
 import { db, storage } from '../../configs/firebaseConfig';
+import Restocard from './Restocard';
 
 export default function Filter() {
   const [state, setState] = useState('');
@@ -214,29 +215,37 @@ export default function Filter() {
         </div>
       </Form>
 
-      <Row xs={1} md={2} className="g-4">
-        {result?.map((item, index) => {
-          const address = item.data().address;
-          const starrate = item.data().ratings.star;
-          if (address.state.includes(state) && address.full.includes(area)) {
-            for (const star in stars) {
-              // console.log(starrate)
-              if (
-                stars[star] &&
-                starrate <= parseInt(star[0]) &&
-                starrate >= parseInt(star[2])
-              ) {
-                // console.log(stars, parseInt(star[0]), parseInt(star[2]));
-                return (
-                  <Col>
-                    <Card>{item.data().name}</Card>
-                  </Col>
-                );
+      <div
+        style={{ marginLeft: '6vw', marginRight: '6vw' }}
+        className="mt-4 mb-4"
+      >
+        <Row xs={1} md={2} className="g-4">
+          {result?.map((item, index) => {
+            const address = item.data().address;
+            const starrate = item.data().ratings.star;
+            if (address.state.includes(state) && address.full.includes(area)) {
+              for (const star in stars) {
+                // console.log(starrate)
+                if (
+                  stars[star] &&
+                  starrate <= parseInt(star[0]) &&
+                  starrate >= parseInt(star[2])
+                ) {
+                  // console.log(stars, parseInt(star[0]), parseInt(star[2]));
+                  // console.log(item.data())
+
+                  return (
+                    <Col>
+                      {/* <Card>{item.data().name}</Card> */}
+                      <Restocard id={item.id} data={item.data()} />
+                    </Col>
+                  );
+                }
               }
             }
-          }
-        })}
-      </Row>
+          })}
+        </Row>
+      </div>
     </div>
   );
 }
