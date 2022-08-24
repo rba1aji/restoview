@@ -6,6 +6,9 @@ import {
   Form,
   ButtonGroup,
   Dropdown,
+  Row,
+  Col,
+  Card,
   // CustomToggle,
   // CustomMenu,
 } from 'react-bootstrap';
@@ -21,6 +24,8 @@ import {
   limit,
 } from 'firebase/firestore';
 import { db, storage } from '../../configs/firebaseConfig';
+import Restocard from './Restocard';
+import { AppState } from '../../reducers/AppContext';
 
 export default function Filter() {
   const [state, setState] = useState('');
@@ -37,7 +42,7 @@ export default function Filter() {
   const sortbyOptions = ['Rating', 'Views'];
   const [selectedStars, setSelectedStars] = useState([]);
   const [result, setResult] = useState();
-
+  const { setLoading } = AppState();
   const collectionRef = collection(db, 'restaurants');
 
   return (
@@ -47,17 +52,19 @@ export default function Filter() {
 
       <Form
         onSubmit={(e) => {
+          setResult([]);
+          setLoading(true);
           e.preventDefault();
 
           const q = query(
             collectionRef,
-            orderBy(`ratings.${sortby === 'Rating' ? 'star' : 'views'}`, 'desc')
+            orderBy(`ratings.${sortby === 'Views' ? 'views' : 'star'}`, 'desc')
           );
 
           getDocs(q)
             .then((res) => {
-              setResult(res.docs());
-              console.log(res.docs[0].data());
+              setResult(res.docs);
+              // console.log(result.length);
             })
             .catch((err) => {
               console.log(err.message);
@@ -129,7 +136,7 @@ export default function Filter() {
                             return neW;
                           });
 
-                          // console.log(stars);
+                          // console.log(stars,selectedStars);
 
                           setSelectedStars((old) => {
                             var str = '';
@@ -209,6 +216,42 @@ export default function Filter() {
           </Button>
         </div>
       </Form>
+      <br />
+      <div
+        style={{ marginLeft: '6.5vw', marginRight: '6.5vw' }}
+        className="my-4"
+      >
+        <Row xs={1} md={2} className="g-4">
+          {result?.map((item, index) => {
+            const address = item.data().address;
+            const starrate = item.data().ratings.star;
+            if (
+              address.state.includes(state) &&
+              address.full.toLowerCase().includes(area.toLowerCase())
+            ) {
+              for (const star in stars) {
+                // console.log(starrate)
+                if (
+                  stars[star] &&
+                  starrate <= parseInt(star[0]) &&
+                  starrate >= parseInt(star[2])
+                ) {
+                  // console.log(stars, parseInt(star[0]), parseInt(star[2]));
+                  // console.log(item.data())
+
+                  return (
+                    <Col>
+                      {/* <Card>{item.data().name}</Card> */}
+                      <Restocard id={item.id} data={item.data()} />
+                    </Col>
+                  );
+                }
+              }
+            }
+            if (index == result.length - 2) setLoading(false);
+          })}
+        </Row>
+      </div>
     </div>
   );
 }
