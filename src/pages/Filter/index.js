@@ -25,6 +25,7 @@ import {
 } from 'firebase/firestore';
 import { db, storage } from '../../configs/firebaseConfig';
 import Restocard from './Restocard';
+import { AppState } from '../../reducers/AppContext';
 
 export default function Filter() {
   const [state, setState] = useState('');
@@ -41,7 +42,7 @@ export default function Filter() {
   const sortbyOptions = ['Rating', 'Views'];
   const [selectedStars, setSelectedStars] = useState([]);
   const [result, setResult] = useState();
-
+  const { setLoading } = AppState();
   const collectionRef = collection(db, 'restaurants');
 
   return (
@@ -51,7 +52,8 @@ export default function Filter() {
 
       <Form
         onSubmit={(e) => {
-          // setResult([]);
+          setResult([]);
+          setLoading(true);
           e.preventDefault();
 
           const q = query(
@@ -215,13 +217,18 @@ export default function Filter() {
         </div>
       </Form>
       <br />
-      <div style={{ marginLeft: '6.vw', marginRight: '6.5vw' }} className="my-4">
+      <div
+        style={{ marginLeft: '6.5vw', marginRight: '6.5vw' }}
+        className="my-4"
+      >
         <Row xs={1} md={2} className="g-4">
           {result?.map((item, index) => {
             const address = item.data().address;
             const starrate = item.data().ratings.star;
-            if (address.state.includes(state) && address.full.includes(area)) {
-              //lowercase make
+            if (
+              address.state.includes(state) &&
+              address.full.toLowerCase().includes(area.toLowerCase())
+            ) {
               for (const star in stars) {
                 // console.log(starrate)
                 if (
@@ -241,6 +248,7 @@ export default function Filter() {
                 }
               }
             }
+            if (index == result.length - 2) setLoading(false);
           })}
         </Row>
       </div>
