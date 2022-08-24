@@ -18,7 +18,7 @@ export default function RestoCard(props) {
           <Card.Title>
             <h2 className="m-0 p-0">{props?.data?.name}</h2>
           </Card.Title>
-          <Card.Text className="m-0" style={{ fontSize: 12 }}>
+          <Card.Text className="mb-2" style={{ fontSize: 12 }}>
             {props?.data?.address.full}
           </Card.Text>
           {/* {props?.item?.tags?.map((tag, index) => {
@@ -68,7 +68,7 @@ export default function RestoCard(props) {
               </Button>
             )}
           </Col>
-          <Col>
+          {/* <Col>
             <Button
               size="sm"
               variant="secondary"
@@ -81,7 +81,7 @@ export default function RestoCard(props) {
             >
               Order <AiOutlineShoppingCart size="18" />
             </Button>
-          </Col>
+          </Col> */}
           <Col>
             <Button
               size="sm"
@@ -92,6 +92,7 @@ export default function RestoCard(props) {
               Explore{'🍴'}
             </Button>
           </Col>
+          <Col></Col>
         </Row>
       </Card.Body>
     </Card>

@@ -214,16 +214,14 @@ export default function Filter() {
           </Button>
         </div>
       </Form>
-
-      <div
-        style={{ marginLeft: '6vw', marginRight: '6vw' }}
-        className="mt-4 mb-4"
-      >
+      <br />
+      <div style={{ marginLeft: '6.vw', marginRight: '6.5vw' }} className="my-4">
         <Row xs={1} md={2} className="g-4">
           {result?.map((item, index) => {
             const address = item.data().address;
             const starrate = item.data().ratings.star;
             if (address.state.includes(state) && address.full.includes(area)) {
+              //lowercase make
               for (const star in stars) {
                 // console.log(starrate)
                 if (
