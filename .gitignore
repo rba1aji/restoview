@@ -1,2 +1,2 @@
 .env
-API_KEY.js
+src/reducers/API_KEY.js
