@@ -3,6 +3,8 @@ import Search from './Search';
 import { Row, Col, Table } from 'react-bootstrap';
 // import '../../assets/chicken.jpg'
 import Carousel from './Carousel';
+import chicken1 from '../../assets/chicken1.jpg';
+import pm4 from '../../assets/pm4.jpg';
 
 function MobileComponent() {
   return (
@@ -14,7 +16,8 @@ function MobileComponent() {
       <div className="mobBanner1Container text-center">
         <img
           style={{ width: '87.5%', borderRadius: '5px' }}
-          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
+          src={chicken1}
+        // src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
         />
         <div className="h3 mb-0 mobBanner1text font-italic ">
           What you eat there?
@@ -28,7 +31,8 @@ function MobileComponent() {
       <br />
       <div className="text-center" style={{ position: 'relative' }}>
         <img
-          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm4.jpg"
+          src={pm4}
+          // src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm4.jpg"
           style={{ width: '87.5%', borderRadius: '5px' }}
         />
 
@@ -54,7 +58,8 @@ function DesktopComponent() {
             maxHeight: '230px',
             objectFit: 'cover',
           }}
-          src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
+          src={chicken1}
+        // src="https://raw.githubusercontent.com/rba1aji/my-assets/main/chicken1.jpg"
         />
         <Table
           className=""
@@ -99,7 +104,8 @@ function DesktopComponent() {
           <tbody>
             <td style={{ width: '45%' }} className="m-0 p-0">
               <img
-                src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm4.jpg"
+                src={pm4}
+                // src="https://raw.githubusercontent.com/rba1aji/my-assets/main/pm4.jpg"
                 style={{ width: '95%', borderRadius: '15px' }}
               />
             </td>
