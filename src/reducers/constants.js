@@ -4,6 +4,10 @@ import API_KEY from './API_KEY';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { AppState } from './AppContext';
+import filter from '../assets/filter.jpg';
+import mostviewed from '../assets/mostviewed.jpg';
+import nearby from '../assets/nearby.jpg';
+import toprated from '../assets/toprated.jpg';
 
 export function restoDocRef(id) {
   return doc(db, 'restaurants', id);
@@ -101,22 +105,26 @@ export function FetchCloudData(APIData) {
 
 export const carouselImages = [
   {
-    img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/mostviewed.jpg',
+    img: filter,
+    // img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/mostviewed.jpg',
     alt: 'Most Viewed',
     navlink: '/famous-restaurants',
   },
   {
-    img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/nearby.jpg',
+    img: nearby,
+    // img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/nearby.jpg',
     alt: 'Nearby',
     navlink: '/near-by-restaurants',
   },
   {
-    img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/filter.jpg',
+    img: filter,
+    // img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/filter.jpg',
     alt: 'Filter',
     navlink: '/filter',
   },
   {
-    img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/toprated.jpg',
+    img: toprated,
+    // img: 'https://raw.githubusercontent.com/rba1aji/my-assets/main/toprated.jpg',
     alt: 'Top Rated',
     navlink: '/famous-restaurants',
   },
