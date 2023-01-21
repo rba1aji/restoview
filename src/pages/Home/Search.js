@@ -7,16 +7,20 @@ import { MdSavedSearch } from 'react-icons/md';
 import API_KEY from '../../reducers/API_KEY';
 import { Link } from 'react-router-dom';
 import { Card, Container } from 'react-bootstrap';
+import { AppState } from '../../reducers/AppContext';
 export default function Search(props) {
   // console.log(process.env);
 
   const searchInputRef = useRef('');
   const [options, setOptions] = useState([]);
+  const {query, setQuery} = AppState();
 
   function HandleInputChange(e) {
     e.preventDefault();
 
+    setQuery(searchInputRef.current.value);
     const query = searchInputRef.current.value;
+
 
     const URL = `https://api.tomtom.com/search/2/search/${encodeURIComponent(
       query

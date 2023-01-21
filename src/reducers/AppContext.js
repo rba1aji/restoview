@@ -38,6 +38,8 @@ const AppContextProvider = ({ children }) => {
         setUser,
         refresh,
         setRefresh,
+        query,
+        setQuery
       }}
     >
       {children}

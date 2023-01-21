@@ -5,6 +5,7 @@ import { Row, Col, Table } from 'react-bootstrap';
 import Carousel from './Carousel';
 import chicken1 from '../../assets/chicken1.jpg';
 import pm4 from '../../assets/pm4.jpg';
+import { AppState } from '../../reducers/AppContext';
 
 function MobileComponent() {
   return (
@@ -48,6 +49,7 @@ function MobileComponent() {
 }
 
 function DesktopComponent() {
+  const {query} = AppState();
   return (
     <>
       <div className="dskBanner1Container">
@@ -110,7 +112,7 @@ function DesktopComponent() {
               />
             </td>
             <td style={{ width: '47%', zIndex: '-1' }}>
-              <Carousel />
+              {!query && <Carousel />}
             </td>
           </tbody>
         </Table>
