@@ -50,6 +50,7 @@ h1 {
   margin-left: 6vw;
   margin-right: 6vw;
   margin-top: 0.5vh;
+  z-index:1;
 }
 .cursiveFont {
   font-family: 'Edu VIC WA NT Beginner', cursive;
