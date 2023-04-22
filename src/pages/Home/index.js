@@ -8,8 +8,8 @@ import pm4 from '../../assets/pm4.jpg';
 
 function MobileComponent() {
   return (
-    <div>
-      <div style={{ marginLeft: '6vw', marginRight: '6vw', marginTop: '2vh' }}>
+    <div style={{zIndex:'1'}}>
+      <div style={{ marginLeft: '6vw', marginRight: '6vw', marginTop: '2vh', zIndex:'1' }}>
         <Search autoFocus={false} />
         <br />
       </div>
